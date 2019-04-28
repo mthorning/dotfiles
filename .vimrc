@@ -13,6 +13,9 @@ syntax on
 colorscheme dracula
 set number
 set laststatus=2 "for the status bar to work
-nnoremap <F4> :NERDTreeToggle<CR>  
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+"Mappings
+imap <C-space> <Esc>
+nnoremap <F4> :NERDTreeToggle<CR>  
