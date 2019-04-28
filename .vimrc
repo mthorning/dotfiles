@@ -6,6 +6,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plug 'benmills/vimux'
 
 call plug#end()
 
@@ -17,5 +18,6 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
 "Mappings
-imap <C-space> <Esc>
+inoremap kj <esc>
+cnoremap kj <C-C>
 nnoremap <F4> :NERDTreeToggle<CR>  
