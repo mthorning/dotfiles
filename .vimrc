@@ -13,11 +13,14 @@ Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 Plug 'https://github.com/mxw/vim-jsx.git'
+Plug 'https://github.com/vim-syntastic/syntastic.git'
+Plug 'https://github.com/wagnerf42/vim-clippy.git'
 
 call plug#end()
 
 let g:rustfmt_autosave = 1
 let g:prettier#autoformat = 0
+let g:syntastic_rust_checkers = ['clippy']
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 
 syntax on
