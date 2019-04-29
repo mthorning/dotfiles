@@ -9,4 +9,5 @@ bindkey -v
 
 alias ll="ls -al"
 alias vi="vim"
+alias gc="git add . && git commit -v"
  

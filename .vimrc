@@ -7,6 +7,11 @@ Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'benmills/vimux'
+Plug 'https://github.com/pangloss/vim-javascript.git'
+Plug 'w0rp/ale'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 call plug#end()
 
