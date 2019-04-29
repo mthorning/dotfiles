@@ -16,6 +16,7 @@ Plug 'https://github.com/mxw/vim-jsx.git'
 
 call plug#end()
 
+let g:rustfmt_autosave = 1
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
 
