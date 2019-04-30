@@ -28,6 +28,22 @@ colorscheme dracula
 set number
 
 set laststatus=2 "for the status bar to work
+let g:lightline = {
+\        'active': {
+\	  'left': [ [ 'mode', 'paste' ],
+\	      [ 'readonly', 'foldername', 'filename', 'modified' ] ]
+\        },
+\        'component_function': {
+\            'foldername': 'FoldernameForLightline'
+\        },
+\    }
+
+" Show full path of filename
+function! FoldernameForLightline()
+	let folder = split(getcwd(), "/")
+	return folder[-1]
+endfunction
+
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:javascript_plugin_flow = 1
