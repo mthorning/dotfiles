@@ -26,22 +26,21 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 syntax on
 colorscheme dracula
 set number
-
+set mouse=a
 set laststatus=2 "for the status bar to work
 let g:lightline = {
 \        'active': {
 \	  'left': [ [ 'mode', 'paste' ],
-\	      [ 'readonly', 'foldername', 'filename', 'modified' ] ]
+\	      [ 'readonly', 'filename', 'modified' ] ]
 \        },
 \        'component_function': {
-\            'foldername': 'FoldernameForLightline'
+\            'filename': 'FilenameForLightline'
 \        },
 \    }
 
 " Show full path of filename
-function! FoldernameForLightline()
-	let folder = split(getcwd(), "/")
-	return folder[-1]
+function! FilenameForLightline()
+	return @%
 endfunction
 
 let g:ctrlp_map = '<c-p>'
