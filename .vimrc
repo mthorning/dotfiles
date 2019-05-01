@@ -15,6 +15,8 @@ Plug 'prettier/vim-prettier', {
 Plug 'https://github.com/mxw/vim-jsx.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'https://github.com/wagnerf42/vim-clippy.git'
+Plug 'https://tpope.io/vim/surround.git'
+Plug 'https://tpope.io/vim/repeat.git'
 
 call plug#end()
 
