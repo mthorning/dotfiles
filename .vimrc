@@ -25,7 +25,7 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 
 syntax on
 colorscheme dracula
-set relativenumber
+set number relativenumber 
 set mouse=a
 set laststatus=2 "for the status bar to work
 let g:lightline = {
