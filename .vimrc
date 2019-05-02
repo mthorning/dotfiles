@@ -17,6 +17,9 @@ Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'https://github.com/wagnerf42/vim-clippy.git'
 Plug 'https://tpope.io/vim/surround.git'
 Plug 'https://tpope.io/vim/repeat.git'
+Plug 'https://tpope.io/vim/commentary.git'
+Plug 'Yggdroot/indentLine'
+Plug 'michaeljsmith/vim-indent-object'
 
 call plug#end()
 
@@ -31,6 +34,7 @@ set shiftwidth=4
 set number relativenumber 
 set mouse=a
 set laststatus=2 "for the status bar to work
+
 let g:lightline = {
 \        'active': {
 \	  'left': [ [ 'mode', 'paste' ],
