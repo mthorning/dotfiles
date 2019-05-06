@@ -20,6 +20,9 @@ Plug 'https://tpope.io/vim/repeat.git'
 Plug 'https://tpope.io/vim/commentary.git'
 Plug 'Yggdroot/indentLine'
 Plug 'michaeljsmith/vim-indent-object'
+Plug 'racer-rust/vim-racer'
+Plug 'neomake/neomake'
+
 
 call plug#end()
 
@@ -64,3 +67,15 @@ vnoremap kj <esc>
 nnoremap <F4> :NERDTreeToggle<CR>  
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>m :VimuxRunCommand("cargo run")<CR>
+map <leader>. :VimuxRunCommand("cargo test")<CR>
+
+set splitbelow splitright
+
+set hidden
+let g:racer_cmd = "$HOME/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
+au FileType rust nmap <leader>rg <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>rd <Plug>(rust-doc)
+
+call neomake#configure#automake('nrwi', 500)
