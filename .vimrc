@@ -30,6 +30,7 @@ let g:rustfmt_autosave = 1
 let g:prettier#autoformat = 0
 let g:syntastic_rust_checkers = ['clippy']
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+let g:neomake_javascript_enabled_makers = ['eslint']
 
 syntax on
 colorscheme dracula
@@ -77,5 +78,10 @@ let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 au FileType rust nmap <leader>rg <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>rd <Plug>(rust-doc)
+
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 call neomake#configure#automake('nrwi', 500)
