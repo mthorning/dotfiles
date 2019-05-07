@@ -22,6 +22,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'racer-rust/vim-racer'
 Plug 'neomake/neomake'
+Plug 'airblade/vim-gitgutter'
+Plug 'https://github.com/tpope/vim-fugitive.git'
 
 
 call plug#end()
