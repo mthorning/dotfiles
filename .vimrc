@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'rust-lang/rust.vim'
 Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
@@ -25,17 +26,8 @@ Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
 call plug#end()
 
-let g:deoplete#enable_at_startup = 1
 let g:rustfmt_autosave = 1
 let g:prettier#autoformat = 0
 let g:syntastic_rust_checkers = ['clippy']
@@ -94,4 +86,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+"NerdTree
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
 call neomake#configure#automake('nrwi', 500)
+
