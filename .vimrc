@@ -89,8 +89,6 @@ nnoremap <C-l> <C-w>l
 "NerdTree
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
 
 call neomake#configure#automake('nrwi', 500)
 
