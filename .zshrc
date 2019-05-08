@@ -7,6 +7,7 @@ setopt  autocd autopushd
 source $ZSH/oh-my-zsh.sh
 export EDITOR="vim"
 bindkey -v
+bindkey kj vi-cmd-mode 
 
 alias ll="ls -al"
 alias vi="vim"
