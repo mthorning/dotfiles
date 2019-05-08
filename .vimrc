@@ -25,9 +25,17 @@ Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'https://github.com/tpope/vim-fugitive.git'
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()
 
+let g:deoplete#enable_at_startup = 1
 let g:rustfmt_autosave = 1
 let g:prettier#autoformat = 0
 let g:syntastic_rust_checkers = ['clippy']
