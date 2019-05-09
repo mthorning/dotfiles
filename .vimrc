@@ -61,6 +61,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 "Mappings
 let mapleader=","
