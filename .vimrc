@@ -40,6 +40,9 @@ set shiftwidth=4
 set number relativenumber 
 set mouse=a
 set laststatus=2 "for the status bar to work
+set splitbelow splitright
+set hidden
+set scrolloff=5
 
 let g:lightline = {
 \        'active': {
@@ -74,9 +77,6 @@ map <leader>vp :VimuxPromptCommand<CR>
 map <leader>m :VimuxRunCommand("cargo run")<CR>
 map <leader>. :VimuxRunCommand("cargo test")<CR>
 
-set splitbelow splitright
-
-set hidden
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
