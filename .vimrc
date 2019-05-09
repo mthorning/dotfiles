@@ -68,6 +68,7 @@ let mapleader=","
 inoremap kj <esc>
 cnoremap kj <C-C>
 vnoremap kj <esc>
+nnoremap <esc> :noh<return><esc>
 nnoremap <F4> :NERDTreeToggle<CR>  
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>m :VimuxRunCommand("cargo run")<CR>
