@@ -37,6 +37,7 @@ Plug 'https://github.com/tpope/vim-fugitive.git'
 call plug#end()
 
 "Some basics
+set spelllang=en
 syntax on
 colorscheme dracula
 set shiftwidth=4
@@ -45,6 +46,7 @@ set mouse=a
 set splitbelow splitright
 set hidden
 set scrolloff=5
+au FileType gitcommit 1 | startinsert
 
 "Rust
 let g:rustfmt_autosave = 1
@@ -68,14 +70,16 @@ let g:racer_cmd = "$HOME/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 
+let g:markdown_fenced_languages = ['html', 'jsx', 'javascript', 'bash=sh']
+
 call neomake#configure#automake('nrwi', 500)
 
 "Mappings
 let mapleader=","
 inoremap kj <esc>
-cnoremap kj <C-C>
+cnoremap kj <C-c>
 vnoremap kj <esc>
-nnoremap <esc> :noh<return><esc>
+nnoremap <esc> :noh<CR><esc>
 nnoremap <F4> :NERDTreeToggle<CR>  
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>m :VimuxRunCommand("cargo run")<CR>
