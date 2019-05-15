@@ -5,12 +5,14 @@
 #   (_)___|___/_| |_|_|  \___|
 #                             
 export ZSH="$HOME/.oh-my-zsh"
+export RPS1="%{$reset_color%}"
+export EDITOR="vim"
+
 ZSH_THEME="spaceship"
 
-plugins=(git)
+plugins=(git vi-mode)
 
 setopt  autocd autopushd
-export EDITOR="vim"
 source $ZSH/oh-my-zsh.sh
 
 bindkey -v
