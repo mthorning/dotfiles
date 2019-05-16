@@ -16,7 +16,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'benmills/vimux'
-Plug 'https://github.com/pangloss/vim-javascript.git'
 Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
@@ -33,6 +32,9 @@ Plug 'racer-rust/vim-racer'
 Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'alvan/vim-closetag'
 
 call plug#end()
 
@@ -71,6 +73,7 @@ let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 
 let g:markdown_fenced_languages = ['html', 'jsx', 'javascript', 'bash=sh']
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
 
 call neomake#configure#automake('nrwi', 500)
 
