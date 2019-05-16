@@ -14,7 +14,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
-Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plug 'benmills/vimux'
 Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', {
@@ -35,6 +34,8 @@ Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'alvan/vim-closetag'
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -64,10 +65,6 @@ let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
 "Plugin settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
