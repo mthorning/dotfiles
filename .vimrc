@@ -6,6 +6,29 @@
 "		                            
 
 
+"Mappings
+let mapleader=","
+inoremap kj <esc>
+cnoremap kj <C-c>
+vnoremap kj <esc>
+nnoremap <esc> :noh<CR><esc>
+nnoremap <F4> :NERDTreeToggle<CR>  
+
+nnoremap <C-p> :FZF<CR>
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+map <leader>vp :VimuxPromptCommand<CR>
+map <leader>m :VimuxRunCommand("cargo run")<CR>
+map <leader>. :VimuxRunCommand("cargo test")<CR>
+map <leader>conf :tabe ~/dotfiles/.vimrc<CR>
+
+au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+
+"Plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'rust-lang/rust.vim'
@@ -54,8 +77,6 @@ au FileType gitcommit 1 | startinsert
 "Rust
 let g:rustfmt_autosave = 1
 let g:syntastic_rust_checkers = ['clippy']
-au FileType rust nmap <leader>rg <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>rd <Plug>(rust-doc)
 
 "Javascript
 let g:prettier#autoformat = 0
@@ -74,21 +95,9 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
 
 call neomake#configure#automake('nrwi', 500)
 
-"Mappings
-let mapleader=","
-inoremap kj <esc>
-cnoremap kj <C-c>
-vnoremap kj <esc>
-nnoremap <esc> :noh<CR><esc>
-nnoremap <F4> :NERDTreeToggle<CR>  
-map <leader>vp :VimuxPromptCommand<CR>
-map <leader>m :VimuxRunCommand("cargo run")<CR>
-map <leader>. :VimuxRunCommand("cargo test")<CR>
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "40"
 
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 "NerdTree
 let NERDTreeQuitOnOpen = 1
@@ -122,3 +131,4 @@ function! FolderForLightline()
       return path[-1]
 endfunction
 set laststatus=2 "for the status bar to work
+

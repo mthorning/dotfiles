@@ -22,6 +22,11 @@ alias ll="ls -al"
 alias vi="vim"
 alias com="git add .;  git commit -v"
 
+function chpwd() {
+    emulate -L zsh
+    ls -al
+}
+
 if type nvim > /dev/null 2>&1; then
   alias vim="nvim"
   export EDITOR="nvim"
