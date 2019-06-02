@@ -6,7 +6,6 @@
 #                             
 export ZSH="$HOME/.oh-my-zsh"
 export RPS1="%{$reset_color%}"
-export EDITOR="vim"
 
 ZSH_THEME="spaceship"
 
@@ -19,7 +18,6 @@ bindkey -v
 bindkey kj vi-cmd-mode 
 
 alias ll="ls -al"
-alias vi="vim"
 alias com="git add .;  git commit -v"
 
 function chpwd() {
@@ -27,9 +25,14 @@ function chpwd() {
     ls -al
 }
 
+alias vi="vim"
+export VISUAL="vim"
+export EDITOR="vim"
 if type nvim > /dev/null 2>&1; then
-  alias vim="nvim"
-  export EDITOR="nvim"
+    alias vi="nvim"
+    alias vim="nvim"
+    export EDITOR="nvim"
+    export VISUAL="nvim"
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -14,6 +14,8 @@ vnoremap kj <esc>
 nnoremap <esc> :noh<CR><esc>
 nnoremap <F4> :NERDTreeToggle<CR>  
 
+" RACER autocomplete = C-x-C-o
+
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -74,6 +76,8 @@ set splitbelow splitright
 set hidden
 set scrolloff=5
 au FileType gitcommit 1 | startinsert
+"turn off auto-comment next line:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "Rust
 let g:rustfmt_autosave = 1
