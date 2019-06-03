@@ -82,6 +82,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 "Rust
 let g:rustfmt_autosave = 1
 let g:syntastic_rust_checkers = ['clippy']
+let g:racer_experimental_completer = 1
 
 "Javascript
 let g:prettier#autoformat = 0
