@@ -27,6 +27,7 @@ map <leader>m :VimuxRunCommand("cargo run")<CR>
 map <leader>. :VimuxRunCommand("cargo test")<CR>
 map <leader>conf :tabe ~/dotfiles/.vimrc<CR>
 map <leader>w :w<CR>
+map <leader># :b#<CR>
 
 au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
