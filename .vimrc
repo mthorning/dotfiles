@@ -106,9 +106,8 @@ call neomake#configure#automake('nrwi', 500)
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
 
-
 "NerdTree
-let NERDTreeQuitOnOpen = 1
+"let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
