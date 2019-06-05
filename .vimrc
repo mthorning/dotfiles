@@ -78,6 +78,7 @@ set splitbelow splitright
 set hidden
 set scrolloff=5
 au FileType gitcommit 1 | startinsert
+
 "turn off auto-comment next line:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -107,7 +108,7 @@ let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
 
 "NerdTree
-"let NERDTreeQuitOnOpen = 1
+let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
