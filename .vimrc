@@ -23,14 +23,14 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 map <leader>vp :VimuxPromptCommand<CR>
-map <leader>m :VimuxRunCommand("cargo run")<CR>
-map <leader>. :VimuxRunCommand("cargo test")<CR>
 map <leader>conf :tabe ~/dotfiles/.vimrc<CR>
 map <leader>w :w<CR>
 map <leader># :b#<CR>
 
 au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
+au FileType rust nmap <leader>m :VimuxRunCommand("cargo run")<CR>
+au FileType rust nmap <leader>. :VimuxRunCommand("cargo test")<CR>
 
 "Plugins
 call plug#begin('~/.vim/plugged')
