@@ -32,6 +32,7 @@ au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 au FileType rust nmap <leader>m :VimuxRunCommand("cargo run")<CR>
 au FileType rust nmap <leader>. :VimuxRunCommand("cargo test")<CR>
+au FileType javascript nmap <leader>. :VimuxRunCommand("npm test")<CR>
 
 "Plugins
 call plug#begin('~/.vim/plugged')
