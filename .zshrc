@@ -41,3 +41,7 @@ export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if [ "$TMUX" = "" ]; then tmux; fi
 
+if command -v most > /dev/null 2>&1; then
+    export PAGER="most"
+fi
+
