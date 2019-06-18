@@ -66,6 +66,7 @@ Plug 'alvan/vim-closetag'
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'https://github.com/gaving/vim-textobj-argument.git'
 
 call plug#end()
 
