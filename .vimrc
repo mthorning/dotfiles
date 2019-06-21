@@ -40,7 +40,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'rust-lang/rust.vim'
 Plug 'https://github.com/scrooloose/nerdtree.git'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'benmills/vimux'
@@ -67,13 +66,13 @@ Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'https://github.com/b4winckler/vim-angry.git'
+Plug 'dracula/vim', { 'as': 'dracula' }
 
 call plug#end()
 
 "Some basics
 set spelllang=en
 syntax on
-colorscheme dracula
 set shiftwidth=4
 set number relativenumber 
 set mouse=a
@@ -129,6 +128,7 @@ let g:NERDTreeIndicatorMapCustom = {
 
 "Status line
 let g:lightline = {
+\	'colorscheme': 'darcula',
 \        'active': {
 \	  'left': [ [ 'mode', 'paste' ],
 \	      [ 'readonly', 'foldername', 'filename', 'modified' ] ]
@@ -143,4 +143,3 @@ function! FolderForLightline()
       return path[-1]
 endfunction
 set laststatus=2 "for the status bar to work
-
