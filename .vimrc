@@ -59,7 +59,6 @@ Plug 'racer-rust/vim-racer'
 Plug 'neomake/neomake'
 Plug 'airblade/vim-gitgutter'
 Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'alvan/vim-closetag'
 Plug '/usr/local/opt/fzf'
@@ -67,6 +66,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'https://github.com/b4winckler/vim-angry.git'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'luochen1990/rainbow'
+Plug 'jelera/vim-javascript-syntax'
 
 call plug#end()
 
@@ -110,6 +111,8 @@ call neomake#configure#automake('nrwi', 500)
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
 
+let g:rainbow_active = 1
+
 "NerdTree
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
@@ -143,3 +146,4 @@ function! FolderForLightline()
       return path[-1]
 endfunction
 set laststatus=2 "for the status bar to work
+
