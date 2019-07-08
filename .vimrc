@@ -73,7 +73,6 @@ call plug#end()
 
 "Some basics
 set spelllang=en
-syntax on
 set shiftwidth=4
 set number relativenumber 
 set mouse=a
@@ -147,3 +146,6 @@ function! FolderForLightline()
 endfunction
 set laststatus=2 "for the status bar to work
 
+syntax on
+colorscheme dracula
+set termguicolors
