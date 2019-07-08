@@ -146,6 +146,9 @@ function! FolderForLightline()
 endfunction
 set laststatus=2 "for the status bar to work
 
-syntax on
-colorscheme dracula
+syntax enable
 set termguicolors
+let g:dracula_colorterm = 0
+let g:dracula_italic = 1
+colorscheme dracula
+
