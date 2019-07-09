@@ -19,6 +19,7 @@ bindkey kj vi-cmd-mode
 
 alias ll="ls -al"
 alias com="git add .;  git commit -v"
+alias branchd = "git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d"
 
 function chpwd() {
     emulate -L zsh
@@ -43,4 +44,5 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 if command -v most > /dev/null 2>&1; then
     export PAGER="most"
 fi
+
 
