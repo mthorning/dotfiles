@@ -46,7 +46,7 @@ Plug 'benmills/vimux'
 Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'vue', 'yaml', 'html'] }
 Plug 'https://github.com/mxw/vim-jsx.git'
 Plug 'https://github.com/vim-syntastic/syntastic.git'
 Plug 'https://github.com/wagnerf42/vim-clippy.git'
@@ -92,7 +92,7 @@ let g:racer_experimental_completer = 1
 
 "Javascript
 let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
