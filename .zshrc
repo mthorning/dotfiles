@@ -9,7 +9,7 @@ export RPS1="%{$reset_color%}"
 
 ZSH_THEME="spaceship"
 
-plugins=(git vi-mode)
+plugins=(git vi-mode npm npx cargo rust colorize ssh-agent tmux)
 
 setopt  autocd autopushd
 source $ZSH/oh-my-zsh.sh
