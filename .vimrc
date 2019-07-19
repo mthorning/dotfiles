@@ -37,37 +37,34 @@ au FileType javascript nmap <leader>. :VimuxRunCommand("npm test")<CR>
 "Plugins
 call plug#begin('~/.vim/plugged')
 
-Plug 'rust-lang/rust.vim'
-Plug 'https://github.com/scrooloose/nerdtree.git'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'itchyny/lightline.vim'
-Plug 'mhinz/vim-startify'
-Plug 'benmills/vimux'
-Plug 'w0rp/ale'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'vue', 'yaml', 'html'] }
-Plug 'https://github.com/mxw/vim-jsx.git'
-Plug 'https://github.com/vim-syntastic/syntastic.git'
-Plug 'https://github.com/wagnerf42/vim-clippy.git'
-Plug 'https://tpope.io/vim/surround.git'
-Plug 'https://tpope.io/vim/repeat.git'
-Plug 'https://tpope.io/vim/commentary.git'
-Plug 'Yggdroot/indentLine'
-Plug 'michaeljsmith/vim-indent-object'
-Plug 'racer-rust/vim-racer'
-Plug 'neomake/neomake'
-Plug 'airblade/vim-gitgutter'
-Plug 'https://github.com/tpope/vim-fugitive.git'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'alvan/vim-closetag'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'https://github.com/b4winckler/vim-angry.git'
-Plug 'dracula/vim', { 'as': 'dracula' }
-Plug 'luochen1990/rainbow'
-Plug 'jelera/vim-javascript-syntax'
+ Plug 'rust-lang/rust.vim'
+ Plug 'https://github.com/scrooloose/nerdtree.git'
+ Plug 'Xuyuanp/nerdtree-git-plugin'
+ Plug 'itchyny/lightline.vim'
+ Plug 'mhinz/vim-startify'
+ Plug 'benmills/vimux'
+ Plug 'w0rp/ale'
+ Plug 'https://github.com/pangloss/vim-javascript.git'
+ Plug 'https://github.com/mxw/vim-jsx.git'
+ Plug 'https://github.com/vim-syntastic/syntastic.git'
+ Plug 'https://github.com/wagnerf42/vim-clippy.git'
+ Plug 'https://tpope.io/vim/surround.git'
+ Plug 'https://tpope.io/vim/repeat.git'
+ Plug 'https://tpope.io/vim/commentary.git'
+ Plug 'Yggdroot/indentLine'
+ Plug 'michaeljsmith/vim-indent-object'
+ Plug 'racer-rust/vim-racer'
+ Plug 'airblade/vim-gitgutter'
+ Plug 'https://github.com/tpope/vim-fugitive.git'
+ Plug 'maxmellon/vim-jsx-pretty'
+ Plug 'alvan/vim-closetag'
+ Plug '/usr/local/opt/fzf'
+ Plug 'junegunn/fzf.vim'
+ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+ Plug 'https://github.com/b4winckler/vim-angry.git'
+ Plug 'dracula/vim', { 'as': 'dracula' }
+ Plug 'luochen1990/rainbow'
+ Plug 'jelera/vim-javascript-syntax'
 
 call plug#end()
 
@@ -90,13 +87,6 @@ let g:rustfmt_autosave = 1
 let g:syntastic_rust_checkers = ['clippy']
 let g:racer_experimental_completer = 1
 
-"Javascript
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:javascript_plugin_flow = 1
-let g:jsx_ext_required = 0
-
 "Plugin settings
 let g:racer_cmd = "$HOME/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
@@ -105,12 +95,20 @@ let g:racer_insert_paren = 1
 let g:markdown_fenced_languages = ['html', 'jsx', 'javascript', 'bash=sh']
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
 
-call neomake#configure#automake('nrwi', 500)
-
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
 
 let g:rainbow_active = 1
+
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
+\}
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
 
 "NerdTree
 let NERDTreeQuitOnOpen = 1
@@ -135,9 +133,9 @@ let g:lightline = {
 \	  'left': [ [ 'mode', 'paste' ],
 \	      [ 'readonly', 'foldername', 'filename', 'modified' ] ]
 \        },
-\        'component_function': {
-\            'foldername': 'FolderForLightline'
-\        },
+ \        'component_function': {
+ \            'foldername': 'FolderForLightline'
+ \        },
 \    }
 
 function! FolderForLightline()
