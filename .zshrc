@@ -4,12 +4,13 @@
 #    _ / /\__ \ | | | | | (__ 
 #   (_)___|___/_| |_|_|  \___|
 #                             
+plugins=(zsh-nvm git vi-mode npm npx cargo rust tmux)
+
 export ZSH="$HOME/.oh-my-zsh"
 export RPS1="%{$reset_color%}"
 
 ZSH_THEME="spaceship"
 
-plugins=(git vi-mode npm npx cargo rust tmux)
 
 setopt  autocd autopushd
 source $ZSH/oh-my-zsh.sh
