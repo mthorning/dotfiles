@@ -19,7 +19,7 @@ bindkey kj vi-cmd-mode
 
 alias ll="ls -al"
 alias com="git add .;  git commit -v"
-alias glog="git log --oneline"
+alias glog="git log --oneline --graph"
 
 function chpwd() {
     emulate -L zsh
