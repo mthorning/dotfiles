@@ -102,10 +102,13 @@ let g:VimuxHeight = "40"
 let g:rainbow_active = 1
 
 let g:ale_fixers = {
+\   'svelte': ['prettier'],
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \}
+let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = {
+\    'svelte': ['eslint'],
 \   'javascript': ['eslint'],
 \}
 let g:ale_linters_explicit = 1
