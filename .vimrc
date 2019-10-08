@@ -65,6 +65,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'dracula/vim', { 'as': 'dracula' }
  Plug 'luochen1990/rainbow'
  Plug 'jelera/vim-javascript-syntax'
+ Plug 'evanleck/vim-svelte'
 
 call plug#end()
 
@@ -94,7 +95,7 @@ let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 
 let g:markdown_fenced_languages = ['html', 'jsx', 'javascript', 'bash=sh']
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.svelte"
 
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
@@ -102,10 +103,13 @@ let g:VimuxHeight = "40"
 let g:rainbow_active = 1
 
 let g:ale_fixers = {
+\   'svelte': ['prettier'],
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
 \}
+let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = {
+\    'svelte': ['eslint'],
 \   'javascript': ['eslint'],
 \}
 let g:ale_linters_explicit = 1
