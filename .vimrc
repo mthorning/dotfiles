@@ -75,6 +75,7 @@ set splitbelow splitright
 set hidden
 set scrolloff=5
 set nopaste
+set expandtab
 au FileType gitcommit 1 | startinsert
 
 "turn off auto-comment next line:
