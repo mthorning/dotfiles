@@ -14,7 +14,6 @@ vnoremap kj <esc>
 nnoremap <esc> :noh<CR><esc>
 nnoremap <F4> :NERDTreeToggle<CR>  
 
-" RACER autocomplete = C-x-C-o
 
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-h> <C-w>h
@@ -27,6 +26,7 @@ map <leader>conf :tabe ~/dotfiles/.vimrc<CR>
 map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader># :b#<CR>
+map <leader>def :ALEGoToDefinition<CR>
 
 au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
@@ -37,7 +37,6 @@ au FileType javascript nmap <leader>. :VimuxRunCommand("npm test")<CR>
 "Plugins
 call plug#begin('~/.vim/plugged')
 
- Plug 'rust-lang/rust.vim'
  Plug 'https://github.com/scrooloose/nerdtree.git'
  Plug 'Xuyuanp/nerdtree-git-plugin'
  Plug 'itchyny/lightline.vim'
@@ -46,14 +45,12 @@ call plug#begin('~/.vim/plugged')
  Plug 'w0rp/ale'
  Plug 'https://github.com/pangloss/vim-javascript.git'
  Plug 'https://github.com/mxw/vim-jsx.git'
- Plug 'https://github.com/vim-syntastic/syntastic.git'
  Plug 'https://github.com/wagnerf42/vim-clippy.git'
  Plug 'https://tpope.io/vim/surround.git'
  Plug 'https://tpope.io/vim/repeat.git'
  Plug 'https://tpope.io/vim/commentary.git'
  Plug 'Yggdroot/indentLine'
  Plug 'michaeljsmith/vim-indent-object'
- Plug 'racer-rust/vim-racer'
  Plug 'airblade/vim-gitgutter'
  Plug 'https://github.com/tpope/vim-fugitive.git'
  Plug 'maxmellon/vim-jsx-pretty'
@@ -83,15 +80,6 @@ au FileType gitcommit 1 | startinsert
 "turn off auto-comment next line:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"Rust
-let g:rustfmt_autosave = 1
-let g:syntastic_rust_checkers = ['clippy']
-let g:racer_experimental_completer = 1
-
-"Plugin settings
-let g:racer_cmd = "$HOME/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-let g:racer_insert_paren = 1
 
 let g:markdown_fenced_languages = ['html', 'jsx', 'javascript', 'bash=sh']
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.svelte"
@@ -105,14 +93,17 @@ let g:ale_fixers = {
 \   'svelte': ['prettier'],
 \   'javascript': ['prettier'],
 \   'css': ['prettier'],
+\   'rust': ['rustfmt'],
 \}
 let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = {
-\    'svelte': ['eslint'],
+\   'svelte': ['eslint'],
 \   'javascript': ['eslint'],
+\   'rust': ['rls'],
 \}
-let g:ale_linters_explicit = 1
-let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_error = "✗"
+let g:ale_sign_warning = "⚠"
 
 "NerdTree
 let NERDTreeQuitOnOpen = 1
@@ -153,3 +144,4 @@ set termguicolors
 let g:dracula_colorterm = 0
 let g:dracula_italic = 1
 colorscheme dracula
+
