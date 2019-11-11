@@ -109,6 +109,7 @@ let g:ale_sign_warning = "⚠"
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 let g:deoplete#enable_at_startup = 1
+set completeopt-=preview
 
 "NerdTree
 let NERDTreeQuitOnOpen = 1
