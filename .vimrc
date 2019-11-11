@@ -27,6 +27,7 @@ map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader># :b#<CR>
 map <leader>def :ALEGoToDefinition<CR>
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
