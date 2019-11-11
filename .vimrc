@@ -63,6 +63,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'luochen1990/rainbow'
  Plug 'jelera/vim-javascript-syntax'
  Plug 'evanleck/vim-svelte'
+ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -102,9 +103,10 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'rust': ['rls'],
 \}
-let g:ale_completion_enabled = 1
 let g:ale_sign_error = "✗"
 let g:ale_sign_warning = "⚠"
+let g:ale_completion_enabled = 0
+let g:deoplete#enable_at_startup = 1
 
 "NerdTree
 let NERDTreeQuitOnOpen = 1
