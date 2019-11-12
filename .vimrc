@@ -65,6 +65,8 @@ call plug#begin('~/.vim/plugged')
  Plug 'jelera/vim-javascript-syntax'
  Plug 'evanleck/vim-svelte'
  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+ Plug 'https://github.com/ternjs/tern_for_vim.git'
+ Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 
 call plug#end()
 
@@ -110,6 +112,14 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
+let g:deoplete#sources#ternjs#types = 1
+let g:deoplete#sources#ternjs#docs = 1
+let g:deoplete#sources#ternjs#filetypes = [
+\ 'jsx',
+\ 'javascript.jsx',
+\ 'vue',
+\ 'svelte'
+\ ]
 
 "NerdTree
 let NERDTreeQuitOnOpen = 1
