@@ -40,7 +40,7 @@ fi
 export FZF_DEFAULT_OPS="--extended"
 export FZF_DEFAULT_COMMAND="fd --type f"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export TERM="xterm-256color"
+export TERM="tmux-256color"
 
 if command -v most > /dev/null 2>&1; then
     export PAGER="most"
