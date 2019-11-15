@@ -46,7 +46,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'benmills/vimux'
  Plug 'w0rp/ale'
  Plug 'https://github.com/pangloss/vim-javascript.git'
- Plug 'https://github.com/mxw/vim-jsx.git'
  Plug 'https://github.com/wagnerf42/vim-clippy.git'
  Plug 'https://tpope.io/vim/surround.git'
  Plug 'https://tpope.io/vim/repeat.git'
@@ -55,7 +54,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'michaeljsmith/vim-indent-object'
  Plug 'airblade/vim-gitgutter'
  Plug 'https://github.com/tpope/vim-fugitive.git'
- Plug 'maxmellon/vim-jsx-pretty'
  Plug 'alvan/vim-closetag'
  Plug '/usr/local/opt/fzf'
  Plug 'junegunn/fzf.vim'
@@ -64,10 +62,12 @@ call plug#begin('~/.vim/plugged')
  Plug 'dracula/vim', { 'as': 'dracula' }
  Plug 'luochen1990/rainbow'
  Plug 'jelera/vim-javascript-syntax'
- Plug 'evanleck/vim-svelte'
  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
  Plug 'https://github.com/ternjs/tern_for_vim.git'
  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+ Plug 'https://github.com/mxw/vim-jsx.git'
+ Plug 'maxmellon/vim-jsx-pretty'
+ Plug 'evanleck/vim-svelte'
 
 call plug#end()
 
@@ -95,13 +95,13 @@ let g:VimuxHeight = "40"
 
 let g:rainbow_active = 1
 
+let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_fixers = {
-\   'svelte': ['prettier'],
-\   'javascript': ['prettier'],
-\   'css': ['prettier'],
+\   'svelte': ['eslint', 'prettier'],
+\   'javascript': ['eslint', 'prettier'],
+\   'css': ['eslint', 'prettier'],
 \   'rust': ['rustfmt'],
 \}
-let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_linters = {
 \   'svelte': ['eslint'],
 \   'javascript': ['eslint'],
@@ -111,6 +111,8 @@ let g:ale_sign_error = "✗"
 let g:ale_sign_warning = "⚠"
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
+let g:ale_linters_explicit = 1
+
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
 let g:deoplete#sources#ternjs#docs = 1
