@@ -12,7 +12,6 @@ inoremap kj <esc>
 cnoremap kj <C-c>
 vnoremap kj <esc>
 nnoremap <esc> :noh<CR><esc>
-nnoremap <F4> :NERDTreeToggle<CR>  
 
 
 nnoremap <C-p> :FZF<CR>
@@ -27,14 +26,19 @@ map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader>wa :wa<CR>
 map <leader># :b#<CR>
-map <leader>def :ALEGoToDefinition<CR>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-au FileType rust nmap <leader>m :VimuxRunCommand("cargo run")<CR>
-au FileType rust nmap <leader>. :VimuxRunCommand("cargo test")<CR>
-au FileType javascript nmap <leader>. :VimuxRunCommand("npm test")<CR>
+"Some basics
+set spelllang=en
+set shiftwidth=4
+set number relativenumber 
+set mouse=a
+set splitbelow splitright
+set hidden
+set scrolloff=5
+set nopaste
+set expandtab
+au FileType gitcommit 1 | startinsert
 
 "Plugins
 call plug#begin('~/.vim/plugged')
@@ -72,21 +76,16 @@ call plug#begin('~/.vim/plugged')
 
 call plug#end()
 
-"Some basics
-set spelllang=en
-set shiftwidth=4
-set number relativenumber 
-set mouse=a
-set splitbelow splitright
-set hidden
-set scrolloff=5
-set nopaste
-set expandtab
-au FileType gitcommit 1 | startinsert
+map <leader>def :ALEGoToDefinition<CR>
+nnoremap <F4> :NERDTreeToggle<CR>  
+au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+au FileType rust nmap <leader>m :VimuxRunCommand("cargo run")<CR>
+au FileType rust nmap <leader>. :VimuxRunCommand("cargo test")<CR>
+au FileType javascript nmap <leader>. :VimuxRunCommand("npm test")<CR>
 
 "turn off auto-comment next line:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 
 let g:markdown_fenced_languages = ['html', 'jsx', 'javascript', 'bash=sh']
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.svelte"
