@@ -68,6 +68,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'https://github.com/mxw/vim-jsx.git'
  Plug 'maxmellon/vim-jsx-pretty'
  Plug 'evanleck/vim-svelte'
+ Plug 'https://github.com/jxnblk/vim-mdx-js.git'
 
 call plug#end()
 
@@ -97,9 +98,9 @@ let g:rainbow_active = 1
 
 let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_fixers = {
-\   'svelte': ['eslint', 'prettier'],
-\   'javascript': ['eslint', 'prettier'],
-\   'css': ['eslint', 'prettier'],
+\   'svelte': ['prettier'],
+\   'javascript': ['prettier'],
+\   'css': ['prettier'],
 \   'rust': ['rustfmt'],
 \}
 let g:ale_linters = {
@@ -111,7 +112,6 @@ let g:ale_sign_error = "✗"
 let g:ale_sign_warning = "⚠"
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
-let g:ale_linters_explicit = 1
 
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
