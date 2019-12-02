@@ -112,6 +112,7 @@ let g:ale_sign_warning = "⚠"
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 
+set runtimepath+=~/home/mthorning/.vim/plugged/deoplete.nvim
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
 let g:deoplete#sources#ternjs#docs = 1

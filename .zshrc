@@ -7,12 +7,10 @@
 plugins=(nvm git vi-mode npm npx cargo rust tmux)
 
 export ZSH="$HOME/.oh-my-zsh"
+source $ZSH/oh-my-zsh.sh
 export RPS1="%{$reset_color%}"
 
-ZSH_THEME="spaceship"
-
 setopt  autocd autopushd
-source $ZSH/oh-my-zsh.sh
 
 bindkey -v
 bindkey kj vi-cmd-mode 
