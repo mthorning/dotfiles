@@ -46,7 +46,3 @@ fi
 alias less='less -m -g -i -J --underline-special --SILENT'
 export TERM=xterm
 
-
-if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach -t default || tmux new -s default
-fi

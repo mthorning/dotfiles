@@ -1,5 +1,5 @@
 "		       _                    
-"		__   _(_)_ __ ___  _ __ ___ 
+
 "		\ \ / / | '_ ` _ \| '__/ __|
 "		 \ V /| | | | | | | | | (__ 
 "		(_)_/ |_|_| |_| |_|_|  \___|
@@ -48,7 +48,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'itchyny/lightline.vim'
  Plug 'mhinz/vim-startify'
  Plug 'benmills/vimux'
- Plug 'w0rp/ale'
  Plug 'https://github.com/pangloss/vim-javascript.git'
  Plug 'https://github.com/wagnerf42/vim-clippy.git'
  Plug 'https://tpope.io/vim/surround.git'
@@ -73,6 +72,12 @@ call plug#begin('~/.vim/plugged')
  Plug 'maxmellon/vim-jsx-pretty'
  Plug 'evanleck/vim-svelte'
  Plug 'https://github.com/jxnblk/vim-mdx-js.git'
+ Plug 'reasonml-editor/vim-reason-plus'
+ Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+ Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -99,11 +104,13 @@ let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
 let g:ale_fixers = {
 \   'svelte': ['prettier'],
 \   'javascript': ['prettier'],
+\   'reason': ['refmt'],
 \   'css': ['prettier'],
 \   'rust': ['rustfmt'],
 \}
 let g:ale_linters = {
 \   'svelte': ['eslint'],
+\   'reason': ['reason-language-server'],
 \   'javascript': ['eslint'],
 \   'rust': ['rls'],
 \}
@@ -112,9 +119,15 @@ let g:ale_sign_warning = "⚠"
 let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 
-set runtimepath+=~/home/mthorning/.vim/plugged/deoplete.nvim
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+    \ 'reason': ['~/reason-language-server'],
+    \ }
+
+
 let g:deoplete#enable_at_startup = 1
 set completeopt-=preview
+set runtimepath+=~/home/mthorning/.vim/plugged/deoplete.nvim
 let g:deoplete#sources#ternjs#docs = 1
 let g:deoplete#sources#ternjs#types = 1
 let g:deoplete#sources#ternjs#guess = 0
@@ -165,3 +178,6 @@ let g:dracula_colorterm = 0
 let g:dracula_italic = 1
 colorscheme dracula
 
+
+" let g:reasonml_refmt_executable = '~/.nvm/versions/node/v12.13.1/bin/refmt'
+" let g:ale_reason_ls_executable = '~/reason-language-server'
