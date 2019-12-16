@@ -24,7 +24,7 @@ map <leader>vp :VimuxPromptCommand<CR>
 map <leader>conf :tabe ~/dotfiles/.vimrc<CR>
 map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
-map <leader>wa :wa<CR>
+map <leader>a :wa<CR>
 map <leader># :b#<CR>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
