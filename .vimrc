@@ -27,7 +27,7 @@ map <leader>w :w<CR>
 map <leader>a :wa<CR>
 map <leader># :b#<CR>
 "prettify json: 
-map <leader>j :%!python -m json.tool 
+map <leader>j :%!python -m json.tool<CR>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "Some basics
