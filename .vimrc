@@ -26,6 +26,8 @@ map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader>a :wa<CR>
 map <leader># :b#<CR>
+"prettify json: 
+map <leader>j :%!python -m json.tool 
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "Some basics
@@ -111,7 +113,6 @@ let g:ale_fixers = {
 let g:ale_linters = {
 \   'svelte': ['eslint'],
 \   'reason': ['reason-language-server'],
-\   'javascript': ['eslint'],
 \   'rust': ['rls'],
 \}
 let g:ale_sign_error = "✗"
