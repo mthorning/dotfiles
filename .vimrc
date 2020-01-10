@@ -120,7 +120,7 @@ let g:ale_fix_on_save = 1
 let g:ale_completion_enabled = 0
 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', '~/.cargo/bin/rls'],
     \ 'reason': ['~/reason-language-server'],
     \ }
 
