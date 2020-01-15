@@ -26,6 +26,7 @@ map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader>a :wa<CR>
 map <leader># :b#<CR>
+map <leader>l :ALEToggle<CR>
 "prettify json: 
 map <leader>j :%!python -m json.tool<CR>
 map <leader>f :CtrlSF<SPACE>
