@@ -15,13 +15,13 @@ setopt  autocd autopushd
 bindkey -v
 bindkey kj vi-cmd-mode 
 
-alias ll="ls -al"
+alias ll="exa -al"
 alias com="git add .;  git commit -v"
 alias glog="git log --oneline --graph"
 
 function chpwd() {
     emulate -L zsh
-    ls -al
+    exa -al
 }
 
 alias vi="vim"
