@@ -62,7 +62,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'airblade/vim-gitgutter'
  Plug 'https://github.com/tpope/vim-fugitive.git'
  Plug 'alvan/vim-closetag'
- Plug '/usr/local/opt/fzf'
+ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
  Plug 'junegunn/fzf.vim'
  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
  Plug 'https://github.com/b4winckler/vim-angry.git'

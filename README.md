@@ -17,4 +17,4 @@ A place for my configuration files so that I can easily access them from other c
 
 ### Misc
 * Install NVM `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.1/install.sh | bash`
-* Install fzf and ripgrep with package manager.
+* Install fzf, exa and ripgrep with package manager.
