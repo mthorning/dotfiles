@@ -83,6 +83,7 @@ call plug#begin('~/.vim/plugged')
     \ }
  Plug 'w0rp/ale'
  Plug 'dyng/ctrlsf.vim'
+ Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
