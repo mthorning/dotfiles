@@ -17,7 +17,6 @@ bindkey kj vi-cmd-mode
 
 alias g="git"
 alias ll="exa -al"
->>>>>>> 312e665a3d2803224b40ae04795ef2cd542c982b
 alias com="git add .;  git commit -v"
 alias glog="git log --oneline --graph"
 
