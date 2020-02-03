@@ -84,6 +84,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'w0rp/ale'
  Plug 'dyng/ctrlsf.vim'
  Plug 'easymotion/vim-easymotion'
+ Plug 'justinmk/vim-sneak'
 
 call plug#end()
 
@@ -103,6 +104,7 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.svelte"
 
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
+let g:sneak#label = 1
 
 let g:rainbow_active = 1
 
