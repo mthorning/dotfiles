@@ -8,9 +8,9 @@
 
 "Mappings
 let mapleader=","
-inoremap kj <esc>
-cnoremap kj <C-c>
-vnoremap kj <esc>
+"inoremap kj <esc>
+"cnoremap kj <C-c>
+"vnoremap kj <esc>
 nnoremap <esc> :noh<CR><esc>
 
 
@@ -62,8 +62,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'airblade/vim-gitgutter'
  Plug 'https://github.com/tpope/vim-fugitive.git'
  Plug 'alvan/vim-closetag'
- Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
- Plug 'junegunn/fzf.vim'
  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
  Plug 'https://github.com/b4winckler/vim-angry.git'
  Plug 'dracula/vim', { 'as': 'dracula' }
@@ -185,6 +183,11 @@ let g:dracula_colorterm = 0
 let g:dracula_italic = 1
 colorscheme dracula
 
+" Fuzzy searching
+set wildmenu
+set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
+set wildignore+=*.pdf,*.psd
+set wildignore+=node_modules/*,bower_components/*:
 
 " let g:reasonml_refmt_executable = '~/.nvm/versions/node/v12.13.1/bin/refmt'
 " let g:ale_reason_ls_executable = '~/reason-language-server'
