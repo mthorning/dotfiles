@@ -13,7 +13,6 @@ let mapleader=","
 "vnoremap kj <esc>
 nnoremap <esc> :noh<CR><esc>
 
-
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -83,9 +82,11 @@ call plug#begin('~/.vim/plugged')
  Plug 'dyng/ctrlsf.vim'
  Plug 'easymotion/vim-easymotion'
  Plug 'justinmk/vim-sneak'
+ Plug 'cloudhead/neovim-fuzzy'
 
 call plug#end()
 
+nnoremap <C-p> :FuzzyOpen<CR>
 map <leader>def :ALEGoToDefinition<CR>
 nnoremap <F4> :NERDTreeToggle<CR>  
 au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
