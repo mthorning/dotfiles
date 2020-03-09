@@ -13,7 +13,6 @@ let mapleader=","
 "vnoremap kj <esc>
 nnoremap <esc> :noh<CR><esc>
 
-nnoremap <C-p> :FZF<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k

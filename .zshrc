@@ -13,6 +13,7 @@ export RPS1="%{$reset_color%}"
 setopt  autocd autopushd
 
 bindkey -v
+bindkey kj vi-cmd-mode
 
 alias g="git"
 alias ll="exa -al"
