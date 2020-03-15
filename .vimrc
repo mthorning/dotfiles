@@ -61,7 +61,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'https://github.com/tpope/vim-fugitive.git'
  Plug 'alvan/vim-closetag'
  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
- Plug 'https://github.com/b4winckler/vim-angry.git'
+ Plug 'https://github.com/b4winckler/vim-angry.git' "args text object
  Plug 'dracula/vim', { 'as': 'dracula' }
  Plug 'luochen1990/rainbow'
  Plug 'jelera/vim-javascript-syntax'
@@ -73,10 +73,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'evanleck/vim-svelte'
  Plug 'https://github.com/jxnblk/vim-mdx-js.git'
  Plug 'reasonml-editor/vim-reason-plus'
- Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
  Plug 'w0rp/ale'
  Plug 'dyng/ctrlsf.vim'
  Plug 'easymotion/vim-easymotion'
@@ -188,6 +184,3 @@ set wildmenu
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*:
-
-" let g:reasonml_refmt_executable = '~/.nvm/versions/node/v12.13.1/bin/refmt'
-" let g:ale_reason_ls_executable = '~/reason-language-server'
