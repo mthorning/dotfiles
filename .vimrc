@@ -78,6 +78,7 @@ call plug#begin('~/.vim/plugged')
  Plug 'easymotion/vim-easymotion'
  Plug 'justinmk/vim-sneak'
  Plug 'cloudhead/neovim-fuzzy'
+ Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
