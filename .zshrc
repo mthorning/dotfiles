@@ -25,7 +25,6 @@ function chpwd() {
     exa -al
 }
 
-alias vi="vim"
 export VISUAL="vim"
 export EDITOR="vim"
 if type nvim > /dev/null 2>&1; then
