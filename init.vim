@@ -19,7 +19,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 map <leader>vp :VimuxPromptCommand<CR>
-map <leader>conf :tabe ~/dotfiles/.vimrc<CR>
+map <leader>conf :tabe ~/dotfiles/init.vim<CR>
 map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader>a :wa<CR>
