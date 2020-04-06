@@ -1,0 +1,20 @@
+#/bin/bash
+
+#### dependencies:
+# 2) alsamix --> audio infos
+
+
+while true
+do
+   battery=$(battery)
+   vol=$(amixer get Master | egrep "^  Front Left"| cut -d"[" -f 2 | cut -d"%" -f 1)
+   vol="${vol}%"
+   mute=$(amixer get Master | egrep "^  Front Left"| cut -d"[" -f 4 | cut -d"]" -f 1)
+   tmp="eth0:"
+   if [ "$mute" = "$tmp" ]
+	then
+	vol="mute"
+   fi
+   xsetroot -name "🔉$vol  $battery   $(date +"%A %F %H:%M")"
+   sleep 20   # Update time
+done &
