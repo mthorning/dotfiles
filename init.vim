@@ -62,12 +62,10 @@ call plug#begin('~/.vim/plugged')
  Plug 'alvan/vim-closetag'
  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
  Plug 'https://github.com/b4winckler/vim-angry.git' "args text object
- Plug 'dracula/vim', { 'as': 'dracula' }
  Plug 'luochen1990/rainbow'
+ "Plug 'dracula/vim', { 'as': 'dracula' },
  Plug 'jelera/vim-javascript-syntax'
- Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
  Plug 'https://github.com/ternjs/tern_for_vim.git'
- Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
  Plug 'https://github.com/mxw/vim-jsx.git'
  Plug 'maxmellon/vim-jsx-pretty'
  Plug 'evanleck/vim-svelte'
@@ -127,19 +125,6 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 
-let g:deoplete#enable_at_startup = 1
-set completeopt-=preview
-set runtimepath+=~/home/mthorning/.vim/plugged/deoplete.nvim
-let g:deoplete#sources#ternjs#docs = 1
-let g:deoplete#sources#ternjs#types = 1
-let g:deoplete#sources#ternjs#guess = 0
-let g:deoplete#sources#ternjs#filetypes = [
-\ 'jsx',
-\ 'javascript.jsx',
-\ 'vue',
-\ 'svelte'
-\ ]
-
 "NerdTree
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
@@ -175,10 +160,10 @@ endfunction
 set laststatus=2 "for the status bar to work
 
 syntax enable
-set termguicolors
-let g:dracula_colorterm = 0
-let g:dracula_italic = 1
-colorscheme dracula
+" set termguicolors
+" let g:dracula_colorterm = 0
+" let g:dracula_italic = 1
+" colorscheme dracula
 
 " Fuzzy searching
 set wildmenu
