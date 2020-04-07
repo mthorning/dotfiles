@@ -2,6 +2,6 @@
 
 while true
 do
-   xsetroot -name "  $(volume)  $(battery)   $(date +"%A %F %H:%M")"
-   export DWMBAR=sleep 15   # Update time
+   xsetroot -name "  $(volume)  $(battery)   $(date +"%A %F %H:%M") $(inet)"
+   export DWMBAR=sleep 3   # Update time
 done &

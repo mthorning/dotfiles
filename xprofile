@@ -1,4 +1,3 @@
-exec wal -R &
 exec wal -i /usr/share/backgrounds &
 exec xcompmgr -c &
 exec dwmbar &
