@@ -15,6 +15,6 @@ do
 	then
 	vol="mute"
    fi
-   xsetroot -name "🔉$vol  $battery   $(date +"%A %F %H:%M")"
-   sleep 20   # Update time
+   xsetroot -name "  🔉$vol  $battery   $(date +"%A %F %H:%M")"
+   sleep 1   # Update time
 done &
