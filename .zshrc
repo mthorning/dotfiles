@@ -19,6 +19,7 @@ alias g="git"
 alias ll="exa -al"
 alias com="git add .;  git commit -v"
 alias glog="git log --oneline"
+alias se=sudoedit
 
 function chpwd() {
     emulate -L zsh
