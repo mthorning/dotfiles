@@ -1,5 +1,5 @@
 exec wal -i /usr/share/backgrounds &
-exec xcompmgr -c -o.8 &
+exec setsid xcompmgr &
 exec dwmbar &
 exec xbindkeys --poll-rc &
 setxkbmap gb
