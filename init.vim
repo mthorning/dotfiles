@@ -49,7 +49,6 @@ call plug#begin('~/.vim/plugged')
  Plug 'Xuyuanp/nerdtree-git-plugin'
  Plug 'itchyny/lightline.vim'
  Plug 'mhinz/vim-startify'
- Plug 'benmills/vimux'
  Plug 'https://github.com/pangloss/vim-javascript.git'
  Plug 'https://github.com/wagnerf42/vim-clippy.git'
  Plug 'https://tpope.io/vim/surround.git'
@@ -63,31 +62,31 @@ call plug#begin('~/.vim/plugged')
  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
  Plug 'https://github.com/b4winckler/vim-angry.git' "args text object
  Plug 'luochen1990/rainbow'
- "Plug 'dracula/vim', { 'as': 'dracula' },
+ Plug 'dracula/vim', { 'as': 'dracula' },
  Plug 'jelera/vim-javascript-syntax'
- Plug 'https://github.com/ternjs/tern_for_vim.git'
+ " Plug 'https://github.com/ternjs/tern_for_vim.git'
  Plug 'https://github.com/mxw/vim-jsx.git'
  Plug 'maxmellon/vim-jsx-pretty'
  Plug 'evanleck/vim-svelte'
  Plug 'https://github.com/jxnblk/vim-mdx-js.git'
  Plug 'reasonml-editor/vim-reason-plus'
- Plug 'w0rp/ale'
+ " Plug 'w0rp/ale'
  Plug 'dyng/ctrlsf.vim'
  Plug 'easymotion/vim-easymotion'
  Plug 'justinmk/vim-sneak'
  Plug 'cloudhead/neovim-fuzzy'
  Plug 'psliwka/vim-smoothie'
+ Plug 'christoomey/vim-tmux-navigator'
+ Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 
 call plug#end()
 
 nnoremap <C-p> :FuzzyOpen<CR>
-map <leader>def :ALEGoToDefinition<CR>
+"map <leader>def :ALEGoToDefinition<CR>
 nnoremap <F4> :NERDTreeToggle<CR>  
-au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-au FileType rust nmap <leader>m :VimuxRunCommand("cargo run")<CR>
-au FileType rust nmap <leader>. :VimuxRunCommand("cargo test")<CR>
-au FileType javascript nmap <leader>. :VimuxRunCommand("npm test")<CR>
+"au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
+"au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 "turn off auto-comment next line:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -95,29 +94,27 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 let g:markdown_fenced_languages = ['html', 'jsx', 'javascript', 'bash=sh']
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.svelte"
 
-let g:VimuxOrientation = "h"
-let g:VimuxHeight = "40"
 let g:sneak#label = 1
 
 let g:rainbow_active = 1
 
-let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
-let g:ale_fixers = {
-\   'svelte': ['prettier'],
-\   'javascript': ['prettier'],
-\   'reason': ['refmt'],
-\   'css': ['prettier'],
-\   'rust': ['rustfmt'],
-\}
-let g:ale_linters = {
-\   'svelte': ['eslint'],
-\   'reason': ['reason-language-server'],
-\   'rust': ['rls'],
-\}
-let g:ale_sign_error = "✗"
-let g:ale_sign_warning = "⚠"
-let g:ale_fix_on_save = 1
-let g:ale_completion_enabled = 0
+" let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
+" let g:ale_fixers = {
+" \   'svelte': ['prettier'],
+" \   'javascript': ['prettier'],
+" \   'reason': ['refmt'],
+" \   'css': ['prettier'],
+" \   'rust': ['rustfmt'],
+" \}
+" let g:ale_linters = {
+" \   'svelte': ['eslint'],
+" \   'reason': ['reason-language-server'],
+" \   'rust': ['rls'],
+" \}
+" let g:ale_sign_error = "✗"
+" let g:ale_sign_warning = "⚠"
+" let g:ale_fix_on_save = 1
+" let g:ale_completion_enabled = 0
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', '~/.cargo/bin/rls'],
@@ -160,10 +157,10 @@ endfunction
 set laststatus=2 "for the status bar to work
 
 syntax enable
-" set termguicolors
-" let g:dracula_colorterm = 0
-" let g:dracula_italic = 1
-" colorscheme dracula
+set termguicolors
+let g:dracula_colorterm = 0
+let g:dracula_italic = 1
+colorscheme dracula
 
 " Fuzzy searching
 set wildmenu
