@@ -3,12 +3,10 @@ alias vol=ncpamixer
 alias temp='watch -n 2 sensors'
 alias wall='wal -i /usr/share/backgrounds'
 
-# temporary brightness control
-b() {
-    max=cat /sys/class/backlight/intel_backlight/max_brightness
-    new_brightness=expr $max / 100 * $1
-    echo $new_brightness
-}
-
 source ~/dotfiles/.zshrc
 
+fpath=($fpath "/home/mthorning/.zfunctions")
+
+  # Set Spaceship ZSH as a prompt
+  autoload -U promptinit; promptinit
+  prompt spaceship

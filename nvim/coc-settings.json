@@ -1,0 +1,12 @@
+{
+    "rust": {
+      "command": "rust-analyzer",
+      "filetypes": ["rust"],
+      "rootPatterns": ["Cargo.toml"]
+    },
+    "reason": {
+      "command": "reason-language-server",
+      "filetypes": ["reason"]
+     },
+    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascriptreact", "markdown"],
+}

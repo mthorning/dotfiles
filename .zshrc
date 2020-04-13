@@ -16,14 +16,14 @@ bindkey -v
 bindkey kj vi-cmd-mode
 
 alias g="git"
-alias ll="exa -al"
+alias ll="exa -alg"
 alias com="git add .;  git commit -v"
 alias glog="git log --oneline"
 alias se=sudoedit
 
 function chpwd() {
     emulate -L zsh
-    exa -al
+    exa -alg
 }
 
 export VISUAL="vim"

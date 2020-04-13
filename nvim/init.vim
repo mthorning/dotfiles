@@ -8,9 +8,6 @@
 
 "Mappings
 let mapleader=","
-"inoremap kj <esc>
-"cnoremap kj <C-c>
-"vnoremap kj <esc>
 nnoremap <esc> :noh<CR><esc>
 
 nnoremap <C-h> <C-w>h
@@ -19,13 +16,12 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 map <leader>vp :VimuxPromptCommand<CR>
-map <leader>conf :tabe ~/dotfiles/init.vim<CR>
+map <leader>conf :tabe ~/dotfiles/nvim/init.vim<CR>
 map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader>a :wa<CR>
 map <leader># :b#<CR>
 map <leader>l :ALEToggle<CR>
-"prettify json: 
 map <leader>j :%!python -m json.tool<CR>
 map <leader>f :CtrlSF<SPACE>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -64,13 +60,11 @@ call plug#begin('~/.vim/plugged')
  Plug 'luochen1990/rainbow'
  Plug 'dracula/vim', { 'as': 'dracula' },
  Plug 'jelera/vim-javascript-syntax'
- " Plug 'https://github.com/ternjs/tern_for_vim.git'
  Plug 'https://github.com/mxw/vim-jsx.git'
  Plug 'maxmellon/vim-jsx-pretty'
  Plug 'evanleck/vim-svelte'
  Plug 'https://github.com/jxnblk/vim-mdx-js.git'
  Plug 'reasonml-editor/vim-reason-plus'
- " Plug 'w0rp/ale'
  Plug 'dyng/ctrlsf.vim'
  Plug 'easymotion/vim-easymotion'
  Plug 'justinmk/vim-sneak'
@@ -78,15 +72,12 @@ call plug#begin('~/.vim/plugged')
  Plug 'psliwka/vim-smoothie'
  Plug 'christoomey/vim-tmux-navigator'
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+ Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 
 nnoremap <C-p> :FuzzyOpen<CR>
-"map <leader>def :ALEGoToDefinition<CR>
 nnoremap <F4> :NERDTreeToggle<CR>  
-"au FileType rust nmap <leader>gx <Plug>(rust-def-vertical)
-"au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 "turn off auto-comment next line:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -97,24 +88,6 @@ let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx,*.svelte"
 let g:sneak#label = 1
 
 let g:rainbow_active = 1
-
-" let g:ale_linter_aliases = {'svelte': ['css', 'javascript']}
-" let g:ale_fixers = {
-" \   'svelte': ['prettier'],
-" \   'javascript': ['prettier'],
-" \   'reason': ['refmt'],
-" \   'css': ['prettier'],
-" \   'rust': ['rustfmt'],
-" \}
-" let g:ale_linters = {
-" \   'svelte': ['eslint'],
-" \   'reason': ['reason-language-server'],
-" \   'rust': ['rls'],
-" \}
-" let g:ale_sign_error = "✗"
-" let g:ale_sign_warning = "⚠"
-" let g:ale_fix_on_save = 1
-" let g:ale_completion_enabled = 0
 
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', '~/.cargo/bin/rls'],
@@ -167,3 +140,5 @@ set wildmenu
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*:
+
+au BufWrite * :Autoformat
