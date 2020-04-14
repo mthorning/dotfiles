@@ -77,7 +77,6 @@ Plug 'cloudhead/neovim-fuzzy'
 Plug 'psliwka/vim-smoothie'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'Chiel92/vim-autoformat'
 
 call plug#end()
 
@@ -145,5 +144,3 @@ set wildmenu
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*:
-
-au BufWrite * :Autoformat
