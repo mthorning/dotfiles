@@ -24,6 +24,7 @@ map <leader># :b#<CR>
 map <leader>l :ALEToggle<CR>
 map <leader>j :%!python -m json.tool<CR>
 map <leader>f :CtrlSF<SPACE>
+map <S-p> <Nop>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "Some basics
@@ -144,3 +145,4 @@ set wildmenu
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*:
+
