@@ -82,7 +82,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 nnoremap <C-p> :FuzzyOpen<CR>
-nnoremap <F4> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 "turn off auto-comment next line:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
