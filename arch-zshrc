@@ -7,6 +7,12 @@ source ~/dotfiles/.zshrc
 
 fpath=($fpath "/home/mthorning/.zfunctions")
 
-  # Set Spaceship ZSH as a prompt
-  autoload -U promptinit; promptinit
-  prompt spaceship
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
+
+sshadd() {
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/$1
+}
+export PATH="$PATH:/home/mthorning/.cargo/bin"
