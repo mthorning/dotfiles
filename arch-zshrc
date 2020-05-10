@@ -2,6 +2,7 @@ alias oni2=/usr/bin/Onivim2-x86_64.AppImage
 alias vol=ncpamixer
 alias temp='watch -n 2 sensors'
 alias wall='wal -i /usr/share/backgrounds'
+alias cpu='watch -n 0 "lscpu | grep 'MHz'"'
 
 source ~/dotfiles/.zshrc
 
