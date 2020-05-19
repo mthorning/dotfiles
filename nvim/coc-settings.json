@@ -9,5 +9,5 @@
       "filetypes": ["reason"]
      },
      "svelte.plugin.typescript.enable": false,
-    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascriptreact", "markdown"],
+    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascriptreact", "markdown"]
 }
