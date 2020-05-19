@@ -8,5 +8,6 @@
       "command": "reason-language-server",
       "filetypes": ["reason"]
      },
+     "svelte.plugin.typescript.enable": false,
     "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascriptreact", "markdown"],
 }
