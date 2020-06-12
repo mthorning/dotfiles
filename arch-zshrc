@@ -6,6 +6,7 @@ alias cpu='watch -n 0 "lscpu | grep 'MHz'"'
 alias wifi='nmcli device wifi connect TALKTALKCCACA7 password CQJFMXCF'
 
 
+
 source ~/dotfiles/.zshrc
 
 fpath=($fpath "/home/mthorning/.zfunctions")
@@ -17,5 +18,10 @@ prompt spaceship
 sshadd() {
     eval $(ssh-agent)
     ssh-add ~/.ssh/$1
+}
+
+photoup() {
+    scp ~/Documents/code/photography/photo-gallery vps:~/websites
+    ssh vps docker restart photo
 }
 export PATH="$PATH:/home/mthorning/.cargo/bin"
