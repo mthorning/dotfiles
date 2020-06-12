@@ -21,7 +21,7 @@ sshadd() {
 }
 
 photoup() {
-    scp ~/Documents/code/photography/photo-gallery vps:~/websites
+    scp -r ~/Documents/code/photography/photo-gallery vps:~/websites
     ssh vps docker restart photo
 }
 export PATH="$PATH:/home/mthorning/.cargo/bin"
