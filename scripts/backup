@@ -1,12 +1,8 @@
 #!/bin/bash
 set -e
 
-echo "Backing up home - $(date)" > ~/.backup-status
+echo "Backup failed on $(date)" > ~/.backup-status
 rsync -av --progress --delete /home/mthorning/ pi:/backupdrive/home/mthorning/ \
-    --exclude Downloads/ \
-    --exclude Documents/code/ \
     --exclude .cache/ \
     --exclude .local/share/Trash/
-echo "Backing up timeshif - $(date)" >> ~/.backup-status
-rsync -av --progress --delete /timeshift/ pi:/backupdrive/timeshift/mthorning/
-echo "Backup on $(date) succeeded" >> ~/.backup-status
+echo "Backup succeeded  on $(date)" > ~/.backup-status
