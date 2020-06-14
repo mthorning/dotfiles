@@ -25,3 +25,4 @@ photoup() {
     ssh vps docker restart photo
 }
 export PATH="$PATH:/home/mthorning/.cargo/bin"
+cat ~/.backup-status
