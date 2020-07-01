@@ -21,8 +21,18 @@ sshadd() {
 }
 
 photoup() {
-    scp -r ~/Documents/code/photography/photo-gallery vps:~/websites
+    rsync -av --progress --delete ~/Documents/code/photography/photo-gallery vps:~/websites
     ssh vps docker restart photo
 }
+
+photodown() {
+    mkdir ~/Pictures/$1
+    sudo mount /dev/mmcblk0p1 /mnt
+    cp /mnt/DCIM/**/*.NEF ~/Pictures/$1
+    sudo umount /dev/mmcblk0p1
+    echo "Remove SD card."
+    backup&
+}
+
 export PATH="$PATH:/home/mthorning/.cargo/bin"
 cat ~/.backup-status

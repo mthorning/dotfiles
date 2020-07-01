@@ -2,7 +2,7 @@
 set -e
 
 echo "Backup failed on $(date)" > ~/.backup-status
-rsync -av --progress --delete /home/mthorning/ pi:/backupdrive/home/mthorning/ \
+rsync -av --delete /home/mthorning/ pi:/backupdrive/home/mthorning/ \
     --exclude .cache/ \
     --exclude .local/share/Trash/
 echo "Backup succeeded on $(date)" > ~/.backup-status
