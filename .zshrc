@@ -20,6 +20,7 @@ alias ll="exa -alg"
 alias com="git add .;  git commit -v"
 alias glog="git log --oneline"
 alias se=sudoedit
+alias lastvim='nvim -S ~/current-session.vim'
 
 function chpwd() {
     emulate -L zsh

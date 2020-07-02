@@ -4,9 +4,6 @@ alias temp='watch -n 2 sensors'
 alias wall='wal -i /usr/share/backgrounds'
 alias cpu='watch -n 0 "lscpu | grep 'MHz'"'
 alias wifi='nmcli device wifi connect TALKTALKCCACA7 password CQJFMXCF'
-alias lastvim='nvim -S ~/current-session.vim'
-
-
 
 source ~/dotfiles/.zshrc
 
