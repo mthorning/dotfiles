@@ -27,7 +27,8 @@ photodown() {
         echo "Need folder name"
     else
         FOLDER="$(date +%Y%m%d)-$1" && \
-        mkdir ~/Pictures/$1 && \
+        echo $FOLDER
+        mkdir ~/Downloads/$FOLDER && \
         sudo mount /dev/mmcblk0p1 /mnt && \
         cp /mnt/DCIM/**/*.ARW ~/Pictures/$1 && \
         sudo umount /dev/mmcblk0p1 && \
