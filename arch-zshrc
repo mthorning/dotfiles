@@ -27,14 +27,15 @@ photodown() {
         echo "Need folder name"
     else
         FOLDER="$(date +%Y%m%d)-$1" && \
-        echo $FOLDER
-        mkdir ~/Downloads/$FOLDER && \
+        mkdir ~/Pictures/darktable/$FOLDER && \
         sudo mount /dev/mmcblk0p1 /mnt && \
-        cp /mnt/DCIM/**/*.ARW ~/Pictures/$1 && \
+        cp /mnt/DCIM/**/*.ARW ~/Pictures/darktable/$FOLDER && \
         sudo umount /dev/mmcblk0p1 && \
-        darktable ~/Pictures/$1&
+        darktable ~/Pictures/darktable/$FOLDER
     fi
 }
 
 export PATH="$PATH:/home/mthorning/.cargo/bin"
 cat ~/.backup-status
+nmcli monitor &
+
