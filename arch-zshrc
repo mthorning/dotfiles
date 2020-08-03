@@ -30,6 +30,7 @@ photodown() {
         mkdir ~/Pictures/darktable/$FOLDER && \
         sudo mount /dev/mmcblk0p1 /mnt && \
         cp /mnt/DCIM/**/*.ARW ~/Pictures/darktable/$FOLDER && \
+        echo "Downloading images..."
         sudo umount /dev/mmcblk0p1 && \
         darktable ~/Pictures/darktable/$FOLDER
     fi
@@ -37,5 +38,3 @@ photodown() {
 
 export PATH="$PATH:/home/mthorning/.cargo/bin"
 cat ~/.backup-status
-nmcli monitor &
-
