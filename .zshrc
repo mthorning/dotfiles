@@ -9,6 +9,12 @@ plugins=(nvm git vi-mode npm npx cargo rust tmux)
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 export RPS1="%{$reset_color%}"
+fpath=($fpath "/home/mthorning/.zfunctions")
+
+# Set Spaceship ZSH as a prompt
+autoload -U promptinit; promptinit
+prompt spaceship
+
 
 setopt  autocd autopushd
 
@@ -21,6 +27,7 @@ alias com="git add .;  git commit -v"
 alias glog="git log --oneline"
 alias se=sudoedit
 alias lastvim='nvim -S ~/current-session.vim'
+alias oni2=/usr/bin/Onivim2-x86_64.AppImage
 
 function chpwd() {
     emulate -L zsh
@@ -40,3 +47,15 @@ if command -v most > /dev/null 2>&1; then
     export PAGER="most"
 fi
 
+
+sshadd() {
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/$1
+}
+
+photoup() {
+    rsync -av --progress --delete ~/win/Documents/code/photography/photo-gallery vps:~/websites
+    ssh vps docker restart photo
+}
+
+export PATH="$PATH:/home/mthorning/.cargo/bin"

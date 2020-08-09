@@ -1,4 +1,3 @@
-alias oni2=/usr/bin/Onivim2-x86_64.AppImage
 alias vol=ncpamixer
 alias temp='watch -n 2 sensors'
 alias wall='wal -i /usr/share/backgrounds'
@@ -6,35 +5,4 @@ alias cpu='watch -n 0 "lscpu | grep 'MHz'"'
 
 source ~/dotfiles/.zshrc
 
-fpath=($fpath "/home/mthorning/.zfunctions")
-
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-
-sshadd() {
-    eval $(ssh-agent)
-    ssh-add ~/.ssh/$1
-}
-
-photoup() {
-    rsync -av --progress --delete ~/Documents/code/photography/photo-gallery vps:~/websites
-    ssh vps docker restart photo
-}
-
-photodown() {
-    if [[ $# -eq 0 ]] ; then
-        echo "Need folder name"
-    else
-        FOLDER="$(date +%Y%m%d)-$1" && \
-        mkdir ~/Pictures/darktable/$FOLDER && \
-        sudo mount /dev/mmcblk0p1 /mnt && \
-        cp /mnt/DCIM/**/*.ARW ~/Pictures/darktable/$FOLDER && \
-        echo "Downloading images..."
-        sudo umount /dev/mmcblk0p1 && \
-        darktable ~/Pictures/darktable/$FOLDER
-    fi
-}
-
-export PATH="$PATH:/home/mthorning/.cargo/bin"
-cat ~/.backup-status
+# cat ~/.backup-status
