@@ -14,6 +14,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nmap <CR> o<Esc>k
 
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>conf :tabe ~/dotfiles/nvim/init.vim<CR>
