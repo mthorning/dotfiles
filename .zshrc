@@ -54,7 +54,7 @@ sshadd() {
 }
 
 photoup() {
-    rsync -av --progress --delete ~/win/Documents/code/photography/photo-gallery vps:~/websites
+    rsync -av --progress --delete ~/code/photography/photo-gallery vps:~/websites
     ssh vps docker restart photo
 }
 
