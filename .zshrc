@@ -11,10 +11,7 @@ source $ZSH/oh-my-zsh.sh
 export RPS1="%{$reset_color%}"
 fpath=($fpath "/home/mthorning/.zfunctions")
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-
+eval "$(starship init zsh)"
 
 setopt  autocd autopushd
 
