@@ -57,7 +57,7 @@ photoup() {
 
 export PATH="$PATH:/home/mthorning/.cargo/bin"
 
-if [ -f "$FILE" ]; then
+if [ -f ~/.backup-status ]; then
     cat ~/.backup-status
     rm ~/.backup-status
 fi
