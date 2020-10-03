@@ -9,6 +9,6 @@
       "filetypes": ["reason"]
     },
     "svelte.plugin.typescript.enable": false,
-    "prettier.onlyUseLocalVersion": true,
+    "prettier.onlyUseLocalVersion": false,
     "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "svelte", "javascriptreact", "markdown"]
 }

@@ -1,5 +1,6 @@
 "                      _
 
+
 "               \ \ / / | '_ ` _ \| '__/ __|
 "                \ V /| | | | | | | | | (__
 "               (_)_/ |_|_| |_| |_|_|  \___|
@@ -105,7 +106,7 @@ let g:LanguageClient_serverCommands = {
 "NerdTree
 let NERDTreeQuitOnOpen = 1
 let NERDTreeAutoDeleteBuffer = 1
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
             \ "Untracked" : "✭",
