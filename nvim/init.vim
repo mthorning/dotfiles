@@ -81,6 +81,7 @@ Plug 'cloudhead/neovim-fuzzy'
 Plug 'psliwka/vim-smoothie'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'amiralies/vim-rescript'
 
 call plug#end()
 
