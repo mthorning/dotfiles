@@ -3,6 +3,8 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty it self.
+shell:
+   program: "C:\\Windows\\System32\\wsl ~"
 env:
   # TERM env customization.
   #
@@ -51,7 +53,7 @@ window:
   #
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
-  startup_mode: SimpleFullscreen
+  startup_mode: Maximized
 
 scrolling:
   # maximum number of lines in the scrollback buffer. Specifying '0' will
@@ -67,26 +69,26 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-      family: "Dank Mono"
+      family: "JetBrains Mono"
     # family: "Fira Code"
     # family: "Source Code Pro"
     # style: Retina
 
   # The bold font face
   bold:
-    family: "Dank Mono"
+    family: "JetBrains Mono"
     # family: "Fira Code"
     # family: "Source Code Pro"
 
   # The italic font face
   italic:
-    family: "Dank Mono"
+    family: "JetBrains Mono"
     # family: "Fira Code"
     # family: "Source Code Pro"
     # style: "Medium Italic"
 
   # Point size of the font
-  size: 16.0
+  size: 11.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
