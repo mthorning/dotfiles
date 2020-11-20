@@ -1,12 +1,25 @@
-add_newline = true
+add_newline = false
 
 [character]
-symbol = "🚀"
-use_symbol_for_status = false
+symbol = "⟶"                    
+use_symbol_for_status = true   
 
 [cmd_duration]
 min_time = 500
 prefix = "⌛ "
+
+[battery]
+full_symbol = "🔌"        
+charging_symbol = "⚡"     
+discharging_symbol = "🔋"   
+
+[[battery.display]]
+threshold = 30               
+style = "bold yellow"         
+
+[[battery.display]]
+threshold = 10                 
+style = "bold red"              
 
 # [git_branch]
 # symbol = "🌱 "
@@ -35,26 +48,40 @@ staged_count.style = "green"
 renamed = "👅"
 deleted = "🗑"
 
+[memory_usage]
+disabled = false
+show_percentage = true
+show_swap = true
+threshold = 30
+style = "bold dimmed green"
+
+[hostname]    
+ssh_only = false
+prefix = "❮ "
+suffix = "❯"
+style = "bold dimmed white"
+disabled = true
+
 [aws]
-symbol = " "
+symbol = "☁️ "
 
 [conda]
 symbol = " "
 
 [docker]
-symbol = " "
+symbol = " 🐳 "
 
 [elixir]
 symbol = " "
 
 [elm]
-symbol = " "
+symbol = " 🌳 "
 
 [git_branch]
-symbol = " "
+symbol = "🌱 "
 
 [golang]
-symbol = " "
+symbol = " 🐹 "
 
 [haskell]
 symbol = " "
@@ -78,20 +105,20 @@ symbol = " "
 symbol = " "
 
 [nodejs]
-symbol = " "
+symbol = " ⬢ "
 
 [package]
-symbol = " "
+symbol = "📦 "
 
 [php]
-symbol = " "
+symbol = "🐘 "
 
 [python]
-symbol = " "
+symbol = "🐍 "
 
 [ruby]
-symbol = " "
+symbol = " 💎 "
 
 [rust]
-symbol = " "
+symbol = " 𝗥 "
 
