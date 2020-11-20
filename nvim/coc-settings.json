@@ -8,7 +8,7 @@
       "command": "reason-language-server",
       "filetypes": ["reason"]
     },
-    "svelte.plugin.typescript.enable": false,
+    "svelte.plugin.typescript.enable": true,
     "prettier.onlyUseLocalVersion": false,
     "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "svelte", "javascriptreact", "markdown"]
 }

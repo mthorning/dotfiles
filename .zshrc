@@ -24,7 +24,6 @@ alias com="git add .;  git commit -v"
 alias glog="git log --oneline"
 alias se=sudoedit
 alias lastvim='nvim -S ~/current-session.vim'
-alias oni2=/usr/bin/Onivim2-x86_64.AppImage
 
 function chpwd() {
     emulate -L zsh
@@ -48,6 +47,12 @@ fi
 sshadd() {
     eval $(ssh-agent)
     ssh-add ~/.ssh/$1
+}
+
+gitrecover() {
+  find .git/objects/ -type f -empty | xargs rm
+  git fetch -p
+  git fsck --full
 }
 
 photoup() {
