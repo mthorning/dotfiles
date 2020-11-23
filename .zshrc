@@ -66,3 +66,9 @@ fi
 # for running cypress GUI
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
 sudo /etc/init.d/dbus start &> /dev/null
+
+export GOPATH=/home/mthorning/golibs
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+
+export GOPATH=$GOPATH:/home/mthorning/code/go"
+
