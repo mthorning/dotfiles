@@ -42,6 +42,20 @@ set nopaste
 set expandtab
 au FileType gitcommit 1 | startinsert
 
+let g:clipboard = {
+ 21 \   'name': 'WslClipboard',
+ 20 \   'copy': {
+ 19 \      '+': 'clip.exe',
+ 18 \      '*': 'clip.exe',
+ 17 \    },
+ 16 \   'paste': {
+ 15 \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+ 14 \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+ 13 \   },
+ 12 \   'cache_enabled': 0,
+ 11 \ }
+
+
 "Plugins
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
