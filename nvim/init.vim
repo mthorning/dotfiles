@@ -19,7 +19,6 @@ nmap <CR> o<Esc>k
 
 map <leader>vp :VimuxPromptCommand<CR>
 map <leader>conf :tabe ~/dotfiles/nvim/init.vim<CR>
-map <leader><ESC> :Startify<CR>
 map <leader>w :w<CR>
 map <leader>a :wa<CR>
 map <leader># :b#<CR>
