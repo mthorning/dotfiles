@@ -1,6 +1,8 @@
 "                      _
 
 
+
+
 "               \ \ / / | '_ ` _ \| '__/ __|
 "                \ V /| | | | | | | | | (__
 "               (_)_/ |_|_| |_| |_|_|  \___|
@@ -95,6 +97,7 @@ Plug 'psliwka/vim-smoothie'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'amiralies/vim-rescript'
+Plug 'brooth/far.vim'
 
 call plug#end()
 
@@ -162,3 +165,4 @@ set wildmenu
 set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*:
+set viminfo='100,n$HOME/.vim/files/info/viminfo
