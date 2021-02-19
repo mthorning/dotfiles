@@ -166,3 +166,6 @@ set wildignore+=*.bmp,*.gif,*.ico,*.jpg,*.png,*.ico
 set wildignore+=*.pdf,*.psd
 set wildignore+=node_modules/*,bower_components/*:
 set viminfo='100,n$HOME/.vim/files/info/viminfo
+
+"abreviations
+iab lg console.log()<Left>
