@@ -85,3 +85,6 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 if type lesspipe.sh >/dev/null 2>&1; then
       export LESSOPEN='|lesspipe.sh %s'
 fi
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh

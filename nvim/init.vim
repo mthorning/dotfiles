@@ -27,6 +27,7 @@ map <leader># :b#<CR>
 map <leader>j :%!python -m json.tool<CR>
 map <leader>f :CtrlSF<SPACE>
 map <leader>t :vsp term://zsh<CR>
+map <leader>r :NERDTreeFind<cr>
 map <leader>s :mks! ~/current-session.vim<CR>
 inoremap <C-p> <Nop>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
