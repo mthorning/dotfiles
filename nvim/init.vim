@@ -25,10 +25,10 @@ map <leader>w :w<CR>
 map <leader>a :wa<CR>
 map <leader># :b#<CR>
 map <leader>j :%!python -m json.tool<CR>
-map <leader>f :CtrlSF<SPACE>
 map <leader>t :vsp term://zsh<CR>
-map <leader>r :NERDTreeFind<cr>
 map <leader>s :mks! ~/current-session.vim<CR>
+map <leader>cd :lcd %:h<CR>
+
 inoremap <C-p> <Nop>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -104,6 +104,8 @@ call plug#end()
 
 nnoremap <C-p> :FuzzyOpen<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<cr>
+map <leader>f :CtrlSF<SPACE>
 
 "turn off auto-comment next line:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

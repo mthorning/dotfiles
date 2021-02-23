@@ -88,3 +88,4 @@ fi
 
 source /usr/share/doc/fzf/examples/key-bindings.zsh
 source /usr/share/doc/fzf/examples/completion.zsh
+export FZF_DEFAULT_COMMAND="rg --files"
