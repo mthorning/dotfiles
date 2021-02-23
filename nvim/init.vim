@@ -3,6 +3,7 @@
 
 
 
+
 "               \ \ / / | '_ ` _ \| '__/ __|
 "                \ V /| | | | | | | | | (__
 "               (_)_/ |_|_| |_| |_|_|  \___|
@@ -170,3 +171,4 @@ set viminfo='100,n$HOME/.vim/files/info/viminfo
 
 "abreviations
 iab lg console.log()<Left>
+iab js JavaScript
