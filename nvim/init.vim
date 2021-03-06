@@ -4,6 +4,8 @@
 
 
 
+
+
 "               \ \ / / | '_ ` _ \| '__/ __|
 "                \ V /| | | | | | | | | (__
 "               (_)_/ |_|_| |_| |_|_|  \___|
@@ -27,8 +29,22 @@ map <leader>a :wa<CR>
 map <leader># :b#<CR>
 map <leader>j :%!python -m json.tool<CR>
 map <leader>t :vsp term://zsh<CR>
+
 map <leader>s :mks! ~/current-session.vim<CR>
 map <leader>cd :lcd %:h<CR>
+
+set mouse=a
+
+nnoremap <silent> gh :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
 
 inoremap <C-p> <Nop>
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -100,6 +116,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'amiralies/vim-rescript'
 Plug 'brooth/far.vim'
+Plug'fatih/vim-go'
 
 call plug#end()
 
