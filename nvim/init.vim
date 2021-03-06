@@ -116,7 +116,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'amiralies/vim-rescript'
 Plug 'brooth/far.vim'
-Plug'fatih/vim-go'
+Plug 'fatih/vim-go'
+Plug 'andymass/vim-matchup'
 
 call plug#end()
 
@@ -189,5 +190,6 @@ set wildignore+=node_modules/*,bower_components/*:
 set viminfo='100,n$HOME/.vim/files/info/viminfo
 
 "abreviations
+iab fn ()<Space>=><Space>{<CR><CR>}<Up>
 iab lg console.log()<Left>
 iab js JavaScript
