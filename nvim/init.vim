@@ -163,17 +163,39 @@ let g:lightline = {
             \       'colorscheme': 'darcula',
             \        'active': {
             \         'left': [ [ 'mode', 'paste' ],
-            \             [ 'readonly', 'foldername', 'filename', 'modified' ] ]
+            \             [ 'readonly', 'cwd', 'filename', 'modified' ] ]
             \        },
             \        'component_function': {
-            \            'foldername': 'FolderForLightline'
+            \            'cwd': 'Cwd',
+            \            'filename': 'FilenameForLightline',
             \        },
             \    }
+let g:lightline = {
+      \ 'mode_map': {
+        \ 'n' : 'N',
+        \ 'i' : 'I',
+        \ 'R' : 'R',
+        \ 'v' : 'V',
+        \ 'V' : 'VL',
+        \ "\<C-v>": 'VB',
+        \ 'c' : 'C',
+        \ 's' : 'S',
+        \ 'S' : 'SL',
+        \ "\<C-s>": 'SB',
+        \ 't': 'T',
+        \ },
+      \ }
 
-function! FolderForLightline()
-    let path = split(expand('%:p:h'), '/')
-    return path[-1]
+function! FilenameForLightline()
+    return expand('%:h')
 endfunction
+function! Cwd()
+    return getcwd()
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
 set laststatus=2 "for the status bar to work
 
 syntax enable
