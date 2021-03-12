@@ -1,11 +1,4 @@
 "                      _
-
-
-
-
-
-
-
 "               \ \ / / | '_ ` _ \| '__/ __|
 "                \ V /| | | | | | | | | (__
 "               (_)_/ |_|_| |_| |_|_|  \___|
@@ -160,31 +153,29 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 
 "Status line
 let g:lightline = {
-            \       'colorscheme': 'darcula',
-            \        'active': {
-            \         'left': [ [ 'mode', 'paste' ],
-            \             [ 'readonly', 'cwd', 'filename', 'modified' ] ]
-            \        },
-            \        'component_function': {
-            \            'cwd': 'Cwd',
-            \            'filename': 'FilenameForLightline',
-            \        },
-            \    }
-let g:lightline = {
-      \ 'mode_map': {
-        \ 'n' : 'N',
-        \ 'i' : 'I',
-        \ 'R' : 'R',
-        \ 'v' : 'V',
-        \ 'V' : 'VL',
-        \ "\<C-v>": 'VB',
-        \ 'c' : 'C',
-        \ 's' : 'S',
-        \ 'S' : 'SL',
-        \ "\<C-s>": 'SB',
-        \ 't': 'T',
-        \ },
-      \ }
+\    'colorscheme': 'darcula',
+\    'active': {
+\     'left': [ [ 'mode', 'paste' ],
+\         [ 'readonly', 'cwd', 'filename', 'modified' ] ]
+\    },
+\    'component_function': {
+\        'cwd': 'Cwd',
+\        'filename': 'FilenameForLightline',
+\    },
+\    'mode_map': {
+\        'n' : 'N',
+\        'i' : 'I',
+\        'R' : 'R',
+\        'v' : 'V',
+\        'V' : 'VL',
+\        "\<C-v>": 'VB',
+\        'c' : 'C',
+\        's' : 'S',
+\        'S' : 'SL',
+\        "\<C-s>": 'SB',
+\        't': 'T',
+\     } 
+\  }
 
 function! FilenameForLightline()
     return expand('%:h')
