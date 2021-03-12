@@ -178,8 +178,10 @@ let g:lightline = {
 \  }
 
 function! FilenameForLightline()
-    return expand("%:p:h:t:r")
+    let path = split(expand("%:p:h"), "/")
+    return path[-1] . "/" . expand("%:t")
 endfunction
+
 function! Cwd()
     return getcwd()
 endfunction
