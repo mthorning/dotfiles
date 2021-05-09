@@ -25,10 +25,10 @@ alias glog="git log --oneline"
 alias se=sudoedit
 alias lastvim='nvim -S ~/current-session.vim'
 
-function chpwd() {
-    emulate -L zsh
-    exa -alg
-}
+# function chpwd() {
+#     emulate -L zsh
+#     exa -alg
+# }
 
 export VISUAL="vim"
 export EDITOR="vim"
@@ -56,6 +56,7 @@ gitrecover() {
 }
 
 export PATH="$PATH:/home/mthorning/.cargo/bin"
+export PATH="$PATH:/home/mthorning/.local/bin"
 
 # set DISPLAY variable to the IP automatically assigned to WSL2
 # for running cypress GUI
