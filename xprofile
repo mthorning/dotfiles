@@ -1,7 +1,7 @@
-exec wal -i /usr/share/backgrounds &
-exec setsid xcompmgr &
-exec dwmbar &
-exec xbindkeys --poll-rc &
-setxkbmap gb
+# exec wal -i /usr/share/backgrounds &
+# exec setsid xcompmgr &
+# exec dwmbar &
+# exec xbindkeys --poll-rc &
+# setxkbmap gb
 /usr/bin/setxkbmap -option "ctrl:nocaps"
 xcape -e 'Control_L=Escape' 
