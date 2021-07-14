@@ -47,7 +47,10 @@ bindsym $mod+d exec dmenu_run
 bindsym $mod+z exec /usr/bin/pavucontrol
 
 # for opening the bluetooth manager
-bindsym $mod+\ exec /usr/bin/blueman-manager
+bindsym $mod+backslash exec /usr/bin/blueman-manager
+
+bindsym $mod+minus exec amixer -D pulse sset Master 10%-
+bindsym $mod+equal exec amixer -D pulse sset Master 10%+
 
 workspace 1 output DP-1-1
 workspace 2 output eDP-1
