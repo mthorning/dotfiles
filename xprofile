@@ -5,3 +5,6 @@
 # setxkbmap gb
 /usr/bin/setxkbmap -option "ctrl:nocaps"
 xcape -e 'Control_L=Escape' 
+
+xmodmap -e 'keycode 108 = Hyper_R'
+xmodmap -e 'add mod3 = Hyper_R'
