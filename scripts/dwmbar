@@ -1,7 +1,0 @@
-#/bin/bash
-
-while true
-do
-   xsetroot -name "  $(volume)  $(battery)   $(date +"%A %F %H:%M") $(inet)"
-   sleep 2
-done &

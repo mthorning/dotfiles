@@ -1,7 +1,0 @@
-#!/bin/bash
-set -e
-
-echo "Backup started on  $(date)" >> ~/.backup-status
-rsync -av --delete /mnt/c/Users/Matt\ Thorning/Pictures/ pi:/backupdrive/Pictures/
-rsync -av --delete /mnt/c/Users/Matt\ Thorning/Documents/BackedUp/ pi:/backupdrive/Documents/
-echo "Backup succeeded on $(date)" >> ~/.backup-status

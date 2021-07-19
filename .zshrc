@@ -25,6 +25,7 @@ alias se=sudoedit
 alias lastvim='nvim -S ~/current-session.vim'
 alias lg="lazygit"
 alias ll="ls -al"
+alias work="~/dotfiles/start-work.sh"
 
 # function chpwd() {
 #     emulate -L zsh
