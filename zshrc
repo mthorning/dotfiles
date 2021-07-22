@@ -71,3 +71,5 @@ dev() {
 
 SAVEHIST=100000
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -48,8 +48,10 @@ bindsym $mod2+d exec dmenu_run
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+numbersign move scratchpad
+bindsym $mod2+Shift+numbersign move scratchpad
 # Show the first scratchpad window
 bindsym $mod+numbersign scratchpad show
+bindsym $mod2+numbersign scratchpad show
 
 # for opening the volume control
 bindsym $mod+z exec pavucontrol
