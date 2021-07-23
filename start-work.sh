@@ -16,4 +16,4 @@ then
 fi
 
 
-tmux attach-session -t $SESSION:1
+tmux attach-session -t $SESSION:0
