@@ -7,18 +7,19 @@ sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 # fonts
 wget "https://download.jetbrains.com/fonts/JetBrainsMono-2.225.zip?_gl=1*1hl7zfl*_ga*MTYyNjM3ODMzMS4xNjI2Njc2OTU0*_ga_V0XZL7QHEB*MTYyNzA3NTkzNi4yLjAuMTYyNzA3NTk0MS4w" -O jetbrains.zip
 unzip jetbrains.zip
-mv fonts/ttf /usr/share/fonts/truetype/jetbrains-mono
+sudo mv fonts/ttf /usr/share/fonts/truetype/jetbrains-mono
 rm -rf jetbrains.zip fonts
 
 wget "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/JetBrainsMono/Ligatures/Regular/complete/JetBrains%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.ttf"
-mv 'JetBrains Mono Regular Nerd Font Complete Mono.ttf' /usr/share/fonts/truetype/jetbrains-mono/JetBrains-Mono-Regular-Nerd-Font-Complete-Mono.ttf
+sudo mv 'JetBrains Mono Regular Nerd Font Complete Mono.ttf' /usr/share/fonts/truetype/jetbrains-mono/JetBrains-Mono-Regular-Nerd-Font-Complete-Mono.ttf
 fc-cache -f -v
 
 #install languages
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
+
 wget "https://golang.org/dl/go1.16.6.linux-amd64.tar.gz"
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.6.linux-amd64.tar.gz
+sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.6.linux-amd64.tar.gz
 rm go1.16.6.linux-amd64.tar.gz
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
@@ -51,14 +52,15 @@ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pac
 
 # for acer display (will need to be changed for different monitors)
 xrandr --output DP-1-1 --primary --left-of eDP-1
-echo  "xrandr --output DP-1-1 --primary --left-of eDP-1" >> /etc/X11/Xsession.d/45custom_xrandr-settings 
+sudo echo  "xrandr --output DP-1-1 --primary --left-of eDP-1" >> /etc/X11/Xsession.d/45custom_xrandr-settings 
 
 # install joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
 # music
-snap install youtube-music-desktop-app
+sudo snap install youtube-music-desktop-app
 
+rm ~/.zshrc
 cd $HOME/dotfiles
 stow main
 stow home

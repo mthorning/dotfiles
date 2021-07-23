@@ -4,7 +4,7 @@ set -e
 # add neovim repo
 sudo add-apt-repository -y ppa:neovim-ppa/unstable
 
-sudo apt update && apt upgrade -y
+sudo apt update && sudo apt upgrade -y
 
 # install apt packages
 sudo apt install -y neovim zsh tmux curl fzf libjpeg8-dev zlib1g-dev python-dev \
