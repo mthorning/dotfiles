@@ -1,8 +1,0 @@
-alias vol=ncpamixer
-alias temp='watch -n 2 sensors'
-alias wall='wal -i /usr/share/backgrounds'
-alias cpu='watch -n 0 "lscpu | grep 'MHz'"'
-
-source ~/dotfiles/.zshrc
-
-# cat ~/.backup-status
