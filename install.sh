@@ -12,7 +12,7 @@ apt update && apt upgrade
 apt install neovim curl fzf libjpeg8-dev zlib1g-dev python-dev \
 python3-dev libxtst-dev python3-pip tmux libxft-dev make xorg \
 xorg-server xorg-xinit pkg-config libharfbuzz-dev xorg openbox \
-bluez bluez-tools pavucontrol wget stow
+bluez bluez-tools pavucontrol wget stow chromium-browser i3
 
 # fonts
 apt install fonts-symbola
@@ -60,8 +60,15 @@ git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pac
 xrandr --output DP-1-1 --primary --left-of eDP-1
 echo  "xrandr --output DP-1-1 --primary --left-of eDP-1" >> /etc/X11/Xsession.d/45custom_xrandr-settings 
 
+# install joplin
+wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+
+# music
+snap install youtube-music-desktop-app
+
 cd $HOME/dotfiles
 stow main
 stow home
 
 source ~/.zshrc
+
