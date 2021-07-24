@@ -5,8 +5,8 @@ set -e
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
 # ripgrep
-$ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
-$ sudo dpkg -i ripgrep_12.1.1_amd64.deb
+curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+sudo dpkg -i ripgrep_12.1.1_amd64.deb
 
 
 # fonts
@@ -52,8 +52,6 @@ npm install -g prettier tree-sitter-cli eslint_d
 # packer for nvim
 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-sudo echo  "xrandr --output DP-1-1 --primary --left-of eDP-1" >> /etc/X11/Xsession.d/45custom_xrandr-settings 
-
 # install joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 
@@ -64,3 +62,6 @@ rm ~/.zshrc
 cd $HOME/dotfiles
 stow main
 stow home
+git checkout . && git clean -fd
+
+reboot

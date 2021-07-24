@@ -3,13 +3,3 @@ xcape -e 'Control_L=Escape'
 
 xmodmap -e 'keycode 108 = Hyper_R'
 xmodmap -e 'add mod3 = Hyper_R'
-
-# Prevent chromium restore pages dialog
-sed 's/"exited_cleanly":false/"exited_cleanly":true/' ~/.config/chromium/Default/Preferences
-sed 's/"exit_type":"Crashed"/"exit_type":"Normal"/' ~/.config/chromium/Default/Preferences
-
-# Prevent brave restore pages dialog
-sed 's/"exited_cleanly":false/"exited_cleanly":true/' ~/snap/brave/120/.config/BraveSoftware/Brave-Browser/Default/Preferences
-sed 's/"exit_type":"Crashed"/"exit_type":"Normal"/' ~/snap/brave/120/.config/BraveSoftware/Brave-Browser/Default/Preferences
-sed 's/"exited_cleanly":false/"exited_cleanly":true/' ~/snap/brave/121/.config/BraveSoftware/Brave-Browser/Default/Preferences
-sed 's/"exit_type":"Crashed"/"exit_type":"Normal"/' ~/snap/brave/121/.config/BraveSoftware/Brave-Browser/Default/Preferences
