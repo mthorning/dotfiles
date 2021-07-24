@@ -49,8 +49,12 @@ pip3 install pynvim --user
 # install npm packages
 npm install -g prettier tree-sitter-cli eslint_d
 
+# install lazygit
+go get github.com/jesseduffield/lazygit
+
 # install joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
+sudo ln -s ~/.joplin/Joplin.AppImage /usr/local/bin/joplin
 
 # music
 sudo snap install youtube-music-desktop-app
