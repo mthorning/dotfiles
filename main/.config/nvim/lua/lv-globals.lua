@@ -1,5 +1,5 @@
 O = {
-    auto_close_tree = 0,
+    auto_close_tree = 1,
     auto_complete = true,
     colorscheme = 'dracula',
     hidden_files = true,
@@ -21,17 +21,17 @@ O = {
     python = {
         linter = '',
         -- @usage can be 'yapf', 'black'
-        formatter = '',
-        autoformat = false,
-        isort = false,
+        formatter = 'yapf',
+        autoformat = true,
+        isort = true,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true},
 		analysis = {type_checking = "basic", auto_search_paths = true, use_library_code_types = true}
     },
     dart = {sdk_path = '/usr/lib/dart/bin/snapshots/analysis_server.dart.snapshot'},
     lua = {
         -- @usage can be 'lua-format'
-        formatter = '',
-        autoformat = true,
+        formatter = 'lua-format',
+        autoformat = false,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },
     sh = {
@@ -44,15 +44,15 @@ O = {
     },
     tsserver = {
         -- @usage can be 'eslint'
-        linter = '',
+        linter = 'eslint',
         -- @usage can be 'prettier'
-        formatter = '',
-        autoformat = false,
+        formatter = 'prettier',
+        autoformat = true,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },
     json = {
         -- @usage can be 'prettier'
-        formatter = '',
+        formatter = 'prettier',
         autoformat = true,
         diagnostics = {virtual_text = {spacing = 0, prefix = ""}, signs = true, underline = true}
     },

@@ -11,7 +11,7 @@ vim.g.nvim_tree_auto_ignore_ft = 'startify' --empty by default, don't auto open 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 vim.g.nvim_tree_bindings = {
     { key = {"<CR>", "o", "l", "<2-LeftMouse>" }, cb = tree_cb("edit")},
-    { key = {"<2-RightMouse>", "<C->" }, cb = tree_cb("cd")},
+    { key = {"<2-RightMouse>", "cd" }, cb = tree_cb("cd")},
     { key = {"<BS>", "h" }, cb = tree_cb("close_node")},
     { key = "v", cb = tree_cb("vsplit")},
     { key = "s", cb = tree_cb("split")},
