@@ -17,7 +17,7 @@ work() {
 	fi
 	
 	
-	tmux attach-session -t $SESSION:0
+	tmux attach-session -t 1:1
 }
 
 dev() {

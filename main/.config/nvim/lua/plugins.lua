@@ -82,10 +82,10 @@ return require("packer").startup(
         use {"unblevable/quick-scope", opt = true}
 
         -- Tmux in nvim
-        use {"nikvdp/neomux", opt = true}
+        use "nikvdp/neomux"
 
         -- Smooth page up and down
-        use {"karb94/neoscroll.nvim", opt = true}
+        use "karb94/neoscroll.nvim"
 
         -- Git
         use {"kdheepak/lazygit.nvim", opt = true}
@@ -126,8 +126,6 @@ return require("packer").startup(
         require_plugin("surround.nvim")
         require_plugin("git-blame.nvim")
         require_plugin("lazygit.nvim")
-        require_plugin("neomux")
-        require_plugin("neoscroll.nvim")
         require_plugin("quick-scope")
     end
 )
