@@ -4,6 +4,11 @@ set -e
 # starship prompt
 sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
+# ripgrep
+$ curl -LO https://github.com/BurntSushi/ripgrep/releases/download/12.1.1/ripgrep_12.1.1_amd64.deb
+$ sudo dpkg -i ripgrep_12.1.1_amd64.deb
+
+
 # fonts
 wget "https://download.jetbrains.com/fonts/JetBrainsMono-2.225.zip?_gl=1*1hl7zfl*_ga*MTYyNjM3ODMzMS4xNjI2Njc2OTU0*_ga_V0XZL7QHEB*MTYyNzA3NTkzNi4yLjAuMTYyNzA3NTk0MS4w" -O jetbrains.zip
 unzip jetbrains.zip
@@ -29,9 +34,6 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 nvm install --lts
 nvm use --lts
 
-# install ripgrep
-cargo install ripgrep
-
 # install ST
 git clone https://github.com/mthorning/terminal.git
 cd terminal
@@ -50,8 +52,6 @@ npm install -g prettier tree-sitter-cli eslint_d
 # packer for nvim
 git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 
-# for acer display (will need to be changed for different monitors)
-xrandr --output DP-1-1 --primary --left-of eDP-1
 sudo echo  "xrandr --output DP-1-1 --primary --left-of eDP-1" >> /etc/X11/Xsession.d/45custom_xrandr-settings 
 
 # install joplin
