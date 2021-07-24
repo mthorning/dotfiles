@@ -49,9 +49,6 @@ pip3 install pynvim --user
 # install npm packages
 npm install -g prettier tree-sitter-cli eslint_d
 
-# packer for nvim
-git clone https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 # install joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 

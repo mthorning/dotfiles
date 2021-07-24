@@ -2,7 +2,6 @@ local execute = vim.api.nvim_command
 local fn = vim.fn
 
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
 if fn.empty(fn.glob(install_path)) > 0 then
     execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
     execute "packadd packer.nvim"
@@ -69,8 +68,6 @@ return require("packer").startup(
         use {"windwp/nvim-autopairs", opt = true}
         use {"terrortylor/nvim-comment", opt = true}
         use {"kevinhwang91/nvim-bqf", opt = true}
-	use {"ThePrimeagen/harpoon", opt = true}
-
 
         -- Color
         use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
@@ -82,25 +79,25 @@ return require("packer").startup(
         use {"glepnir/galaxyline.nvim", opt = true}
 
         -- Highlights unique character on line
-        use "unblevable/quick-scope"
+        use {"unblevable/quick-scope", opt = true}
 
         -- Tmux in nvim
-        use "nikvdp/neomux"
+        use {"nikvdp/neomux", opt = true}
 
         -- Smooth page up and down
-        use 'karb94/neoscroll.nvim'
+        use {"karb94/neoscroll.nvim", opt = true}
 
         -- Git
-        use "kdheepak/lazygit.nvim"
-        use "f-person/git-blame.nvim"
+        use {"kdheepak/lazygit.nvim", opt = true}
+        use {"f-person/git-blame.nvim", opt = true}
 
         -- For braces, brackets, etc
-        use "blackcauldron7/surround.nvim"
+        use {"blackcauldron7/surround.nvim", opt = true}
 
         use {"brooth/far.vim", opt = true, as = "brooth/far.vim"}
 
-	use 'mtth/scratch.vim'
-	use 'https://tpope.io/vim/fugitive.git'
+	use {"mtth/scratch.vim", opt = true}
+	use {"https://tpope.io/vim/fugitive.git", opt = true}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
@@ -124,6 +121,13 @@ return require("packer").startup(
         require_plugin("nvim-web-devicons")
         require_plugin("galaxyline.nvim")
         require_plugin("brooth/far.vim")
-        require_plugin("harpoon")
+        require_plugin("fugitive.git")
+        require_plugin("scratch.vim")
+        require_plugin("surround.nvim")
+        require_plugin("git-blame.nvim")
+        require_plugin("lazygit.nvim")
+        require_plugin("neomux")
+        require_plugin("neoscroll.nvim")
+        require_plugin("quick-scope")
     end
 )
