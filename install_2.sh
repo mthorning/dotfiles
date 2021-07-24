@@ -59,6 +59,7 @@ rm ~/.zshrc
 cd $HOME/dotfiles
 stow main
 stow home
+sudo stow -t / root
 git checkout . && git clean -fd
 
 reboot
