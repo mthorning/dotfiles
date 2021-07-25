@@ -56,6 +56,12 @@ go get github.com/jesseduffield/lazygit
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 sudo ln -s ~/.joplin/Joplin.AppImage /usr/local/bin/joplin
 
+# install brave
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install brave-browser
+
 # music
 sudo snap install youtube-music-desktop-app
 
