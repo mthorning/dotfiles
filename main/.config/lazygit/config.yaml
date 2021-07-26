@@ -1,0 +1,5 @@
+gui:
+  showFileTree: true
+  showRandomTip: false
+git:
+  skipHookPrefix: "WIP - "
