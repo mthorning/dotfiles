@@ -47,7 +47,7 @@ pip3 install neovim-remote
 pip3 install pynvim --user
 
 # install npm packages
-npm install -g prettier tree-sitter-cli eslint_d
+npm install -g prettier tree-sitter-cli eslint_d nodemon yalc
 
 # install lazygit
 go get github.com/jesseduffield/lazygit
