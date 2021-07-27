@@ -54,3 +54,5 @@ export GOPATH=$GOPATH:/home/mthorning/code/go
 SAVEHIST=100000
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
