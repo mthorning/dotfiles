@@ -1,6 +1,6 @@
 source ~/dotfiles/home/.zshrc
 
-work() {
+tmux_work() {
 	nmcli con up id hf-dev-vpn
 	cd ~/bespin
 	
@@ -16,15 +16,22 @@ work() {
 	
 	
 	tmux attach-session -t $SESSION:1
+}
 
-	# i3 layout
-	i3-msg 'layout tabbed; exec chromium'
+i3_work() {
 	i3-msg 'workspace 4; append_layout /home/mthorning/.config/i3/layout-4.json'
-	sleep 1
 	i3-msg exec teams
 	i3-msg exec pavucontrol
 	i3-msg exec joplin
 	i3-msg exec blueman-manager
+	i3-msg 'workspace 1; layout tabbed; exec chromium'
+	sleep 2
+	i3-msg focus left	
+}
+
+work() {
+	i3_work
+	tmux_work
 }
 
 dev() {
