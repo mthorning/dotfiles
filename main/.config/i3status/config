@@ -12,6 +12,7 @@ general {
 }
 
 order += "wireless _first_"
+order += "path_exists VPN"
 order += "battery all"
 order += "disk /"
 order += "disk /home"
@@ -19,6 +20,12 @@ order += "cpu_usage all"
 order += "cpu_temperature 0"
 order += "memory"
 order += "tztime local"
+
+path_exists VPN {
+     format_down = ""
+     format = "%title UP"
+     path = "/proc/sys/net/ipv4/conf/tun0"
+}
 
 wireless _first_ {
         format_up = "%essid -%quality"
