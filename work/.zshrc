@@ -25,8 +25,7 @@ i3_work() {
 	i3-msg exec blueman-manager
 	i3-msg workspace 2
 	i3-msg exec teams
-	sleep 3
-	i3-msg 'workspace 1; layout tabbed; exec chromium; focus left'
+	i3-msg 'workspace 1; layout tabbed; exec chromium'
 }
 
 work() {
