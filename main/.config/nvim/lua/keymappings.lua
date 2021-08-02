@@ -27,3 +27,12 @@ vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silen
 vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
 
+-- Yank end of line
+vim.api.nvim_set_keymap('n', 'Y', 'y$$', {noremap = true, silent = true})
+
+-- Keeping it centered
+vim.api.nvim_set_keymap('n', 'n', 'nzzzv', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'J', 'mzJ`z', {noremap = true, silent = true})
+
+
