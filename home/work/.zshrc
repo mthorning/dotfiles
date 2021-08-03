@@ -1,4 +1,4 @@
-source ~/dotfiles/home/.zshrc
+source ~/dotfiles/home/main/.zshrc
 
 tmux_work() {
 	nmcli con up id hf-dev-vpn
@@ -19,14 +19,14 @@ tmux_work() {
 }
 
 i3_work() {
-	i3-msg 'layout tabbed; exec chromium'
-	i3-msg 'focus left'
 	sleep 2
 	i3-msg 'workspace 2; exec teams'
 	i3-msg 'workspace 4; append_layout /home/mthorning/.config/i3/layout-4.json'
 	i3-msg exec pavucontrol
 	i3-msg exec joplin
 	i3-msg exec blueman-manager
+	i3-msg 'workspace 1; layout tabbed; exec chromium'
+	i3-msg 'focus left'
 }
 
 work() {
@@ -35,8 +35,6 @@ work() {
 }
 
 dev() {
-    	nodemon --exec "babel src --root-mode upward --out-dir dist --ignore '**/*.spec.js' && rsync -av --include='*.scss' --include='*.less'  --include='*.json' --exclude='*' src/ dist/ && yalc publish . --push" --verbose ./src --ignore dist
+    	nodemon --exec "babel src --root-mode upward --out-dir dist --source-maps --ignore '**/*.spec.js' && rsync -av --include='*.scss' --include='*.less'  --include='*.json' --exclude='*' src/ dist/ && yalc publish . --push" --verbose ./src --ignore dist
 }
 
-# for obs virtual camera
-modprobe v4l2loopback
