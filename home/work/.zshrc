@@ -1,4 +1,4 @@
-source ~/dotfiles/home/main/.zshrc
+source ~/dotfiles/home/personal/.zshrc
 
 tmux_work() {
 	nmcli con up id hf-dev-vpn
