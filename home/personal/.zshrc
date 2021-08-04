@@ -54,5 +54,8 @@ export GOPATH=$GOPATH:/home/mthorning/code/go
 SAVEHIST=100000
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+source ~/.fzf.zsh
+
+INITIAL_QUERY=""
+export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"
