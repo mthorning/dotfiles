@@ -2,6 +2,7 @@ source ~/dotfiles/home/personal/.zshrc
 
 tmux_work() {
 	nmcli con up id hf-dev-vpn
+	pactl set-default-sink alsa_output.usb-Generic_USB_Audio_200901010001-00.HiFi__hw_Dock_1__sink
 	cd ~/bespin
 	
 	SESSION="proxy"
