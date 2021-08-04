@@ -60,10 +60,6 @@ bindsym $mod+equal exec --no-startup-id pactl -- set-sink-volume 0 +10%
 # for screenshots
 exec --no-startup-id flameshot 
 
-# for opening the bluetooth manager
-bindsym $mod+backslash exec blueman-manager
-bindsym $mod2+backslash exec blueman-manager
-
 workspace_auto_back_and_forth yes
 
 workspace 1 output DP-1-1
@@ -205,8 +201,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod2+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # for locking the screen
-bindysm $mod+z exec i3lock -c 000000 -n
-bindysm $mod2+z exec i3lock -c 000000 -n
+bindysm $mod+z exec "i3lock -c 000000"
+bindysm $mod2+z exec "i3lock -c 000000"
 
 # for suspending
 bindsym $mod+Shift+z exec "systemctl suspend"
