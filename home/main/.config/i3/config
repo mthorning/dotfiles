@@ -201,8 +201,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod2+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # for locking the screen
-bindysm $mod+z exec "i3lock -c 000000"
-bindysm $mod2+z exec "i3lock -c 000000"
+bindsym $mod+z exec "i3lock -c 000000"
+bindsym $mod2+z exec "i3lock -c 000000"
 
 # for suspending
 bindsym $mod+Shift+z exec "systemctl suspend"
