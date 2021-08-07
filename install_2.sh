@@ -26,6 +26,7 @@ source $HOME/.cargo/env
 wget "https://golang.org/dl/go1.16.6.linux-amd64.tar.gz"
 sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.16.6.linux-amd64.tar.gz
 rm go1.16.6.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -50,7 +51,7 @@ pip3 install pynvim --user
 npm install -g prettier tree-sitter-cli eslint_d nodemon yalc
 
 # install lazygit
-/usr/local/go/bin/go get github.com/jesseduffield/lazygit
+go get github.com/jesseduffield/lazygit
 
 # install joplin
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
