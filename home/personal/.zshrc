@@ -43,6 +43,11 @@ gitrecover() {
   git fsck --full
 }
 
+acer() {
+  xrandr --auto
+  xrandr --output DP-1-1 --primary --left-of eDP-1
+}
+
 export PATH="$PATH:/home/mthorning/.cargo/bin"
 export PATH="$PATH:/home/mthorning/.local/bin"
 
