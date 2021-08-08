@@ -43,6 +43,10 @@ gitrecover() {
   git fsck --full
 }
 
+displays() {
+  xrandr | grep " connected" | cut -f1 -d " "	
+}
+
 acer() {
   xrandr --auto
   xrandr --output DP-1-1 --primary --left-of eDP-1
