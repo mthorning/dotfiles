@@ -32,6 +32,26 @@ if command -v most > /dev/null 2>&1; then
     export PAGER="most"
 fi
 
+export PATH="$PATH:/home/mthorning/.cargo/bin"
+export PATH="$PATH:/home/mthorning/.local/bin"
+
+export GOPATH=/home/mthorning/golibs
+export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+
+export GOPATH=$GOPATH:/home/mthorning/code/go
+
+SAVEHIST=100000
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.fzf.zsh
+
+INITIAL_QUERY=""
+export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"
+
+####################
+# Functions:
+
 sshadd() {
     eval $(ssh-agent)
     ssh-add ~/.ssh/$1
@@ -52,19 +72,7 @@ acer() {
   xrandr --output DP-1-1 --primary --left-of eDP-1
 }
 
-export PATH="$PATH:/home/mthorning/.cargo/bin"
-export PATH="$PATH:/home/mthorning/.local/bin"
+lineout() {
+  pactl set-default-sink alsa_output.usb-Generic_USB_Audio_200901010001-00.HiFi__hw_Dock_1__sink
+}
 
-export GOPATH=/home/mthorning/golibs
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
-
-export GOPATH=$GOPATH:/home/mthorning/code/go
-
-SAVEHIST=100000
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.fzf.zsh
-
-INITIAL_QUERY=""
-export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"

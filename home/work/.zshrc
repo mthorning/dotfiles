@@ -30,6 +30,7 @@ i3_work() {
 work() {
 	i3_work
 	tmux_work
+	pactl set-default-sink alsa_output.usb-Generic_USB_Audio_200901010001-00.HiFi__hw_Dock_1__sink
 }
 
 dev() {
