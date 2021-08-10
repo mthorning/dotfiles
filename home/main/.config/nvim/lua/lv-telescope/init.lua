@@ -56,7 +56,7 @@ require('telescope').setup {
                 -- ["<esc>"] = actions.close,
 
                 -- Otherwise, just set the mapping to the function that you want it to be.
-                -- ["<C-i>"] = actions.select_horizontal,
+                ["<C-s>"] = actions.select_horizontal,
 
                 -- Add up multiple actions
                 ["<CR>"] = actions.select_default + actions.center
