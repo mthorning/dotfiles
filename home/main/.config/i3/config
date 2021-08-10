@@ -62,16 +62,16 @@ exec --no-startup-id flameshot
 
 workspace_auto_back_and_forth yes
 
-workspace 1 output secondary
-workspace 2 output primary
-workspace 3 output secondary
-workspace 4 output primary
-workspace 5 output secondary
-workspace 6 output primary
-workspace 7 output secondary
-workspace 8 output primary
-workspace 9 output secondary
-workspace 10 output primary
+workspace 1 output primary
+workspace 2 output secondary
+workspace 3 output primary
+workspace 4 output secondary
+workspace 5 output primary
+workspace 6 output secondary
+workspace 7 output primary
+workspace 8 output secondary
+workspace 9 output primary
+workspace 10 output secondary
 
 bindsym $mod+semicolon move workspace to output right
 bindsym $mod2+semicolon move workspace to output right
