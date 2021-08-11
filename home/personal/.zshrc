@@ -72,7 +72,9 @@ acer() {
   xrandr --output DP-1-1 --primary --left-of eDP-1
 }
 
-lineout() {
+# restart pulseaudio when it hurts my ears
+pak() { 
+  pulseaudio -k
   pactl set-default-sink alsa_output.usb-Generic_USB_Audio_200901010001-00.HiFi__hw_Dock_1__sink
 }
 
