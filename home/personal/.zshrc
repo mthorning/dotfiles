@@ -75,6 +75,7 @@ acer() {
 # restart pulseaudio when it hurts my ears
 pak() { 
   pulseaudio -k
+  sleep 5
   pactl set-default-sink alsa_output.usb-Generic_USB_Audio_200901010001-00.HiFi__hw_Dock_1__sink
 }
 
