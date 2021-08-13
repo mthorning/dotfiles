@@ -54,8 +54,8 @@ bindsym $mod+numbersign scratchpad show
 bindsym $mod2+numbersign scratchpad show
 
 # control volume
-bindsym $mod+minus exec --no-startup-id pactl -- set-sink-volume 0 -10%
-bindsym $mod+equal exec --no-startup-id pactl -- set-sink-volume 0 +10%
+bindsym $mod+minus exec --no-startup-id pactl -- set-sink-volume 1 -10%
+bindsym $mod+equal exec --no-startup-id pactl -- set-sink-volume 1 +10%
 
 # for screenshots
 exec --no-startup-id flameshot 
