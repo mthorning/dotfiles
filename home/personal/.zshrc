@@ -68,6 +68,7 @@ displays() {
 }
 
 acer() {
+	source ~/.xprofile
   xrandr --auto
   xrandr --output DP-1-1 --primary --left-of eDP-1
 }
