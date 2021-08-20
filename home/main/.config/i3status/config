@@ -11,6 +11,7 @@ general {
         interval = 5
 }
 
+order += "ethernet enxd481d733c948"
 order += "wireless _first_"
 order += "path_exists VPN"
 order += "battery all"
@@ -27,9 +28,14 @@ path_exists VPN {
      path = "/proc/sys/net/ipv4/conf/tun0"
 }
 
+ethernet enxd481d733c948 {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
 wireless _first_ {
-        format_up = "%essid -%quality"
-        format_down = "wifi down"
+        format_up = "W: %ip (%essid%quality)"
+        format_down = "W: down"
 }
 
 battery all {
