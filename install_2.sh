@@ -81,7 +81,7 @@ sudo ln -s $(which blueman-manager) /usr/local/bin/B
 sudo ln -s $(which joplin) /usr/local/bin/J
 sudo ln -s $(which pavucontrol) /usr/local/bin/V
 sudo ln -s $(which nautilus) /usr/local/bin/F
-snap alias youtube-music-desktop-app Y
-snap alias chromium C
+sudo snap alias youtube-music-desktop-app Y
+sudo snap alias chromium C
 
 reboot
