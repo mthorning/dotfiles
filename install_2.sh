@@ -57,11 +57,14 @@ go get github.com/jesseduffield/lazygit
 wget -O - https://raw.githubusercontent.com/laurent22/joplin/dev/Joplin_install_and_update.sh | bash
 sudo ln -s ~/.joplin/Joplin.AppImage /usr/local/bin/joplin
 
-# install brave
+# install browsers
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 sudo apt update
 sudo apt install -y brave-browser
+
+sudo snap install chromium
+
 
 # music
 sudo snap install youtube-music-desktop-app
@@ -72,5 +75,13 @@ stow main
 stow home
 sudo stow -t / root
 git checkout . && git clean -fd
+
+# set up aliases
+sudo ln -s $(which blueman-manager) /usr/local/bin/B
+sudo ln -s $(which joplin) /usr/local/bin/J
+sudo ln -s $(which pavucontrol) /usr/local/bin/V
+sudo ln -s $(which nautilus) /usr/local/bin/F
+snap alias youtube-music-desktop-app Y
+snap alias chromium C
 
 reboot
