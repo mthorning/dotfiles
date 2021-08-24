@@ -96,8 +96,10 @@ return require("packer").startup(
 
         use {"brooth/far.vim", opt = true, as = "brooth/far.vim"}
 
-	use {"mtth/scratch.vim", opt = true}
-	use {"https://tpope.io/vim/fugitive.git", opt = true}
+		use {"mtth/scratch.vim", opt = true}
+		use {"https://tpope.io/vim/fugitive.git", opt = true}
+		use {"https://github.com/Yggdroot/indentLine.git", opt = true}
+		use {"lukas-reineke/indent-blankline.nvim", opt = true}
 
         require_plugin("nvim-lspconfig")
         require_plugin("lspsaga.nvim")
@@ -127,5 +129,6 @@ return require("packer").startup(
         require_plugin("git-blame.nvim")
         require_plugin("lazygit.nvim")
         require_plugin("quick-scope")
+        require_plugin("indent-blankline.nvim")
     end
 )

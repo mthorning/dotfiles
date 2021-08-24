@@ -49,6 +49,6 @@ vim.o.updatetime = 300 -- Faster completion
 vim.o.timeoutlen = O.timeoutlen -- By default timeoutlen is 1000 ms
 vim.o.hlsearch = false
 vim.o.incsearch = true
-vim.o.scrolloff = 8
+vim.o.scrolloff = 4
 
 vim.o.updatetime = 50
