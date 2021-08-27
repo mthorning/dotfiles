@@ -58,7 +58,7 @@
         "y": 36
       },
       "name": "Joplin",
-      "percent": 0.6,
+      "percent": 0.75,
       "swallows": [
         {
           "class": "^Joplin$"

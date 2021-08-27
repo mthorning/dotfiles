@@ -19,7 +19,6 @@ require('lv-neomux')
 require('lv-lazygit')
 require('lv-neoscroll')
 require('lv-surround')
-require('lv-indent-line')
 
 -- TODO is there a way to do this without vimscript
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')

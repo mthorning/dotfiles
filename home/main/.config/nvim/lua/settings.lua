@@ -52,3 +52,4 @@ vim.o.incsearch = true
 vim.o.scrolloff = 4
 
 vim.o.updatetime = 50
+vim.cmd('hi Search guibg=purple guifg=black')
