@@ -77,7 +77,8 @@ sudo stow -t / root
 git checkout . && git clean -fd
 
 # set up aliases
-sudo ln -s $(which blueman-manager) /usr/local/bin/B
+sudo ln -s $(which brave-browser) /usr/local/bin/B
+sudo ln -s $(which blueman-manager) /usr/local/bin/BT
 sudo ln -s $(which joplin) /usr/local/bin/J
 sudo ln -s $(which pavucontrol) /usr/local/bin/V
 sudo ln -s $(which nautilus) /usr/local/bin/F
