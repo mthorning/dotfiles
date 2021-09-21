@@ -19,14 +19,10 @@ alias se=sudoedit
 alias lg="lazygit"
 alias ll="ls -al"
 
-export VISUAL="vim"
-export EDITOR="vim"
-if type nvim > /dev/null 2>&1; then
-    alias vi="nvim"
-    alias vim="nvim"
-    export EDITOR="nvim"
-    export VISUAL="nvim"
-fi
+alias vi="nvim"
+alias vim="nvim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 if command -v most > /dev/null 2>&1; then
     export PAGER="most"
