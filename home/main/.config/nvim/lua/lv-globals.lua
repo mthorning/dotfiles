@@ -1,7 +1,7 @@
 O = {
     auto_close_tree = 1,
     auto_complete = true,
-    colorscheme = 'dracula',
+    colorscheme = 'snazzy',
     hidden_files = true,
     wrap_lines = false,
     number = true,
