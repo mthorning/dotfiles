@@ -8,17 +8,16 @@ require('lv-nvimtree') -- This plugin must be required somewhere before colorsch
 require('colorscheme') -- This plugin must be required somewhere after nvimtree. Placing it before will break navigation keymappings
 require('lv-galaxyline')
 require('lv-comment')
-require('lv-compe')
+require('lv-autopairs')
+require('lv-cmp')
 require('lv-dashboard')
 require('lv-telescope')
 require('lv-gitsigns')
 require('lv-treesitter')
-require('lv-autopairs')
 require('lv-which-key')
 require('lv-neomux')
 require('lv-lazygit')
 require('lv-neoscroll')
-require('lv-surround')
 
 -- TODO is there a way to do this without vimscript
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')

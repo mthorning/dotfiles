@@ -7,28 +7,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute "packadd packer.nvim"
 end
 
---- Check if a file or directory exists in this path
-local function require_plugin(plugin)
-    local plugin_prefix = fn.stdpath("data") .. "/site/pack/packer/opt/"
-
-    local plugin_path = plugin_prefix .. plugin .. "/"
-    --	print('test '..plugin_path)
-    local ok, err, code = os.rename(plugin_path, plugin_path)
-    if not ok then
-        if code == 13 then
-             print(plugin .. " permission denied " .. plugin_path)
-            -- Permission denied, but it exists
-            return true
-        end
-        print(plugin .. " not found at " .. plugin_path)
-    end
-    --	print(ok, err, code)
-    if ok then
-        vim.cmd("packadd " .. plugin)
-    end
-    return ok, err, code
-end
-
 vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
 
 return require("packer").startup(
@@ -36,97 +14,37 @@ return require("packer").startup(
         -- Packer can manage itself as an optional plugin
         use "wbthomason/packer.nvim"
 
-        -- TODO refactor all of this (for now it works, but yes I know it could be wrapped in a simpler function)
-        use {"neovim/nvim-lspconfig", opt = true}
-        use {"glepnir/lspsaga.nvim", opt = true}
-        use {"kabouzeid/nvim-lspinstall", opt = true}
-
-        -- Telescope
-        use {"nvim-lua/popup.nvim", opt = true}
-        use {"nvim-lua/plenary.nvim", opt = true}
-        use {"nvim-telescope/telescope.nvim", opt = true}
-        use {"nvim-telescope/telescope-fzy-native.nvim", opt = true}
-
-        -- Debugging
-        use {"mfussenegger/nvim-dap", opt = true}
-
-        -- Autocomplete
-        use {"hrsh7th/nvim-compe", opt = true}
-        use {"hrsh7th/vim-vsnip", opt = true}
-        use {"rafamadriz/friendly-snippets", opt = true}
-
-        -- Treesitter
-        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
-        use {"windwp/nvim-ts-autotag", opt = true}
-
-        -- Explorer
-        use {"kyazdani42/nvim-tree.lua", opt = true}
-
-        use {"lewis6991/gitsigns.nvim", opt = true}
-        use {"folke/which-key.nvim", opt = true}
-        use {"ChristianChiarulli/dashboard-nvim", opt = true}
-        use {"windwp/nvim-autopairs", opt = true}
-        use {"terrortylor/nvim-comment", opt = true}
-        use {"kevinhwang91/nvim-bqf", opt = true}
-
-        -- Color
-        use {"christianchiarulli/nvcode-color-schemes.vim", opt = true}
-
-        -- Icons
-        use {"kyazdani42/nvim-web-devicons", opt = true}
-
-        -- Status Line
-        use {"glepnir/galaxyline.nvim", opt = true}
-
-        -- Highlights unique character on line
-        use {"unblevable/quick-scope", opt = true}
-
-        -- Tmux in nvim
+        use {"nvim-treesitter/nvim-treesitter", branch = "0.5-compat", run = ":TSUpdate"}
         use "nikvdp/neomux"
-
-        -- Smooth page up and down
         use "karb94/neoscroll.nvim"
 
-        -- Git
-        use {"kdheepak/lazygit.nvim", opt = true}
-        use {"f-person/git-blame.nvim", opt = true}
+        use {"neovim/nvim-lspconfig"}
+        use {"glepnir/lspsaga.nvim"}
+	use {'hrsh7th/cmp-nvim-lsp'}
+	use {'hrsh7th/cmp-buffer'}
+	use {'hrsh7th/nvim-cmp'}
+	use {'hrsh7th/vim-vsnip'}
+	use {'tzachar/cmp-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-cmp'}
 
-        -- For braces, brackets, etc
-        use {"blackcauldron7/surround.nvim", opt = true}
-
-        use {"brooth/far.vim", opt = true, as = "brooth/far.vim"}
-
-	use {"mtth/scratch.vim", opt = true}
-	use {"https://tpope.io/vim/fugitive.git", opt = true}
-	use {"https://github.com/Yggdroot/indentLine.git", opt = true}
-
-        require_plugin("nvim-lspconfig")
-        require_plugin("lspsaga.nvim")
-        require_plugin("nvim-lspinstall")
-        require_plugin("friendly-snippets")
-        require_plugin("popup.nvim")
-        require_plugin("plenary.nvim")
-        require_plugin("telescope.nvim")
-        require_plugin("nvim-dap")
-        require_plugin("nvim-compe")
-        require_plugin("vim-vsnip")
-        require_plugin("nvim-ts-autotag")
-        require_plugin("nvim-tree.lua")
-        require_plugin("gitsigns.nvim")
-        require_plugin("which-key.nvim")
-        require_plugin("dashboard-nvim")
-        require_plugin("nvim-autopairs")
-        require_plugin("nvim-comment")
-        require_plugin("nvim-bqf")
-        require_plugin("nvcode-color-schemes.vim")
-        require_plugin("nvim-web-devicons")
-        require_plugin("galaxyline.nvim")
-        require_plugin("brooth/far.vim")
-        require_plugin("fugitive.git")
-        require_plugin("scratch.vim")
-        require_plugin("surround.nvim")
-        require_plugin("git-blame.nvim")
-        require_plugin("lazygit.nvim")
-        require_plugin("quick-scope")
+        use {"kabouzeid/nvim-lspinstall"}
+        use {"nvim-lua/popup.nvim"}
+        use {"nvim-lua/plenary.nvim"}
+        use {"nvim-telescope/telescope.nvim"}
+        use {"nvim-telescope/telescope-fzy-native.nvim"}
+        use {"rafamadriz/friendly-snippets"}
+        use {"kyazdani42/nvim-tree.lua", tag = "1.2.8"}
+        use {"lewis6991/gitsigns.nvim"}
+        use {"folke/which-key.nvim"}
+        use {"ChristianChiarulli/dashboard-nvim"}
+        use {"terrortylor/nvim-comment"}
+        use {"kevinhwang91/nvim-bqf"}
+        use {"christianchiarulli/nvcode-color-schemes.vim"}
+        use {"kyazdani42/nvim-web-devicons"}
+        use {"glepnir/galaxyline.nvim"}
+        use {"unblevable/quick-scope"}
+        use {"kdheepak/lazygit.nvim"}
+        use {"f-person/git-blame.nvim"}
+        use {"brooth/far.vim"}
+	use {"windwp/nvim-autopairs"}
     end
 )

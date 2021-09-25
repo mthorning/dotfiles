@@ -7,8 +7,6 @@ require'nvim-treesitter.configs'.setup {
     rainbow = {
         enable = O.treesitter.rainbow.enabled -- false will disable the whole extension
     },
-    -- TODO seems to be broken
     indent = {enable = {"javascriptreact"}},
     autotag = {enable = true},
 }
-
