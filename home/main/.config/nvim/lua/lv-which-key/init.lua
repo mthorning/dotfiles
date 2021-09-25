@@ -73,14 +73,7 @@ vim.api.nvim_set_keymap("n", "<leader>T", ":tabnew<CR>", {noremap = true, silent
 -- Vim objects
 vim.api.nvim_set_keymap("n", "<leader>?", ":lua print(vim.inspect(vim))<CR>", {noremap = true, silent = true})
 
--- Opens scratch
-vim.api.nvim_set_keymap("n", "<leader>n", ":Scratch<CR>", {noremap = true, silent = true})
-
 vim.api.nvim_set_keymap("n", "<leader>tt", ":tabnew | :call NeomuxTerm()<CR>", {noremap = true, silent = true})
-
--- Harpoon
-vim.api.nvim_set_keymap("n", "<leader>hm", ":lua require('harpoon.mark').add_file()<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>hv", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", {noremap = true, silent = true})
 
 local mappings = {
     ["/"] = "Comment",
@@ -91,22 +84,12 @@ local mappings = {
     ["g"] = "Git",
     ["?"] = "Vim API",
     ["T"] = "New Tab",
-    ["n"] = "Note",
     t = {
         name = "+Terminal",
 	["."] = "Here",
         t = "Tab",
         s = "Split",
         v = "Vert split"
-    },
-    d = {
-        name = "+Debug",
-        b = {"<cmd>DebugToggleBreakpoint<cr>", "Toggle Breakpoint"},
-        c = {"<cmd>DebugContinue<cr>", "Continue"},
-        i = {"<cmd>DebugStepInto<cr>", "Step Into"},
-        o = {"<cmd>DebugStepOver<cr>", "Step Over"},
-        r = {"<cmd>DebugToggleRepl<cr>", "Toggle Repl"},
-        s = {"<cmd>DebugStart<cr>", "Start"}
     },
     l = {
         name = "+LSP",
@@ -159,11 +142,6 @@ local mappings = {
         y = "Yank",
 	p = "Paste",
     },
-    h = {
-    	name = "Harpoon",
-    	m = "Mark",
-    	v = "View",
-    }
 }
 
 local wk = require("which-key")
