@@ -32,13 +32,9 @@ vim.o.undofile = true
 vim.o.backup = false -- This is recommended by coc
 vim.o.writebackup = false -- This is recommended by coc
 
-vim.bo.tabstop = 8 -- tabs are at proper location
-vim.bo.softtabstop = 4 -- tabs are at proper location
+vim.bo.tabstop = 4 -- tabs are at proper location
 vim.bo.expandtab = true -- don't use actual tab character (ctrl-v)
 vim.bo.shiftwidth = 4 -- indenting is 4 spaces
-vim.bo.autoindent = true -- turns it on
-vim.bo.smartindent = true -- does the right thing (mostly) in programs
-vim.bo.cindent = true -- stricter rules for C programs
 
 vim.wo.number = O.number -- set numbered lines
 vim.wo.relativenumber = O.relative_number -- set relative number
