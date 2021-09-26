@@ -7,7 +7,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
     execute "packadd packer.nvim"
 end
 
-vim.cmd "autocmd BufWritePost plugins.lua PackerCompile" -- Auto compile when there are changes in plugins.lua
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
 
 return require("packer").startup({
     function(use)
@@ -52,6 +57,9 @@ return require("packer").startup({
 	use {"tpope/vim-surround", requires = "tpope/vim-repeat"}
     end,
     config = {
-        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+        compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua',
+	display = {
+	    open_fn = require('packer.util').float,
+	}
     }
 })
