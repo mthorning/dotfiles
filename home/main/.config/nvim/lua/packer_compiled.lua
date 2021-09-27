@@ -194,6 +194,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-angry"
   },
+  ["vim-localvimrc"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-localvimrc"
+  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-repeat"
