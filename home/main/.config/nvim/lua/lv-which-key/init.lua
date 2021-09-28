@@ -75,6 +75,9 @@ vim.api.nvim_set_keymap("n", "<leader>?", ":lua print(vim.inspect(vim))<CR>", {n
 
 vim.api.nvim_set_keymap("n", "<leader>tt", ":tabnew | :call NeomuxTerm()<CR>", {noremap = true, silent = true})
 
+vim.api.nvim_set_keymap("n", "<leader>h", ":HopWord<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("v", "<leader>h", ":HopWord<CR>", {noremap = true, silent = true})
+
 local mappings = {
     ["/"] = "Comment",
     ["w"] = "Save",
@@ -84,6 +87,7 @@ local mappings = {
     ["g"] = "Git",
     ["?"] = "Vim API",
     ["T"] = "New Tab",
+    ["h"] = "Hop",
     t = {
         name = "+Terminal",
 	["."] = "Here",
