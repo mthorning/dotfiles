@@ -55,7 +55,7 @@ return require("packer").startup({
 	use "b4winckler/vim-angry"
 	use "tpope/vim-repeat"
 	use {"tpope/vim-surround", requires = "tpope/vim-repeat"}
-	use {"embear/vim-localvimrc"}
+	use "embear/vim-localvimrc"
 	use {"phaazon/hop.nvim",
   		as = 'hop',
   		config = function()
