@@ -18,6 +18,7 @@ require('lv-which-key')
 require('lv-neomux')
 require('lv-lazygit')
 require('lv-neoscroll')
+vim.g.localvimrc_persistent = 2
 
 -- TODO is there a way to do this without vimscript
 vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
@@ -50,4 +51,3 @@ require('lsp.ruby-ls')
 require('lsp.kotlin-ls')
 require('lsp.vue-ls')
 require('lsp.angular-ls')
-

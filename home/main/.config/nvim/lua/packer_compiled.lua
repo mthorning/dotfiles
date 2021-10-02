@@ -105,6 +105,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  hop = {
+    config = { "\27LJ\2\0021\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\bhop\frequire\0" },
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/hop"
+  },
   ["impatient.nvim"] = {
     config = { "\27LJ\2\2)\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\14impatient\frequire\0" },
     loaded = true,
@@ -194,6 +199,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-angry"
   },
+  ["vim-localvimrc"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-localvimrc"
+  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-repeat"
@@ -213,6 +222,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: hop
+time([[Config for hop]], true)
+try_loadstring("\27LJ\2\0021\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\bhop\frequire\0", "config", "hop")
+time([[Config for hop]], false)
 -- Config for: impatient.nvim
 time([[Config for impatient.nvim]], true)
 try_loadstring("\27LJ\2\2)\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\14impatient\frequire\0", "config", "impatient.nvim")
