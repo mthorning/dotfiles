@@ -47,71 +47,44 @@ local opts = {
 -- vim.api.nvim_set_keymap('n', '<Space>', '<NOP>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 
--- explorer
-vim.api.nvim_set_keymap('n', '<Leader>e', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
-
--- dashboard
-vim.api.nvim_set_keymap('n', '<Leader>;', ':Dashboard<CR>', {noremap = true, silent = true})
-
 -- Comments
 vim.api.nvim_set_keymap("n", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("v", "<leader>/", ":CommentToggle<CR>", {noremap = true, silent = true})
-
--- Save file(s)
-vim.api.nvim_set_keymap("n", "<leader>w", ":w<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>a", ":wa<CR>", {noremap = true, silent = true})
-
--- Quit
-vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", {noremap = true, silent = true})
-
--- LazyGit
-vim.api.nvim_set_keymap("n", "<leader>g", ":LazyGit<CR>", {noremap = true, silent = true})
-
--- New Tab
-vim.api.nvim_set_keymap("n", "<leader>T", ":tabnew<CR>", {noremap = true, silent = true})
-
--- Vim objects
-vim.api.nvim_set_keymap("n", "<leader>?", ":lua print(vim.inspect(vim))<CR>", {noremap = true, silent = true})
-
-vim.api.nvim_set_keymap("n", "<leader>tt", ":tabnew | :call NeomuxTerm()<CR>", {noremap = true, silent = true})
 
 vim.api.nvim_set_keymap("n", "<leader>h", ":HopWord<CR>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("v", "<leader>h", ":HopWord<CR>", {noremap = true, silent = true})
 
 local mappings = {
+    [";"] = {"<cmd>Dashboard", "Dashboard"},
     ["/"] = "Comment",
-    ["w"] = "Save",
-    ["a"] = "Save All",
-    ["q"] = "Quit",
-    ["e"] = "Explorer",
-    ["g"] = "Git",
-    ["?"] = "Vim API",
-    ["T"] = "New Tab",
+    ["w"] = {"<cmd>w<CR>", "Save"},
+    ["a"] = {"<cmd>wa<CR>", "Save All"},
+    ["q"] = {"<cmd>q<CR>", "Quit"},
+    ["e"] = {"<cmd>NvimTreeToggle<CR>", "Explorer"},
+    ["g"] = {"<cmd>LazyGit<CR>", "Git"},
+    ["T"] = {"<cmd>tabnew<CR>", "Git"},
     ["h"] = "Hop",
     t = {
         name = "+Terminal",
 	["."] = "Here",
         t = "Tab",
         s = "Split",
-        v = "Vert split"
+        v = "Vert split",
+        f = {"<cmd>Lspsaga open_floaterm<CR>", "Open Float"},
+	x = {"<cmd>Lspsaga close_floaterm<CR>", "Close Float"}
     },
     l = {
         name = "+LSP",
         a = {"<cmd>Lspsaga code_action<cr>", "Code Action"},
         A = {"<cmd>Lspsaga range_code_action<cr>", "Selected Action"},
-        d = {"<cmd>Telescope lsp_document_diagnostics<cr>", "Document Diagnostics"},
-        D = {"<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics"},
         f = {"<cmd>LspFormatting<cr>", "Format"},
         i = {"<cmd>LspInfo<cr>", "Info"},
         l = {"<cmd>Lspsaga lsp_finder<cr>", "LSP Finder"},
-        L = {"<cmd>Lspsaga show_line_diagnostics<cr>", "Line Diagnostics"},
         p = {"<cmd>Lspsaga preview_definition<cr>", "Preview Definition"},
-        q = {"<cmd>Telescope quickfix<cr>", "Quickfix"},
-        r = {"<cmd>Lspsaga rename<cr>", "Rename"},
-        t = {"<cmd>LspTypeDefinition<cr>", "Type Definition"},
+        q = {"<cmd>copen", "Open Quickfix"},
         x = {"<cmd>cclose<cr>", "Close Quickfix"},
-        s = {"<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
-        S = {"<cmd>Telescope lsp_workspace_symbols<cr>", "Workspace Symbols"}
+        r = {"<cmd>Lspsaga rename<cr>", "Rename"},
+	s = {"<cmd>Lspsaga signature_help<cr>", "Signature Help"}
     },
     f = {
         name = "+Find",
