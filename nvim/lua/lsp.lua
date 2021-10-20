@@ -1,11 +1,12 @@
 -- vim:foldmethod=marker
-
+-- INIT {{{
 local lspconfig = require('lspconfig')
 local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
                  {virtual_text = false})
+-- }}}
 
 -- EFM {{{
 local eslint = {
@@ -66,7 +67,7 @@ lspconfig.efm.setup {
         }
     }
 }
---}}}
+-- }}}
 
 -- TSSERVER {{{
 lspconfig.tsserver.setup {
@@ -78,7 +79,7 @@ lspconfig.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
     end
 }
---}}}
+-- }}}
 
 -- SUMNEKO_LUA {{{
 local system_name
@@ -112,23 +113,30 @@ lspconfig.sumneko_lua.setup {
         }
     }
 }
---}}} 
+-- }}} 
 
 -- JSON {{{
 require'lspconfig'.jsonls.setup {
-    cmd = { lsp_servers .. "/vscode-langservers-extracted/node_modules/.bin/vscode-json-language-server", "--stdio" },
+    cmd = {
+        lsp_servers ..
+            "/vscode-langservers-extracted/node_modules/.bin/vscode-json-language-server",
+        "--stdio"
+    },
     commands = {
-      Format = {
-        function()
-          vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
-        end
-      }
+        Format = {
+            function()
+                vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line("$"), 0})
+            end
+        }
     }
 }
---}}}
+-- }}}
 
 -- YAML {{{
-require'lspconfig'.yamlls.setup{
-  cmd = { lsp_servers .. "/yaml/node_modules/.bin/yaml-language-server", "--stdio" }
+require'lspconfig'.yamlls.setup {
+    cmd = {
+        lsp_servers .. "/yaml/node_modules/.bin/yaml-language-server", "--stdio"
+    }
 }
---}}}
+
+-- }}}

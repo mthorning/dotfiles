@@ -1,10 +1,6 @@
-for _, conf in pairs {
-    'plugins', 'plug-conf.nvim-tree', 'plug-conf.which-key',
-    'plug-conf.telescope', 'plug-conf.treesitter', 'plug-conf.galaxyline',
-    'plug-conf.neomux', 'plug-conf.alpha', 'plug-conf.lspsaga', 'plug-conf.cmp',
-    'plug-conf.session-manager', 'plug-conf.neoscroll', 'plug-conf.autopairs',
-    'plug-conf.gitsigns', 'lsp', 'keymappings'
-} do require(conf) end
+require 'plugins'
+require 'lsp'
+require 'keymappings'
 
 vim.cmd([[
     set sw=2
