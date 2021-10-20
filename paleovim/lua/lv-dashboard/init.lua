@@ -6,9 +6,9 @@ vim.g.dashboard_default_executive = 'telescope'
 vim.g.dashboard_custom_section = {
     a = {description = {'🖵  Terminal           '}, command = ':call NeomuxTerm()'},
     b = {description = {'  Recent Files       '}, command = 'Telescope oldfiles'},
+    e = {description = {'  Load Last Session  '}, command = 'SessionLoad'},
     c = {description = {'  Find File          '}, command = 'Telescope find_files'},
     d = {description = {'  Find Word          '}, command = 'Telescope live_grep'},
-    e = {description = {'  Load Last Session  '}, command = 'SessionLoad'},
     f = {description = {'  New                '}, command = ':enew'},
 }
 

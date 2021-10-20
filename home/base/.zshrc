@@ -63,10 +63,10 @@ displays() {
   xrandr | grep " connected" | cut -f1 -d " "	
 }
 
-acer() {
-	source ~/.xprofile
+us() {
+  source ~/.xprofile
   xrandr --auto
-  xrandr --output DP-1-1 --primary --left-of eDP-1
+  xrandr --output DP-1 --primary --left-of eDP-1
 }
 
 # restart pulseaudio when it hurts my ears
