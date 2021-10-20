@@ -1,3 +1,5 @@
+-- vim:foldmethod=marker
+
 local lspconfig = require('lspconfig')
 local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
 
@@ -5,7 +7,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
                  {virtual_text = false})
 
--- EFM
+-- EFM {{{
 local eslint = {
     lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
     lintIgnoreExitCode = true,
@@ -64,8 +66,9 @@ lspconfig.efm.setup {
         }
     }
 }
+--}}}
 
--- TSSERVER
+-- TSSERVER {{{
 lspconfig.tsserver.setup {
     cmd = {
         lsp_servers .. "/tsserver/node_modules/.bin/typescript-language-server",
@@ -75,8 +78,9 @@ lspconfig.tsserver.setup {
         client.resolved_capabilities.document_formatting = false
     end
 }
+--}}}
 
--- SUMNEKO_LUA
+-- SUMNEKO_LUA {{{
 local system_name
 if vim.fn.has("mac") == 1 then
     system_name = "macOS"
@@ -108,8 +112,9 @@ lspconfig.sumneko_lua.setup {
         }
     }
 }
+--}}} 
 
--- JSON
+-- JSON {{{
 require'lspconfig'.jsonls.setup {
     cmd = { lsp_servers .. "/vscode-langservers-extracted/node_modules/.bin/vscode-json-language-server", "--stdio" },
     commands = {
@@ -120,8 +125,10 @@ require'lspconfig'.jsonls.setup {
       }
     }
 }
+--}}}
 
--- YAML
+-- YAML {{{
 require'lspconfig'.yamlls.setup{
   cmd = { lsp_servers .. "/yaml/node_modules/.bin/yaml-language-server", "--stdio" }
 }
+--}}}
