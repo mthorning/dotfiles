@@ -69,10 +69,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["alpha-nvim"] = {
-    loaded = true,
-    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/alpha-nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/cmp-buffer"
@@ -81,9 +77,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
   },
+  ["cmp-tabnine"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/cmp-tabnine"
+  },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+  },
   ["far.vim"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/far.vim"
+  },
+  ["friendly-snippets"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/friendly-snippets"
   },
   ["galaxyline.nvim"] = {
     loaded = true,
@@ -97,9 +105,15 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
-  kommentary = {
+  hop = {
+    config = { "\27LJ\2\0021\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\bhop\frequire\0" },
     loaded = true,
-    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/kommentary"
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/hop"
+  },
+  ["impatient.nvim"] = {
+    config = { "\27LJ\2\2)\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\14impatient\frequire\0" },
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/impatient.nvim"
   },
   ["lazygit.nvim"] = {
     loaded = true,
@@ -117,9 +131,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/neoscroll.nvim"
   },
-  ["neovim-session-manager"] = {
+  ["nvcode-color-schemes.vim"] = {
     loaded = true,
-    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/neovim-session-manager"
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
@@ -133,13 +147,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
-  ["nvim-lsp-installer"] = {
+  ["nvim-comment"] = {
     loaded = true,
-    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer"
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-comment"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+  },
+  ["nvim-lspinstall"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-lspinstall"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
@@ -148,14 +166,6 @@ _G.packer_plugins = {
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
-  },
-  ["nvim-treesitter-textobjects"] = {
-    loaded = true,
-    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-treesitter-textobjects"
-  },
-  ["nvim-ts-autotag"] = {
-    loaded = true,
-    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -169,6 +179,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/plenary.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/popup.nvim"
+  },
+  ["quick-scope"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/quick-scope"
+  },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
@@ -177,13 +195,25 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/telescope.nvim"
   },
-  ["tokyonight.nvim"] = {
+  ["vim-angry"] = {
     loaded = true,
-    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-angry"
   },
   ["vim-localvimrc"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-localvimrc"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-repeat"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-surround"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   },
   ["which-key.nvim"] = {
     loaded = true,
@@ -192,6 +222,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: hop
+time([[Config for hop]], true)
+try_loadstring("\27LJ\2\0021\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\bhop\frequire\0", "config", "hop")
+time([[Config for hop]], false)
+-- Config for: impatient.nvim
+time([[Config for impatient.nvim]], true)
+try_loadstring("\27LJ\2\2)\0\0\2\0\2\0\0046\0\0\0'\1\1\0B\0\2\1K\0\1\0\14impatient\frequire\0", "config", "impatient.nvim")
+time([[Config for impatient.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

@@ -1,38 +1,52 @@
-vim.api.nvim_set_keymap('n', '-', ':RnvimrToggle<CR>', {noremap = true, silent = true})
+local opts = {noremap = true, silent = true}
 
+local set = function(mode, from, to)
+    vim.api.nvim_set_keymap(mode, from, to, opts)
+end
+
+set("n", "<SPACE>", "<Nop>")
+vim.cmd("let mapleader=' '")
 
 -- better window movement
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
+set("n", "<C-h>", "<C-w>h")
+set("n", "<C-j>", "<C-w>j")
+set("n", "<C-k>", "<C-w>k")
+set("n", "<C-l>", "<C-w>l")
 
 -- resize with arrows
-vim.cmd([[
-  nnoremap <silent> <C-Up>    :resize +2<CR>
-  nnoremap <silent> <C-Down>  :resize -2<CR>
-  nnoremap <silent> <C-Left>  :vertical resize +2<CR>
-  nnoremap <silent> <C-Right> :vertical resize -2<CR>
-]])
+set("n", "<C-Up>", ":resize +2<CR>")
+set("n", "<C-Down>", ":resize -2<CR>")
+set("n", "<C-Left>", ":vertical resize +2<CR>")
+set("n", "<C-Right>", ":vertical resize -2<CR>")
 
 -- Tab switch
-vim.api.nvim_set_keymap('n', '<TAB>', 'gt', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<S-TAB>', 'gT', {noremap = true, silent = true})
+set("n", "<TAB>", "gt")
+set("n", "<S-TAB>", "gT")
 
 -- Move selected line / block of text in visual mode
-vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', {noremap = true, silent = true})
+set("x", "J", ":move \">+1<CR>gv-gv")
+set("x", "K", ":move \"<-2<CR>gv-gv")
 
 -- better indenting in visual mode
-vim.api.nvim_set_keymap('v', '<', '<gv', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '>', '>gv', {noremap = true, silent = true})
+set("v", "<", "<gv")
+set("v", ">", ">gv")
 
 -- Yank end of line
-vim.api.nvim_set_keymap('n', 'Y', 'y$$', {noremap = true, silent = true})
+set("n", "Y", "y$$")
 
 -- Keeping it centered
-vim.api.nvim_set_keymap('n', 'n', 'nzzzv', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'J', 'mzJ`z', {noremap = true, silent = true})
+set("n", "n", "nzzzv")
+set("n", "N", "Nzzzv")
+set("n", "J", "mzJ`z")
+
+-- LSP
+set("n", "<C-n>", "<cmd>Lspsaga diagnostic_jump_next<cr>")
+set("n", "<C-p>", "<cmd>Lspsaga diagnostic_jump_prev<cr>")
+
+set("n", "<C-b>",
+    "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
 
 
+set("n", "<C-f>",
+
+    "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")

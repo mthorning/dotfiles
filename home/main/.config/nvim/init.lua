@@ -1,53 +1,35 @@
-require('plugins')
-require('lv-globals')
-require('lv-utils')
-require('lv-autocommands')
-require('settings')
-require('keymappings')
-require('lv-nvimtree') -- This plugin must be required somewhere before colorscheme.  Placing it after will break navigation keymappings
-require('colorscheme') -- This plugin must be required somewhere after nvimtree. Placing it before will break navigation keymappings
-require('lv-galaxyline')
-require('lv-comment')
-require('lv-autopairs')
-require('lv-cmp')
-require('lv-dashboard')
-require('lv-telescope')
-require('lv-gitsigns')
-require('lv-treesitter')
-require('lv-which-key')
-require('lv-neomux')
-require('lv-lazygit')
-require('lv-neoscroll')
-vim.g.localvimrc_persistent = 2
+for _, conf in pairs {
+    'plugins', 'plug-conf.nvim-tree', 'plug-conf.which-key',
+    'plug-conf.telescope', 'plug-conf.treesitter', 'plug-conf.galaxyline',
+    'plug-conf.neomux', 'plug-conf.alpha', 'plug-conf.lspsaga', 'plug-conf.cmp',
+    'plug-conf.session-manager', 'plug-conf.neoscroll', 'plug-conf.autopairs',
+    'plug-conf.gitsigns', 'lsp', 'keymappings'
+} do require(conf) end
 
--- TODO is there a way to do this without vimscript
-vim.cmd('source ~/.config/nvim/vimscript/functions.vim')
+vim.cmd([[
+    set sw=2
+    set expandtab
+    set autoindent
+    set smartindent
+    set number relativenumber
+    set nu rnu
+    set scrolloff=4
+    set nowrap
+    set splitright
+    set splitbelow
+    set nohlsearch
+    set incsearch
+    set whichwrap+=<,>,[,]
+    set noshowmode
+    set mouse=a
+    set iskeyword+=-
+    set undodir=$HOME/.vim/undodir
+    set undofile
+    set timeoutlen=500
+    set signcolumn=yes
+    syntax on
+    colorscheme tokyonight
+    let lazygit_floating_window_use_plenary=1
+]])
 
--- LSP
-require('lsp')
-require('lsp.clangd')
-require('lsp.php-ls')
-require('lsp.dart-ls')
-require('lsp.lua-ls')
-require('lsp.bash-ls')
-require('lsp.go-ls')
-require('lsp.js-ts-ls')
-require('lsp.python-ls')
-require('lsp.rust-ls')
-require('lsp.json-ls')
-require('lsp.yaml-ls')
-require('lsp.terraform-ls')
-require('lsp.vim-ls')
-require('lsp.graphql-ls')
-require('lsp.docker-ls')
-require('lsp.html-ls')
-require('lsp.css-ls')
-require('lsp.emmet-ls')
-require('lsp.efm-general-ls')
-require('lsp.latex-ls')
-require('lsp.svelte-ls')
-require('lsp.tailwindcss-ls')
-require('lsp.ruby-ls')
-require('lsp.kotlin-ls')
-require('lsp.vue-ls')
-require('lsp.angular-ls')
+vim.cmd("autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif")
