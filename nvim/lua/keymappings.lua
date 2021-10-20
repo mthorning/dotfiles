@@ -46,7 +46,5 @@ set("n", "<C-p>", "<cmd>Lspsaga diagnostic_jump_prev<cr>")
 set("n", "<C-b>",
     "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
 
-
 set("n", "<C-f>",
-
     "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
