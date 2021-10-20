@@ -1,5 +1,5 @@
 -- vim:foldmethod=marker:foldmarker={-{,}-}
--- INIT {-{
+-- init {-{
 local fn = vim.fn
 local execute = vim.api.nvim_command
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
@@ -67,7 +67,7 @@ require("packer").startup({
 })
 -- }-}
 
--- ALPHA {-{
+-- Alpha {-{
 local startify = require 'alpha.themes.startify'
 startify.nvim_web_devicons.enabled = true
 startify.section.top_buttons.val = {
@@ -79,11 +79,11 @@ startify.section.top_buttons.val = {
 require'alpha'.setup(startify.opts)
 -- }-}
 
--- AUTOPAIRS {-{
+-- Autopairs {-{
 require'nvim-autopairs'.setup {}
 -- }-}
 
--- CMP {-{
+-- Cmp {-{
 local cmp = require 'cmp'
 
 cmp.setup({
@@ -137,7 +137,7 @@ require("nvim-autopairs.completion.cmp").setup({
 })
 -- }-}
 
--- GALAXYLINE {-{
+-- Galaxyline {-{
 local gl = require('galaxyline')
 -- get my theme in galaxyline repo
 local colors = {
@@ -392,7 +392,7 @@ gls.short_line_left[2] = {
 gls.short_line_right[1] = winNum
 -- }-}
 
--- GITSIGNS {-{
+-- Gitsigns {-{
 require('gitsigns').setup {
     signs = {
         -- TODO add hl to colorscheme
@@ -441,7 +441,7 @@ require('gitsigns').setup {
 }
 -- }-}
 
--- LSPSAGA {-{
+-- Lspsaga {-{
 local lspsaga = require 'lspsaga'
 lspsaga.setup { -- defaults ...
     debug = false,
@@ -480,7 +480,7 @@ lspsaga.setup { -- defaults ...
 }
 -- }-}
 
--- NEOMUX  {-{
+-- Neomux  {-{
 vim.g.neomux_start_term_map = "<Leader>t."
 vim.g.neomux_exit_term_mode_map = "<C-space>"
 vim.g.neomux_start_term_split_map = "<Leader>ts"
@@ -488,7 +488,7 @@ vim.g.neomux_start_term_vsplit_map = "<Leader>tv"
 vim.g.neomux_no_term_autoinsert = 1
 -- }-}
 
--- NEOSCROLL  {-{
+-- Neoscroll  {-{
 require('neoscroll').setup({
     easing = true,
     cursor_scrolls_alone = true,
@@ -496,7 +496,7 @@ require('neoscroll').setup({
 })
 -- }-}
 
--- NVIM-TREE  {-{
+-- Nvim-Tree  {-{
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
 vim.g.nvim_tree_icons = {
@@ -564,7 +564,7 @@ require'nvim-tree'.setup {
 }
 -- }-}
 
--- SESSION-MANAGER  {-{
+-- Session-Manager  {-{
 require('session_manager').setup({
     sessions_dir = require 'plenary.path':new(vim.fn.stdpath('data'), 'sessions'), -- The directory where the session files will be saved.
     path_replacer = '__', -- The character to which the path separator will be replaced for session files.
@@ -575,7 +575,7 @@ require('session_manager').setup({
 })
 -- }-}
 
--- TELESCOPE  {-{
+-- Telescope  {-{
 local actions = require('telescope.actions')
 
 require'telescope'.setup {
@@ -611,7 +611,7 @@ require'telescope'.setup {
 require('telescope').load_extension('sessions')
 -- }-}
 
--- TREESITTER  {-{
+-- Treesitter  {-{
 require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
     highlight = {enable = true, additional_vim_regex_highlighting = false},
@@ -632,7 +632,7 @@ require'nvim-treesitter.configs'.setup {
 }
 -- }-}
 
--- WHICH-KEY  {-{
+-- Which-Key  {-{
 local wk = require "which-key"
 wk.setup {
     icons = {

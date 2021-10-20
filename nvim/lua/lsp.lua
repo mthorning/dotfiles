@@ -1,5 +1,5 @@
 -- vim:foldmethod=marker
--- INIT {{{
+-- init {{{
 local lspconfig = require('lspconfig')
 local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
 
@@ -8,7 +8,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] =
                  {virtual_text = false})
 -- }}}
 
--- EFM {{{
+-- efm {{{
 local eslint = {
     lintCommand = 'eslint_d -f unix --stdin --stdin-filename ${INPUT}',
     lintIgnoreExitCode = true,
@@ -69,7 +69,7 @@ lspconfig.efm.setup {
 }
 -- }}}
 
--- TSSERVER {{{
+-- tsserver {{{
 lspconfig.tsserver.setup {
     cmd = {
         lsp_servers .. "/tsserver/node_modules/.bin/typescript-language-server",
@@ -81,7 +81,7 @@ lspconfig.tsserver.setup {
 }
 -- }}}
 
--- SUMNEKO_LUA {{{
+-- sumneko_lua {{{
 local system_name
 if vim.fn.has("mac") == 1 then
     system_name = "macOS"
@@ -115,7 +115,7 @@ lspconfig.sumneko_lua.setup {
 }
 -- }}} 
 
--- JSON {{{
+-- jsonls {{{
 require'lspconfig'.jsonls.setup {
     cmd = {
         lsp_servers ..
@@ -132,7 +132,7 @@ require'lspconfig'.jsonls.setup {
 }
 -- }}}
 
--- YAML {{{
+-- yamlls {{{
 require'lspconfig'.yamlls.setup {
     cmd = {
         lsp_servers .. "/yaml/node_modules/.bin/yaml-language-server", "--stdio"
