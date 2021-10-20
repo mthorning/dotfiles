@@ -29,3 +29,5 @@ vim.cmd([[
 ]])
 
 vim.cmd("autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif")
+
+vim.cmd("command! LspInstallAll :call LspInstallAll()")

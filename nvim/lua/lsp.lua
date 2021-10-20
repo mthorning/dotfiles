@@ -140,3 +140,33 @@ require'lspconfig'.yamlls.setup {
 }
 
 -- }}}
+
+-- vimls {{{
+require'lspconfig'.vimls.setup {
+    cmd = {
+        lsp_servers .. "/vim/node_modules/.bin/vim-language-server", "--stdio"
+    }
+}
+-- }}}
+
+-- html {{{
+require'lspconfig'.html.setup {
+    cmd = {
+        lsp_servers ..
+            "/vscode-langservers-extracted/node_modules/.bin/vscode-html-language-server",
+        "--stdio"
+    }
+}
+-- }}}
+
+-- cssls {{{
+require'lspconfig'.cssls.setup {
+    cmd = {
+        lsp_servers ..
+            "/vscode-langservers-extracted/node_modules/.bin/vscode-css-language-server",
+        "--stdio"
+    }
+}
+-- }}}
+
+-- Remember to update LspInstallAll function with new servers.
