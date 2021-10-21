@@ -1,4 +1,4 @@
-plugins=(nvm git vi-mode npm npx cargo rust tmux)
+plugins=(nvm git vi-mode npm cargo rust tmux)
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh

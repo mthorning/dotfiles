@@ -46,6 +46,7 @@ require("packer").startup({
         use "embear/vim-localvimrc"
         use 'b3nj5m1n/kommentary'
         use "f-person/git-blame.nvim"
+        use "justinmk/vim-sneak"
         use {
             "kyazdani42/nvim-tree.lua",
             requires = "kyazdani42/nvim-web-devicons"

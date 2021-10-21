@@ -169,4 +169,10 @@ require'lspconfig'.cssls.setup {
 }
 -- }}}
 
+-- gopls {{{
+require'lspconfig'.gopls.setup {
+    cmd = { lsp_servers .. "/go/gopls", "--stdio" }
+}
+-- }}}
+
 -- Remember to update LspInstallAll function with new servers.

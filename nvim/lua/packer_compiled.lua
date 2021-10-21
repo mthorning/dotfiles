@@ -185,6 +185,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-localvimrc"
   },
+  ["vim-sneak"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-sneak"
+  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/which-key.nvim"

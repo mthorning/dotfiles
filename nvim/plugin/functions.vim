@@ -9,6 +9,7 @@ lua << EOF
     'vimls',
     'cssls',
     'html',
+    'gopls',
   }   
   for _, server in pairs(servers) do
     vim.cmd(':LspInstall '..server) 
