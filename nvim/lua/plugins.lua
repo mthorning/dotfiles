@@ -536,7 +536,7 @@ require'nvim-tree'.setup {
                 {
                     key = {"<CR>", "o", "l", "<2-LeftMouse>"},
                     cb = tree_cb("edit")
-                }, {key = {"<2-RightMouse>", "cd"}, cb = tree_cb("cd")},
+                }, {key = {"<2-RightMouse>", "c"}, cb = tree_cb("cd")},
                 {key = {"<BS>", "h"}, cb = tree_cb("close_node")},
                 {key = "v", cb = tree_cb("vsplit")},
                 {key = "s", cb = tree_cb("split")},
@@ -553,7 +553,7 @@ require'nvim-tree'.setup {
                 {key = "r", cb = tree_cb("rename")},
                 {key = "<C-r>", cb = tree_cb("full_rename")},
                 {key = "x", cb = tree_cb("cut")},
-                {key = "c", cb = tree_cb("copy")},
+                {key = "y", cb = tree_cb("copy")},
                 {key = "p", cb = tree_cb("paste")},
                 {key = "[c", cb = tree_cb("prev_git_item")},
                 {key = "]c", cb = tree_cb("next_git_item")},
