@@ -77,6 +77,7 @@ lspconfig.tsserver.setup {
     },
     on_attach = function(client)
         client.resolved_capabilities.document_formatting = false
+        require'illuminate'.on_attach(client)
     end
 }
 -- }}}
@@ -104,6 +105,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 
 lspconfig.sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    on_attach = function(client) require'illuminate'.on_attach(client) end,
     settings = {
         Lua = {
             runtime = {version = 'LuaJIT', path = runtime_path},
@@ -171,7 +173,8 @@ require'lspconfig'.cssls.setup {
 
 -- gopls {{{
 require'lspconfig'.gopls.setup {
-    cmd = { lsp_servers .. "/go/gopls", "--stdio" }
+    on_attach = function(client) require'illuminate'.on_attach(client) end,
+    cmd = {lsp_servers .. "/go/gopls", "--stdio"}
 }
 -- }}}
 

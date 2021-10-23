@@ -181,6 +181,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
   },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-illuminate"
+  },
   ["vim-localvimrc"] = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/vim-localvimrc"

@@ -47,6 +47,7 @@ require("packer").startup({
         use 'b3nj5m1n/kommentary'
         use "f-person/git-blame.nvim"
         use "justinmk/vim-sneak"
+        use "RRethy/vim-illuminate"
         use {
             "kyazdani42/nvim-tree.lua",
             requires = "kyazdani42/nvim-web-devicons"
@@ -717,4 +718,8 @@ local mappings = {
 };
 
 wk.register(mappings, opts)
+-- }-}
+
+-- Illuminate {-{
+vim.g.illuminate_highlightUnderCursor = 0
 -- }-}
