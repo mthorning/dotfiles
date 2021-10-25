@@ -716,7 +716,9 @@ local mappings = {
         F = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format"},
         ["/"] = {"<cmd>LspInfo<CR>", "Info"},
         ["?"] = {"<cmd>LspInstallInfo<CR>", "Server Info"}
-    }
+    },
+    ["<tab>"] = "which_key_ignore",
+    ["<s-tab>"] = "which_key_ignore"
 };
 
 wk.register(mappings, opts)
