@@ -20,8 +20,8 @@ set("n", "<C-Left>", ":vertical resize +2<CR>")
 set("n", "<C-Right>", ":vertical resize -2<CR>")
 
 -- Tab switch
-set("n", "<TAB>", "gt")
-set("n", "<S-TAB>", "gT")
+set("n", "<Leader><TAB>", "gt")
+set("n", "<leader><S-TAB>", "gT")
 
 -- Move selected line / block of text in visual mode
 set("x", "J", ":move \">+1<CR>gv-gv")
