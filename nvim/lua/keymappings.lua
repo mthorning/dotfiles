@@ -48,3 +48,8 @@ set("n", "<C-b>",
 
 set("n", "<C-f>",
     "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
+
+-- Add new lines
+set("n", "<CR>", "o<Esc>k")
+set("n", "<S-CR>", "O<Esc>j")
+
