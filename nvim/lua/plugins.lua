@@ -48,6 +48,7 @@ require("packer").startup({
         use "f-person/git-blame.nvim"
         use "justinmk/vim-sneak"
         use "RRethy/vim-illuminate"
+        use "tpope/vim-fugitive"
         use {
             "kyazdani42/nvim-tree.lua",
             requires = "kyazdani42/nvim-web-devicons"
