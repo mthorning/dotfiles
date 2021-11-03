@@ -97,6 +97,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/harpoon"
+  },
   kommentary = {
     loaded = true,
     path = "/home/mthorning/.local/share/nvim/site/pack/packer/start/kommentary"

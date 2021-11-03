@@ -2,11 +2,11 @@
 -- init {-{
 local fn = vim.fn
 local execute = vim.api.nvim_command
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute("!git clone https://github.com/wbthomason/packer.nvim " ..
+    execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
                 install_path)
-    execute "packadd packer.nvim"
+    execute 'packadd packer.nvim'
 end
 
 -- recompile on change
@@ -17,55 +17,56 @@ vim.cmd([[
     augroup end
 ]])
 
-require("packer").startup({
+require('packer').startup({
     function(use)
 
         -- Packer can manage itself
-        use "wbthomason/packer.nvim"
+        use 'wbthomason/packer.nvim'
 
-        use "neovim/nvim-lspconfig"
-        use "tami5/lspsaga.nvim"
-        use "williamboman/nvim-lsp-installer"
-        use "hrsh7th/cmp-nvim-lsp"
-        use "hrsh7th/cmp-buffer"
-        use "hrsh7th/nvim-cmp"
-        use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+        use 'neovim/nvim-lspconfig'
+        use 'tami5/lspsaga.nvim'
+        use 'williamboman/nvim-lsp-installer'
+        use 'hrsh7th/cmp-nvim-lsp'
+        use 'hrsh7th/cmp-buffer'
+        use 'hrsh7th/nvim-cmp'
+        use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
         use 'nvim-treesitter/nvim-treesitter-textobjects'
-        use "windwp/nvim-ts-autotag"
-        use "windwp/nvim-autopairs"
-        use "folke/which-key.nvim"
-        use "folke/tokyonight.nvim"
-        use "kdheepak/lazygit.nvim"
-        use {"lewis6991/gitsigns.nvim", requires = {'nvim-lua/plenary.nvim'}}
-        use "karb94/neoscroll.nvim"
-        use "glepnir/galaxyline.nvim"
-        use "goolord/alpha-nvim"
-        use "shatur/neovim-session-manager"
-        use "kevinhwang91/nvim-bqf"
-        use "brooth/far.vim"
-        use "embear/vim-localvimrc"
+        use 'windwp/nvim-ts-autotag'
+        use 'windwp/nvim-autopairs'
+        use 'folke/which-key.nvim'
+        use 'folke/tokyonight.nvim'
+        use 'kdheepak/lazygit.nvim'
+        use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+        use 'karb94/neoscroll.nvim'
+        use 'glepnir/galaxyline.nvim'
+        use 'goolord/alpha-nvim'
+        use 'shatur/neovim-session-manager'
+        use 'kevinhwang91/nvim-bqf'
+        use 'brooth/far.vim'
+        use 'embear/vim-localvimrc'
         use 'b3nj5m1n/kommentary'
-        use "f-person/git-blame.nvim"
-        use "justinmk/vim-sneak"
-        use "RRethy/vim-illuminate"
-        use "tpope/vim-fugitive"
+        use 'f-person/git-blame.nvim'
+        use 'justinmk/vim-sneak'
+        use 'RRethy/vim-illuminate'
+        use 'tpope/vim-fugitive'
         use {
-            "kyazdani42/nvim-tree.lua",
-            requires = "kyazdani42/nvim-web-devicons"
+            'kyazdani42/nvim-tree.lua',
+            requires = 'kyazdani42/nvim-web-devicons'
         }
-        use {"nikvdp/neomux", requires = "kyazdani42/nvim-web-devicons"}
+        use {'nikvdp/neomux', requires = 'kyazdani42/nvim-web-devicons'}
+        use {'ThePrimeagen/harpoon', requires = 'nvim-lua/plenary.nvim'}
         use {
-            "nvim-telescope/telescope.nvim",
+            'nvim-telescope/telescope.nvim',
             requires = {
-                "nvim-telescope/telescope-fzy-native.nvim",
-                "nvim-lua/plenary.nvim"
+                'nvim-telescope/telescope-fzy-native.nvim',
+                'nvim-lua/plenary.nvim'
             }
         }
 
     end,
     config = {
-        compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
-        display = {open_fn = require("packer.util").float}
+        compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua',
+        display = {open_fn = require('packer.util').float}
     }
 })
 -- }-}
@@ -74,23 +75,19 @@ require("packer").startup({
 local startify = require 'alpha.themes.startify'
 startify.nvim_web_devicons.enabled = true
 startify.section.top_buttons.val = {
-    startify.button("t", "🖳 Terminal", ":call NeomuxTerm()<CR>"),
-    startify.button("s", "🖫 Load Session", ":Telescope sessions<CR>"),
-    startify.button("e", "🗋 New", ":enew <CR>")
+    startify.button('t', '🖳 Terminal', ':call NeomuxTerm()<CR>'),
+    startify.button('s', '🖫 Load Session', ':Telescope sessions<CR>'),
+    startify.button('e', '🗋 New', ':enew <CR>')
 }
 
 require'alpha'.setup(startify.opts)
--- }-}
-
--- Autopairs {-{
-require'nvim-autopairs'.setup {}
 -- }-}
 
 -- Cmp {-{
 local cmp = require 'cmp'
 
 cmp.setup({
-    snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
+    snippet = {expand = function(args) vim.fn['vsnip#anonymous'](args.body) end},
     mapping = {
         ['<Up>'] = cmp.mapping.scroll_docs(-4),
         ['<Down>'] = cmp.mapping.scroll_docs(4),
@@ -105,9 +102,9 @@ cmp.setup({
         })
     },
     sources = {
-        {name = 'nvim_lsp'}, {name = "treesitter"}, {name = 'vsnip'},
-        {name = 'buffer'}, {name = "path"}, {
-            name = "buffer",
+        {name = 'nvim_lsp'}, {name = 'treesitter'}, {name = 'vsnip'},
+        {name = 'buffer'}, {name = 'path'}, {
+            name = 'buffer',
             opts = {get_bufnrs = function()
                 return vim.api.nvim_list_bufs()
             end}
@@ -116,28 +113,33 @@ cmp.setup({
     formatting = {
         format = function(entry, vim_item)
             vim_item.menu = ({
-                nvim_lsp = "ﲳ",
-                nvim_lua = "",
-                treesitter = "",
-                path = "ﱮ",
-                buffer = "﬘",
-                zsh = "",
-                vsnip = "",
-                spell = "暈"
+                nvim_lsp = 'ﲳ',
+                nvim_lua = '',
+                treesitter = '',
+                path = 'ﱮ',
+                buffer = '﬘',
+                zsh = '',
+                vsnip = '',
+                spell = '暈'
             })[entry.source.name]
 
             return vim_item
         end
     }
 })
+-- }-}
 
-require("nvim-autopairs.completion.cmp").setup({
-    map_cr = true,
-    map_complete = true,
-    auto_select = true,
-    insert = false,
-    map_char = {all = '(', tex = '{'}
-})
+-- Autopairs {-{
+require'nvim-autopairs'.setup {}
+
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({
+   map_cr = true,
+   map_complete = true,
+   auto_select = true,
+   insert = false,
+   map_char = { all = '(', tex = '{' },
+}))
 -- }-}
 
 -- Galaxyline {-{
@@ -206,7 +208,7 @@ vim.fn.getbufvar(0, 'ts')
 local winNum = {
     WinNum = {
         provider = function()
-            return "W:" .. vim.api.nvim_win_get_number(0) .. " "
+            return 'W:' .. vim.api.nvim_win_get_number(0) .. ' '
         end,
         separator = ' ',
         highlight = {colors.grey, colors.bg}
@@ -334,8 +336,8 @@ gls.right[7] = {
 gls.right[8] = {
     Tabstop = {
         provider = function()
-            return "Spaces:" .. vim.api.nvim_buf_get_option(0, "shiftwidth") ..
-                       " "
+            return 'Spaces:' .. vim.api.nvim_buf_get_option(0, 'shiftwidth') ..
+                       ' '
         end,
         condition = condition.hide_in_width,
         separator = ' ',
@@ -450,44 +452,44 @@ lspsaga.setup { -- defaults ...
     debug = false,
     use_saga_diagnostic_sign = true,
     -- diagnostic sign
-    error_sign = "",
-    warn_sign = "",
-    hint_sign = "",
-    infor_sign = "",
-    diagnostic_header_icon = "   ",
+    error_sign = '',
+    warn_sign = '',
+    hint_sign = '',
+    infor_sign = '',
+    diagnostic_header_icon = '   ',
     -- code action title icon
-    code_action_icon = " ",
+    code_action_icon = ' ',
     code_action_prompt = {
         enable = true,
         sign = true,
         sign_priority = 40,
         virtual_text = false
     },
-    finder_definition_icon = "  ",
-    finder_reference_icon = "  ",
+    finder_definition_icon = '  ',
+    finder_reference_icon = '  ',
     max_preview_lines = 10,
     finder_action_keys = {
-        open = "o",
-        vsplit = "v",
-        split = "s",
-        quit = "q",
-        scroll_down = "<C-f>",
-        scroll_up = "<C-b>"
+        open = 'o',
+        vsplit = 'v',
+        split = 's',
+        quit = 'q',
+        scroll_down = '<C-f>',
+        scroll_up = '<C-b>'
     },
-    code_action_keys = {quit = "q", exec = "<CR>"},
-    rename_action_keys = {quit = "<C-c>", exec = "<CR>"},
-    definition_preview_icon = "  ",
-    border_style = "single",
-    rename_prompt_prefix = "➤",
+    code_action_keys = {quit = 'q', exec = '<CR>'},
+    rename_action_keys = {quit = '<C-c>', exec = '<CR>'},
+    definition_preview_icon = '  ',
+    border_style = 'single',
+    rename_prompt_prefix = '➤',
     server_filetype_map = {}
 }
 -- }-}
 
 -- Neomux  {-{
-vim.g.neomux_start_term_map = "<Leader>t."
-vim.g.neomux_exit_term_mode_map = "<C-space>"
-vim.g.neomux_start_term_split_map = "<Leader>ts"
-vim.g.neomux_start_term_vsplit_map = "<Leader>tv"
+vim.g.neomux_start_term_map = '<Leader>t.'
+vim.g.neomux_exit_term_mode_map = '<C-space>'
+vim.g.neomux_start_term_split_map = '<Leader>ts'
+vim.g.neomux_start_term_vsplit_map = '<Leader>tv'
 vim.g.neomux_no_term_autoinsert = 1
 -- }-}
 
@@ -506,18 +508,18 @@ vim.g.nvim_tree_icons = {
     default = '',
     symlink = '',
     git = {
-        unstaged = "",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = ""
+        unstaged = '',
+        staged = '✓',
+        unmerged = '',
+        renamed = '➜',
+        untracked = ''
     },
     folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = ""
+        default = '',
+        open = '',
+        empty = '',
+        empty_open = '',
+        symlink = ''
     }
 }
 
@@ -538,31 +540,32 @@ require'nvim-tree'.setup {
         mappings = {
             list = {
                 {
-                    key = {"<CR>", "o", "l", "<2-LeftMouse>"},
-                    cb = tree_cb("edit")
-                }, {key = {"<2-RightMouse>", "c"}, cb = tree_cb("cd")},
-                {key = {"<BS>", "h"}, cb = tree_cb("close_node")},
-                {key = "v", cb = tree_cb("vsplit")},
-                {key = "s", cb = tree_cb("split")},
-                {key = "<C-t>", cb = tree_cb("tabnew")},
-                {key = "<", cb = tree_cb("prev_sibling")},
-                {key = ">", cb = tree_cb("next_sibling")},
-                {key = "<S-CR>", cb = tree_cb("close_node")},
-                {key = "<Tab>", cb = tree_cb("preview")},
-                {key = "I", cb = tree_cb("toggle_ignored")},
-                {key = "H", cb = tree_cb("toggle_dotfiles")},
-                {key = "R", cb = tree_cb("refresh")},
-                {key = "a", cb = tree_cb("create")},
-                {key = "d", cb = tree_cb("remove")},
-                {key = "r", cb = tree_cb("rename")},
-                {key = "<C-r>", cb = tree_cb("full_rename")},
-                {key = "x", cb = tree_cb("cut")},
-                {key = "y", cb = tree_cb("copy")},
-                {key = "p", cb = tree_cb("paste")},
-                {key = "[c", cb = tree_cb("prev_git_item")},
-                {key = "]c", cb = tree_cb("next_git_item")},
-                {key = "u", cb = tree_cb("dir_up")},
-                {key = "q", cb = tree_cb("close")}
+                    key = {'<CR>', 'o', 'l', '<2-LeftMouse>'},
+                    cb = tree_cb('edit')
+                }, {key = {'<2-RightMouse>', 'c'}, cb = tree_cb('cd')},
+                {key = {'<BS>', 'h'}, cb = tree_cb('close_node')},
+                {key = 'v', cb = tree_cb('vsplit')},
+                {key = 's', cb = tree_cb('split')},
+                {key = '<C-t>', cb = tree_cb('tabnew')},
+                {key = '<', cb = tree_cb('prev_sibling')},
+                {key = '>', cb = tree_cb('next_sibling')},
+                {key = '<S-CR>', cb = tree_cb('close_node')},
+                {key = '<Tab>', cb = tree_cb('preview')},
+                {key = 'I', cb = tree_cb('toggle_ignored')},
+                {key = 'H', cb = tree_cb('toggle_dotfiles')},
+                {key = 'R', cb = tree_cb('refresh')},
+                {key = 'a', cb = tree_cb('create')},
+                {key = 'd', cb = tree_cb('remove')},
+                {key = 'r', cb = tree_cb('rename')},
+                {key = '<C-r>', cb = tree_cb('full_rename')},
+                {key = 'x', cb = tree_cb('cut')},
+                {key = 'y', cb = tree_cb('copy')},
+                {key = 'p', cb = tree_cb('paste')},
+                {key = '[c', cb = tree_cb('prev_git_item')},
+                {key = ']c', cb = tree_cb('next_git_item')},
+                {key = 'u', cb = tree_cb('dir_up')},
+                {key = 'q', cb = tree_cb('close')},
+                {key = 'g?', cb = tree_cb('toggle_help')},
             }
         }
     }
@@ -585,23 +588,23 @@ local actions = require('telescope.actions')
 
 require'telescope'.setup {
     defaults = {
-        initial_mode = "insert",
-        selection_strategy = "reset",
-        sorting_strategy = "descending",
-        layout_strategy = "horizontal",
+        initial_mode = 'insert',
+        selection_strategy = 'reset',
+        sorting_strategy = 'descending',
+        layout_strategy = 'horizontal',
         mappings = {
             i = {
-                ["<C-c>"] = actions.close,
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-                ["<C-s>"] = actions.select_horizontal,
-                ["<CR>"] = actions.select_default + actions.center
+                ['<C-c>'] = actions.close,
+                ['<C-j>'] = actions.move_selection_next,
+                ['<C-k>'] = actions.move_selection_previous,
+                ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist,
+                ['<C-s>'] = actions.select_horizontal,
+                ['<CR>'] = actions.select_default + actions.center
             },
             n = {
-                ["<C-j>"] = actions.move_selection_next,
-                ["<C-k>"] = actions.move_selection_previous,
-                ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
+                ['<C-j>'] = actions.move_selection_next,
+                ['<C-k>'] = actions.move_selection_previous,
+                ['<C-q>'] = actions.smart_send_to_qflist + actions.open_qflist
             }
         }
     },
@@ -618,7 +621,7 @@ require('telescope').load_extension('sessions')
 
 -- Treesitter  {-{
 require'nvim-treesitter.configs'.setup {
-    ensure_installed = "all",
+    ensure_installed = 'all',
     highlight = {enable = true, additional_vim_regex_highlighting = false},
     indent = {enable = true},
     autotag = {enable = true},
@@ -627,10 +630,10 @@ require'nvim-treesitter.configs'.setup {
             enable = true,
             lookahead = true,
             keymaps = {
-                ["af"] = "@function.outer",
-                ["if"] = "@function.inner",
-                ["aa"] = "@parameter.outer",
-                ["ia"] = "@parameter.inner"
+                ['af'] = '@function.outer',
+                ['if'] = '@function.inner',
+                ['aa'] = '@parameter.outer',
+                ['ia'] = '@parameter.inner'
             }
         }
     }
@@ -638,16 +641,16 @@ require'nvim-treesitter.configs'.setup {
 -- }-}
 
 -- Which-Key  {-{
-local wk = require "which-key"
+local wk = require 'which-key'
 wk.setup {
     icons = {
-        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-        separator = "➜", -- symbol used between a key and it"s label
-        group = "+" -- symbol prepended to a group
+        breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
+        separator = '➜', -- symbol used between a key and it's label
+        group = '+' -- symbol prepended to a group
     },
     window = {
-        border = "single", -- none, single, double, shadow
-        position = "bottom", -- bottom, top
+        border = 'single', -- none, single, double, shadow
+        position = 'bottom', -- bottom, top
         margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
         padding = {2, 2, 2, 2} -- extra window padding [top, right, bottom, left]
     },
@@ -656,12 +659,12 @@ wk.setup {
         width = {min = 20, max = 50}, -- min and max width of the columns
         spacing = 3 -- spacing between columns
     },
-    hidden = {"<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "} -- hide mapping boilerplate
+    hidden = {'<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ '} -- hide mapping boilerplate
 }
 
 local opts = {
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
+    mode = 'n', -- NORMAL mode
+    prefix = '<leader>',
     buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
     silent = true, -- use `silent` when creating keymaps
     noremap = true, -- use `noremap` when creating keymaps
@@ -669,57 +672,66 @@ local opts = {
 }
 
 local mappings = {
-    e = {":NvimTreeToggle<CR>", "Explorer"},
-    w = {":w<CR>", "Save"},
-    a = {":wa<CR>", "Save All"},
-    q = {":q<CR>", "Quit"},
-    T = {":tabnew<CR>", "New Tab"},
-    [";"] = {"<cmd>Alpha<CR>", "Dashboard"},
+    e = {':NvimTreeToggle<CR>', 'Explorer'},
+    w = {':w<CR>', 'Save'},
+    a = {':wa<CR>', 'Save All'},
+    q = {':q<CR>', 'Quit'},
+    T = {':tabnew<CR>', 'New Tab'},
+    [';'] = {'<cmd>Alpha<CR>', 'Dashboard'},
     t = {
-        name = "+Terminal",
-        t = {":tabnew | :call NeomuxTerm()<CR>", "Tab"},
-        ["."] = "Here",
-        s = "Split",
-        v = "Vert split",
-        f = {"<cmd>Lspsaga open_floaterm<CR>", "Float"},
-        x = {"<cmd>Lspsaga close_floaterm<CR>", "Float"}
+        name = '+Terminal',
+        t = {':tabnew | :call NeomuxTerm()<CR>', 'Tab'},
+        ['.'] = 'Here',
+        s = 'Split',
+        v = 'Vert split',
+        f = {'<cmd>Lspsaga open_floaterm<CR>', 'Float'},
+        x = {'<cmd>Lspsaga close_floaterm<CR>', 'Float'}
     },
-    g = {":LazyGit<CR>", "Git"},
+    g = {':LazyGit<CR>', 'Git'},
     f = {
-        name = "+Find",
-        f = {"<cmd>Telescope find_files<CR>", "File"},
-        b = {"<cmd>Telescope buffers<CR>", "Buffer"},
-        r = {"<cmd>Telescope oldfiles<CR>", "Recent"},
-        t = {"<cmd>Telescope live_grep<CR>", "Text"},
-        l = {"<cmd>Telescope loclist<CR>", "Loclist"},
-        q = {"<cmd>Telescope quickfix<CR>", "QuickFix"},
-        m = {"<cmd>Telescope marks<CR>", "Marks"},
-        s = {"<cmd>Telescope search_history<CR>", "Search History"},
-        c = {"<cmd>Telescope command_history<CR>", "Command History"},
-        h = {"<cmd>Telescope help_tags<CR>", "Help"}
+        name = '+Find',
+        f = {'<cmd>Telescope find_files<CR>', 'File'},
+        b = {'<cmd>Telescope buffers<CR>', 'Buffer'},
+        r = {'<cmd>Telescope oldfiles<CR>', 'Recent'},
+        t = {'<cmd>Telescope live_grep<CR>', 'Text'},
+        l = {'<cmd>Telescope loclist<CR>', 'Loclist'},
+        q = {'<cmd>Telescope quickfix<CR>', 'QuickFix'},
+        m = {'<cmd>Telescope marks<CR>', 'Marks'},
+        s = {'<cmd>Telescope search_history<CR>', 'Search History'},
+        c = {'<cmd>Telescope command_history<CR>', 'Command History'},
+        h = {'<cmd>Telescope help_tags<CR>', 'Help'}
     },
-    x = {":source $HOME/.config/nvim/init.lua<CR>", "Source Config"},
+    x = {':source $HOME/.config/nvim/init.lua<CR>', 'Source Config'},
     S = {
-        name = "+Session",
-        s = {"<cmd>SaveSession<CR>", "Save Session"},
-        l = {"<cmd>Telescope sessions<CR>", "Load Session"}
+        name = '+Session',
+        s = {'<cmd>SaveSession<CR>', 'Save Session'},
+        l = {'<cmd>Telescope sessions<CR>', 'Load Session'}
     },
     l = {
-        name = "+LSP",
-        L = {"<cmd>lua vim.diagnostic.setloclist()<CR>", "To Loclist"},
-        f = {"<cmd>Lspsaga lsp_finder<CR>", "Finder"},
-        a = {"<cmd>Lspsaga code_action<CR>", "Action"},
-        l = {"<cmd>Lspsaga show_line_diagnostics<CR>", "Line Diagnostic"},
-        d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "Goto Definition"},
-        h = {"<cmd>Lspsaga hover_doc<CR>", "Hover"},
-        p = {"<cmd>Lspsaga preview_definition<CR>", "Preview Definition"},
-        r = {"<cmd>Lspsaga rename<CR>", "Rename"},
-        F = {"<cmd>lua vim.lsp.buf.formatting()<CR>", "Format"},
-        ["/"] = {"<cmd>LspInfo<CR>", "Info"},
-        ["?"] = {"<cmd>LspInstallInfo<CR>", "Server Info"}
+        name = '+LSP',
+        L = {'<cmd>lua vim.diagnostic.setloclist()<CR>', 'To Loclist'},
+        f = {'<cmd>Lspsaga lsp_finder<CR>', 'Finder'},
+        a = {'<cmd>Lspsaga code_action<CR>', 'Action'},
+        l = {'<cmd>Lspsaga show_line_diagnostics<CR>', 'Line Diagnostic'},
+        d = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition'},
+        h = {'<cmd>Lspsaga hover_doc<CR>', 'Hover'},
+        p = {'<cmd>Lspsaga preview_definition<CR>', 'Preview Definition'},
+        r = {'<cmd>Lspsaga rename<CR>', 'Rename'},
+        F = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'Format'},
+        ['/'] = {'<cmd>LspInfo<CR>', 'Info'},
+        ['?'] = {'<cmd>LspInstallInfo<CR>', 'Server Info'}
     },
-    ["<tab>"] = "which_key_ignore",
-    ["<s-tab>"] = "which_key_ignore"
+    h = {
+      name = '+Harpoon',
+      a = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'Add Mark'},
+      e = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'Show Marks'},
+      ['1'] = {'lua require("harpoon.ui").nav_file(1)<CR>', 'Nav Mark 1'},
+      ['2'] = {'lua require("harpoon.ui").nav_file(2)<CR>', 'Nav Mark 2'},
+      ['3'] = {'lua require("harpoon.ui").nav_file(3)<CR>', 'Nav Mark 3'},
+      ['4'] = {'lua require("harpoon.ui").nav_file(4)<CR>', 'Nav Mark 4'}
+    },
+    ['<tab>'] = 'which_key_ignore',
+    ['<s-tab>'] = 'which_key_ignore'
 };
 
 wk.register(mappings, opts)
