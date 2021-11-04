@@ -725,10 +725,10 @@ local mappings = {
       name = '+Harpoon',
       a = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'Add Mark'},
       e = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'Show Marks'},
-      ['1'] = {'lua require("harpoon.ui").nav_file(1)<CR>', 'Nav Mark 1'},
-      ['2'] = {'lua require("harpoon.ui").nav_file(2)<CR>', 'Nav Mark 2'},
-      ['3'] = {'lua require("harpoon.ui").nav_file(3)<CR>', 'Nav Mark 3'},
-      ['4'] = {'lua require("harpoon.ui").nav_file(4)<CR>', 'Nav Mark 4'}
+     ["1"] = {'<cmd>lua require("harpoon.ui").nav_file(1)<CR>', 'Nav Mark 1'},
+     ["2"] = {'<cmd>lua require("harpoon.ui").nav_file(2)<CR>', 'Nav Mark 2'},
+     ["3"] = {'<cmd>lua require("harpoon.ui").nav_file(3)<CR>', 'Nav Mark 3'},
+     ["4"] = {'<cmd>lua require("harpoon.ui").nav_file(4)<CR>', 'Nav Mark 4'}
     },
     ['<tab>'] = 'which_key_ignore',
     ['<s-tab>'] = 'which_key_ignore'
