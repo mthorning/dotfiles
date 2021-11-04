@@ -687,6 +687,13 @@ local mappings = {
         f = {'<cmd>Lspsaga open_floaterm<CR>', 'Float'},
         x = {'<cmd>Lspsaga close_floaterm<CR>', 'Float'}
     },
+    c = {
+      name = '+QuickFix',
+      c = {':cclose<CR>', 'Close'},
+      o = {':copen<CR>', 'Open'},
+      n = {':cnext<CR>', 'Next'},
+      p = {':cprev<CR>', 'Previous'},
+    },
     g = {':LazyGit<CR>', 'Git'},
     f = {
         name = '+Find',
