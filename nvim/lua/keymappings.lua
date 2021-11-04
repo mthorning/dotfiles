@@ -24,8 +24,12 @@ set("n", "<Leader><TAB>", "gt")
 set("n", "<leader><S-TAB>", "gT")
 
 -- Move selected line / block of text in visual mode
-set("x", "J", ":move \">+1<CR>gv-gv")
-set("x", "K", ":move \"<-2<CR>gv-gv")
+set("n", "<A-j>", ":m .+1<CR>==")
+set("n", "<A-k>", ":m .-2<CR>==")
+set("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
+set("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
+set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- better indenting in visual mode
 set("v", "<", "<gv")
