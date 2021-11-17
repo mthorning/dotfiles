@@ -2,6 +2,7 @@
 -- init {{{
 local lspconfig = require('lspconfig')
 local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
+local root_pattern = lspconfig.util.root_pattern
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -39,7 +40,7 @@ lspconfig.efm.setup {
         codeAction = true,
         document_formatting = true
     },
-    root_dir = lspconfig.util.root_pattern({'.git/', '.'}),
+    root_dir = root_pattern({'.git/', '.'}),
 
     filetypes = {
         "lua", "javascript", "javascriptreact", "javascript.jsx", "typescript",
@@ -173,8 +174,8 @@ require'lspconfig'.cssls.setup {
 
 -- gopls {{{
 require'lspconfig'.gopls.setup {
-    on_attach = function(client) require'illuminate'.on_attach(client) end,
-    cmd = {lsp_servers .. "/go/gopls", "--stdio"}
+    cmd = {lsp_servers .. "/go/gopls"},
+    root_dir = root_pattern("go.mod", ".git")
 }
 -- }}}
 
