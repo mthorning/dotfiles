@@ -11,3 +11,5 @@ autoload -Uz compinit && compinit
 
 export PATH="${PATH}:/Users/matthewthorning/server/apps/ometria.tools/bin"
 source ~/server/apps/ometria.tools/shellrc.sh
+
+alias psql=~/server/apps/ometria.developer_environment/tools/docker-psql
