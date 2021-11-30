@@ -105,7 +105,7 @@ cmp.setup({
         {name = 'nvim_lsp'}, {name = 'treesitter'}, {name = 'vsnip'},
         {name = 'buffer'}, {name = 'path'}, {
             name = 'buffer',
-            opts = {get_bufnrs = function()
+            options = {get_bufnrs = function()
                 return vim.api.nvim_list_bufs()
             end}
         }

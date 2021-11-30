@@ -7,6 +7,9 @@ end
 set("n", "<SPACE>", "<Nop>")
 vim.cmd("let mapleader=' '")
 
+-- search with telescope
+set("n", "/",  ":Telescope current_buffer<CR>")
+
 -- better window movement
 set("n", "<C-h>", "<C-w>h")
 set("n", "<C-j>", "<C-w>j")
