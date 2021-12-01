@@ -28,7 +28,10 @@ require('packer').startup({
         use 'williamboman/nvim-lsp-installer'
         use 'hrsh7th/cmp-nvim-lsp'
         use 'hrsh7th/cmp-buffer'
+        use 'hrsh7th/cmp-vsnip'
+        use 'hrsh7th/vim-vsnip'
         use 'hrsh7th/nvim-cmp'
+        use  'rafamadriz/friendly-snippets'
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
         use 'nvim-treesitter/nvim-treesitter-textobjects'
         use 'windwp/nvim-ts-autotag'
@@ -59,7 +62,8 @@ require('packer').startup({
             'nvim-telescope/telescope.nvim',
             requires = {
                 'nvim-telescope/telescope-fzy-native.nvim',
-                'nvim-lua/plenary.nvim'
+                'nvim-lua/plenary.nvim',
+                'nvim-telescope/telescope-live-grep-raw.nvim'
             }
         }
 
@@ -105,7 +109,7 @@ cmp.setup({
         {name = 'nvim_lsp'}, {name = 'treesitter'}, {name = 'vsnip'},
         {name = 'buffer'}, {name = 'path'}, {
             name = 'buffer',
-            opts = {get_bufnrs = function()
+            options = {get_bufnrs = function()
                 return vim.api.nvim_list_bufs()
             end}
         }
@@ -577,7 +581,7 @@ require('session_manager').setup({
     sessions_dir = require 'plenary.path':new(vim.fn.stdpath('data'), 'sessions'), -- The directory where the session files will be saved.
     path_replacer = '__', -- The character to which the path separator will be replaced for session files.
     colon_replacer = '++', -- The character to which the colon symbol will be replaced for session files.
-    autoload_last_session = false, -- Automatically load last session on startup is started without arguments.
+    autoload_mode = require('session_manager.config').AutoloadMode.Disabled,
     autosave_last_session = false, -- Automatically save last session on exit.
     autosave_ignore_paths = {'~'} -- Folders to ignore when autosaving a session.
 })
@@ -613,6 +617,11 @@ require'telescope'.setup {
             override_generic_sorter = false,
             override_file_sorter = true
         }
+    },
+    pickers = {
+      find_files = {
+        hidden = true
+      }
     }
 }
 
@@ -702,6 +711,7 @@ local mappings = {
         b = {'<cmd>Telescope buffers<CR>', 'Buffer'},
         r = {'<cmd>Telescope oldfiles<CR>', 'Recent'},
         t = {'<cmd>Telescope live_grep<CR>', 'Text'},
+        g = {'<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>', 'Grep'},
         l = {'<cmd>Telescope loclist<CR>', 'Loclist'},
         q = {'<cmd>Telescope quickfix<CR>', 'QuickFix'},
         m = {'<cmd>Telescope marks<CR>', 'Marks'},

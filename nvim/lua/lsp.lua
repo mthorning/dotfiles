@@ -179,4 +179,10 @@ require'lspconfig'.gopls.setup {
 }
 -- }}}
 
+-- phpactor {{{
+require'lspconfig'.phpactor.setup{
+    cmd = {lsp_servers .. "/phpactor-source/bin/phpactor"},
+}
+-- }}}
+
 -- Remember to update LspInstallAll function with new servers.
