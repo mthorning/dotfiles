@@ -24,7 +24,11 @@ vim.cmd([[
   set timeoutlen=500
   set signcolumn=yes
   syntax on
+
+  let g:tokyonight_italic_functions=1
+  let g:tokyonight_italic_keywords=0
   colorscheme tokyonight
+
   let lazygit_floating_window_use_plenary=1
 ]])
 

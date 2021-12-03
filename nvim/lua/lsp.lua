@@ -180,8 +180,8 @@ require'lspconfig'.gopls.setup {
 -- }}}
 
 -- phpactor {{{
-require'lspconfig'.phpactor.setup{
-    cmd = {lsp_servers .. "/phpactor-source/bin/phpactor"},
+require'lspconfig'.phpactor.setup {
+    cmd = {lsp_servers .. "/phpactor-source/bin/phpactor"}
 }
 -- }}}
 

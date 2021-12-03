@@ -29,9 +29,9 @@ require('packer').startup({
         use 'hrsh7th/cmp-nvim-lsp'
         use 'hrsh7th/cmp-buffer'
         use 'hrsh7th/cmp-vsnip'
+        use 'hrsh7th/vim-vsnip-integ'
         use 'hrsh7th/vim-vsnip'
         use 'hrsh7th/nvim-cmp'
-        use  'rafamadriz/friendly-snippets'
         use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
         use 'nvim-treesitter/nvim-treesitter-textobjects'
         use 'windwp/nvim-ts-autotag'
@@ -106,12 +106,14 @@ cmp.setup({
         })
     },
     sources = {
-        {name = 'nvim_lsp'}, {name = 'treesitter'}, {name = 'vsnip'},
+        {name = 'vsnip'}, {name = 'nvim_lsp'}, {name = 'treesitter'},
         {name = 'buffer'}, {name = 'path'}, {
             name = 'buffer',
-            options = {get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-            end}
+            options = {
+                get_bufnrs = function()
+                    return vim.api.nvim_list_bufs()
+                end
+            }
         }
     },
     formatting = {
@@ -131,6 +133,18 @@ cmp.setup({
         end
     }
 })
+
+-- Vsnip mappings
+vim.cmd([[
+  imap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
+  smap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
+
+  imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+  smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+  imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+  smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+]])
+
 -- }-}
 
 -- Autopairs {-{
@@ -138,11 +152,11 @@ require'nvim-autopairs'.setup {}
 
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({
-   map_cr = true,
-   map_complete = true,
-   auto_select = true,
-   insert = false,
-   map_char = { all = '(', tex = '{' },
+    map_cr = true,
+    map_complete = true,
+    auto_select = true,
+    insert = false,
+    map_char = {all = '(', tex = '{'}
 }))
 -- }-}
 
@@ -243,7 +257,7 @@ gls.left[4] = {
     DiffAdd = {
         provider = 'DiffAdd',
         condition = condition.hide_in_width,
-        icon = '  ',
+        icon = ' ⊕',
         highlight = {colors.green, colors.bg}
     }
 }
@@ -251,7 +265,7 @@ gls.left[5] = {
     DiffModified = {
         provider = 'DiffModified',
         condition = condition.hide_in_width,
-        icon = ' +',
+        icon = ' ✐',
         highlight = {colors.blue, colors.bg}
     }
 }
@@ -259,7 +273,7 @@ gls.left[6] = {
     DiffRemove = {
         provider = 'DiffRemove',
         condition = condition.hide_in_width,
-        icon = '  ',
+        icon = ' ⊖',
         highlight = {colors.red, colors.bg}
     }
 }
@@ -419,13 +433,13 @@ require('gitsigns').setup {
         },
         delete = {
             hl = 'GitSignsDelete',
-            text = '契',
+            text = '⤵',
             numhl = 'GitSignsDeleteNr',
             linehl = 'GitSignsDeleteLn'
         },
         topdelete = {
             hl = 'GitSignsDelete',
-            text = '契',
+            text = '⤴',
             numhl = 'GitSignsDeleteNr',
             linehl = 'GitSignsDeleteLn'
         },
@@ -569,7 +583,7 @@ require'nvim-tree'.setup {
                 {key = ']c', cb = tree_cb('next_git_item')},
                 {key = 'u', cb = tree_cb('dir_up')},
                 {key = 'q', cb = tree_cb('close')},
-                {key = 'g?', cb = tree_cb('toggle_help')},
+                {key = 'g?', cb = tree_cb('toggle_help')}
             }
         }
     }
@@ -618,11 +632,7 @@ require'telescope'.setup {
             override_file_sorter = true
         }
     },
-    pickers = {
-      find_files = {
-        hidden = true
-      }
-    }
+    pickers = {find_files = {hidden = true}}
 }
 
 require('telescope').load_extension('sessions')
@@ -633,7 +643,7 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = 'all',
     highlight = {enable = true, additional_vim_regex_highlighting = false},
     indent = {enable = true},
-    ignore_install = { "c", "haskell" },
+    ignore_install = {"c", "haskell"},
     autotag = {enable = true},
     textobjects = {
         select = {
@@ -698,11 +708,11 @@ local mappings = {
         x = {'<cmd>Lspsaga close_floaterm<CR>', 'Float'}
     },
     c = {
-      name = '+QuickFix',
-      c = {':cclose<CR>', 'Close'},
-      o = {':copen<CR>', 'Open'},
-      n = {':cnext<CR>', 'Next'},
-      p = {':cprev<CR>', 'Previous'},
+        name = '+QuickFix',
+        c = {':cclose<CR>', 'Close'},
+        o = {':copen<CR>', 'Open'},
+        n = {':cnext<CR>', 'Next'},
+        p = {':cprev<CR>', 'Previous'}
     },
     g = {':LazyGit<CR>', 'Git'},
     f = {
@@ -711,7 +721,10 @@ local mappings = {
         b = {'<cmd>Telescope buffers<CR>', 'Buffer'},
         r = {'<cmd>Telescope oldfiles<CR>', 'Recent'},
         t = {'<cmd>Telescope live_grep<CR>', 'Text'},
-        g = {'<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>', 'Grep'},
+        g = {
+            '<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',
+            'Grep'
+        },
         l = {'<cmd>Telescope loclist<CR>', 'Loclist'},
         q = {'<cmd>Telescope quickfix<CR>', 'QuickFix'},
         m = {'<cmd>Telescope marks<CR>', 'Marks'},
@@ -740,13 +753,16 @@ local mappings = {
         ['?'] = {'<cmd>LspInstallInfo<CR>', 'Server Info'}
     },
     h = {
-      name = '+Harpoon',
-      a = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'Add Mark'},
-      e = {'<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', 'Show Marks'},
-     ["1"] = {'<cmd>lua require("harpoon.ui").nav_file(1)<CR>', 'Nav Mark 1'},
-     ["2"] = {'<cmd>lua require("harpoon.ui").nav_file(2)<CR>', 'Nav Mark 2'},
-     ["3"] = {'<cmd>lua require("harpoon.ui").nav_file(3)<CR>', 'Nav Mark 3'},
-     ["4"] = {'<cmd>lua require("harpoon.ui").nav_file(4)<CR>', 'Nav Mark 4'}
+        name = '+Harpoon',
+        a = {'<cmd>lua require("harpoon.mark").add_file()<CR>', 'Add Mark'},
+        e = {
+            '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
+            'Show Marks'
+        },
+        ["1"] = {'<cmd>lua require("harpoon.ui").nav_file(1)<CR>', 'Nav Mark 1'},
+        ["2"] = {'<cmd>lua require("harpoon.ui").nav_file(2)<CR>', 'Nav Mark 2'},
+        ["3"] = {'<cmd>lua require("harpoon.ui").nav_file(3)<CR>', 'Nav Mark 3'},
+        ["4"] = {'<cmd>lua require("harpoon.ui").nav_file(4)<CR>', 'Nav Mark 4'}
     },
     ['<tab>'] = 'which_key_ignore',
     ['<s-tab>'] = 'which_key_ignore'
