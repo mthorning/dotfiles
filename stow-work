@@ -1,1 +1,1 @@
-stow -d ./stowdirs/home -t ~ --override=".zshrc" work 
+stow -d ./stowdirs/home -t $HOME --override=".zshrc" work 
