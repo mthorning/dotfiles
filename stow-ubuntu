@@ -1,0 +1,3 @@
+stow -d ./stowdirs/home -t ~ base ubuntu
+stow -d ./stowdirs/root -t / ubuntu
+
