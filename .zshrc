@@ -1,4 +1,4 @@
-plugins=(nvm git vi-mode npm cargo rust tmux zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(nvm git vi-mode npm cargo rust tmux  zsh-autosuggestions)
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
