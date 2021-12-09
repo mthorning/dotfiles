@@ -3,7 +3,7 @@ plugins=(nvm git vi-mode npm cargo rust tmux  zsh-autosuggestions)
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 export RPS1="%{$reset_color%}"
-fpath=($fpath "/home/mthorning/.zfunctions")
+fpath=($fpath "$HOME/.zfunctions")
 
 eval "$(starship init zsh)"
 
@@ -18,6 +18,7 @@ alias glog="git log --oneline"
 alias se=sudoedit
 alias lg="lazygit"
 alias ll="ls -al"
+alias ts="$HOME/.local/bin/tmux-sessioniser"
 
 alias vi="nvim"
 alias vim="nvim"
@@ -28,13 +29,13 @@ if command -v most > /dev/null 2>&1; then
     export PAGER="most"
 fi
 
-export PATH="$PATH:/home/mthorning/.cargo/bin"
-export PATH="$PATH:/home/mthorning/.local/bin"
+export PATH="$PATH:$HOME/.cargo/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
-export GOPATH=/home/mthorning/golibs
+export GOPATH=$HOME/golibs
 export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 
-export GOPATH=$GOPATH:/home/mthorning/code/go
+export GOPATH=$GOPATH:$HOME/code/go
 
 SAVEHIST=100000
 
@@ -44,6 +45,13 @@ source ~/.fzf.zsh
 INITIAL_QUERY=""
 export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
 export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"
+
+if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+  export VISUAL="nvr -cc tabedit --remote-wait +'set bufhidden=wipe'"
+else
+  export VISUAL="nvim"
+fi
+alias v="$VISUAL"
 
 ####################
 # Functions:

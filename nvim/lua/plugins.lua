@@ -732,7 +732,7 @@ local mappings = {
         c = {'<cmd>Telescope command_history<CR>', 'Command History'},
         h = {'<cmd>Telescope help_tags<CR>', 'Help'}
     },
-    x = {':source $HOME/.config/nvim/init.lua<CR>', 'Source Config'},
+    x = {':silent !chmod +x %<CR>', 'Make Executable'},
     S = {
         name = '+Session',
         s = {'<cmd>SaveSession<CR>', 'Save Session'},

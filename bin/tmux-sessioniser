@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+SESSION=$(find ~ ~/server/apps ~/code -type d -maxdepth 1 | fzf)
+SESSION_NAME=$(basename "$SESSION" | tr . _)
+
+tmux_running=$(pgrep tmux)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s "$SESSION_NAME" -c "$SESSION"
+    exit 0
+fi
+
+if ! tmux has-session -t "$SESSION_NAME" 2> /dev/null; then
+  tmux new-session -ds "$SESSION_NAME" -c "$SESSION"
+fi
+
+tmux switch-client -t "$SESSION_NAME"
