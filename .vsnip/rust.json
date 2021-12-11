@@ -1,0 +1,8 @@
+{
+  "Println": {
+    "prefix": ["pr"],
+    "body": "println!($0)",
+    "description": "Println template."
+  },
+}
+

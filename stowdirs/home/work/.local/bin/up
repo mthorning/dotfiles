@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e 
+  
+APPS_DIR=$HOME/server/apps
+ENV_DIR=$APPS_DIR/ometria.developer_environment
+
+cd $ENV_DIR
+./run-everything
+cd ..
+
+docker-compose -f $ENV_DIR/ometria.core.yml -f $ENV_DIR/ometria.console2.yml stop console2
+docker-compose -f $APPS_DIR/ometria.console2/docker-compose.yml up -d
+
+tmux-sessioniser $APPS_DIR/ometria.console2
+nvim
+

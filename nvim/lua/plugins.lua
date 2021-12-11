@@ -610,6 +610,7 @@ require'telescope'.setup {
         selection_strategy = 'reset',
         sorting_strategy = 'descending',
         layout_strategy = 'horizontal',
+        file_ignore_patterns = {"node_modules", ".git"},
         mappings = {
             i = {
                 ['<C-c>'] = actions.close,
@@ -764,6 +765,7 @@ local mappings = {
         ["3"] = {'<cmd>lua require("harpoon.ui").nav_file(3)<CR>', 'Nav Mark 3'},
         ["4"] = {'<cmd>lua require("harpoon.ui").nav_file(4)<CR>', 'Nav Mark 4'}
     },
+    m = {':silent !tmux neww tmux-sessioniser<CR>', 'New Tmux Session'},
     ['<tab>'] = 'which_key_ignore',
     ['<s-tab>'] = 'which_key_ignore'
 };
