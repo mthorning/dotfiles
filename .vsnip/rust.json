@@ -1,8 +1,17 @@
 {
-  "Println": {
+  "Println fmt": {
     "prefix": ["pr"],
-    "body": "println!($0)",
+    "body": "println!(\"{$1}\", $0);",
     "description": "Println template."
   },
+  "Fn": {
+    "prefix": ["fn"],
+    "body": [
+      "fn $1($2) ->$3 {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Function template."
+  }
 }
 

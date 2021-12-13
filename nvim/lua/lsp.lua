@@ -119,20 +119,7 @@ lspconfig.sumneko_lua.setup {
 -- }}} 
 
 -- jsonls {{{
-require'lspconfig'.jsonls.setup {
-    cmd = {
-        lsp_servers ..
-            "/vscode-langservers-extracted/node_modules/.bin/vscode-json-language-server",
-        "--stdio"
-    },
-    commands = {
-        Format = {
-            function()
-                vim.lsp.buf.range_formatting({}, {0, 0}, {vim.fn.line("$"), 0})
-            end
-        }
-    }
-}
+require'lspconfig'.jsonls.setup {}
 -- }}}
 
 -- yamlls {{{
@@ -182,6 +169,12 @@ require'lspconfig'.gopls.setup {
 -- phpactor {{{
 require'lspconfig'.phpactor.setup {
     cmd = {lsp_servers .. "/phpactor-source/bin/phpactor"}
+}
+-- }}}
+
+-- rust_analyzer {{{
+require'lspconfig'.rust_analyzer.setup {
+    cmd = {lsp_servers .. "/rust/rust-analyzer"}
 }
 -- }}}
 

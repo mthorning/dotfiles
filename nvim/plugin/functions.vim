@@ -10,7 +10,8 @@ lua << EOF
     'cssls',
     'html',
     'gopls',
-  }   
+    'rust_analyzer',
+  }
   for _, server in pairs(servers) do
     vim.cmd(':LspInstall '..server) 
   end

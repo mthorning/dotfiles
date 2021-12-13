@@ -13,6 +13,15 @@
     ],
     "description": "Inline function template."
   },
+  "Function3": {
+    "prefix": ["func"],
+    "body": [
+      "function $1($2) => {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Inline function template."
+  },
   "ConsoleLog": {
     "prefix": ["lg"],
     "body": "console.log($0)",
