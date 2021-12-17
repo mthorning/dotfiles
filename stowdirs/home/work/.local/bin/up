@@ -12,5 +12,3 @@ docker-compose -f $ENV_DIR/ometria.core.yml -f $ENV_DIR/ometria.console2.yml sto
 docker-compose -f $APPS_DIR/ometria.console2/docker-compose.yml up -d
 
 tmux-sessioniser $APPS_DIR/ometria.console2
-nvim
-
