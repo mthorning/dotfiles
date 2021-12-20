@@ -173,8 +173,8 @@ require'lspconfig'.phpactor.setup {
 -- }}}
 
 -- rust_analyzer {{{
-require'lspconfig'.rust_analyzer.setup {
-    cmd = {lsp_servers .. "/rust/rust-analyzer"}
+require('rust-tools').setup {
+    server = {cmd = {lsp_servers .. "/rust/rust-analyzer"}}
 }
 -- }}}
 

@@ -24,6 +24,7 @@ require('packer').startup({
         use 'wbthomason/packer.nvim'
 
         use 'neovim/nvim-lspconfig'
+        use 'simrat39/rust-tools.nvim'
         use 'tami5/lspsaga.nvim'
         use 'williamboman/nvim-lsp-installer'
         use 'hrsh7th/cmp-nvim-lsp'
@@ -97,11 +98,11 @@ cmp.setup({
         ['<Down>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-c>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({select = true}),
-        ['<Tab>'] = cmp.mapping.select_next_item({
+        ['<C-y'] = cmp.mapping.confirm({select = true}),
+        ['<C-n>'] = cmp.mapping.select_next_item({
             behavior = cmp.SelectBehavior.Insert
         }),
-        ['<S-Tab>'] = cmp.mapping.select_prev_item({
+        ['<C-p>'] = cmp.mapping.select_prev_item({
             behavior = cmp.SelectBehavior.Insert
         })
     },
@@ -292,14 +293,14 @@ gls.left[7] = {
 gls.right[1] = {
     DiagnosticError = {
         provider = 'DiagnosticError',
-        icon = '  ',
+        icon = 'X',
         highlight = {colors.error_red, colors.bg}
     }
 }
 gls.right[2] = {
     DiagnosticWarn = {
         provider = 'DiagnosticWarn',
-        icon = '  ',
+        icon = '?',
         highlight = {colors.orange, colors.bg}
     }
 }
@@ -470,7 +471,7 @@ lspsaga.setup { -- defaults ...
     debug = false,
     use_saga_diagnostic_sign = true,
     -- diagnostic sign
-    error_sign = '❌',
+    error_sign = 'X',
     warn_sign = '⚠',
     hint_sign = '?',
     infor_sign = 'ℹ',
