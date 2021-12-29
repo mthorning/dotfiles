@@ -34,4 +34,6 @@ vim.cmd([[
 
 vim.cmd("autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif")
 
+vim.cmd("autocmd FileType markdown setlocal spell spelllang=en_gb wrap")
+
 vim.cmd("command! LspInstallAll :call LspInstallAll()")
