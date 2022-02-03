@@ -94,11 +94,6 @@ _G.packer_plugins = {
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/far.vim",
     url = "https://github.com/brooth/far.vim"
   },
-  ["galaxyline.nvim"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/galaxyline.nvim",
-    url = "https://github.com/glepnir/galaxyline.nvim"
-  },
   ["git-blame.nvim"] = {
     loaded = true,
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
@@ -128,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/tami5/lspsaga.nvim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   neomux = {
     loaded = true,

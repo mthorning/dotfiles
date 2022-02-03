@@ -21,7 +21,7 @@ vim.cmd([[
   set iskeyword+=-
   set undodir=$HOME/.vim/undodir
   set undofile
-  set timeoutlen=500
+  set timeoutlen=0
   set signcolumn=yes
   syntax on
 

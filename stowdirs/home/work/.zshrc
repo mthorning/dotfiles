@@ -16,3 +16,15 @@ alias psql=~/server/apps/ometria.developer_environment/tools/docker-psql
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 
 alias prod='aws-vault exec prod -- aws eks update-kubeconfig --name ew1-prod --alias ew1-prod && kubectl config use-context ew1-prod && aws-vault exec prod -- $SHELL -l'
+alias test='aws-vault exec test -- aws eks update-kubeconfig --name ew1-test-01 --alias ew1-test-01 && kubectl config use-context ew1-test-01 && aws-vault exec test -- $SHELL -l'
+
+
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
+
+eval "$(pyenv init -)"
+
+export WORKON_HOME=$HOME/.virtualenvs
+
+export PROJECT_HOME=/Volumes/work/server/apps
+

@@ -46,11 +46,11 @@ INITIAL_QUERY=""
 export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
 export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"
 
-if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-  export VISUAL="nvr -cc tabedit --remote-wait +'set bufhidden=wipe'"
-else
+# if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
+#   export VISUAL="nvr -cc tabedit --remote-wait +'set bufhidden=wipe'"
+# else
   export VISUAL="nvim"
-fi
+# fi
 alias v="$VISUAL"
 
 ####################
@@ -66,21 +66,3 @@ gitrecover() {
   git fetch -p
   git fsck --full
 }
-
-displays() {
-  xrandr | grep " connected" | cut -f1 -d " "	
-}
-
-us() {
-  source ~/.xprofile
-  xrandr --auto
-  xrandr --output DP-1 --primary --left-of eDP-1
-}
-
-# restart pulseaudio when it hurts my ears
-pak() { 
-  pulseaudio -k
-  sleep 5
-  pactl set-default-sink alsa_output.usb-Generic_USB_Audio_200901010001-00.HiFi__hw_Dock_1__sink
-}
-
