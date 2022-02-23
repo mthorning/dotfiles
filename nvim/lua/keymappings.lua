@@ -53,3 +53,5 @@ set("n", "<C-f>",
 set("n", "<CR>", "o<Esc>k")
 set("n", "<S-CR>", "O<Esc>j")
 
+-- Remove annoying weird keybinding
+set("i", "<", "<")

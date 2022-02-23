@@ -100,9 +100,8 @@ cmp.setup({
     mapping = {
         ['<Up>'] = cmp.mapping.scroll_docs(-4),
         ['<Down>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-c>'] = cmp.mapping.close(),
-        ['<C-y'] = cmp.mapping.confirm({select = true}),
+        ['<C-Space>'] = cmp.mapping.confirm({select = true}),
         ['<C-n>'] = cmp.mapping.select_next_item({
             behavior = cmp.SelectBehavior.Insert
         }),
@@ -520,7 +519,8 @@ local mappings = {
     },
     m = {':silent !tmux neww tmux-sessioniser<CR>', 'New Tmux Session'},
     ['<tab>'] = 'which_key_ignore',
-    ['<s-tab>'] = 'which_key_ignore'
+    ['<s-tab>'] = 'which_key_ignore',
+    ['<'] = 'which_key_ignore'
 };
 
 wk.register(mappings, opts)

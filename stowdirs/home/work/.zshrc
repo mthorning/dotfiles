@@ -28,3 +28,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 
 export PROJECT_HOME=/Volumes/work/server/apps
 
+dev() {
+    	nodemon  --verbose --watch ./src --exec "npm run build"
+}
+

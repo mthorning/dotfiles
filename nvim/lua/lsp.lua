@@ -152,8 +152,7 @@ require'lspconfig'.html.setup {
 -- cssls {{{
 require'lspconfig'.cssls.setup {
     cmd = {
-        lsp_servers ..
-            "/vscode-langservers-extracted/node_modules/.bin/vscode-css-language-server",
+        lsp_servers .. "/cssls/node_modules/.bin/vscode-css-language-server",
         "--stdio"
     }
 }
