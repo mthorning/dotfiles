@@ -22,6 +22,9 @@ alias ts="$HOME/.local/bin/tmux-sessioniser"
 
 alias vi="nvim"
 alias vim="nvim"
+alias weather="curl -s wttr.in | grep -v @igor_chubin"
+alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
+alias tenerife="curl -s wttr.in/puerto+de+la+cruz | grep -v @igor_chubin"
 export EDITOR="nvim"
 export VISUAL="nvim"
 
