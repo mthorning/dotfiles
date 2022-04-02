@@ -74,8 +74,15 @@ snap() {
   npm test -- -u && git commit -am "updated snapshot"
 }
 
-kubegrep() {
-  GREP_VAR=$1
+hgrep() { 
+  awk 'NR==1 {print; next} /'"$1"'/ {print}'
+}
+
+kubedesc() {
+  RESOURCE_TYPE=$1
   shift
-  kubectl "$@" | awk 'NR==1 {print; next} /'"$GREP_VAR"'/ {print}'
+  RESOURCE=$(kubectl get "${RESOURCE_TYPE}" "$@" -o custom-columns=":metadata.name,:metadata.namespace" | fzf)
+  NAME=$(echo "$RESOURCE" | awk '{print $1}')
+  NAMESPACE=$(echo "$RESOURCE" | awk '{print $2}')
+  kubectl describe "$RESOURCE_TYPE" -n "$NAMESPACE" "$NAME" | less
 }
