@@ -19,12 +19,12 @@ alias se=sudoedit
 alias lg="lazygit"
 alias ll="ls -al"
 alias ts="$HOME/.local/bin/tmux-sessioniser"
-
 alias vi="nvim"
 alias vim="nvim"
 alias weather="curl -s wttr.in | grep -v @igor_chubin"
 alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias tenerife="curl -s wttr.in/puerto+de+la+cruz | grep -v @igor_chubin"
+
 export EDITOR="nvim"
 export VISUAL="nvim"
 
@@ -68,4 +68,14 @@ gitrecover() {
   find .git/objects/ -type f -empty | xargs rm
   git fetch -p
   git fsck --full
+}
+
+snap() {
+  npm test -- -u && git commit -am "updated snapshot"
+}
+
+kubegrep() {
+  GREP_VAR=$1
+  shift
+  kubectl "$@" | awk 'NR==1 {print; next} /'"$GREP_VAR"'/ {print}'
 }

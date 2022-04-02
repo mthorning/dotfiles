@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e 
+
+wakeonlan -I 192.168.1.255 -p 9 00:11:32:DA:52:A0 >> /dev/null 2>&1
