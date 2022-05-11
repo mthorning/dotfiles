@@ -85,9 +85,9 @@ require('packer').startup({
 local startify = require 'alpha.themes.startify'
 startify.nvim_web_devicons.enabled = true
 startify.section.top_buttons.val = {
-    startify.button('t', '🖳 Terminal', ':call NeomuxTerm()<CR>'),
-    startify.button('s', '🖫 Load Session', ':Telescope sessions<CR>'),
-    startify.button('e', '🗋 New', ':enew <CR>')
+    startify.button('t', 'Terminal', ':call NeomuxTerm()<CR>', {}),
+    startify.button('s', 'Load Session', ':Telescope sessions<CR>', {}),
+    startify.button('e', 'New', ':enew <CR>', {})
 }
 
 require'alpha'.setup(startify.opts)
@@ -224,7 +224,7 @@ lspsaga.setup { -- defaults ...
     warn_sign = '⚠',
     hint_sign = '?',
     infor_sign = 'ℹ',
-    diagnostic_header_icon = '   ',
+    diagnostic_header_icon = ' ',
     -- code action title icon
     code_action_icon = ' ',
     code_action_prompt = {
@@ -233,8 +233,8 @@ lspsaga.setup { -- defaults ...
         sign_priority = 40,
         virtual_text = false
     },
-    finder_definition_icon = '  ',
-    finder_reference_icon = '  ',
+    finder_definition_icon = ' ',
+    finder_reference_icon = ' ',
     max_preview_lines = 10,
     finder_action_keys = {
         open = 'o',

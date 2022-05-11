@@ -119,7 +119,11 @@ lspconfig.sumneko_lua.setup {
 -- }}} 
 
 -- jsonls {{{
-require'lspconfig'.jsonls.setup {}
+require'lspconfig'.jsonls.setup {
+    cmd = {
+        lsp_servers .. "/jsonls/node_modules/.bin/vscode-json-language-server"
+    }
+}
 -- }}}
 
 -- yamlls {{{
