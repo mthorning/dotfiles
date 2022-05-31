@@ -35,10 +35,10 @@ fi
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
-export GOPATH=$HOME/golibs
-export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
+# export GOPATH=$HOME/golibs
+# export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 
-export GOPATH=$GOPATH:$HOME/code/go
+# export GOPATH=$GOPATH:$HOME/code/go
 
 SAVEHIST=100000
 
