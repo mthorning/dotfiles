@@ -14,10 +14,10 @@ set("n", "<C-k>", "<C-w>k")
 set("n", "<C-l>", "<C-w>l")
 
 -- resize with arrows
-set("n", "<C-Up>", ":resize +2<CR>")
-set("n", "<C-Down>", ":resize -2<CR>")
-set("n", "<C-Left>", ":vertical resize +2<CR>")
-set("n", "<C-Right>", ":vertical resize -2<CR>")
+set("n", "<S-Up>", ":resize +2<CR>")
+set("n", "<S-Down>", ":resize -2<CR>")
+set("n", "<S-Left>", ":vertical resize -2<CR>")
+set("n", "<S-Right>", ":vertical resize +2<CR>")
 
 -- Tab switch
 set("n", "<Leader><TAB>", "gt")

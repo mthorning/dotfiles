@@ -2,7 +2,7 @@
 SESSION=$1
 
 if [[ -z $SESSION ]]; then
-  SESSION=$(find ~ ~/server/apps ~/code -type d -maxdepth 2 | fzf)
+  SESSION=$(find -L ~ ~/server/apps ~/code -type d -maxdepth 2 | fzf)
 fi
 
 if [[ -z $SESSION ]]; then
