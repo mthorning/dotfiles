@@ -89,16 +89,6 @@ _G.packer_plugins = {
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
     url = "https://github.com/hrsh7th/cmp-vsnip"
   },
-  ["copilot.vim"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/copilot.vim",
-    url = "https://github.com/github/copilot.vim"
-  },
-  ["far.vim"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/far.vim",
-    url = "https://github.com/brooth/far.vim"
-  },
   ["git-blame.nvim"] = {
     loaded = true,
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/git-blame.nvim",
@@ -173,6 +163,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-spectre"] = {
+    loaded = true,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-spectre",
+    url = "https://github.com/windwp/nvim-spectre"
   },
   ["nvim-tree.lua"] = {
     loaded = true,

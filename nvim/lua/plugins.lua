@@ -50,7 +50,7 @@ require('packer').startup({
         use 'goolord/alpha-nvim'
         use 'shatur/neovim-session-manager'
         use 'kevinhwang91/nvim-bqf'
-        use 'brooth/far.vim'
+        use 'windwp/nvim-spectre'
         use 'embear/vim-localvimrc'
         use 'b3nj5m1n/kommentary'
         use 'f-person/git-blame.nvim'
@@ -71,7 +71,6 @@ require('packer').startup({
                 'nvim-telescope/telescope-live-grep-raw.nvim'
             }
         }
-        use 'github/copilot.vim'
 
     end,
     config = {
@@ -439,6 +438,73 @@ require'nvim-treesitter.configs'.setup {
 }
 -- }-}
 
+-- Spectre  {-{
+require('spectre').setup({
+    color_devicons = true,
+    open_cmd = 'vnew',
+    live_update = false, -- auto excute search again when you write any file in vim
+    line_sep_start = '┌-----------------------------------------',
+    result_padding = '¦  ',
+    line_sep = '└-----------------------------------------',
+    is_insert_mode = true, -- start open panel on is_insert_mode
+    highlight = {ui = "String", search = "DiffChange", replace = "DiffDelete"},
+    mapping = {
+        ['toggle_line'] = {
+            map = "t",
+            cmd = "<cmd>lua require('spectre').toggle_line()<CR>",
+            desc = "toggle current item"
+        },
+        ['enter_file'] = {
+            map = "<cr>",
+            cmd = "<cmd>lua require('spectre.actions').select_entry()<CR>",
+            desc = "goto current file"
+        },
+        ['send_to_qf'] = {
+            map = "<C-q>",
+            cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
+            desc = "send all item to quickfix"
+        },
+        ['replace_cmd'] = {
+            map = "r",
+            cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
+            desc = "input replace vim command"
+        },
+        ['show_option_menu'] = {
+            map = "?",
+            cmd = "<cmd>lua require('spectre').show_options()<CR>",
+            desc = "show option"
+        },
+        ['run_replace'] = {
+            map = "R",
+            cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
+            desc = "replace all"
+        },
+        ['change_view_mode'] = {
+            map = "v",
+            cmd = "<cmd>lua require('spectre').change_view()<CR>",
+            desc = "change result view mode"
+        },
+        ['toggle_live_update'] = {
+            map = "u",
+            cmd = "<cmd>lua require('spectre').toggle_live_update()<CR>",
+            desc = "update change when vim write file."
+        },
+        ['toggle_ignore_case'] = {
+            map = "<C-i>",
+            cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
+            desc = "toggle ignore case"
+        },
+        ['toggle_ignore_hidden'] = {
+            map = "<C-h>",
+            cmd = "<cmd>lua require('spectre').change_options('hidden')<CR>",
+            desc = "toggle search hidden"
+        }
+        -- you can put your mapping here it only use normal mode
+    }
+})
+
+-- }-}
+
 -- Which-Key  {-{
 local wk = require 'which-key'
 wk.setup {
@@ -509,7 +575,8 @@ local mappings = {
         m = {'<cmd>Telescope marks<CR>', 'Marks'},
         s = {'<cmd>Telescope search_history<CR>', 'Search History'},
         c = {'<cmd>Telescope command_history<CR>', 'Command History'},
-        h = {'<cmd>Telescope help_tags<CR>', 'Help'}
+        h = {'<cmd>Telescope help_tags<CR>', 'Help'},
+        p = {'<cmd>lua require("spectre").open_visual()<CR>', 'Project'}
     },
     x = {':silent !chmod +x %<CR>', 'Make Executable'},
     S = {
@@ -556,3 +623,4 @@ wk.register(mappings, opts)
 -- Illuminate {-{
 vim.g.illuminate_highlightUnderCursor = 0
 -- }-}
+

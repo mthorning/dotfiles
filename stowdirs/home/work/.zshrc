@@ -33,3 +33,4 @@ dev() {
 
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
+export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
