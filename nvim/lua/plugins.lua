@@ -570,7 +570,7 @@ local mappings = {
             '<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',
             'Grep'
         },
-        l = {'<cmd>Telescope loclist<CR>', 'Loclist'},
+        l = {'<cmd>Telescope resume<CR>', 'Last Query'},
         q = {'<cmd>Telescope quickfix<CR>', 'QuickFix'},
         m = {'<cmd>Telescope marks<CR>', 'Marks'},
         s = {'<cmd>Telescope search_history<CR>', 'Search History'},

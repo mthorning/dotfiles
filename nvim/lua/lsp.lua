@@ -179,4 +179,12 @@ require'lspconfig'.svelte.setup {
     cmd = {lsp_servers .. "/svelte/node_modules/.bin/svelteserver", "--stdio"}
 }
 -- }}}
+
+-- pyright {{{
+require'lspconfig'.pyright.setup {
+    cmd = {
+        lsp_servers .. "/python/node_modules/.bin/pyright-langserver", "--stdio"
+    }
+}
+-- }}}
 -- Remember to update LspInstallAll function with new servers.
