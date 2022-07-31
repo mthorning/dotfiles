@@ -2,29 +2,28 @@ require 'plugins'
 require 'lsp'
 require 'keymappings'
 
-vim.cmd([[
-  set sw=2
-  set expandtab
-  set autoindent
-  set smartindent
-  set number relativenumber
-  set nu rnu
-  set scrolloff=4
-  set nowrap
-  set splitright
-  set splitbelow
-  set nohlsearch
-  set incsearch
-  set whichwrap+=<,>,[,]
-  set noshowmode
-  set mouse=a
-  set iskeyword+=-
-  set undodir=$HOME/.vim/undodir
-  set undofile
-  set timeoutlen=0
-  set signcolumn=yes
-  syntax on
+vim.opt.sw = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 4
+vim.opt.wrap = false
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.showmode = false
+vim.opt.mouse = 'a'
+vim.opt.iskeyword = vim.opt.iskeyword:append('-')
+vim.opt.undodir = '$HOME/.vim/undodir'
+vim.opt.undofile = true
+vim.opt.timeoutlen = 0
+vim.opt.signcolumn = 'yes'
+vim.opt.syntax = 'on'
 
+vim.cmd([[
   let g:tokyonight_italic_functions=1
   let g:tokyonight_italic_keywords=0
   colorscheme tokyonight
