@@ -188,3 +188,60 @@ require'lspconfig'.pyright.setup {
 }
 -- }}}
 -- Remember to update LspInstallAll function with new servers.
+
+local lspsaga = require 'lspsaga'
+lspsaga.setup { -- defaults ...
+    debug = false,
+    use_saga_diagnostic_sign = true,
+    -- diagnostic sign
+    error_sign = 'X',
+    warn_sign = '⚠',
+    hint_sign = '?',
+    infor_sign = 'ℹ',
+    diagnostic_header_icon = ' ',
+    -- code action title icon
+    code_action_icon = ' ',
+    code_action_prompt = {
+        enable = true,
+        sign = true,
+        sign_priority = 40,
+        virtual_text = false
+    },
+    finder_definition_icon = ' ',
+    finder_reference_icon = ' ',
+    max_preview_lines = 10,
+    finder_action_keys = {
+        open = 'o',
+        vsplit = 'v',
+        split = 's',
+        quit = 'q',
+        scroll_down = '<C-f>',
+        scroll_up = '<C-b>'
+    },
+    code_action_keys = {quit = 'q', exec = '<CR>'},
+    rename_action_keys = {quit = '<C-c>', exec = '<CR>'},
+    definition_preview_icon = '  ',
+    border_style = 'single',
+    rename_prompt_prefix = '➤',
+    server_filetype_map = {}
+}
+
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = 'all',
+    highlight = {enable = true, additional_vim_regex_highlighting = false},
+    indent = {enable = true},
+    ignore_install = {"phpdoc", "c", "haskell"},
+    autotag = {enable = true},
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ['af'] = '@function.outer',
+                ['if'] = '@function.inner',
+                ['aa'] = '@parameter.outer',
+                ['ia'] = '@parameter.inner'
+            }
+        }
+    }
+}

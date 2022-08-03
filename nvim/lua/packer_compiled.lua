@@ -134,11 +134,6 @@ _G.packer_plugins = {
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
   },
-  ["neovim-session-manager"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/neovim-session-manager",
-    url = "https://github.com/shatur/neovim-session-manager"
-  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
