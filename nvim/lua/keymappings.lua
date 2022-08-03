@@ -5,7 +5,7 @@ local set = function(mode, from, to)
 end
 
 set("n", "<SPACE>", "<Nop>")
-vim.cmd("let mapleader=' '")
+vim.g.mapleader = " "
 
 -- better window movement
 set("n", "<C-h>", "<C-w>h")

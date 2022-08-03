@@ -23,15 +23,11 @@ vim.opt.timeoutlen = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.syntax = 'on'
 
-vim.g.tokyonight_italic_functions = 1
-vim.g.tokyonight_italic_keywords = 0
-vim.cmd("colorscheme tokyonight")
-
 vim.g.lazygit_floating_window_use_plenary = 1
 
 vim.cmd("autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif")
 
 vim.cmd("autocmd FileType markdown setlocal spell spelllang=en_gb wrap")
 
-vim.cmd("command! LspInstallAll :call LspInstallAll()")
+vim.api.nvim_create_user_command("LspInstallAll", ":call LspInstallAll()", {})
 
