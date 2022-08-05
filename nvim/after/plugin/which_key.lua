@@ -84,6 +84,10 @@ local mappings = {
         a = {'<cmd>Lspsaga code_action<CR>', 'Action'},
         l = {'<cmd>Lspsaga show_line_diagnostics<CR>', 'Line Diagnostic'},
         d = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition'},
+        v = {
+            '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>',
+            'Goto Definition in split'
+        },
         h = {'<cmd>Lspsaga hover_doc<CR>', 'Hover'},
         p = {'<cmd>Lspsaga preview_definition<CR>', 'Preview Definition'},
         r = {'<cmd>Lspsaga rename<CR>', 'Rename'},
