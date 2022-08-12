@@ -15,7 +15,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 export PATH="${PATH}:/Users/matthewthorning/server/apps/ometria.tools/bin"
 source ~/server/apps/ometria.tools/shellrc.sh
 
-alias ompsql=~/server/apps/ometria.developer_environment/tools/docker-psql
+alias ompsql="psql ometria_core -h localhost -p 5432 -U ometria"
 
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"

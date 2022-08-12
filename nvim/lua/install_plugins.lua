@@ -67,6 +67,7 @@ require('packer').startup({
                 'nvim-telescope/telescope-live-grep-raw.nvim'
             }
         }
+        use 'mfussenegger/nvim-dap'
 
     end,
     config = {
