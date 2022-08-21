@@ -40,7 +40,7 @@ lspconfig.efm.setup {
         codeAction = true,
         document_formatting = true
     },
-    root_dir = root_pattern({'.git/', '.'}),
+    root_dir = root_pattern({'.git/'}),
 
     filetypes = {
         "lua", "javascript", "javascriptreact", "javascript.jsx", "typescript",
