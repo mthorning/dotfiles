@@ -7,6 +7,9 @@ fpath=($fpath "$HOME/.zfunctions")
 
 eval "$(starship init zsh)"
 
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
 setopt  autocd autopushd
 
 bindkey -v
@@ -23,7 +26,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias weather="curl -s wttr.in | grep -v @igor_chubin"
 alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
-alias tenerife="curl -s wttr.in/puerto+de+la+cruz | grep -v @igor_chubin"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -43,7 +45,6 @@ export PATH="$PATH:$HOME/.local/bin"
 SAVEHIST=100000
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source ~/.fzf.zsh
 
 INITIAL_QUERY=""
 export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "

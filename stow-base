@@ -1,0 +1,1 @@
+stow -d ./stowdirs/home -t $HOME base
