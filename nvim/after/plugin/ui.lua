@@ -22,10 +22,17 @@ require('neoscroll').setup({
 
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
+local Event = require('nvim-tree.api').events.Event
+local api = require('nvim-tree.api')
+
+api.events.subscribe(Event.FileCreated, function(data)
+  api.tree.open(data.fname)
+end)
+
 require'nvim-tree'.setup {
     disable_netrw = true,
     hijack_netrw = true,
-    open_on_setup = false,
+    open_on_setup = true,
     ignore_ft_on_setup = {},
     open_on_tab = false,
     hijack_cursor = true,
@@ -40,7 +47,8 @@ require'nvim-tree'.setup {
                 {
                     key = {'<CR>', 'o', 'l', '<2-LeftMouse>'},
                     cb = tree_cb('edit')
-                }, {key = {'<2-RightMouse>', 'c'}, cb = tree_cb('cd')},
+                },
+                {key = {'<2-RightMouse>', 'c'}, cb = tree_cb('cd')},
                 {key = {'<BS>', 'h'}, cb = tree_cb('close_node')},
                 {key = 'v', cb = tree_cb('vsplit')},
                 {key = 's', cb = tree_cb('split')},
