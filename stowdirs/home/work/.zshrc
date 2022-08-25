@@ -13,6 +13,7 @@ export PATH="${PATH}:/Users/matthewthorning/server/apps/ometria.tools/bin"
 source ~/server/apps/ometria.tools/shellrc.sh
 
 alias ompsql="psql ometria_core -h localhost -p 5432 -U ometria"
+alias omcomposer="docker exec -it -w /server/apps/ometria.console2/composer ometriaconsole2_console2_1  php composer.phar install"
 
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"

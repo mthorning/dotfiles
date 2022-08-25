@@ -107,6 +107,26 @@ local mappings = {
         ["3"] = {'<cmd>lua require("harpoon.ui").nav_file(3)<CR>', 'Nav Mark 3'},
         ["4"] = {'<cmd>lua require("harpoon.ui").nav_file(4)<CR>', 'Nav Mark 4'}
     },
+    d = {
+        name = '+Debug',
+        c = {'<cmd>lua require"dap".continue()<CR>', 'Start/continue'},
+        o = {'<cmd>lua require"dap".step_over()<CR>', 'Step over'},
+        i = {'<cmd>lua require"dap".step_into()<CR>', 'Step into'},
+        O = {'<cmd>lua require"dap".step_out()<CR>', 'Step out'},
+        b = {
+            '<cmd>lua require"dap".toggle_breakpoint()<CR>', 'Toggle breakpoint'
+        },
+        B = {
+            '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
+            'Breakpoint condition'
+        },
+        m = {
+            '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
+            'Message'
+        },
+        r = {'<cmd>lua require"dap".repl.open()<CR>', 'REPL'},
+        l = {'<cmd>lua require"dap".run_last()<CR>', 'Last'}
+    },
     m = {':silent !tmux neww tmux-sessioniser<CR>', 'New Tmux Session'},
     j = {':silent !tmux neww ff<CR>', 'Manage feature flags'},
     ['<tab>'] = 'which_key_ignore',
