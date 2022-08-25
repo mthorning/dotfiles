@@ -2,7 +2,7 @@
 SESSION=$1
 
 if [[ -z $SESSION ]]; then
-  SESSION=$(find -L ~ ~/server/apps ~/code -type d -maxdepth 2 | fzf)
+  SESSION=$(find -L ~ ~/server/apps ~/code -path ~/.Trash -prune -o -type d -maxdepth 2 -print | fzf)
 fi
 
 if [[ -z $SESSION ]]; then
@@ -22,5 +22,8 @@ if ! tmux has-session -t "$SESSION_NAME" 2> /dev/null; then
   tmux new-session -ds "$SESSION_NAME" -c "$SESSION"
 fi
 
-echo "Switching to $SESSION_NAME"
-tmux switch-client -t "$SESSION_NAME"
+if [[ -n "$TMUX" ]]; then
+  tmux switch-client -t $SESSION_NAME
+else
+  tmux attach -t $SESSION_NAME
+fi

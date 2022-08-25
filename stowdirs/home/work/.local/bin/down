@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e 
+  
+APPS_DIR=$HOME/server/apps
+ENV_DIR=$APPS_DIR/ometria.developer_environment
+
+docker-compose -f $APPS_DIR/ometria.console2/docker-compose.yml down 
+cd $ENV_DIR
+./stop-everything
+cd ..
