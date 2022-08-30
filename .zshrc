@@ -1,4 +1,4 @@
-plugins=(docker docker-compose nvm git vi-mode npm rust tmux  zsh-autosuggestions)
+plugins=(docker docker-compose nvm git vi-mode npm rust tmux zsh-autosuggestions)
 
 export ZSH="$HOME/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
