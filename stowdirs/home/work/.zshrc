@@ -17,8 +17,9 @@ alias omcomposer="docker exec -it -w /server/apps/ometria.console2/composer omet
 
 eval "$(pyenv init -)"
 
-export WORKON_HOME=$HOME/.virtualenvs
-source /opt/homebrew/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# source /opt/homebrew/bin/virtualenvwrapper.sh
+# export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 export PROJECT_HOME=/Volumes/work/server/apps
 
@@ -36,7 +37,7 @@ export PATH="/opt/homebrew/opt/php@7.4/sbin:$PATH"
 export PATH="${PATH}:/Users/matthewthorning/server/apps/ometria.tools/bin"
 export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export PATH="$HOME/.poetry/bin:$PATH"
-export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
-export PATH="/Users/matthewthorning/Library/Python/3.9/bin:$PATH"
+# export PATH="/opt/homebrew/opt/python@3.8/bin:$PATH"
+# export PATH="/Users/matthewthorning/Library/Python/3.9/bin:$PATH"
 
 

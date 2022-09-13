@@ -25,14 +25,14 @@ require('packer').startup({
         use 'simrat39/rust-tools.nvim'
         use 'tami5/lspsaga.nvim'
         use 'williamboman/nvim-lsp-installer'
-        use 'hrsh7th/cmp-nvim-lsp'
-        use 'hrsh7th/cmp-buffer'
-        use 'hrsh7th/cmp-vsnip'
+        use 'hrsh7th/nvim-cmp'
+        use {'hrsh7th/cmp-nvim-lsp', requires = {'hrsh7th/nvim-cmp'}}
+        use {'hrsh7th/cmp-buffer', requires = {'hrsh7th/nvim-cmp'}}
+        use {'hrsh7th/cmp-vsnip', requires = {'hrsh7th/nvim-cmp'}}
         use 'hrsh7th/vim-vsnip-integ'
         use 'hrsh7th/vim-vsnip'
-        use 'hrsh7th/nvim-cmp'
-        use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-        use 'nvim-treesitter/nvim-treesitter-textobjects'
+        use 'nvim-treesitter/nvim-treesitter'
+        use 'nvim-treesitter/nvim-treesitter-context'
         use 'windwp/nvim-ts-autotag'
         use 'windwp/nvim-autopairs'
         use 'folke/which-key.nvim'
@@ -40,6 +40,7 @@ require('packer').startup({
         use 'kdheepak/lazygit.nvim'
         use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
         use 'karb94/neoscroll.nvim'
+        use 'kyazdani42/nvim-web-devicons'
         use {
             'nvim-lualine/lualine.nvim',
             requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -53,6 +54,8 @@ require('packer').startup({
         use 'justinmk/vim-sneak'
         use 'RRethy/vim-illuminate'
         use 'tpope/vim-fugitive'
+        use 'tpope/vim-surround'
+        use 'tpope/vim-repeat'
         use {
             'kyazdani42/nvim-tree.lua',
             requires = 'kyazdani42/nvim-web-devicons'
