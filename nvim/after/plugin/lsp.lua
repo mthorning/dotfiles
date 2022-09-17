@@ -72,6 +72,12 @@ lspconfig.efm.setup {
 
 -- tsserver {{{
 lspconfig.tsserver.setup {
+    init_options = {
+      preferences = {
+        disableSuggestions = true,
+        includeCompletionsForModuleExports = false,
+      }
+    },
     cmd = {
         lsp_servers .. "/tsserver/node_modules/.bin/typescript-language-server",
         "--stdio"

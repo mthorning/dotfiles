@@ -15,15 +15,17 @@ cmp.setup {
         })
     },
     sources = {
-        {name = 'vsnip'}, {name = 'nvim_lsp'}, {name = 'treesitter'},
-        {name = 'buffer'}, {name = 'path'}, {
+        {name = 'nvim_lsp'},
+        {name = 'buffer'},
+        {name = 'path'},
+        {
             name = 'buffer',
             options = {
                 get_bufnrs = function()
                     return vim.api.nvim_list_bufs()
                 end
             }
-        }
+        },
     },
     formatting = {
         format = function(entry, vim_item)
