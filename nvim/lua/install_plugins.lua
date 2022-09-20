@@ -34,28 +34,21 @@ require('packer').startup({
         use 'nvim-treesitter/nvim-treesitter'
         use 'nvim-treesitter/nvim-treesitter-context'
         use 'windwp/nvim-ts-autotag'
-        use 'windwp/nvim-autopairs'
         use 'folke/which-key.nvim'
         use 'folke/tokyonight.nvim'
         use 'kdheepak/lazygit.nvim'
         use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-        use 'karb94/neoscroll.nvim'
         use 'kyazdani42/nvim-web-devicons'
         use {
             'nvim-lualine/lualine.nvim',
             requires = {'kyazdani42/nvim-web-devicons', opt = true}
         }
         use 'goolord/alpha-nvim'
-        use 'kevinhwang91/nvim-bqf'
         use 'windwp/nvim-spectre'
-        use 'embear/vim-localvimrc'
         use 'b3nj5m1n/kommentary'
         use 'f-person/git-blame.nvim'
-        use 'justinmk/vim-sneak'
         use 'RRethy/vim-illuminate'
         use 'tpope/vim-fugitive'
-        use 'tpope/vim-surround'
-        use 'tpope/vim-repeat'
         use {
             'kyazdani42/nvim-tree.lua',
             requires = 'kyazdani42/nvim-web-devicons'
