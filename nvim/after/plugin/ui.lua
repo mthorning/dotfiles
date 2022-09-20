@@ -1,6 +1,6 @@
 vim.g.tokyonight_italic_functions = 1
 vim.g.tokyonight_italic_keywords = 0
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme tokyonight-moon")
 
 require('gitsigns').setup {}
 
@@ -14,20 +14,13 @@ startify.section.top_buttons.val = {
 
 require'alpha'.setup(startify.opts)
 
-require('neoscroll').setup({
-    easing = true,
-    cursor_scrolls_alone = true,
-    hide_cursor = false
-})
-
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
 local Event = require('nvim-tree.api').events.Event
 local api = require('nvim-tree.api')
 
-api.events.subscribe(Event.FileCreated, function(data)
-  api.tree.open(data.fname)
-end)
+api.events.subscribe(Event.FileCreated,
+                     function(data) api.tree.open(data.fname) end)
 
 require'nvim-tree'.setup {
     disable_netrw = true,
@@ -47,8 +40,7 @@ require'nvim-tree'.setup {
                 {
                     key = {'<CR>', 'o', 'l', '<2-LeftMouse>'},
                     cb = tree_cb('edit')
-                },
-                {key = {'<2-RightMouse>', 'c'}, cb = tree_cb('cd')},
+                }, {key = {'<2-RightMouse>', 'c'}, cb = tree_cb('cd')},
                 {key = {'<BS>', 'h'}, cb = tree_cb('close_node')},
                 {key = 'v', cb = tree_cb('vsplit')},
                 {key = 's', cb = tree_cb('split')},

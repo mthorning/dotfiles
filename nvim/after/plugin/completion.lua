@@ -15,17 +15,14 @@ cmp.setup {
         })
     },
     sources = {
-        {name = 'nvim_lsp'},
-        {name = 'buffer'},
-        {name = 'path'},
-        {
+        {name = 'nvim_lsp'}, {name = 'buffer'}, {name = 'path'}, {
             name = 'buffer',
             options = {
                 get_bufnrs = function()
                     return vim.api.nvim_list_bufs()
                 end
             }
-        },
+        }
     },
     formatting = {
         format = function(entry, vim_item)
@@ -44,17 +41,6 @@ cmp.setup {
         end
     }
 }
-
-require'nvim-autopairs'.setup {}
-
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done {
-    map_cr = true,
-    map_complete = true,
-    auto_select = true,
-    insert = false,
-    map_char = {all = '(', tex = '{'}
-})
 
 vim.cmd([[
   imap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
