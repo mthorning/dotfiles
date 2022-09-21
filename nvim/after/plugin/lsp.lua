@@ -73,10 +73,10 @@ lspconfig.efm.setup {
 -- tsserver {{{
 lspconfig.tsserver.setup {
     init_options = {
-      preferences = {
-        disableSuggestions = true,
-        includeCompletionsForModuleExports = false,
-      }
+        preferences = {
+            disableSuggestions = true,
+            includeCompletionsForModuleExports = false
+        }
     },
     cmd = {
         lsp_servers .. "/tsserver/node_modules/.bin/typescript-language-server",
@@ -295,3 +295,4 @@ require'treesitter-context'.setup {
     -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
     separator = nil
 }
+

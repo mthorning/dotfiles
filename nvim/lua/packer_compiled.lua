@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/neomux",
     url = "https://github.com/nikvdp/neomux"
   },
+  ["neoscroll.nvim"] = {
+    loaded = true,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
+    url = "https://github.com/karb94/neoscroll.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-cmp",

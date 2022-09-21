@@ -49,6 +49,7 @@ require('packer').startup({
         use 'f-person/git-blame.nvim'
         use 'RRethy/vim-illuminate'
         use 'tpope/vim-fugitive'
+        use 'karb94/neoscroll.nvim'
         use {
             'kyazdani42/nvim-tree.lua',
             requires = 'kyazdani42/nvim-web-devicons'

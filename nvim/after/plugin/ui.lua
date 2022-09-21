@@ -118,3 +118,4 @@ require('lualine').setup {
     }
 }
 
+require('neoscroll').setup()
