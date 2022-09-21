@@ -74,7 +74,7 @@ lspconfig.efm.setup {
 lspconfig.tsserver.setup {
     init_options = {
         preferences = {
-            disableSuggestions = true,
+            disableSuggestions = false,
             includeCompletionsForModuleExports = false
         }
     },
@@ -179,22 +179,21 @@ local rt = require("rust-tools")
 
 require('rust-tools').setup {
     server = {
-      cmd = {lsp_servers .. "/rust/rust-analyzer"},
-      on_attach = function(_, bufnr)
-        -- Hover actions
-        vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      end,
+        cmd = {lsp_servers .. "/rust/rust-analyzer"},
+        on_attach = function(_, bufnr)
+            -- Hover actions
+            vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions,
+                           {buffer = bufnr})
+        end
     },
-    hover_actions = {
-      auto_focus = true
-    },
+    hover_actions = {auto_focus = true},
     dap = {
-      adapter = {
-        type = "executable",
-        command = "lldb-vscode",
-        name = "rt_lldb",
-      },
-    },
+        adapter = {
+            type = "executable",
+            command = "lldb-vscode",
+            name = "rt_lldb"
+        }
+    }
 }
 -- }}}
 
