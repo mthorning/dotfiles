@@ -33,6 +33,11 @@ local mappings = {
     e = {':NvimTreeToggle<CR>', 'Explorer'},
     w = {':w<CR>', 'Save'},
     a = {':wa<CR>', 'Save All'},
+    A = {
+        name = 'AutoRun',
+        r = {'<cmd>AutoRun<CR>', 'Run'},
+        s = {'<cmd>AutoRunStop<CR>', 'Stop'}
+    },
     q = {':q<CR>', 'Quit'},
     T = {':tabnew<CR>', 'New Tab'},
     [';'] = {'<cmd>Alpha<CR>', 'Dashboard'},
