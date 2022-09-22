@@ -43,12 +43,9 @@ local mappings = {
     [';'] = {'<cmd>Alpha<CR>', 'Dashboard'},
     t = {
         name = '+Terminal',
-        t = {':tabnew | :call NeomuxTerm()<CR>', 'Tab'},
-        ['.'] = 'Here',
-        s = 'Split',
-        v = 'Vert split',
-        f = {'<cmd>Lspsaga open_floaterm<CR>', 'Float'},
-        x = {'<cmd>Lspsaga close_floaterm<CR>', 'Float'}
+        t = {':tabnew | :edit term://zsh | :startinsert<CR>', 'Tab'},
+        s = {':split term://zsh | :startinsert<CR>', 'Vert split'},
+        v = {':vsplit term://zsh | :startinsert<CR>', 'Vert split'},
     },
     c = {
         name = '+QuickFix',

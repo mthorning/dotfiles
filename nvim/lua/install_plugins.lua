@@ -56,7 +56,6 @@ require('packer').startup({
             'kyazdani42/nvim-tree.lua',
             requires = 'kyazdani42/nvim-web-devicons'
         }
-        use {'nikvdp/neomux', requires = 'kyazdani42/nvim-web-devicons'}
         use {'ThePrimeagen/harpoon', requires = 'nvim-lua/plenary.nvim'}
         use {
             'nvim-telescope/telescope.nvim',

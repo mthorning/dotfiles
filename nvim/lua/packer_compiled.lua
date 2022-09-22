@@ -129,14 +129,9 @@ _G.packer_plugins = {
     path = "/Users/mattthorning/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
-  neomux = {
-    loaded = true,
-    path = "/Users/mattthorning/.local/share/nvim/site/pack/packer/start/neomux",
-    url = "https://github.com/nikvdp/neomux"
-  },
   ["neoscroll.nvim"] = {
     loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
+    path = "/Users/mattthorning/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["nvim-cmp"] = {
@@ -146,7 +141,7 @@ _G.packer_plugins = {
   },
   ["nvim-dap"] = {
     loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    path = "/Users/mattthorning/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
   },
   ["nvim-lsp-installer"] = {
