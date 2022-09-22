@@ -92,7 +92,6 @@ require'nvim-tree'.setup {
 }
 
 local file_component = {'filename', path = 1, shorting_target = 40}
-local function buf_num() return vim.api.nvim_get_current_buf() end
 
 require('lualine').setup {
     tabline = {
@@ -103,7 +102,7 @@ require('lualine').setup {
     },
     sections = {
         lualine_a = {'mode'},
-        lualine_b = {buf_num},
+        lualine_b = {},
         lualine_c = {file_component},
         lualine_x = {'fileformat', 'filetype', 'buffer'},
         lualine_y = {'progress'},
@@ -111,7 +110,7 @@ require('lualine').setup {
     },
     inactive_sections = {
         lualine_a = {},
-        lualine_b = {buf_num},
+        lualine_b = {},
         lualine_c = {file_component},
         lualine_x = {'location'},
         lualine_y = {},
