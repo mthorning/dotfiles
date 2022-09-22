@@ -43,12 +43,10 @@ local mappings = {
     [';'] = {'<cmd>Alpha<CR>', 'Dashboard'},
     t = {
         name = '+Terminal',
-        t = {':tabnew | :call NeomuxTerm()<CR>', 'Tab'},
-        ['.'] = 'Here',
-        s = 'Split',
-        v = 'Vert split',
-        f = {'<cmd>Lspsaga open_floaterm<CR>', 'Float'},
-        x = {'<cmd>Lspsaga close_floaterm<CR>', 'Float'}
+        t = {':tabnew | :edit term://zsh<CR>', 'Tab'},
+        ['.'] = ':edit term://zsh<CR>',
+        s = {':split term://zsh<CR>', 'Vert split'},
+        v = {':vsplit term://zsh<CR>', 'Vert split'},
     },
     c = {
         name = '+QuickFix',
@@ -76,7 +74,7 @@ local mappings = {
         h = {'<cmd>Telescope help_tags<CR>', 'Help'},
         p = {'<cmd>lua require("spectre").open_visual()<CR>', 'Project'}
     },
-    x = {':silent !chmod +x %<CR>', 'Make Executable'},
+    x = {':so %<CR>', 'Source current file'},
     S = {
         name = '+Session',
         s = {'<cmd>SaveSession<CR>', 'Save Session'},
