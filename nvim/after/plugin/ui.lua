@@ -104,7 +104,7 @@ require('lualine').setup {
         lualine_a = {'mode'},
         lualine_b = {},
         lualine_c = {file_component},
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_x = {'fileformat', 'filetype', 'buffer'},
         lualine_y = {'progress'},
         lualine_z = {'location'}
     },
@@ -118,3 +118,4 @@ require('lualine').setup {
     }
 }
 
+require('neoscroll').setup()

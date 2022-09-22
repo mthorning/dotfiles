@@ -1,5 +1,10 @@
 gui:
   showFileTree: true
   showRandomTip: false
+  theme:
+    selectedLineBgColor:
+      - default
+    selectedRangeBgColor:
+      - default
 git:
   skipHookPrefix: "WIP: "

@@ -73,10 +73,10 @@ lspconfig.efm.setup {
 -- tsserver {{{
 lspconfig.tsserver.setup {
     init_options = {
-      preferences = {
-        disableSuggestions = true,
-        includeCompletionsForModuleExports = false,
-      }
+        preferences = {
+            disableSuggestions = false,
+            includeCompletionsForModuleExports = false
+        }
     },
     cmd = {
         lsp_servers .. "/tsserver/node_modules/.bin/typescript-language-server",
@@ -187,16 +187,14 @@ require('rust-tools').setup {
         vim.keymap.set("n", "<Leader>la", rt.code_action_group.code_action_group, { buffer = bufnr })
       end,
     },
-    hover_actions = {
-      auto_focus = true
-    },
+    hover_actions = {auto_focus = true},
     dap = {
-      adapter = {
-        type = "executable",
-        command = "lldb-vscode",
-        name = "rt_lldb",
-      },
-    },
+        adapter = {
+            type = "executable",
+            command = "lldb-vscode",
+            name = "rt_lldb"
+        }
+    }
 }
 -- }}}
 
@@ -315,3 +313,4 @@ require'treesitter-context'.setup {
     -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
     separator = nil
 }
+

@@ -1,6 +1,7 @@
 plugins=(docker docker-compose nvm git vi-mode npm rust tmux zsh-autosuggestions)
 
 export ZSH="$HOME/.oh-my-zsh"
+export XDG_CONFIG_HOME="$HOME/.config"
 source $ZSH/oh-my-zsh.sh
 export RPS1="%{$reset_color%}"
 fpath=($fpath "$HOME/.zfunctions")
