@@ -146,7 +146,7 @@ _G.packer_plugins = {
   },
   ["nvim-dap"] = {
     loaded = true,
-    path = "/Users/mattthorning/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-dap",
     url = "https://github.com/mfussenegger/nvim-dap"
   },
   ["nvim-lsp-installer"] = {
