@@ -1,6 +1,8 @@
+local AutoRemove = "AutoRemove"
+
 local attach_to_buffer = function(output_bufnr, pattern, command)
     vim.api.nvim_create_autocmd("BufWritePost", {
-        group = vim.api.nvim_create_augroup("AutoRemove", {clear = true}),
+        group = vim.api.nvim_create_augroup(AutoRemove, {clear = true}),
         pattern = pattern,
         callback = function()
             local append_data = function(_, data)
@@ -9,8 +11,6 @@ local attach_to_buffer = function(output_bufnr, pattern, command)
                         .nvim_buf_set_lines(output_bufnr, -1, -1, false, data)
                 end
             end
-            vim.api.nvim_buf_set_lines(output_bufnr, 0, -1, false,
-                                       {"Output of: main.rs"})
             vim.fn.jobstart(command, {
                 stdout_buffered = true,
                 on_stdout = append_data,
@@ -27,4 +27,9 @@ vim.api.nvim_create_user_command("AutoRun", function()
     local command = vim.split(vim.fn.input("Command: eg. 'cargo run': "), " ")
 
     attach_to_buffer(tonumber(buffnr), pattern, command)
+end, {})
+
+vim.api.nvim_create_user_command("AutoRunStop", function()
+    vim.api.nvim_del_augroup_by_name(AutoRemove)
+
 end, {})
