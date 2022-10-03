@@ -15,7 +15,6 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.showmode = false
 vim.opt.mouse = 'a'
-vim.opt.iskeyword = vim.opt.iskeyword:append('-')
 vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.opt.undofile = true
 vim.opt.timeoutlen = 0
@@ -32,4 +31,3 @@ vim.g.neomux_exit_term_mode_map = '<C-space>'
 vim.g.neomux_start_term_split_map = '<Leader>ts'
 vim.g.neomux_start_term_vsplit_map = '<Leader>tv'
 vim.g.neomux_no_term_autoinsert = 1
-

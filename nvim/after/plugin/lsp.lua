@@ -29,10 +29,10 @@ local luaformatter = {formatCommand = 'lua-format -i', formatStdin = true}
 lspconfig.efm.setup {
     cmd = {lsp_servers .. "/efm/efm-langserver"},
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = true
+        client.server_capabilities.document_formatting = true
         vim.cmd [[augroup lsp_formatting]]
         vim.cmd [[autocmd!]]
-        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync({}, 1000)]]
+        vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.format({}, 1000)]]
         vim.cmd [[augroup END]]
     end,
     init_options = {
@@ -83,7 +83,7 @@ lspconfig.tsserver.setup {
         "--stdio"
     },
     on_attach = function(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
         require'illuminate'.on_attach(client)
     end
 }
@@ -102,7 +102,7 @@ lspconfig.sumneko_lua.setup {
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     on_attach = function(client)
         require'illuminate'.on_attach(client)
-        client.resolved_capabilities.document_formatting = false
+        client.server_capabilities.document_formatting = false
     end,
     settings = {
         Lua = {
