@@ -43,6 +43,7 @@ local mappings = {
   [';'] = { '<cmd>Alpha<CR>', 'Dashboard' },
   t = {
     name = '+Terminal',
+    ['.'] = { ':term<CR>', 'Here' },
     t = { ':tabnew | :edit term://zsh | :startinsert<CR>', 'Tab' },
     s = { ':split term://zsh | :startinsert<CR>', 'Vert split' },
     v = { ':vsplit term://zsh | :startinsert<CR>', 'Vert split' }
