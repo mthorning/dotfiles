@@ -2,4 +2,3 @@ lazygit/*
 !lazygit/config.yml
 karabiner/automatic_backups/
 .DS_Store
-nvim/lua/packer_compiled.lua
