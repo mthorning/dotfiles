@@ -135,7 +135,7 @@ local mappings = {
   p = { ':silent !tmux neww gh pr create<CR>', 'Create PR' },
   ['<tab>'] = 'which_key_ignore',
   ['<s-tab>'] = 'which_key_ignore',
-  ['<'] = 'which_key_ignore'
+  ['<lt>'] = 'which_key_ignore'
 };
 
 wk.register(mappings, opts)
