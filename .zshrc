@@ -17,6 +17,7 @@ bindkey -v
 bindkey kj vi-cmd-mode
 
 alias g="git"
+alias m="git machete"
 alias com="git add .;  git commit -v"
 alias glog="git log --oneline"
 alias se=sudoedit
