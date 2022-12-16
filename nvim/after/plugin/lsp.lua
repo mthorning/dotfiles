@@ -166,14 +166,6 @@ require 'lspconfig'.gopls.setup {
 }
 -- }}}
 
--- phpactor {{{
-require 'lspconfig'.phpactor.setup {
-  cmd = { lsp_servers .. "/phpactor-source/bin/phpactor", "language-server" },
-  root_dir = root_pattern(".git"),
-  filetypes = { "php" }
-}
--- }}}
-
 -- rust_analyzer {{{
 local rt = require("rust-tools")
 
