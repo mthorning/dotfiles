@@ -45,7 +45,7 @@ local mappings = {
     name = '+Terminal',
     ['.'] = { ':term<CR>', 'Here' },
     t = { ':tabnew | :edit term://zsh | :startinsert<CR>', 'Tab' },
-    s = { ':split term://zsh | :startinsert<CR>', 'Vert split' },
+    s = { ':split term://zsh | :startinsert<CR>', 'Horizontal split' },
     v = { ':vsplit term://zsh | :startinsert<CR>', 'Vert split' }
   },
   c = {
