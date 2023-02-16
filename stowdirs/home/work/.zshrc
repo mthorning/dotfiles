@@ -14,6 +14,7 @@ source ~/server/apps/ometria.tools/shellrc.sh
 
 alias ompsql="psql ometria_core -h localhost -p 5432 -U ometria"
 alias omcomposer="docker exec -it -w /server/apps/ometria.console2/composer ometriaconsole2_console2_1  php composer.phar install"
+alias tc="npm run type-check"
 
 eval "$(pyenv init -)"
 

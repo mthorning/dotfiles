@@ -75,18 +75,19 @@ local mappings = {
     p = { '<cmd>lua require("spectre").open_visual()<CR>', 'Project' }
   },
   x = { ':silent !chmod +x %<CR>', 'Make Executable' },
-  S = {
-    name = '+Session',
-    s = { '<cmd>SaveSession<CR>', 'Save Session' },
-    l = { '<cmd>Telescope sessions<CR>', 'Load Session' }
-  },
   l = {
     name = '+LSP',
     L = { '<cmd>lua vim.diagnostic.setloclist()<CR>', 'To Loclist' },
-    f = { '<cmd>Lspsaga lsp_finder<CR>', 'Finder' },
+    f = {
+      name = '+Find',
+      r = { '<cmd>Telescope lsp_references<CR>', 'References' },
+      s = { '<cmd>Telescope lsp_document_symbols<CR>', 'List Doc Symbols' },
+      S = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Find Symbols' },
+    },
     a = { '<cmd>Lspsaga code_action<CR>', 'Action' },
     l = { '<cmd>Lspsaga show_line_diagnostics<CR>', 'Line Diagnostic' },
-    d = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Goto Definition' },
+    d = { '<cmd>Telescope lsp_definitions<CR>', 'Goto Definition' },
+    t = { '<cmd>Telescope lsp_type_definitions<CR>', 'Goto Type Definition' },
     v = {
       '<cmd>vsplit | lua vim.lsp.buf.definition()<CR>',
       'Goto Definition in split'
