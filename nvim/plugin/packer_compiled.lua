@@ -120,8 +120,11 @@ _G.packer_plugins = {
     url = "https://github.com/kdheepak/lazygit.nvim"
   },
   ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21configs.lsp_saga\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/opt/lspsaga.nvim",
     url = "https://github.com/tami5/lspsaga.nvim"
   },
   ["lualine.nvim"] = {
@@ -130,8 +133,11 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["neoscroll.nvim"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/neoscroll.nvim",
+    config = { "\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14neoscroll\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/opt/neoscroll.nvim",
     url = "https://github.com/karb94/neoscroll.nvim"
   },
   ["nvim-cmp"] = {
@@ -150,8 +156,11 @@ _G.packer_plugins = {
     url = "https://github.com/williamboman/nvim-lsp-installer"
   },
   ["nvim-lspconfig"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23configs.lsp_config\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/opt/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-spectre"] = {
@@ -165,18 +174,26 @@ _G.packer_plugins = {
     url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23configs.treesitter\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/opt/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-context"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    config = { "\27LJ\2\n:\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\31configs.treesitter_context\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-context",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
   },
   ["nvim-ts-autotag"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/opt/nvim-ts-autotag",
     url = "https://github.com/windwp/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
@@ -195,8 +212,11 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["rust-tools.nvim"] = {
-    loaded = true,
-    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23configs.rust_tools\frequire\0" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/Users/matthewthorning/.local/share/nvim/site/pack/packer/opt/rust-tools.nvim",
     url = "https://github.com/simrat39/rust-tools.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
@@ -240,7 +260,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/vim-vsnip-integ"
   },
   ["which-key.nvim"] = {
-    config = { "\27LJ\2\n∫!\0\0\a\0É\1\0´\0016\0\0\0'\2\1\0B\0\2\0029\1\2\0005\3\4\0005\4\3\0=\4\5\0035\4\6\0005\5\a\0=\5\b\0045\5\t\0=\5\n\4=\4\v\0035\4\r\0005\5\f\0=\5\14\0045\5\15\0=\5\16\4=\4\17\0035\4\18\0=\4\19\3B\1\2\0015\1\20\0005\2\22\0005\3\21\0=\3\23\0025\3\24\0=\3\25\0025\3\26\0=\3\27\0025\3\28\0005\4\29\0=\4\30\0035\4\31\0=\4 \3=\3!\0025\3\"\0=\3#\0025\3$\0=\3%\0025\3&\0=\3'\0025\3(\0005\4)\0=\4*\0035\4+\0=\4,\0035\4-\0=\4 \0035\4.\0=\4/\3=\3,\0025\0030\0005\0041\0=\0042\0035\0043\0=\0044\0035\0045\0=\0046\0035\0047\0=\0048\3=\0032\0025\0039\0=\3:\0025\3;\0005\4<\0=\4=\0035\4>\0=\4?\0035\4@\0=\4\30\0035\4A\0=\4,\0035\4B\0=\4:\0035\4C\0=\4D\0035\4E\0=\4#\0035\4F\0=\4G\0035\4H\0=\4 \0035\4I\0=\0042\0035\4J\0=\4K\0035\4L\0=\0048\3=\3=\0025\3M\0=\3N\0025\3O\0005\4P\0=\4Q\0035\4R\0005\5S\0=\5\30\0045\5T\0=\5 \0045\5U\0=\5V\4=\4=\0035\4W\0=\4\27\0035\4X\0=\4D\0035\4Y\0=\4Z\0035\4[\0=\4,\0035\4\\\0=\4/\0035\4]\0=\4K\0035\4^\0=\0048\0035\4_\0=\4\30\0035\4`\0=\4a\0035\4b\0=\4c\0035\4d\0=\4e\3=\3D\0025\3f\0005\4g\0=\4\27\0035\4h\0=\4\23\0035\4i\0=\4j\0035\4k\0=\4l\0035\4m\0=\4n\0035\4o\0=\4p\3=\3K\0025\3q\0005\4r\0=\0042\0035\4s\0=\0044\0035\4t\0=\4u\0035\4v\0=\4w\0035\4x\0=\4?\0035\4y\0=\4z\0035\4{\0=\4G\0035\4|\0=\4\30\0035\4}\0=\4D\3=\3Z\0025\3~\0=\3G\0025\3\127\0=\3Ä\0025\3Å\0=\0038\0029\3Ç\0\18\5\2\0\18\6\1\0B\3\3\1K\0\1\0\rregister\1\3\0\0(:silent !tmux neww gh pr create<CR>\14Create PR\6j\1\3\0\0\30:silent !tmux neww ff<CR>\25Manage feature flags\1\3\0\0,:silent !tmux neww tmux-sessioniser<CR>\21New Tmux Session\1\3\0\0)<cmd>lua require\"dap\".run_last()<CR>\tLast\1\3\0\0*<cmd>lua require\"dap\".repl.open()<CR>\tREPL\1\3\0\0\\<cmd>lua require\"dap\".set_breakpoint(nil, nil, vim.fn.input(\"Log point message: \"))<CR>\fMessage\6B\1\3\0\0U<cmd>lua require\"dap\".set_breakpoint(vim.fn.input(\"Breakpoint condition: \"))<CR>\25Breakpoint condition\1\3\0\0002<cmd>lua require\"dap\".toggle_breakpoint()<CR>\22Toggle breakpoint\6O\1\3\0\0)<cmd>lua require\"dap\".step_out()<CR>\rStep out\6i\1\3\0\0*<cmd>lua require\"dap\".step_into()<CR>\14Step into\1\3\0\0*<cmd>lua require\"dap\".step_over()<CR>\14Step over\1\3\0\0)<cmd>lua require\"dap\".continue()<CR>\19Start/continue\1\0\1\tname\v+Debug\0064\1\3\0\0003<cmd>lua require(\"harpoon.ui\").nav_file(4)<CR>\15Nav Mark 4\0063\1\3\0\0003<cmd>lua require(\"harpoon.ui\").nav_file(3)<CR>\15Nav Mark 3\0062\1\3\0\0003<cmd>lua require(\"harpoon.ui\").nav_file(2)<CR>\15Nav Mark 2\0061\1\3\0\0003<cmd>lua require(\"harpoon.ui\").nav_file(1)<CR>\15Nav Mark 1\1\3\0\0;<cmd>lua require(\"harpoon.ui\").toggle_quick_menu()<CR>\15Show Marks\1\3\0\0004<cmd>lua require(\"harpoon.mark\").add_file()<CR>\rAdd Mark\1\0\1\tname\r+Harpoon\6?\1\3\0\0\28<cmd>LspInstallInfo<CR>\16Server Info\6/\1\3\0\0\21<cmd>LspInfo<CR>\tInfo\6F\1\3\0\0006<cmd>lua vim.lsp.buf.format({ async = true })<CR>\vFormat\1\3\0\0\28<cmd>Lspsaga rename<CR>\vRename\1\3\0\0(<cmd>Lspsaga preview_definition<CR>\23Preview Definition\1\3\0\0\31<cmd>Lspsaga hover_doc<CR>\nHover\1\3\0\0003<cmd>vsplit | lua vim.lsp.buf.definition()<CR>\29Goto Definition in split\1\3\0\0,<cmd>Telescope lsp_type_definitions<CR>\25Goto Type Definition\6d\1\3\0\0'<cmd>Telescope lsp_definitions<CR>\20Goto Definition\1\3\0\0+<cmd>Lspsaga show_line_diagnostics<CR>\20Line Diagnostic\1\3\0\0!<cmd>Lspsaga code_action<CR>\vAction\6S\1\3\0\0005<cmd>Telescope lsp_dynamic_workspace_symbols<CR>\17Find Symbols\1\3\0\0,<cmd>Telescope lsp_document_symbols<CR>\21List Doc Symbols\1\3\0\0&<cmd>Telescope lsp_references<CR>\15References\1\0\1\tname\n+Find\6L\1\3\0\0-<cmd>lua vim.diagnostic.setloclist()<CR>\15To Loclist\1\0\1\tname\t+LSP\6x\1\3\0\0\28:silent !chmod +x %<CR>\20Make Executable\1\3\0\0002<cmd>lua require(\"spectre\").open_visual()<CR>\fProject\6h\1\3\0\0!<cmd>Telescope help_tags<CR>\tHelp\1\3\0\0'<cmd>Telescope command_history<CR>\20Command History\1\3\0\0&<cmd>Telescope search_history<CR>\19Search History\6m\1\3\0\0\29<cmd>Telescope marks<CR>\nMarks\1\3\0\0 <cmd>Telescope quickfix<CR>\rQuickFix\6l\1\3\0\0\30<cmd>Telescope resume<CR>\15Last Query\1\3\0\0O<cmd>lua require(\"telescope\").extensions.live_grep_raw.live_grep_raw()<CR>\tGrep\1\3\0\0!<cmd>Telescope live_grep<CR>\tText\1\3\0\0 <cmd>Telescope oldfiles<CR>\vRecent\6b\1\3\0\0\31<cmd>Telescope buffers<CR>\vBuffer\6f\1\3\0\0\"<cmd>Telescope find_files<CR>\tFile\1\0\1\tname\n+Find\6g\1\3\0\0\17:LazyGit<CR>\bGit\6p\1\3\0\0\15:cprev<CR>\rPrevious\6n\1\3\0\0\15:cnext<CR>\tNext\6o\1\3\0\0\15:copen<CR>\tOpen\6c\1\3\0\0\16:cclose<CR>\nClose\1\0\1\tname\14+QuickFix\6v\1\3\0\0*:vsplit term://zsh | :startinsert<CR>\15Vert split\1\3\0\0):split term://zsh | :startinsert<CR>\21Horizontal split\6t\1\3\0\0002:tabnew | :edit term://zsh | :startinsert<CR>\bTab\6.\1\3\0\0\14:term<CR>\tHere\1\0\1\tname\14+Terminal\6;\1\3\0\0\19<cmd>Alpha<CR>\14Dashboard\6T\1\3\0\0\16:tabnew<CR>\fNew Tab\6q\1\3\0\0\v:q<CR>\tQuit\6A\6s\1\3\0\0\25<cmd>AutoRunStop<CR>\tStop\6r\1\3\0\0\21<cmd>AutoRun<CR>\bRun\1\0\1\tname\fAutoRun\6a\1\3\0\0\f:wa<CR>\rSave All\6w\1\3\0\0\v:w<CR>\tSave\6e\1\0\3\t<lt>\21which_key_ignore\f<s-tab>\21which_key_ignore\n<tab>\21which_key_ignore\1\3\0\0\24:NvimTreeToggle<CR>\rExplorer\1\0\5\vprefix\r<leader>\vsilent\2\vnowait\1\tmode\6n\fnoremap\2\vhidden\1\t\0\0\r<silent>\n<cmd>\n<Cmd>\t<CR>\tcall\blua\a^:\a^ \vlayout\nwidth\1\0\2\bmin\3\20\bmax\0032\vheight\1\0\1\fspacing\3\3\1\0\2\bmin\3\4\bmax\3\25\vwindow\fpadding\1\5\0\0\3\2\3\2\3\2\3\2\vmargin\1\5\0\0\3\1\3\0\3\1\3\0\1\0\2\rposition\vbottom\vborder\vsingle\nicons\1\0\0\1\0\3\ngroup\6+\14separator\b‚ûú\15breadcrumb\a¬ª\nsetup\14which-key\frequire\0" },
+    config = { "\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22configs.which_key\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -252,9 +272,13 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType rust ++once lua require("packer.load")({'rust-tools.nvim'}, { ft = "rust" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au VimEnter * ++once lua require("packer.load")({'which-key.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au VimEnter * ++once lua require("packer.load")({'nvim-lspconfig', 'nvim-treesitter', 'nvim-treesitter-context', 'lspsaga.nvim', 'neoscroll.nvim', 'nvim-ts-autotag', 'which-key.nvim'}, { event = "VimEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
 vim.cmd("augroup END")
 

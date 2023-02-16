@@ -115,5 +115,3 @@ require('lualine').setup {
         lualine_z = {}
     }
 }
-
-require('neoscroll').setup()
