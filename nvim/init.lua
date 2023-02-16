@@ -1,4 +1,4 @@
-require 'install_plugins'
+require 'plugins'
 require 'keymappings'
 
 vim.opt.sw = 2

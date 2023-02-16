@@ -90,8 +90,8 @@ lspconfig.tsserver.setup {
 -- }}}
 
 -- lua_ls {{{
-local lua_ls_root_path = lsp_servers .. '/lua_ls/extension/server/'
-local lua_ls_binary = lua_ls_root_path .. "bin/" .. "/lua-language-server"
+local lua_ls_root_path = lsp_servers .. '/sumneko_lua/extension/server/'
+local lua_ls_binary = lua_ls_root_path .. "bin" .. "/lua-language-server"
 
 local runtime_path = vim.split(package.path, ';')
 
