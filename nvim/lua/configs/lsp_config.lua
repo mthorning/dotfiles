@@ -57,7 +57,7 @@ lspconfig.efm.setup {
       javascript = { prettier, eslint },
       javascriptreact = { prettier, eslint },
       json = { prettier },
-      lua = { luaformatter },
+      -- lua = { luaformatter },
       markdown = { prettier },
       scss = { prettier },
       typescript = { prettier, eslint },
@@ -108,7 +108,10 @@ lspconfig.lua_ls.setup {
     Lua = {
       runtime = { version = 'LuaJIT', path = runtime_path },
       diagnostics = { globals = { 'vim' } },
-      workspace = { library = vim.api.nvim_get_runtime_file("", true) },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
+      },
       telemetry = { enable = false }
     }
   }

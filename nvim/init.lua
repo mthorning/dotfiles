@@ -1,4 +1,4 @@
-require 'keymappings'
+require 'config.keymappings'
 require 'config.lazy'
 
 vim.opt.sw = 2
