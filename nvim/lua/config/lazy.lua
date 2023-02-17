@@ -9,14 +9,13 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    config = function() require 'configs.which_key' end
-  }, {
+  'williamboman/nvim-lsp-installer', 'nvim-lua/plenary.nvim',
+  'mfussenegger/nvim-dap', 'kyazdani42/nvim-web-devicons',
+  'goolord/alpha-nvim', 'b3nj5m1n/kommentary', 'f-person/git-blame.nvim',
+  'RRethy/vim-illuminate', 'tpope/vim-fugitive', { import = 'plugins' }, {
   "folke/zen-mode.nvim",
   config = function()
-    require("zen-mode").setup({
+    require 'zen-mode'.setup({
       plugins = {
         tmux = { enabled = true },
         kitty = { enabled = true, font = "+4" }
@@ -58,14 +57,6 @@ require("lazy").setup({
   cmd = 'Spectre',
   config = function() require 'configs.spectre' end
 }, {
-  'nvim-telescope/telescope.nvim',
-  cmd = 'Telescope',
-  config = function() require 'configs.telescope' end,
-  dependencies = {
-    'nvim-telescope/telescope-fzy-native.nvim', 'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-live-grep-raw.nvim'
-  }
-}, {
   'hrsh7th/nvim-cmp',
   event = 'VimEnter',
   config = function() require 'cmp'.setup() end,
@@ -75,7 +66,6 @@ require("lazy").setup({
   event = 'VimEnter',
   dependencies = { 'hrsh7th/nvim-cmp' }
 },
-
   {
     'hrsh7th/cmp-buffer',
     event = 'VimEnter',
@@ -85,20 +75,22 @@ require("lazy").setup({
     'hrsh7th/cmp-vsnip',
     event = 'VimEnter',
     dependencies = { 'hrsh7th/nvim-cmp' }
-  }, { 'kdheepak/lazygit.nvim', cmd = 'LazyGit' },
-
-  'williamboman/nvim-lsp-installer', {
+  }, { 'kdheepak/lazygit.nvim', cmd = 'LazyGit' }, {
   'folke/tokyonight.nvim',
   lazy = false,
   priority = 1000,
-  config = function() vim.cmd([[colorscheme tokyonight-moon]]) end
-}, 'nvim-lua/plenary.nvim', 'mfussenegger/nvim-dap',
-  { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-  'kyazdani42/nvim-web-devicons', {
+  config = function()
+    vim.cmd([[colorscheme tokyonight-moon]])
+
+    vim.g.tokyonight_italic_functions = 1
+    vim.g.tokyonight_italic_keywords = 0
+  end
+}, { 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } }, {
   'nvim-lualine/lualine.nvim',
   dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true }
-}, 'goolord/alpha-nvim', 'b3nj5m1n/kommentary', 'f-person/git-blame.nvim',
-  'RRethy/vim-illuminate', 'tpope/vim-fugitive',
-  { 'kyazdani42/nvim-tree.lua', dependencies = 'kyazdani42/nvim-web-devicons' },
-  { 'ThePrimeagen/harpoon',     dependencies = 'nvim-lua/plenary.nvim' }
+}, {
+  'kyazdani42/nvim-tree.lua',
+  dependencies = 'kyazdani42/nvim-web-devicons',
+  config = function() require 'configs.nvim_tree' end
+}, { 'ThePrimeagen/harpoon', dependencies = 'nvim-lua/plenary.nvim' }
 })

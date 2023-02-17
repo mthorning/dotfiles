@@ -1,5 +1,5 @@
 require 'keymappings'
-require 'plugins'
+require 'config.lazy'
 
 vim.opt.sw = 2
 vim.opt.expandtab = true
