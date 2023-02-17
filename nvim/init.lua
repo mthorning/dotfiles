@@ -21,8 +21,8 @@ vim.opt.timeoutlen = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.syntax = 'on'
 
-vim.cmd("autocmd BufEnter .git/machete setlocal noexpandtab")
-vim.cmd("autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif")
+vim.cmd("autocmd BufReadPre .git/machete setlocal noexpandtab")
+vim.cmd("autocmd BufReadPre *.txt if &buftype == 'help' | wincmd L | endif")
 
 vim.cmd("autocmd FileType markdown setlocal spell spelllang=en_gb wrap")
 

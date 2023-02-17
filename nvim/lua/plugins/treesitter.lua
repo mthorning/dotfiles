@@ -1,19 +1,37 @@
 return {
   {
     'windwp/nvim-ts-autotag',
-    event = 'VimEnter',
+    event = 'BufReadPre',
     dependencies = 'nvim-treesitter/nvim-treesitter'
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    event = 'VimEnter',
-    config = function() require 'configs.treesitter' end,
-    build = ':TSUpdate'
+    lazy = true,
+    build = ':TSUpdate',
+    opts = {
+      ensure_installed = 'all',
+      highlight = { enable = true, additional_vim_regex_highlighting = false },
+      indent = { enable = true },
+      ignore_install = { "phpdoc", "c", "haskell" },
+      autotag = { enable = true },
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['aa'] = '@parameter.outer',
+            ['ia'] = '@parameter.inner'
+          }
+        }
+      }
+    }
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
     dependencies = 'nvim-treesitter/nvim-treesitter',
-    event = 'VimEnter',
+    event = 'BufReadPre',
     opts = {
       enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
       max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
