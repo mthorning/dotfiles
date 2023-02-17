@@ -1,5 +1,5 @@
-require 'plugins'
 require 'keymappings'
+require 'plugins'
 
 vim.opt.sw = 2
 vim.opt.expandtab = true
