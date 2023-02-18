@@ -11,10 +11,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { import = 'plugins' },
-  { dir = configpath .. '/nvim/lua/custom/lsp_install_all.lua', event = 'VimEnter' },
-  { dir = configpath .. '/nvim/lua/custom/autorun.lua',         event = 'VimEnter' },
-  { 'b3nj5m1n/kommentary',                                      event = 'BufReadPre' },
-  { 'RRethy/vim-illuminate',                                    event = 'BufReadPre' },
+  { 'b3nj5m1n/kommentary',   event = 'BufReadPre' },
+  { 'RRethy/vim-illuminate', event = 'BufReadPre' },
 
   {
     'folke/tokyonight.nvim',
