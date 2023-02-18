@@ -5,9 +5,6 @@ return {
     {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end
     }, 'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-live-grep-raw.nvim'
   },
@@ -47,5 +44,7 @@ return {
       },
       pickers = { find_files = { hidden = true } }
     }
+
+    require("telescope").load_extension("fzf")
   end
 }

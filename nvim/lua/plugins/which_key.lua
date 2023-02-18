@@ -77,7 +77,8 @@ return {
         s = { '<cmd>Telescope search_history<CR>', 'Search History' },
         c = { '<cmd>Telescope command_history<CR>', 'Command History' },
         h = { '<cmd>Telescope help_tags<CR>', 'Help' },
-        p = { '<cmd>lua require("spectre").open_visual()<CR>', 'Project' }
+        p = { '<cmd>lua require("spectre").open_visual()<CR>', 'Project' },
+        w = { '<cmd>Telescope grep_string<CR>', 'Word under cursor' }
       },
       x = { ':silent !chmod +x %<CR>', 'Make Executable' },
       l = {
