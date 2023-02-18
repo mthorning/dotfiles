@@ -45,6 +45,7 @@ return {
       pickers = { find_files = { hidden = true } }
     }
 
-    require("telescope").load_extension("fzf")
+    require('telescope').load_extension('fzf')
+    require("telescope").load_extension("tmux_sessionizer")
   end
 }

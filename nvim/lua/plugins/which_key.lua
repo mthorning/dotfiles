@@ -169,7 +169,7 @@ return {
         r = { '<cmd>lua require"dap".repl.open()<CR>', 'REPL' },
         l = { '<cmd>lua require"dap".run_last()<CR>', 'Last' }
       },
-      m = { ':lua telescope_find_dir()<CR>', 'Change repo' },
+        m = { '<cmd>Telescope tmux_sessionizer<CR>','Change repo'},
       j = { ':silent !tmux neww ff<CR>', 'Manage feature flags' },
       p = { ':Lazy<CR>', 'Plugins' },
       z = { ':ZenMode<CR>', 'Zen Mode' },

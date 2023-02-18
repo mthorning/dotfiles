@@ -4,7 +4,7 @@ local conf = require('telescope.config').values
 local actions = require 'telescope.actions'
 local action_state = require 'telescope.actions.state'
 
-function _G.telescope_find_dir(opts)
+local tms = function(opts)
   pickers.new(opts, {
     prompt_title = 'Find Directory',
     finder = finders.new_oneshot_job({
@@ -29,3 +29,11 @@ function _G.telescope_find_dir(opts)
     end,
   }):find()
 end
+
+return require('telescope').register_extension {
+  setup = function(ext_config, config)
+  end,
+  exports = {
+    tmux_sessionizer = tms
+  },
+}

@@ -6,4 +6,3 @@ require 'config.lazy'
 
 require 'custom.autorun'
 require 'custom.lsp_install_all'
-require 'custom.tmux_server_telescope'
