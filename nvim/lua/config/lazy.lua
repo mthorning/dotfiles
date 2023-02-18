@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local configpath = vim.fn.stdpath("config")
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git", "clone", "--filter=blob:none",
@@ -10,9 +11,10 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { import = 'plugins' },
-
-  { 'b3nj5m1n/kommentary',   event = 'BufReadPre' },
-  { 'RRethy/vim-illuminate', event = 'BufReadPre' },
+  { dir = configpath .. '/nvim/lua/custom/lsp_install_all.lua', event = 'VimEnter' },
+  { dir = configpath .. '/nvim/lua/custom/autorun.lua',         event = 'VimEnter' },
+  { 'b3nj5m1n/kommentary',                                      event = 'BufReadPre' },
+  { 'RRethy/vim-illuminate',                                    event = 'BufReadPre' },
 
   {
     'folke/tokyonight.nvim',

@@ -181,7 +181,7 @@ local setConfigs = function()
 end
 
 return {
-  { 'williamboman/nvim-lsp-installer', lazy = true },
+  { 'williamboman/nvim-lsp-installer', event = 'VimEnter' },
   {
     'neovim/nvim-lspconfig',
     event = 'BufReadPre',

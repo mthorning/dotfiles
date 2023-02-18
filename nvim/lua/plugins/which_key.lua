@@ -170,7 +170,7 @@ return {
       },
       m = { ':silent !tmux neww tmux-sessioniser<CR>', 'New Tmux Session' },
       j = { ':silent !tmux neww ff<CR>', 'Manage feature flags' },
-      p = { ':silent !tmux neww gh pr create<CR>', 'Create PR' },
+      p = { ':Lazy<CR>', 'Plugins' },
       z = { ':ZenMode<CR>', 'Zen Mode' },
       ['<tab>'] = 'which_key_ignore',
       ['<s-tab>'] = 'which_key_ignore',
