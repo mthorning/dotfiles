@@ -1,7 +1,7 @@
 return {
   'nvim-lualine/lualine.nvim',
   event = 'VimEnter',
-  dependencies = { 'kyazdani42/nvim-web-devicons', lazy = true },
+  dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
   config = function()
     local file_component = { 'filename', path = 1, shorting_target = 40 }
 
