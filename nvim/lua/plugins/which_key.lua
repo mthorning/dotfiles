@@ -74,7 +74,8 @@ return {
         l = { '<cmd>Telescope resume<CR>', 'Last Query' },
         q = { '<cmd>Telescope quickfix<CR>', 'QuickFix' },
         m = { '<cmd>Telescope marks<CR>', 'Marks' },
-        s = { '<cmd>Telescope search_history<CR>', 'Search History' },
+        S = { '<cmd>Telescope search_history<CR>', 'Search History' },
+        s = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Symbols' },
         c = { '<cmd>Telescope command_history<CR>', 'Command History' },
         h = { '<cmd>Telescope help_tags<CR>', 'Help' },
         p = { '<cmd>lua require("spectre").open_visual()<CR>', 'Project' },
@@ -84,18 +85,8 @@ return {
       l = {
         name = '+LSP',
         L = { '<cmd>lua vim.diagnostic.setloclist()<CR>', 'To Loclist' },
-        f = {
-          name = '+Find',
-          r = { '<cmd>Telescope lsp_references<CR>', 'References' },
-          s = {
-            '<cmd>Telescope lsp_document_symbols<CR>',
-            'List Doc Symbols'
-          },
-          S = {
-            '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>',
-            'Find Symbols'
-          }
-        },
+        f = { '<cmd>Telescope lsp_references<CR>', 'References' },
+        s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Symbols' },
         a = { '<cmd>Lspsaga code_action<CR>', 'Action' },
         l = {
           '<cmd>Lspsaga show_line_diagnostics<CR>', 'Line Diagnostic'
@@ -169,7 +160,7 @@ return {
         r = { '<cmd>lua require"dap".repl.open()<CR>', 'REPL' },
         l = { '<cmd>lua require"dap".run_last()<CR>', 'Last' }
       },
-        m = { '<cmd>Telescope tmux_sessionizer<CR>','Change repo'},
+      m = { '<cmd>Telescope tmux_sessionizer<CR>', 'Change repo' },
       j = { ':silent !tmux neww ff<CR>', 'Manage feature flags' },
       p = { ':Lazy<CR>', 'Plugins' },
       z = { ':ZenMode<CR>', 'Zen Mode' },
