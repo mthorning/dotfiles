@@ -6,6 +6,7 @@ return {
     local file_component = { 'filename', path = 1, shorting_target = 40 }
 
     require('lualine').setup {
+      theme = 'tokyonight',
       tabline = {
         lualine_a = { 'tabs' },
         lualine_x = { 'diff', 'diagnostics' },
