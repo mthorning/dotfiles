@@ -92,3 +92,4 @@ kubedesc() {
   fi
   kubectl describe "$RESOURCE_TYPE" -n "$NAMESPACE" "$NAME" | less
 }
+

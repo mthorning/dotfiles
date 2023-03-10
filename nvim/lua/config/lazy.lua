@@ -30,12 +30,14 @@ require("lazy").setup({
     "folke/zen-mode.nvim",
     cmd = 'ZenMode',
     config = function()
-      require 'zen-mode'.setup({
-        plugins = {
+      require 'zen-mode'.setup(
+      --[[ plugins = {
+        {
           tmux = { enabled = true },
-          kitty = { enabled = true, font = "+4" }
+          kitty = { enabled = true }
         }
-      })
+        }]]
+      )
     end
   },
 
