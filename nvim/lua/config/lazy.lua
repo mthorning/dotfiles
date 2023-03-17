@@ -46,6 +46,11 @@ require("lazy").setup({
     event = 'BufReadPre',
     config = function() require 'neoscroll'.setup() end
   },
-  { 'lewis6991/gitsigns.nvim', event = 'BufReadPre', dependencies = { 'nvim-lua/plenary.nvim' } },
-  { 'ThePrimeagen/harpoon',    event = 'BufReadPre', dependencies = 'nvim-lua/plenary.nvim' }
+  {
+    'lewis6991/gitsigns.nvim',
+    event = 'BufReadPre',
+    config = function() require 'gitsigns'.setup() end,
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+  { 'ThePrimeagen/harpoon', event = 'BufReadPre', dependencies = 'nvim-lua/plenary.nvim' }
 })
