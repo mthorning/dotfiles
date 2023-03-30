@@ -54,3 +54,9 @@ omconnect() {
   omctl -c $1
 }
 
+npmpublish() {
+  bw login --apikey
+  export  BW_SESSION=$(bw unlock --raw --passwordfile ~/.local/.bw)
+  bw get totp omnpm | pbcopy
+  npm publish
+}
