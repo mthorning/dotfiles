@@ -11,6 +11,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { import = 'plugins' },
   { 'NvChad/nvim-colorizer.lua', event = 'BufReadPre' },
+  { 'github/copilot.vim',        event = 'BufReadPre' },
   { 'b3nj5m1n/kommentary',       event = 'BufReadPre' },
   { 'RRethy/vim-illuminate',     event = 'BufReadPre' },
 

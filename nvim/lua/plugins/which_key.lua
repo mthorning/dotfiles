@@ -123,11 +123,11 @@ return {
           'Show Marks'
         },
         p = {
-          '<cmd>lua require("harpoon.ui").nav_prev()',
+          '<cmd>lua require("harpoon.ui").nav_prev()<CR>',
           'Prev'
         },
         n = {
-          '<cmd>lua require("harpoon.ui").nav_next()',
+          '<cmd>lua require("harpoon.ui").nav_next()<CR>',
           'Next'
         },
       },
