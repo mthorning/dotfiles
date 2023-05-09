@@ -77,7 +77,6 @@ return {
         S = { '<cmd>Telescope search_history<CR>', 'Search History' },
         s = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Symbols' },
         c = { '<cmd>Telescope command_history<CR>', 'Command History' },
-        h = { '<cmd>Telescope harpoon marks<CR>', 'Harpoon' },
         p = { '<cmd>lua require("spectre").open_visual()<CR>', 'Project' },
         w = { '<cmd>Telescope grep_string<CR>', 'Word under cursor' }
       },
@@ -130,6 +129,7 @@ return {
           '<cmd>lua require("harpoon.ui").nav_next()<CR>',
           'Next'
         },
+        s = { '<cmd>Telescope harpoon marks<CR>', 'Search' },
       },
       d = {
         name = '+Debug',
