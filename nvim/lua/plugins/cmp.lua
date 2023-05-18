@@ -13,7 +13,7 @@ return {
           end
         },
         mapping = {
-          ['<Up>'] = cmp.mapping.scroll_docs( -4),
+          ['<Up>'] = cmp.mapping.scroll_docs(-4),
           ['<Down>'] = cmp.mapping.scroll_docs(4),
           ['<C-c>'] = cmp.mapping.close(),
           ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
@@ -37,15 +37,15 @@ return {
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ({
-                  nvim_lsp = 'ﲳ',
-                  nvim_lua = '',
-                  treesitter = '',
-                  path = 'ﱮ',
-                  buffer = '﬘',
-                  zsh = '',
-                  vsnip = '',
-                  spell = '暈'
-                })[entry.source.name]
+              nvim_lsp = 'ﲳ',
+              nvim_lua = '',
+              treesitter = '',
+              path = 'ﱮ',
+              buffer = '﬘',
+              zsh = '',
+              vsnip = '',
+              spell = '暈'
+            })[entry.source.name]
 
             return vim_item
           end
@@ -53,14 +53,9 @@ return {
       }
 
       vim.cmd([[
-      imap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
-      smap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
-
-      imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-      smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-      imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-      smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-    ]])
+        imap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
+        smap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
+      ]])
     end
   },
   {
