@@ -28,6 +28,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias weather="curl -s wttr.in | grep -v @igor_chubin"
 alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
+alias maria="mysql -h 192.168.1.166 -u root -p"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -38,6 +39,7 @@ fi
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
 # export GOPATH=$HOME/golibs
 # export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
@@ -92,4 +94,3 @@ kubedesc() {
   fi
   kubectl describe "$RESOURCE_TYPE" -n "$NAMESPACE" "$NAME" | less
 }
-
