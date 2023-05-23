@@ -18,7 +18,9 @@ local setConfigs = function()
       "--stdio"
     },
     on_attach = function(client)
-      client.server_capabilities.document_formatting = false
+      -- client.server_capabilities.document_formatting = false
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
       require 'illuminate'.on_attach(client)
     end
   }
@@ -36,8 +38,8 @@ local setConfigs = function()
   lspconfig.lua_ls.setup {
     cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
     on_attach = function(client)
-      require 'illuminate'.on_attach(client)
       client.server_capabilities.document_formatting = false
+      require 'illuminate'.on_attach(client)
     end,
     settings = {
       Lua = {
@@ -186,7 +188,8 @@ return {
           }),
           null_ls.builtins.formatting.eslint_d.with({
             filetypes = {
-              "javascript", "typescript", "css", "scss", "html", "json", "yaml", "markdown", "graphql", "md", "txt",
+              "javascript", "typescript", "javascriptreact", "typescriptreact", "css", "scss", "html", "json", "yaml",
+              "markdown", "graphql", "md", "txt",
             },
           }),
         },
@@ -195,8 +198,8 @@ return {
           if client.supports_method("textDocument/formatting") then
             vim.lsp.buf.format({
               bufnr = bufnr,
-              filter = function(client)
-                return client.name == "null-ls"
+              filter = function(f_client)
+                return f_client.name == "null-ls"
               end
             })
 
