@@ -4,66 +4,6 @@ local setConfigs = function()
   local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
   local root_pattern = require('lspconfig').util.root_pattern
 
-  -- efm {{{
-  local eslint = {
-    lintCommand = 'eslint -f unix --stdin --stdin-filename ${INPUT}',
-    lintIgnoreExitCode = true,
-    lintStdin = true,
-    lintFormats = { '%f:%l:%c: %m' },
-    formatCommand = 'eslint --fix-to-stdout --stdin --stdin-filename=${INPUT}',
-    formatStdin = true
-  }
-
-  local prettier = {
-    formatCommand = 'prettier --stdin-filepath ${INPUT}',
-    formatStdin = true
-  }
-
-  local luaformatter = { formatCommand = 'lua-format -i', formatStdin = true }
-
-  lspconfig.efm.setup {
-    cmd = { lsp_servers .. "/efm/efm-langserver" },
-    on_attach = function(client)
-      client.server_capabilities.document_formatting = true
-      vim.cmd [[augroup lsp_formatting]]
-      vim.cmd [[autocmd!]]
-      vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.format({}, 1000)]]
-      vim.cmd [[augroup END]]
-    end,
-    init_options = {
-      documentFormatting = true,
-      codeAction = true,
-      document_formatting = true
-    },
-    root_dir = root_pattern({ '.git/' }),
-
-    filetypes = {
-      "lua", "javascript", "javascriptreact", "javascript.jsx", "typescript",
-      "typescript.tsx", "typescriptreact", "less", "scss", "css"
-    },
-    settings = {
-      log_level = 1,
-      log_file = '~/efm.log',
-      rootMarkers = { ".git/" },
-      languages = {
-        less = { prettier },
-        css = { prettier },
-        html = { prettier },
-        javascript = { prettier, eslint },
-        javascriptreact = { prettier, eslint },
-        json = { prettier },
-        -- lua = { luaformatter },
-        markdown = { prettier },
-        scss = { prettier },
-        typescript = { prettier, eslint },
-        typescriptreact = { prettier, eslint },
-        yaml = { prettier },
-        ["javascript.jsx"] = { prettier, eslint },
-        ["typescript.tsx"] = { prettier, eslint }
-      }
-    }
-  }
-  -- }}}
 
   -- tsserver {{{
   lspconfig.tsserver.setup {
@@ -231,5 +171,46 @@ return {
       rename_prompt_prefix = '➤',
       server_filetype_map = {}
     }
-  }
+  },
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      local status, null_ls = pcall(require, "null-ls")
+      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      if (not status) then return end
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.diagnostics.eslint_d.with({
+            diagnostics_format = '[eslint] #{m}\n(#{c})'
+          }),
+          null_ls.builtins.formatting.eslint_d.with({
+            filetypes = {
+              "javascript", "typescript", "css", "scss", "html", "json", "yaml", "markdown", "graphql", "md", "txt",
+            },
+          }),
+        },
+        -- you can reuse a shared lspconfig on_attach callback here
+        on_attach = function(client, bufnr)
+          if client.supports_method("textDocument/formatting") then
+            vim.lsp.buf.format({
+              bufnr = bufnr,
+              filter = function(client)
+                return client.name == "null-ls"
+              end
+            })
+
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+              group = augroup,
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.format({ async = false })
+              end,
+            })
+          end
+        end,
+      })
+    end
+  },
 }
