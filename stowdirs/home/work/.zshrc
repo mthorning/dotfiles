@@ -3,6 +3,7 @@ plugins=(docker docker-compose nvm git vi-mode npm rust tmux zsh-autosuggestions
 
 export AWS_ASSUME_ROLE_TTL=1h
 export AWS_SESSION_TTL=12h    
+export DOCKER_DEFAULT_PLATFORM=linux/amd64
 
 source <(kubectl completion zsh)
 
