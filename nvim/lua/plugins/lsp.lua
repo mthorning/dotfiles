@@ -58,7 +58,10 @@ local setConfigs = function()
   -- jsonls {{{
   lspconfig.jsonls.setup {
     cmd = {
-      lsp_servers .. "/jsonls/node_modules/.bin/vscode-json-language-server"
+      lsp_servers .. "/jsonls/node_modules/.bin/vscode-json-language-server", "--stdio"
+    },
+    init_options = {
+      provideFormatter = true
     }
   }
   -- }}}
@@ -188,7 +191,7 @@ return {
           }),
           null_ls.builtins.formatting.eslint_d.with({
             filetypes = {
-              "javascript", "typescript", "javascriptreact", "typescriptreact", "css", "scss", "html", "json", "yaml",
+              "javascript", "typescript", "javascriptreact", "typescriptreact", "css", "scss", "html", "yaml",
               "markdown", "graphql", "md", "txt",
             },
           }),
