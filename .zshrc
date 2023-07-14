@@ -39,7 +39,8 @@ fi
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+export PATH="$PATH:/opt/homebrew/opt/mysql-client/bin"
+export PATH="$PATH:$HOME/flutter/bin"
 
 # export GOPATH=$HOME/golibs
 # export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
