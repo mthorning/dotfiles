@@ -61,3 +61,10 @@ npmpublish() {
   bw get totp omnpm | pbcopy
   npm publish
 }
+
+# bun completions
+[ -s "/Users/matthewthorning/.bun/_bun" ] && source "/Users/matthewthorning/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
