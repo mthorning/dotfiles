@@ -155,6 +155,7 @@ return {
       m = { '<cmd>Telescope tmux_sessionizer<CR>', 'Change repo' },
       j = { ':silent !tmux neww ff<CR>', 'Manage feature flags' },
       p = { ':Lazy<CR>', 'Plugins' },
+      y = { ':let @+ = expand("%:p")<CR>', 'Copy path' },
       z = { ':ZenMode<CR>', 'Zen Mode' },
       ['<tab>'] = 'which_key_ignore',
       ['<s-tab>'] = 'which_key_ignore',
