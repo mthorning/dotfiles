@@ -4,6 +4,14 @@ local setConfigs = function()
   local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
   local root_pattern = require('lspconfig').util.root_pattern
 
+  -- astro {{{
+  lspconfig.astro.setup { 
+    cmd = {
+      lsp_servers .. "/astro/node_modules/.bin/astro-ls",
+      "--stdio"
+    },
+  }
+  -- }}}
 
   -- tsserver {{{
   lspconfig.tsserver.setup {

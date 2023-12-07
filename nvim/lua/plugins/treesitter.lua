@@ -1,3 +1,25 @@
+require('nvim-treesitter.configs').setup({
+  ensure_installed = { 'astro', 'tsx', 'typescript', 'html' },
+  sync_install = false,
+  auto_install = true,
+  highlight = { enable = true, additional_vim_regex_highlighting = false },
+  indent = { enable = true },
+  ignore_install = { "phpdoc", "c", "haskell" },
+  autotag = { enable = true },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ['af'] = '@function.outer',
+        ['if'] = '@function.inner',
+        ['aa'] = '@parameter.outer',
+        ['ia'] = '@parameter.inner'
+      }
+    }
+  }
+})
+
 return {
   {
     'windwp/nvim-ts-autotag',
@@ -5,38 +27,14 @@ return {
     dependencies = 'nvim-treesitter/nvim-treesitter'
   },
   {
-    'nvim-treesitter/nvim-treesitter',
-    lazy = true,
-    build = ':TSUpdate',
-    opts = {
-      ensure_installed = 'all',
-      highlight = { enable = true, additional_vim_regex_highlighting = false },
-      indent = { enable = true },
-      ignore_install = { "phpdoc", "c", "haskell" },
-      autotag = { enable = true },
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-          keymaps = {
-            ['af'] = '@function.outer',
-            ['if'] = '@function.inner',
-            ['aa'] = '@parameter.outer',
-            ['ia'] = '@parameter.inner'
-          }
-        }
-      }
-    }
-  },
-  {
     'nvim-treesitter/nvim-treesitter-context',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     event = 'BufReadPre',
     opts = {
-      enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-      max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+      enable = true,        -- Enable this plugin (Can be enabled/disabled later via commands)
+      max_lines = 0,        -- How many lines the window should span. Values <= 0 mean no limit.
       trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-      patterns = { -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
+      patterns = {          -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
         -- For all filetypes
         -- Note that setting an entry here replaces all other patterns for this entry.
         -- By setting the 'default' entry below, you can control which nodes you want to
@@ -69,7 +67,7 @@ return {
       -- [!] The options below are exposed but shouldn't require your attention,
       --     you can safely ignore them.
 
-      zindex = 20, -- The Z-index of the context window
+      zindex = 20,     -- The Z-index of the context window
       mode = 'cursor', -- Line used to calculate context. Choices: 'cursor', 'topline'
       -- Separator between context and content. Should be a single character string, like '-'.
       -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
