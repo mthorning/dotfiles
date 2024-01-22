@@ -108,6 +108,7 @@ return {
           '<cmd>lua vim.lsp.buf.format({ async = true })<CR>',
           'Format'
         },
+        x = { ':LspRestart<CR>', 'Restart' },
         ['/'] = { '<cmd>LspInfo<CR>', 'Info' },
         ['?'] = { '<cmd>LspInstallInfo<CR>', 'Server Info' }
       },

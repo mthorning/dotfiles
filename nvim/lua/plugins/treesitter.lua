@@ -1,30 +1,37 @@
-require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'astro', 'tsx', 'typescript', 'html' },
-  sync_install = false,
-  auto_install = true,
-  highlight = { enable = true, additional_vim_regex_highlighting = false },
-  indent = { enable = true },
-  ignore_install = { "phpdoc", "c", "haskell" },
-  autotag = { enable = true },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['aa'] = '@parameter.outer',
-        ['ia'] = '@parameter.inner'
-      }
-    }
-  }
-})
-
 return {
   {
     'windwp/nvim-ts-autotag',
     event = 'BufReadPre',
     dependencies = 'nvim-treesitter/nvim-treesitter'
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    lazy = true,
+    build = ':TSUpdate',
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
+        modules = {},
+        ensure_installed = { 'astro', 'typescript', 'tsx', 'html' },
+        auto_install = true,
+        sync_install = false,
+        highlight = { enable = true, additional_vim_regex_highlighting = false },
+        indent = { enable = true },
+        ignore_install = { "phpdoc", "c", "haskell" },
+        autotag = { enable = true },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+              ['af'] = '@function.outer',
+              ['if'] = '@function.inner',
+              ['aa'] = '@parameter.outer',
+              ['ia'] = '@parameter.inner'
+            }
+          }
+        }
+      }
+    end,
   },
   {
     'nvim-treesitter/nvim-treesitter-context',

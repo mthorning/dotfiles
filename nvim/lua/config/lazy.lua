@@ -27,7 +27,6 @@ require("lazy").setup({
       vim.g.tokyonight_italic_keywords = 0
     end
   },
-
   {
     "folke/zen-mode.nvim",
     cmd = 'ZenMode',
