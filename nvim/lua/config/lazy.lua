@@ -10,6 +10,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   { import = 'plugins' },
+  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
   { 'christoomey/vim-tmux-navigator' },
   { 'NvChad/nvim-colorizer.lua',     event = 'BufReadPre' },
   { 'github/copilot.vim',            event = 'BufReadPre' },

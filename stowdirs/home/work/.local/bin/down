@@ -2,9 +2,8 @@
 set -e 
   
 APPS_DIR=$HOME/server/apps
+CONSOLE_DIR=$HOME/server/apps/ometria.console2
 ENV_DIR=$APPS_DIR/ometria.developer_environment
 
-docker-compose -f $APPS_DIR/ometria.console2/docker-compose.yml down 
-cd $ENV_DIR
-./stop-everything
-cd ..
+docker compose -f $CONSOLE_DIR/compose-with-services.yml down
+docker compose -f $ENV_DIR/ometria.core.yml down

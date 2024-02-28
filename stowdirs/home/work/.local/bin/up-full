@@ -2,13 +2,10 @@
 set -e 
   
 APPS_DIR=$HOME/server/apps
+CONSOLE_DIR=$HOME/server/apps/ometria.console2
 ENV_DIR=$APPS_DIR/ometria.developer_environment
 
-cd $ENV_DIR
-./run-everything
-cd ..
+docker compose -f $ENV_DIR/ometria.core.yml up -d
+docker compose -f $CONSOLE_DIR/compose-with-services.yml up -d
 
-docker-compose -f $ENV_DIR/ometria.core.yml -f $ENV_DIR/ometria.console2.yml stop console2 dynamodb-local
-docker-compose -f $APPS_DIR/ometria.console2/docker-compose.yml up -d
-
-tmux-sessioniser $APPS_DIR/ometria.console2
+tmux-sessioniser $CONSOLE_DIR

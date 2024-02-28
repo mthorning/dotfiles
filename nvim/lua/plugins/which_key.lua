@@ -158,6 +158,7 @@ return {
       p = { ':Lazy<CR>', 'Plugins' },
       y = { ':let @+ = expand("%:p")<CR>', 'Copy path' },
       z = { ':ZenMode<CR>', 'Zen Mode' },
+      v = { ':IBLToggle<CR>', 'Vertical rules' },
       ['<tab>'] = 'which_key_ignore',
       ['<s-tab>'] = 'which_key_ignore',
       ['<lt>'] = 'which_key_ignore'
