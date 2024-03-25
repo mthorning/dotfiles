@@ -5,7 +5,7 @@ local setConfigs = function()
   local root_pattern = require('lspconfig').util.root_pattern
 
   -- astro {{{
-  lspconfig.astro.setup { 
+  lspconfig.astro.setup {
     cmd = {
       lsp_servers .. "/astro/node_modules/.bin/astro-ls",
       "--stdio"
@@ -130,6 +130,58 @@ local setConfigs = function()
     }
   }
   -- }}}
+
+  -- eslint {{{
+  lspconfig.eslint.setup {
+    cmd = { lsp_servers .. "/vscode-eslint/node_modules/.bin/vscode-eslint-language-server", "--stdio" },
+    root_dir = root_pattern(
+      "eslint.config.js",
+      ".eslintrc.js",
+      ".eslintrc.yaml",
+      "node_modules",
+      ".git"
+    ),
+    on_attach = function(client, bufnr)
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "EslintFixAll",
+      })
+    end,
+    settings = {
+      codeAction = {
+        disableRuleComment = {
+          enable = true,
+          location = "separateLine"
+        },
+        showDocumentation = {
+          enable = true
+        }
+      },
+      codeActionOnSave = {
+        enable = false,
+        mode = "all"
+      },
+      experimental = {
+        useFlatConfig = false
+      },
+      format = true,
+      nodePath = "",
+      onIgnoredFiles = "off",
+      problems = {
+        shortenToSingleLine = false
+      },
+      quiet = false,
+      rulesCustomizations = {},
+      run = "onType",
+      useESLintClass = false,
+      validate = "on",
+      workingDirectory = {
+        mode = "location"
+      }
+    }
+  }
+  -- }}}
+
   -- Remember to update LspInstallAll function with new servers.
 end
 
@@ -159,7 +211,6 @@ return {
       infor_sign = 'ℹ',
       diagnostic_header_icon = ' ',
       -- code action title icon
-      code_action_icon = ' ',
       code_action_prompt = {
         enable = true,
         sign = true,
@@ -185,7 +236,8 @@ return {
       server_filetype_map = {}
     }
   },
-  {
+
+  --[[ {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
       local status, null_ls = pcall(require, "null-ls")
@@ -226,5 +278,5 @@ return {
         end,
       })
     end
-  },
+  }, ]]
 }
