@@ -1,21 +1,22 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git", "clone", "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git", "--branch=stable", -- latest stable release
+    'git', 'clone', '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git', '--branch=stable', -- latest stable release
     lazypath
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require('lazy').setup({
+  { 'nvim-tree/nvim-web-devicons' },
   { import = 'plugins' },
-  { "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = { enabled =  false} },
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl',        opts = { enabled = false } },
   { 'christoomey/vim-tmux-navigator' },
-  { 'NvChad/nvim-colorizer.lua',     event = 'BufReadPre' },
-  { 'github/copilot.vim',            event = 'BufReadPre' },
-  { 'b3nj5m1n/kommentary',           event = 'BufReadPre' },
-  { 'RRethy/vim-illuminate',         event = 'BufReadPre' },
+  { 'NvChad/nvim-colorizer.lua',           event = 'BufReadPre' },
+  { 'github/copilot.vim',                  event = 'BufReadPre' },
+  { 'b3nj5m1n/kommentary',                 event = 'BufReadPre' },
+  { 'RRethy/vim-illuminate',               event = 'BufReadPre' },
 
   {
     'folke/tokyonight.nvim',
@@ -29,7 +30,7 @@ require("lazy").setup({
     end
   },
   {
-    "folke/zen-mode.nvim",
+    'folke/zen-mode.nvim',
     cmd = 'ZenMode',
     config = function()
       require 'zen-mode'.setup(
