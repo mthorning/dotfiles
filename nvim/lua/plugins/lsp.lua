@@ -236,47 +236,4 @@ return {
       server_filetype_map = {}
     }
   },
-
-  --[[ {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      local status, null_ls = pcall(require, "null-ls")
-      local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-      if (not status) then return end
-
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.diagnostics.eslint_d.with({
-            diagnostics_format = '[eslint] #{m}\n(#{c})'
-          }),
-          null_ls.builtins.formatting.eslint_d.with({
-            filetypes = {
-              "javascript", "typescript", "javascriptreact", "typescriptreact", "css", "scss", "html", "yaml",
-              "markdown", "graphql", "md", "txt",
-            },
-          }),
-        },
-        -- you can reuse a shared lspconfig on_attach callback here
-        on_attach = function(client, bufnr)
-          if client.supports_method("textDocument/formatting") then
-            vim.lsp.buf.format({
-              bufnr = bufnr,
-              filter = function(f_client)
-                return f_client.name == "null-ls"
-              end
-            })
-
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              group = augroup,
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.format({ async = false })
-              end,
-            })
-          end
-        end,
-      })
-    end
-  }, ]]
 }

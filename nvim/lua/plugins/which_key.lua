@@ -150,6 +150,7 @@ return {
           '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
           'Message'
         },
+        n = { ':Neoformat<CR>', 'Neoformat' },
         r = { '<cmd>lua require"dap".repl.open()<CR>', 'REPL' },
         l = { '<cmd>lua require"dap".run_last()<CR>', 'Last' }
       },
@@ -158,7 +159,6 @@ return {
       p = { ':Lazy<CR>', 'Plugins' },
       y = { ':let @+ = expand("%:p")<CR>', 'Copy path' },
       z = { ':ZenMode<CR>', 'Zen Mode' },
-      v = { ':IBLToggle<CR>', 'Vertical rules' },
       ['<tab>'] = 'which_key_ignore',
       ['<s-tab>'] = 'which_key_ignore',
       ['<lt>'] = 'which_key_ignore'

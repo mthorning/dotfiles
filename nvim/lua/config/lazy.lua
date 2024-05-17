@@ -11,8 +11,8 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { 'nvim-tree/nvim-web-devicons' },
   { import = 'plugins' },
-  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl',        opts = { enabled = false } },
   { 'christoomey/vim-tmux-navigator' },
+  {  'sbdchd/neoformat' },
   { 'NvChad/nvim-colorizer.lua',           event = 'BufReadPre' },
   { 'github/copilot.vim',                  event = 'BufReadPre' },
   { 'b3nj5m1n/kommentary',                 event = 'BufReadPre' },
