@@ -35,135 +35,83 @@ return {
     }
 
     local mappings = {
-      e = { ':NvimTreeToggle<CR>', 'Explorer' },
-      w = { ':w<CR>', 'Save' },
-      a = { ':wa<CR>', 'Save All' },
-      A = {
-        name = 'AutoRun',
-        r = { '<cmd>AutoRun<CR>', 'Run' },
-        s = { '<cmd>AutoRunStop<CR>', 'Stop' }
-      },
-      q = { ':q<CR>', 'Quit' },
-      T = { ':tabnew<CR>', 'New Tab' },
-      [';'] = { '<cmd>Alpha<CR>', 'Dashboard' },
-      t = {
-        name = '+Terminal',
-        ['.'] = { ':term<CR>', 'Here' },
-        t = { ':tabnew | :edit term://zsh | :startinsert<CR>', 'Tab' },
-        s = { ':split term://zsh | :startinsert<CR>', 'Horizontal split' },
-        v = { ':vsplit term://zsh | :startinsert<CR>', 'Vert split' }
-      },
-      c = {
-        name = '+QuickFix',
-        c = { ':cclose<CR>', 'Close' },
-        o = { ':copen<CR>', 'Open' },
-        n = { ':cnext<CR>', 'Next' },
-        p = { ':cprev<CR>', 'Previous' }
-      },
-      g = { ':LazyGit<CR>', 'Git' },
-      f = {
-        name = '+Find',
-        f = { '<cmd>Telescope find_files<CR>', 'File' },
-        b = { '<cmd>Telescope buffers<CR>', 'Buffer' },
-        r = { '<cmd>Telescope oldfiles<CR>', 'Recent' },
-        t = { '<cmd>Telescope live_grep<CR>', 'Text' },
-        g = {
-          '<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',
-          'Grep'
-        },
-        l = { '<cmd>Telescope resume<CR>', 'Last Query' },
-        q = { '<cmd>Telescope quickfix<CR>', 'QuickFix' },
-        m = { '<cmd>Telescope marks<CR>', 'Marks' },
-        S = { '<cmd>Telescope search_history<CR>', 'Search History' },
-        s = { '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', 'Symbols' },
-        c = { '<cmd>Telescope command_history<CR>', 'Command History' },
-        p = { '<cmd>lua require("spectre").open_visual()<CR>', 'Project' },
-        w = { '<cmd>Telescope grep_string<CR>', 'Word under cursor' }
-      },
-      x = { ':silent !chmod +x %<CR>', 'Make Executable' },
-      l = {
-        name = '+LSP',
-        L = { '<cmd>lua vim.diagnostic.setloclist()<CR>', 'To Loclist' },
-        f = { '<cmd>Telescope lsp_references<CR>', 'References' },
-        s = { '<cmd>Telescope lsp_document_symbols<CR>', 'Symbols' },
-        a = { '<cmd>Lspsaga code_action<CR>', 'Action' },
-        l = {
-          '<cmd>Lspsaga show_line_diagnostics<CR>', 'Line Diagnostic'
-        },
-        d = { '<cmd>Telescope lsp_definitions<CR>', 'Goto Definition' },
-        t = {
-          '<cmd>Telescope lsp_type_definitions<CR>',
-          'Goto Type Definition'
-        },
-        v = {
-          '<cmd>vsplit | Telescope lsp_definitions<CR>',
-          'Goto Definition in split'
-        },
-        h = { '<cmd>Lspsaga hover_doc<CR>', 'Hover' },
-        p = {
-          '<cmd>Lspsaga preview_definition<CR>', 'Preview Definition'
-        },
-        r = { '<cmd>Lspsaga rename<CR>', 'Rename' },
-        F = {
-          '<cmd>lua vim.lsp.buf.format({ async = true })<CR>',
-          'Format'
-        },
-        x = { ':LspRestart<CR>', 'Restart' },
-        ['/'] = { '<cmd>LspInfo<CR>', 'Info' },
-        ['?'] = { '<cmd>LspInstallInfo<CR>', 'Server Info' }
-      },
-      h = {
-        name = '+Harpoon',
-        a = {
-          '<cmd>lua require("harpoon.mark").add_file()<CR>',
-          'Add Mark'
-        },
-        e = {
-          '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>',
-          'Show Marks'
-        },
-        p = {
-          '<cmd>lua require("harpoon.ui").nav_prev()<CR>',
-          'Prev'
-        },
-        n = {
-          '<cmd>lua require("harpoon.ui").nav_next()<CR>',
-          'Next'
-        },
-        s = { '<cmd>Telescope harpoon marks<CR>', 'Search' },
-      },
-      d = {
-        name = '+Debug',
-        c = { '<cmd>lua require"dap".continue()<CR>', 'Start/continue' },
-        o = { '<cmd>lua require"dap".step_over()<CR>', 'Step over' },
-        i = { '<cmd>lua require"dap".step_into()<CR>', 'Step into' },
-        O = { '<cmd>lua require"dap".step_out()<CR>', 'Step out' },
-        b = {
-          '<cmd>lua require"dap".toggle_breakpoint()<CR>',
-          'Toggle breakpoint'
-        },
-        B = {
-          '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
-          'Breakpoint condition'
-        },
-        m = {
-          '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
-          'Message'
-        },
-        n = { ':Neoformat<CR>', 'Neoformat' },
-        r = { '<cmd>lua require"dap".repl.open()<CR>', 'REPL' },
-        l = { '<cmd>lua require"dap".run_last()<CR>', 'Last' }
-      },
-      m = { '<cmd>Telescope tmux_sessionizer<CR>', 'Change repo' },
-      j = { ':silent !tmux neww ff<CR>', 'Manage feature flags' },
-      p = { ':Lazy<CR>', 'Plugins' },
-      y = { ':let @+ = expand("%:p")<CR>', 'Copy path' },
-      z = { ':ZenMode<CR>', 'Zen Mode' },
-      ['<tab>'] = 'which_key_ignore',
-      ['<s-tab>'] = 'which_key_ignore',
-      ['<lt>'] = 'which_key_ignore'
-    };
+      { "<leader>;", "<cmd>Alpha<CR>", desc = "Dashboard", nowait = false, remap = false },
+      { "<leader><s-tab>", hidden = true, nowait = false, remap = false },
+      { "<leader><tab>", hidden = true, nowait = false, remap = false },
+      { "<leader>A", group = "AutoRun", nowait = false, remap = false },
+      { "<leader>Ar", "<cmd>AutoRun<CR>", desc = "Run", nowait = false, remap = false },
+      { "<leader>As", "<cmd>AutoRunStop<CR>", desc = "Stop", nowait = false, remap = false },
+      { "<leader>T", ":tabnew<CR>", desc = "New Tab", nowait = false, remap = false },
+      { "<leader>a", ":wa<CR>", desc = "Save All", nowait = false, remap = false },
+      { "<leader>c", group = "QuickFix", nowait = false, remap = false },
+      { "<leader>cc", ":cclose<CR>", desc = "Close", nowait = false, remap = false },
+      { "<leader>cn", ":cnext<CR>", desc = "Next", nowait = false, remap = false },
+      { "<leader>co", ":copen<CR>", desc = "Open", nowait = false, remap = false },
+      { "<leader>cp", ":cprev<CR>", desc = "Previous", nowait = false, remap = false },
+      { "<leader>d", group = "Debug", nowait = false, remap = false },
+      { "<leader>dB", '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', desc = "Breakpoint condition", nowait = false, remap = false },
+      { "<leader>dO", '<cmd>lua require"dap".step_out()<CR>', desc = "Step out", nowait = false, remap = false },
+      { "<leader>db", '<cmd>lua require"dap".toggle_breakpoint()<CR>', desc = "Toggle breakpoint", nowait = false, remap = false },
+      { "<leader>dc", '<cmd>lua require"dap".continue()<CR>', desc = "Start/continue", nowait = false, remap = false },
+      { "<leader>di", '<cmd>lua require"dap".step_into()<CR>', desc = "Step into", nowait = false, remap = false },
+      { "<leader>dl", '<cmd>lua require"dap".run_last()<CR>', desc = "Last", nowait = false, remap = false },
+      { "<leader>dm", '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = "Message", nowait = false, remap = false },
+      { "<leader>dn", ":Neoformat<CR>", desc = "Neoformat", nowait = false, remap = false },
+      { "<leader>do", '<cmd>lua require"dap".step_over()<CR>', desc = "Step over", nowait = false, remap = false },
+      { "<leader>dr", '<cmd>lua require"dap".repl.open()<CR>', desc = "REPL", nowait = false, remap = false },
+      { "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer", nowait = false, remap = false },
+      { "<leader>f", group = "Find", nowait = false, remap = false },
+      { "<leader>fS", "<cmd>Telescope search_history<CR>", desc = "Search History", nowait = false, remap = false },
+      { "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffer", nowait = false, remap = false },
+      { "<leader>fc", "<cmd>Telescope command_history<CR>", desc = "Command History", nowait = false, remap = false },
+      { "<leader>ff", "<cmd>Telescope find_files<CR>", desc = "File", nowait = false, remap = false },
+      { "<leader>fg", '<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>', desc = "Grep", nowait = false, remap = false },
+      { "<leader>fl", "<cmd>Telescope resume<CR>", desc = "Last Query", nowait = false, remap = false },
+      { "<leader>fm", "<cmd>Telescope marks<CR>", desc = "Marks", nowait = false, remap = false },
+      { "<leader>fp", '<cmd>lua require("spectre").open_visual()<CR>', desc = "Project", nowait = false, remap = false },
+      { "<leader>fq", "<cmd>Telescope quickfix<CR>", desc = "QuickFix", nowait = false, remap = false },
+      { "<leader>fr", "<cmd>Telescope oldfiles<CR>", desc = "Recent", nowait = false, remap = false },
+      { "<leader>fs", "<cmd>Telescope lsp_dynamic_workspace_symbols<CR>", desc = "Symbols", nowait = false, remap = false },
+      { "<leader>ft", "<cmd>Telescope live_grep<CR>", desc = "Text", nowait = false, remap = false },
+      { "<leader>fw", "<cmd>Telescope grep_string<CR>", desc = "Word under cursor", nowait = false, remap = false },
+      { "<leader>g", ":LazyGit<CR>", desc = "Git", nowait = false, remap = false },
+      { "<leader>h", group = "Harpoon", nowait = false, remap = false },
+      { "<leader>ha", '<cmd>lua require("harpoon.mark").add_file()<CR>', desc = "Add Mark", nowait = false, remap = false },
+      { "<leader>he", '<cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>', desc = "Show Marks", nowait = false, remap = false },
+      { "<leader>hn", '<cmd>lua require("harpoon.ui").nav_next()<CR>', desc = "Next", nowait = false, remap = false },
+      { "<leader>hp", '<cmd>lua require("harpoon.ui").nav_prev()<CR>', desc = "Prev", nowait = false, remap = false },
+      { "<leader>hs", "<cmd>Telescope harpoon marks<CR>", desc = "Search", nowait = false, remap = false },
+      { "<leader>j", ":silent !tmux neww ff<CR>", desc = "Manage feature flags", nowait = false, remap = false },
+      { "<leader>l", group = "LSP", nowait = false, remap = false },
+      { "<leader>l/", "<cmd>LspInfo<CR>", desc = "Info", nowait = false, remap = false },
+      { "<leader>l?", "<cmd>LspInstallInfo<CR>", desc = "Server Info", nowait = false, remap = false },
+      { "<leader>lF", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", desc = "Format", nowait = false, remap = false },
+      { "<leader>lL", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "To Loclist", nowait = false, remap = false },
+      { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Action", nowait = false, remap = false },
+      { "<leader>ld", "<cmd>Telescope lsp_definitions<CR>", desc = "Goto Definition", nowait = false, remap = false },
+      { "<leader>lf", "<cmd>Telescope lsp_references<CR>", desc = "References", nowait = false, remap = false },
+      { "<leader>lh", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover", nowait = false, remap = false },
+      { "<leader>ll", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Line Diagnostic", nowait = false, remap = false },
+      { "<leader>lp", "<cmd>Lspsaga preview_definition<CR>", desc = "Preview Definition", nowait = false, remap = false },
+      { "<leader>lr", "<cmd>Lspsaga rename<CR>", desc = "Rename", nowait = false, remap = false },
+      { "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", desc = "Symbols", nowait = false, remap = false },
+      { "<leader>lt", "<cmd>Telescope lsp_type_definitions<CR>", desc = "Goto Type Definition", nowait = false, remap = false },
+      { "<leader>lv", "<cmd>vsplit | Telescope lsp_definitions<CR>", desc = "Goto Definition in split", nowait = false, remap = false },
+      { "<leader>lx", ":LspRestart<CR>", desc = "Restart", nowait = false, remap = false },
+      { "<leader>m", "<cmd>Telescope tmux_sessionizer<CR>", desc = "Change repo", nowait = false, remap = false },
+      { "<leader>p", ":Lazy<CR>", desc = "Plugins", nowait = false, remap = false },
+      { "<leader>q", ":q<CR>", desc = "Quit", nowait = false, remap = false },
+      { "<leader>t", group = "Terminal", nowait = false, remap = false },
+      { "<leader>t.", ":term<CR>", desc = "Here", nowait = false, remap = false },
+      { "<leader>ts", ":split term://zsh | :startinsert<CR>", desc = "Horizontal split", nowait = false, remap = false },
+      { "<leader>tt", ":tabnew | :edit term://zsh | :startinsert<CR>", desc = "Tab", nowait = false, remap = false },
+      { "<leader>tv", ":vsplit term://zsh | :startinsert<CR>", desc = "Vert split", nowait = false, remap = false },
+      { "<leader>w", ":w<CR>", desc = "Save", nowait = false, remap = false },
+      { "<leader>x", ":silent !chmod +x %<CR>", desc = "Make Executable", nowait = false, remap = false },
+      { "<leader>y", ':let @+ = expand("%:p")<CR>', desc = "Copy path", nowait = false, remap = false },
+      { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode", nowait = false, remap = false },
+    }
 
-    wk.register(mappings, opts)
+    wk.add(mappings, opts)
   end
 }
