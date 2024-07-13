@@ -199,7 +199,7 @@ return {
     end
   },
   {
-    'tami5/lspsaga.nvim',
+    'nvimdev/lspsaga.nvim',
     event = 'BufReadPre',
     opts = {
       debug = false,
