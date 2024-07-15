@@ -1,40 +1,14 @@
 return {
   'folke/which-key.nvim',
-  event = 'VimEnter',
-  config = function()
-    local wk = require 'which-key'
-
-    wk.setup {
-      icons = {
-        breadcrumb = '»', -- symbol used in the command line area that shows your active key combo
-        separator = '➜', -- symbol used between a key and it's label
-        group = '+'       -- symbol prepended to a group
-      },
-      window = {
-        border = 'single',       -- none, single, double, shadow
-        position = 'bottom',     -- bottom, top
-        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-        padding = { 2, 2, 2, 2 } -- extra window padding [top, right, bottom, left]
-      },
-      layout = {
-        height = { min = 4, max = 25 }, -- min and max height of the columns
-        width = { min = 20, max = 50 }, -- min and max width of the columns
-        spacing = 3                     -- spacing between columns
-      },
-      hidden = {
-        '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ '
-      } -- hide mapping boilerplate
-    }
-    local opts = {
-      mode = 'n',     -- NORMAL mode
-      prefix = '<leader>',
-      buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true,  -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = false  -- use `nowait` when creating keymaps
-    }
-
-    local mappings = {
+  dependencies = {
+    { 'echasnovski/mini.nvim', version = false },
+    { 'nvim-tree/nvim-web-devicons' },
+  },
+  event = "VeryLazy",
+  opts = {
+    preset = "modern",
+  },
+  keys = {
       { "<leader>;", "<cmd>Alpha<CR>", desc = "Dashboard", nowait = false, remap = false },
       { "<leader><s-tab>", hidden = true, nowait = false, remap = false },
       { "<leader><tab>", hidden = true, nowait = false, remap = false },
@@ -110,8 +84,5 @@ return {
       { "<leader>x", ":silent !chmod +x %<CR>", desc = "Make Executable", nowait = false, remap = false },
       { "<leader>y", ':let @+ = expand("%:p")<CR>', desc = "Copy path", nowait = false, remap = false },
       { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode", nowait = false, remap = false },
-    }
-
-    wk.add(mappings, opts)
-  end
+  },
 }
