@@ -14,7 +14,7 @@ local setConfigs = function()
   -- }}}
 
   -- tsserver {{{
-  lspconfig.tsserver.setup {
+  lspconfig["ts_ls"].setup {
     init_options = {
       preferences = {
         disableSuggestions = false,
@@ -95,7 +95,7 @@ local setConfigs = function()
   lspconfig.html.setup {
     cmd = {
       lsp_servers ..
-      "/vscode-langservers-extracted/node_modules/.bin/vscode-html-language-server",
+      "/html/node_modules/.bin/vscode-html-language-server",
       "--stdio"
     }
   }
