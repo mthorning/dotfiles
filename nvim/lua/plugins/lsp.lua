@@ -181,8 +181,6 @@ local setConfigs = function()
     }
   }
   -- }}}
-
-  -- Remember to update LspInstallAll function with new servers.
 end
 
 return {
