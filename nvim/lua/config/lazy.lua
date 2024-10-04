@@ -55,5 +55,5 @@ require('lazy').setup({
     config = function() require 'gitsigns'.setup() end,
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  { 'ThePrimeagen/harpoon', dependencies = 'nvim-lua/plenary.nvim' }
+  { 'ThePrimeagen/harpoon', dependencies = 'nvim-lua/plenary.nvim' },
 })

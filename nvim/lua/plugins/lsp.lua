@@ -1,7 +1,7 @@
 -- vim:foldmethod=marker
 local setConfigs = function()
   local lspconfig = require('lspconfig')
-  local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
+  local lsp_servers = vim.fn.stdpath('data') .. "/mason/bin"
   local root_pattern = require('lspconfig').util.root_pattern
 
   -- astro {{{
@@ -35,8 +35,7 @@ local setConfigs = function()
   -- }}}
 
   -- lua_ls {{{
-  local lua_ls_root_path = lsp_servers .. '/sumneko_lua/extension/server/'
-  local lua_ls_binary = lua_ls_root_path .. "bin" .. "/lua-language-server"
+  local lua_ls_binary = lsp_servers .. "/lua-language-server"
 
   local runtime_path = vim.split(package.path, ';')
 
@@ -44,7 +43,7 @@ local setConfigs = function()
   table.insert(runtime_path, "lua/?/init.lua")
 
   lspconfig.lua_ls.setup {
-    cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
+    cmd = { lua_ls_binary, "-E", lua_ls_binary .. "/main.lua" },
     on_attach = function(client)
       client.server_capabilities.document_formatting = false
       require 'illuminate'.on_attach(client)
@@ -179,6 +178,15 @@ local setConfigs = function()
         mode = "location"
       }
     }
+  }
+  -- }}}
+
+  -- zig {{{
+  vim.g.zig_fmt_parse_errors = 0
+  vim.g.zig_fmt_autosave = 0
+  vim.cmd [[autocmd BufWritePre *.zig lua vim.lsp.buf.format()]]
+  lspconfig.zls.setup {
+    cmd = { lsp_servers .. "/zls" },
   }
   -- }}}
 end
