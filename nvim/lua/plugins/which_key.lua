@@ -58,7 +58,7 @@ return {
       { "<leader>j", ":silent !tmux neww ff<CR>", desc = "Manage feature flags", nowait = false, remap = false },
       { "<leader>l", group = "LSP", nowait = false, remap = false },
       { "<leader>l/", "<cmd>LspInfo<CR>", desc = "Info", nowait = false, remap = false },
-      { "<leader>l?", "<cmd>LspInstallInfo<CR>", desc = "Server Info", nowait = false, remap = false },
+      { "<leader>l?", "<cmd>Mason<CR>", desc = "Server Info", nowait = false, remap = false },
       { "<leader>lF", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", desc = "Format", nowait = false, remap = false },
       { "<leader>lL", "<cmd>lua vim.diagnostic.setloclist()<CR>", desc = "To Loclist", nowait = false, remap = false },
       { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Action", nowait = false, remap = false },
