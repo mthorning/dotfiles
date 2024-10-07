@@ -4,15 +4,6 @@ local setConfigs = function()
   local lsp_servers = vim.fn.stdpath('data') .. "/mason/bin"
   local root_pattern = require('lspconfig').util.root_pattern
 
-  -- astro {{{
-  lspconfig.astro.setup {
-    cmd = {
-      lsp_servers .. "/astro/node_modules/.bin/astro-ls",
-      "--stdio"
-    },
-  }
-  -- }}}
-
   -- tsserver {{{
   lspconfig["ts_ls"].setup {
     init_options = {
@@ -22,7 +13,7 @@ local setConfigs = function()
       }
     },
     cmd = {
-      lsp_servers .. "/tsserver/node_modules/.bin/typescript-language-server",
+      lsp_servers .. "/typescript-language-server",
       "--stdio"
     },
     on_attach = function(client)
@@ -65,7 +56,7 @@ local setConfigs = function()
   -- jsonls {{{
   lspconfig.jsonls.setup {
     cmd = {
-      lsp_servers .. "/jsonls/node_modules/.bin/vscode-json-language-server", "--stdio"
+      lsp_servers .. "/vscode-json-language-server", "--stdio"
     },
     init_options = {
       provideFormatter = true
@@ -76,7 +67,7 @@ local setConfigs = function()
   -- yamlls {{{
   lspconfig.yamlls.setup {
     cmd = {
-      lsp_servers .. "/yaml/node_modules/.bin/yaml-language-server", "--stdio"
+      lsp_servers .. "/yaml-language-server", "--stdio"
     }
   }
 
@@ -85,7 +76,7 @@ local setConfigs = function()
   -- vimls {{{
   lspconfig.vimls.setup {
     cmd = {
-      lsp_servers .. "/vim/node_modules/.bin/vim-language-server", "--stdio"
+      lsp_servers .. "/vim-language-server", "--stdio"
     }
   }
   -- }}}
@@ -94,7 +85,7 @@ local setConfigs = function()
   lspconfig.html.setup {
     cmd = {
       lsp_servers ..
-      "/html/node_modules/.bin/vscode-html-language-server",
+      "/vscode-html-language-server",
       "--stdio"
     }
   }
@@ -103,7 +94,7 @@ local setConfigs = function()
   -- cssls {{{
   lspconfig.cssls.setup {
     cmd = {
-      lsp_servers .. "/cssls/node_modules/.bin/vscode-css-language-server",
+      lsp_servers .. "/vscode-css-language-server",
       "--stdio"
     }
   }
@@ -111,28 +102,28 @@ local setConfigs = function()
 
   -- gopls {{{
   lspconfig.gopls.setup {
-    cmd = { lsp_servers .. "/go/gopls" },
+    cmd = { lsp_servers .. "/gopls" },
     root_dir = root_pattern("go.mod", ".git")
   }
   -- }}}
 
   -- svelte {{{
   lspconfig.svelte.setup {
-    cmd = { lsp_servers .. "/svelte/node_modules/.bin/svelteserver", "--stdio" }
+    cmd = { lsp_servers .. "/svelteserver", "--stdio" }
   }
   -- }}}
 
   -- pyright {{{
   lspconfig.pyright.setup {
     cmd = {
-      lsp_servers .. "/python/node_modules/.bin/pyright-langserver", "--stdio"
+      lsp_servers .. "/pyright-langserver", "--stdio"
     }
   }
   -- }}}
 
   -- eslint {{{
   lspconfig.eslint.setup {
-    cmd = { lsp_servers .. "/vscode-eslint/node_modules/.bin/vscode-eslint-language-server", "--stdio" },
+    cmd = { lsp_servers .. "/vscode-eslint-language-server", "--stdio" },
     root_dir = root_pattern(
       "eslint.config.js",
       ".eslintrc.js",
