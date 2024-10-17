@@ -26,31 +26,51 @@ local setConfigs = function()
   -- }}}
 
   -- lua_ls {{{
-  local lua_ls_binary = lsp_servers .. "/lua-language-server"
-
   local runtime_path = vim.split(package.path, ';')
 
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
 
-  lspconfig.lua_ls.setup {
-    cmd = { lua_ls_binary, "-E", lua_ls_binary .. "/main.lua" },
-    on_attach = function(client)
-      client.server_capabilities.document_formatting = false
-      require 'illuminate'.on_attach(client)
-    end,
-    settings = {
-      Lua = {
-        runtime = { version = 'LuaJIT', path = runtime_path },
-        diagnostics = { globals = { 'vim' } },
-        workspace = {
-          library = vim.api.nvim_get_runtime_file("", true),
-          checkThirdParty = false,
-        },
-        telemetry = { enable = false }
+  require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc') then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT'
+      },
+      -- Make the server aware of Neovim runtime files
+      workspace = {
+        checkThirdParty = false,
+        library = {
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        }
+        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+        -- library = vim.api.nvim_get_runtime_file("", true)
       }
+    })
+  end,
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {
+          'vim',
+        },
+      },
     }
   }
+}
   -- }}}
 
   -- jsonls {{{
