@@ -8,11 +8,13 @@ return {
   opts = {
     preset = "modern",
   },
-  keys = {
+  config = function()
+    local wk = require("which-key")
+    wk.add({
       { "<leader>;", "<cmd>Alpha<CR>", desc = "Dashboard", nowait = false, remap = false },
       { "<leader><s-tab>", hidden = true, nowait = false, remap = false },
       { "<leader><tab>", hidden = true, nowait = false, remap = false },
-      { "<leader>A", group = "AutoRun", nowait = false, remap = false },
+      { "<leader>A", group = "AutoRun" },
       { "<leader>Ar", "<cmd>AutoRun<CR>", desc = "Run", nowait = false, remap = false },
       { "<leader>As", "<cmd>AutoRunStop<CR>", desc = "Stop", nowait = false, remap = false },
       { "<leader>T", ":tabnew<CR>", desc = "New Tab", nowait = false, remap = false },
@@ -84,5 +86,6 @@ return {
       { "<leader>x", ":silent !chmod +x %<CR>", desc = "Make Executable", nowait = false, remap = false },
       { "<leader>y", ':let @+ = expand("%:p")<CR>', desc = "Copy path", nowait = false, remap = false },
       { "<leader>z", ":ZenMode<CR>", desc = "Zen Mode", nowait = false, remap = false },
-  },
+    })
+  end,
 }
