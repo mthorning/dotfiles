@@ -32,7 +32,6 @@ return {
       { "<leader>di", '<cmd>lua require"dap".step_into()<CR>', desc = "Step into", nowait = false, remap = false },
       { "<leader>dl", '<cmd>lua require"dap".run_last()<CR>', desc = "Last", nowait = false, remap = false },
       { "<leader>dm", '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = "Message", nowait = false, remap = false },
-      { "<leader>dn", ":Neoformat<CR>", desc = "Neoformat", nowait = false, remap = false },
       { "<leader>do", '<cmd>lua require"dap".step_over()<CR>', desc = "Step over", nowait = false, remap = false },
       { "<leader>dr", '<cmd>lua require"dap".repl.open()<CR>', desc = "REPL", nowait = false, remap = false },
       { "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer", nowait = false, remap = false },

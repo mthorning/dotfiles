@@ -12,7 +12,6 @@ require('lazy').setup({
   { 'nvim-tree/nvim-web-devicons' },
   { import = 'plugins' },
   { 'christoomey/vim-tmux-navigator' },
-  {  'sbdchd/neoformat' },
   { 'NvChad/nvim-colorizer.lua',           event = 'BufReadPre' },
   { 'github/copilot.vim',                  event = 'BufReadPre' },
   { 'b3nj5m1n/kommentary',                 event = 'BufReadPre' },
@@ -33,14 +32,7 @@ require('lazy').setup({
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
     config = function()
-      require 'zen-mode'.setup(
-      --[[ plugins = {
-        {
-          tmux = { enabled = true },
-          kitty = { enabled = true }
-        }
-        }]]
-      )
+      require 'zen-mode'.setup()
     end
   },
 
