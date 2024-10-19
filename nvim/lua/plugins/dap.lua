@@ -4,6 +4,11 @@ return {
    'mfussenegger/nvim-dap',
   config = function()
 
+  vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+  vim.fn.sign_define('DapStopped', {text='➡️', texthl='', linehl='', numhl=''})
+  vim.fn.sign_define('DapBreakpointCondition', {text='❓', texthl='', linehl='', numhl=''})
+  vim.fn.sign_define('DapLogPoint', {text='💬', texthl='', linehl='', numhl=''})
+
   -- zig {{{
     -- see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-lldb-vscode
 
@@ -26,7 +31,9 @@ return {
         program = function()
           -- local file = vim.fn.input('Path to file: ', vim.fn.getcwd() .. '/', 'file')
           local file = vim.fn.expand('%')
-          os.execute('zig test --test-no-exec -femit-bin=zig-out/bin/debug ' .. file)
+          vim.fn.jobstart(
+            'zig test --test-no-exec -femit-bin=zig-out/bin/debug >> ' .. file
+          )
           return '${workspaceFolder}/zig-out/bin/debug'
         end,
         cwd = '${workspaceFolder}',
