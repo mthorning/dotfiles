@@ -23,10 +23,12 @@ return {
         name = 'Debug tests',
         type = 'lldb',
         request = 'launch',
-        --[[ program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-        end, ]]
-        program="${workspaceFolder}/zig-out/bin/test", -- will only work for a binary called "test" atm!
+        program = function()
+          -- local file = vim.fn.input('Path to file: ', vim.fn.getcwd() .. '/', 'file')
+          local file = vim.fn.expand('%')
+          os.execute('zig test --test-no-exec -femit-bin=zig-out/bin/debug ' .. file)
+          return '${workspaceFolder}/zig-out/bin/debug'
+        end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
         args = {},

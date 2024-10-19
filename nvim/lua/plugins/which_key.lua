@@ -34,6 +34,7 @@ return {
       { "<leader>dm", '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = "Message", nowait = false, remap = false },
       { "<leader>do", '<cmd>lua require"dap".step_over()<CR>', desc = "Step over", nowait = false, remap = false },
       { "<leader>dr", '<cmd>lua require"dap".repl.open()<CR>', desc = "REPL", nowait = false, remap = false },
+      { "<leader>dx", '<cmd>lua require"dap".terminate()<CR>', desc = "Exit", nowait = false, remap = false },
       { "<leader>ds",
         function()
           local widgets = require('dap.ui.widgets')
@@ -48,11 +49,7 @@ return {
           my_sidebar.open()
         end,
         desc = "Frames", nowait = false, remap = false },
-      { "<leader>dh",
-        function()
-          local widgets = require('dap.ui.widgets').hover()
-        end,
-        desc = "Hover", nowait = false, remap = false },
+      { "<leader>dh", '<cmd>lua require"dap.ui.widgets".hover()<CR>', desc = "Hover", nowait = false, remap = false },
       { "<leader>e", ":NvimTreeToggle<CR>", desc = "Explorer", nowait = false, remap = false },
       { "<leader>f", group = "Find", nowait = false, remap = false },
       { "<leader>fS", "<cmd>Telescope search_history<CR>", desc = "Search History", nowait = false, remap = false },
