@@ -25,7 +25,7 @@ return {
       { "<leader>co", ":copen<CR>", desc = "Open", nowait = false, remap = false },
       { "<leader>cp", ":cprev<CR>", desc = "Previous", nowait = false, remap = false },
       { "<leader>d", group = "Debug", nowait = false, remap = false },
-      { "<leader>dB", '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', desc = "Breakpoint condition", nowait = false, remap = false },
+      { "<leader>dB", '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', desc = "Conditional breakpoint", nowait = false, remap = false },
       { "<leader>dO", '<cmd>lua require"dap".step_out()<CR>', desc = "Step out", nowait = false, remap = false },
       { "<leader>db", '<cmd>lua require"dap".toggle_breakpoint()<CR>', desc = "Toggle breakpoint", nowait = false, remap = false },
       { "<leader>dc", '<cmd>lua require"dap".continue()<CR>', desc = "Start/continue", nowait = false, remap = false },
@@ -34,8 +34,9 @@ return {
       { "<leader>dm", '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = "Message", nowait = false, remap = false },
       { "<leader>do", '<cmd>lua require"dap".step_over()<CR>', desc = "Step over", nowait = false, remap = false },
       { "<leader>dr", '<cmd>lua require"dap".repl.open()<CR>', desc = "REPL", nowait = false, remap = false },
-      { "<leader>dx", '<cmd>lua require"dap".terminate()<CR>', desc = "Exit", nowait = false, remap = false },
-      { "<leader>ds",
+      { "<leader>dx", '<cmd>lua require"dap".disconnect()<CR>', desc = "Exit", nowait = false, remap = false },
+      {
+        "<leader>ds",
         function()
           local widgets = require('dap.ui.widgets')
           local my_sidebar = widgets.sidebar(widgets.scopes)

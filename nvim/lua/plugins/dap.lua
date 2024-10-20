@@ -29,11 +29,10 @@ return {
         type = 'lldb',
         request = 'launch',
         program = function()
-          -- local file = vim.fn.input('Path to file: ', vim.fn.getcwd() .. '/', 'file')
           local file = vim.fn.expand('%')
-          vim.fn.jobstart(
-            'zig test --test-no-exec -femit-bin=zig-out/bin/debug >> ' .. file
-          )
+          vim.system({
+            'zig', 'test', '--test-no-exec', '-femit-bin=zig-out/bin/debug', file
+          }):wait()
           return '${workspaceFolder}/zig-out/bin/debug'
         end,
         cwd = '${workspaceFolder}',
