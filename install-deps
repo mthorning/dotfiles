@@ -1,14 +1,18 @@
 #!/bin/bash
 
-brew install --cask karabiner-elements
-brew install neovim tmux nvm zsh stow starship fzf gnu-sed asimov lazygit ripgrep gh
+brew install neovim tmux zsh stow starship fzf gnu-sed asimov lazygit ripgrep gh lazygit
+
 brew tap homebrew/cask-fonts &&
-brew install --cask font-symbols-only-nerd-font
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 $(brew --prefix)/opt/fzf/install
+
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm #ctrl+a I to install tmux plugins
 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 nvm install --lts
 nvm use --lts
