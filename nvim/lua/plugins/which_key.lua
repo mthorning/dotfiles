@@ -87,6 +87,7 @@ return {
       { '<leader>x', ':silent !chmod +x %<CR>', desc = 'Make Executable', nowait = false, remap = false },
       { '<leader>y', ':let @+ = expand("%:p")<CR>', desc = 'Copy path', nowait = false, remap = false },
       { '<leader>z', ':ZenMode<CR>', desc = 'Zen Mode', nowait = false, remap = false },
+      { '<leader>u', '::UndotreeToggle<CR>', desc = 'Undo tree', nowait = false, remap = false },
     })
   end,
 }
