@@ -83,15 +83,3 @@ snap() {
 hgrep() { 
   awk 'NR==1 {print; next} /'"$1"'/ {print}'
 }
-
-kubedesc() {
-  RESOURCE_TYPE=$1
-  shift
-  RESOURCE=$(kubectl get "${RESOURCE_TYPE}" "$@" -o custom-columns=":metadata.name,:metadata.namespace" | fzf)
-  NAME=$(echo "$RESOURCE" | awk '{print $1}')
-  NAMESPACE=$(echo "$RESOURCE" | awk '{print $2}')
-  if [ -z "$NAME" ]; then
-    return
-  fi
-  kubectl describe "$RESOURCE_TYPE" -n "$NAMESPACE" "$NAME" | less
-}
