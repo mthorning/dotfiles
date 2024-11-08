@@ -3,9 +3,13 @@ return {
   cmd = 'Telescope',
   dependencies = {
     {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "make",
-    }, 'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzf-native.nvim',
+      build = 'make',
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
+    'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-live-grep-raw.nvim'
   },
   config = function()
@@ -45,7 +49,6 @@ return {
       pickers = { find_files = { hidden = true } }
     }
 
-    require('telescope').load_extension('fzf')
     require('telescope').load_extension('harpoon')
     require("telescope").load_extension("tmux_sessionizer")
   end
