@@ -254,4 +254,5 @@ return {
       server_filetype_map = {}
     }
   },
+  { 'prettier/vim-prettier' },
 }

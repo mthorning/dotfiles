@@ -77,6 +77,7 @@ return {
       { '<leader>lx', ':LspRestart<CR>', desc = 'Restart', nowait = false, remap = false },
       { '<leader>m', '<cmd>Telescope tmux_sessionizer<CR>', desc = 'Change repo', nowait = false, remap = false },
       { '<leader>p', ':Lazy<CR>', desc = 'Plugins', nowait = false, remap = false },
+      { '<leader>P', ':Prettier<CR>', desc = 'Prettier', nowait = false, remap = false },
       { '<leader>q', ':q<CR>', desc = 'Quit', nowait = false, remap = false },
       { '<leader>t', group = 'Terminal', nowait = false, remap = false },
       { '<leader>t.', ':term<CR>', desc = 'Here', nowait = false, remap = false },
