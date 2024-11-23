@@ -49,4 +49,8 @@ require('lazy').setup({
   { 'ThePrimeagen/harpoon', dependencies = 'nvim-lua/plenary.nvim' },
   { 'mbbill/undotree' },
   { 'prettier/vim-prettier' },
+  { 
+    'norcalli/nvim-colorizer.lua',
+    config = function() require 'colorizer'.setup() end
+  },
 })
