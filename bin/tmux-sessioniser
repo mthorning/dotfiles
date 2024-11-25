@@ -2,7 +2,7 @@
 SESSION=$1
 
 if [[ -z $SESSION ]]; then
-  SESSION=$(find -L ~ ~/server/apps ~/code -path ~/.Trash -prune -o -type d -maxdepth 2 -print | fzf)
+  SESSION=$(find -L ~/grafana ~/code -path -prune -o -type d -maxdepth 3 -print | fzf)
 fi
 
 if [[ -z $SESSION ]]; then
