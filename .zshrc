@@ -32,10 +32,9 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 setopt  autocd autopushd
 
 alias g="git"
+alias gl="git pull"
+alias gp="git push"
 alias m="git machete"
-alias com="git add .;  git commit -v"
-alias glog="git log --oneline"
-alias se=sudoedit
 alias lg="lazygit"
 alias ls="ls --color"
 alias ll="ls -al"
@@ -44,7 +43,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias weather="curl -s wttr.in | grep -v @igor_chubin"
 alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
-alias maria="mysql -h 192.168.1.166 -u root -p"
+alias npm="pnpm"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
