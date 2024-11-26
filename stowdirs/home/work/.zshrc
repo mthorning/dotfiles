@@ -16,3 +16,4 @@ case ":$PATH:" in
 esac
 # pnpm end
 
+alias irmdb="kubectl exec -it mysql-0 -n devenv -- mysql --user=user --password=pass"
