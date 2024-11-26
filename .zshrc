@@ -20,6 +20,8 @@ zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
+source ~/completion-for-pnpm.zsh
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
@@ -27,7 +29,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-# zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 setopt  autocd autopushd
 
