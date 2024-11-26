@@ -19,8 +19,8 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-
-source ~/completion-for-pnpm.zsh
+zinit light mat2ja/pnpm.plugin.zsh
+zinit light MichaelAquilina/zsh-you-should-use
 
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
@@ -30,7 +30,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-setopt  autocd autopushd
+source ~/completion-for-pnpm.zsh
 
 alias g="git"
 alias gl="git pull"
@@ -42,7 +42,8 @@ alias ll="ls -al"
 alias ts="$HOME/.local/bin/tmux-sessioniser"
 alias weather="curl -s wttr.in | grep -v @igor_chubin"
 alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
-alias p="pnpm"
+alias rcat="cat"
+alias cat="bat"
 
 alias vi="nvim"
 alias vim="nvim"
@@ -57,6 +58,8 @@ fi
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/Users/mthorning/go/bin"
+
 
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
@@ -74,9 +77,9 @@ bindkey '^n' history-search-forward
 
 eval "$(fzf --zsh)"
 
-INITIAL_QUERY=""
-export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"
+# INITIAL_QUERY=""
+# export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+# export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"
 
 # if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
 #   export VISUAL="nvr -cc tabedit --remote-wait +'set bufhidden=wipe'"
@@ -106,6 +109,14 @@ snap() {
 hgrep() { 
   awk 'NR==1 {print; next} /'"$1"'/ {print}'
 }
+
+# pnpm
+export PNPM_HOME="/Users/mthorning/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
