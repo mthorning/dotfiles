@@ -17,9 +17,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
-alias g="git"
-alias gl="git pull"
-alias gp="git push"
 alias m="git machete"
 alias lg="lazygit"
 alias ls="lsd"
@@ -32,7 +29,6 @@ alias cat="bat"
 
 alias vi="nvim"
 alias vim="nvim"
-alias npm="p"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -59,17 +55,6 @@ bindkey '^n' history-search-forward
 
 eval "$(fzf --zsh)"
 
-# INITIAL_QUERY=""
-# export RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
-# export FZF_DEFAULT_COMMAND="$RG_PREFIX '$INITIAL_QUERY' fzf --bind 'change:reload:$RG_PREFIX {q} || true' --ansi --disabled --query '$INITIAL_QUERY' --height=50% --layout=reverse"
-
-# if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
-#   export VISUAL="nvr -cc tabedit --remote-wait +'set bufhidden=wipe'"
-# else
-  export VISUAL="nvim"
-# fi
-alias v="$VISUAL"
-
 ####################
 # Functions:
 
@@ -95,6 +80,8 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+zinit snippet 'OMZ::plugins/git/git.plugin.zsh'
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
