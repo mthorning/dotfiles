@@ -98,7 +98,7 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
-zinit light mat2ja/pnpm.plugin.zsh
+zinit light ntnyq/omz-plugin-pnpm
 zinit light MichaelAquilina/zsh-you-should-use
 zinit light wazum/zsh-directory-dot-expansion
 
