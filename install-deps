@@ -1,6 +1,6 @@
 #!/bin/bash
 
-brew install neovim tmux zsh stow fzf gnu-sed asimov lazygit ripgrep gh lazygit bat
+brew install neovim tmux zsh stow fzf gnu-sed asimov lazygit ripgrep gh lazygit bat lsd
 
 brew tap homebrew/cask-fonts &&
 
