@@ -26,8 +26,8 @@ alias weather="curl -s wttr.in | grep -v @igor_chubin"
 alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias rcat="cat"
 alias cat="bat"
-
 alias v="nvim"
+alias irmreset="make down && make cluster/down && make clean-dist && make cluster/up && make irm-local/up"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
