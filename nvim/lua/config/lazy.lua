@@ -9,13 +9,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  { 'nvim-tree/nvim-web-devicons' },
+  { 'nvim-tree/nvim-web-devicons', event = 'VeryLazy'  },
   { import = 'plugins' },
-  { 'christoomey/vim-tmux-navigator' },
-  { 'NvChad/nvim-colorizer.lua',           event = 'BufReadPre' },
-  { 'b3nj5m1n/kommentary',                 event = 'BufReadPre' },
-  { 'RRethy/vim-illuminate',               event = 'BufReadPre' },
-
+  { 'christoomey/vim-tmux-navigator', event = 'VeryLazy' },
+  { 'NvChad/nvim-colorizer.lua', event = 'VeryLazy' },
+  { 'b3nj5m1n/kommentary', event = 'VeryLazy' },
+  { 'RRethy/vim-illuminate', event = 'VeryLazy' },
   {
     'folke/tokyonight.nvim',
     lazy = false,
@@ -30,6 +29,7 @@ require('lazy').setup({
   {
     'folke/zen-mode.nvim',
     cmd = 'ZenMode',
+    event = 'VeryLazy',
     config = function()
       require 'zen-mode'.setup()
     end
@@ -37,20 +37,21 @@ require('lazy').setup({
 
   {
     'karb94/neoscroll.nvim',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     config = function() require 'neoscroll'.setup() end
   },
   {
     'lewis6991/gitsigns.nvim',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     config = function() require 'gitsigns'.setup() end,
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  { 'ThePrimeagen/harpoon', dependencies = 'nvim-lua/plenary.nvim' },
-  { 'mbbill/undotree' },
-  { 'prettier/vim-prettier' },
+  { 'ThePrimeagen/harpoon', event = 'VeryLazy', dependencies = 'nvim-lua/plenary.nvim' },
+  { 'mbbill/undotree', event = 'VeryLazy' },
+  { 'prettier/vim-prettier', event = 'VeryLazy' },
   { 
-    'norcalli/nvim-colorizer.lua',
+    'norcalli/nvim-colorizer.lua', 
+    event = 'VeryLazy',
     config = function() require 'colorizer'.setup() end
   },
 })

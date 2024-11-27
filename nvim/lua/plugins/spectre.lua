@@ -1,6 +1,7 @@
 return {
   'windwp/nvim-spectre',
   cmd = 'Spectre',
+  event = 'VeryLazy',
   opts = {
     color_devicons = true,
     open_cmd = 'vnew',

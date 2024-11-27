@@ -203,11 +203,11 @@ local setConfigs = function()
 end
 
 return {
-  { "williamboman/mason.nvim", opts = {}, event = 'VimEnter' },
-  { "williamboman/mason-lspconfig.nvim", event = 'VimEnter'  },
+  { "williamboman/mason.nvim", opts = {}, event = 'VeryLazy' },
+  { "williamboman/mason-lspconfig.nvim", event = 'VeryLazy'  },
   {
     'neovim/nvim-lspconfig',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     config = function()
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
           vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -218,7 +218,7 @@ return {
   },
   {
     'nvimdev/lspsaga.nvim',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     opts = {
       debug = false,
       use_saga_diagnostic_sign = true,
@@ -254,5 +254,5 @@ return {
       server_filetype_map = {}
     }
   },
-  { 'prettier/vim-prettier' },
+  { 'prettier/vim-prettier', event = 'VeryLazy' },
 }

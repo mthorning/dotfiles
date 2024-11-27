@@ -1,7 +1,7 @@
 return {
   {
     'hrsh7th/nvim-cmp',
-    event = 'BufReadPre',
+    event = 'VeryLazy',
     dependencies = { 'hrsh7th/vim-vsnip-integ', 'hrsh7th/vim-vsnip' },
     config = function()
       local cmp = require 'cmp'

@@ -1,6 +1,6 @@
 return {
   "mikavilpas/yazi.nvim",
-  event = "VimEnter",
+  lazy = false,
   keys = {},
   keymaps = {
     show_help = '<f1>',
