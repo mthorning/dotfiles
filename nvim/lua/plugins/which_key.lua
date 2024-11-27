@@ -49,7 +49,7 @@ return {
       { '<leader>fq', '<cmd>Telescope quickfix<CR>', desc = 'QuickFix', nowait = false, remap = false },
       { '<leader>fr', '<cmd>Telescope oldfiles<CR>', desc = 'Recent', nowait = false, remap = false },
       { '<leader>fs', '<cmd>Telescope lsp_dynamic_workspace_symbols<CR>', desc = 'Symbols', nowait = false, remap = false },
-      { '<leader>ft', '<cmd>Telescope live_grep<CR>', desc = 'Text', nowait = false, remap = false },
+      { '<leader>ft', ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", desc = 'Text', nowait = false, remap = false },
       { '<leader>fw', '<cmd>Telescope grep_string<CR>', desc = 'Word under cursor', nowait = false, remap = false },
       { '<leader>g', ':LazyGit<CR>', desc = 'Git', nowait = false, remap = false },
       { '<leader>h', group = 'Harpoon', nowait = false, remap = false },
