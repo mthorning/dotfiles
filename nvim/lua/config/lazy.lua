@@ -49,9 +49,14 @@ require('lazy').setup({
   { 'ThePrimeagen/harpoon', event = 'VeryLazy', dependencies = 'nvim-lua/plenary.nvim' },
   { 'mbbill/undotree', event = 'VeryLazy' },
   { 'prettier/vim-prettier', event = 'VeryLazy' },
-  { 
+  {
     'norcalli/nvim-colorizer.lua', 
     event = 'VeryLazy',
     config = function() require 'colorizer'.setup() end
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = "VeryLazy",
+    config = true,
   },
 })
