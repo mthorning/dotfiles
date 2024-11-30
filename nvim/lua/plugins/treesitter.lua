@@ -65,7 +65,6 @@ return {
         highlight = { enable = true, additional_vim_regex_highlighting = false },
         indent = { enable = true },
         ignore_install = { "phpdoc", "c", "haskell" },
-        autotag = { enable = true },
         textobjects = {
           select = {
             enable = true,

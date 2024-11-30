@@ -33,7 +33,7 @@ export VISUAL="nvim"
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/Users/mthorning/go/bin"
+export PATH="$PATH:$HOME/go/bin"
 
 
 HISTSIZE=5000
