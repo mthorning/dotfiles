@@ -12,6 +12,8 @@ local setConfigs = function()
         includeCompletionsForModuleExports = false
       }
     },
+    root_dir = lspconfig.util.root_pattern("package.json"),
+    single_file_support = false,
     cmd = {
       lsp_servers .. "/typescript-language-server",
       "--stdio"
@@ -23,6 +25,19 @@ local setConfigs = function()
       require 'illuminate'.on_attach(client)
     end
   }
+  -- }}}
+
+  -- deno {{{
+  lspconfig.denols.setup {
+    on_attach = function(client)
+      client.server_capabilities.document_formatting = true
+      client.server_capabilities.documentFormattingProvider = true
+      client.server_capabilities.documentRangeFormattingProvider = true
+      require 'illuminate'.on_attach(client)
+    end,
+    root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+  }
+
   -- }}}
 
   -- lua_ls {{{
@@ -200,6 +215,7 @@ local setConfigs = function()
     cmd = { lsp_servers .. "/zls" },
   }
   -- }}}
+
 end
 
 return {
