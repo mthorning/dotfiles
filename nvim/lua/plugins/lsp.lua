@@ -9,20 +9,19 @@ local setConfigs = function()
     init_options = {
       preferences = {
         disableSuggestions = false,
-        includeCompletionsForModuleExports = false
+        includeCompletionsForModuleExports = true
       }
     },
     root_dir = lspconfig.util.root_pattern("package.json"),
-    single_file_support = false,
+    single_file_support = true,
     cmd = {
       lsp_servers .. "/typescript-language-server",
       "--stdio"
     },
     on_attach = function(client)
-      -- client.server_capabilities.document_formatting = false
-      client.server_capabilities.documentFormattingProvider = false
-      client.server_capabilities.documentRangeFormattingProvider = false
-      require 'illuminate'.on_attach(client)
+      client.server_capabilities.document_formatting = true
+      client.server_capabilities.documentFormattingProvider = true
+      client.server_capabilities.documentRangeFormattingProvider = true
     end
   }
   -- }}}
@@ -33,7 +32,6 @@ local setConfigs = function()
       client.server_capabilities.document_formatting = true
       client.server_capabilities.documentFormattingProvider = true
       client.server_capabilities.documentRangeFormattingProvider = true
-      require 'illuminate'.on_attach(client)
     end,
     root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
   }
