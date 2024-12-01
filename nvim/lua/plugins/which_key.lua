@@ -79,6 +79,7 @@ return {
       { '<leader>p', ':Lazy<CR>', desc = 'Plugins', nowait = false, remap = false },
       { '<leader>P', ':Prettier<CR>', desc = 'Prettier', nowait = false, remap = false },
       { '<leader>q', ':q<CR>', desc = 'Quit', nowait = false, remap = false },
+      { '<leader>r', ':GrugFar ripgrep<CR>', desc = 'Replace', nowait = false, remap = false },
       { '<leader>t', group = 'Terminal', nowait = false, remap = false },
       { '<leader>t.', ':term<CR>', desc = 'Here', nowait = false, remap = false },
       { '<leader>ts', ':split term://zsh | :startinsert<CR>', desc = 'Horizontal split', nowait = false, remap = false },
