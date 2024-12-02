@@ -4,7 +4,7 @@ local setConfigs = function()
   local lsp_servers = vim.fn.stdpath('data') .. "/mason/bin"
   local root_pattern = require('lspconfig').util.root_pattern
 
-  -- tsserver {{{
+  -- ts_ls {{{
   lspconfig["ts_ls"].setup {
     init_options = {
       preferences = {
@@ -13,7 +13,7 @@ local setConfigs = function()
       }
     },
     root_dir = lspconfig.util.root_pattern("package.json"),
-    single_file_support = true,
+    single_file_support = false,
     cmd = {
       lsp_servers .. "/typescript-language-server",
       "--stdio"
