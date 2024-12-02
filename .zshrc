@@ -34,7 +34,6 @@ export VISUAL="nvim"
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/go/bin"
-. "$HOME/.deno/env"
 
 
 HISTSIZE=5000

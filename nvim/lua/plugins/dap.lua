@@ -57,8 +57,28 @@ return {
           name = 'Debug';
           request = 'launch';
           showLog = false;
-          program = "${file}";
+          program = '${file}';
           dlvToolPath = vim.fn.exepath('dlv')  -- Adjust to where delve is installed
+        },
+
+        -- for running against Tilt dlv:
+        {
+          type = 'go';
+          name = 'Attach to Dlv';
+          request = 'attach';
+          showLog = false;
+          program = '${file}';
+          mode = 'remote';
+          trace = 'log';
+          port = 2345;
+          host = '127.0.0.1';
+          debugAdapter = 'dlv-dap';
+          --[[ substitutePath = {
+                {
+                    from: '${workspaceFolder}',
+                    to: '/usr/src/app'
+                }
+            } ]]
         },
      }
   -- }}}
