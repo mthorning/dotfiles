@@ -1,2 +1,3 @@
-stow -d ./stowdirs/home -t $HOME base
+stow -d ./stowdirs/home -t $HOME --override=".zshrc" base
 stow -d ./stowdirs/home -t $HOME --override=".zshrc" work 
+stow -d ./stowdirs/etc/ -t $(brew --prefix)/etc/ work
