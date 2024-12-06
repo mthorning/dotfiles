@@ -11,10 +11,43 @@ return {
   vim.fn.sign_define('DapBreakpointCondition', {text='❓', texthl='', linehl='', numhl=''})
   vim.fn.sign_define('DapLogPoint', {text='💬', texthl='', linehl='', numhl=''})
 
+  local dap = require('dap')
+
+  -- deno {{{
+    -- see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#vscode-js-debug-1
+
+    require("dap").adapters["pwa-node"] = {
+      type = "server",
+      host = "localhost",
+      port = "${port}",
+      executable = {
+        command = "node",
+        -- 💀 Make sure to update this path to point to your installation
+        args = {os.getenv('HOME') .. '/js-debug/src/dapDebugServer.js', '${port}'},
+      }
+    }
+
+    dap.configurations.typescript = {
+      {
+        type = 'pwa-node',
+        request = 'launch',
+        name = "Launch file",
+        runtimeExecutable = "deno",
+        runtimeArgs = {
+          "run",
+          "--inspect-wait",
+          "--allow-all"
+        },
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+        attachSimplePort = 9229,
+      },
+    }
+  -- }}}
+
   -- zig {{{
     -- see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-lldb-vscode
 
-    local dap = require('dap')
     dap.set_log_level('DEBUG')
     dap.adapters.lldb = {
       type = 'executable',
