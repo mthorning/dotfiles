@@ -18,10 +18,14 @@ local setConfigs = function()
       lsp_servers .. "/typescript-language-server",
       "--stdio"
     },
-    on_attach = function(client)
-      client.server_capabilities.document_formatting = true
+    on_attach = function(client, bufnr)
+      --[[ client.server_capabilities.document_formatting = true
       client.server_capabilities.documentFormattingProvider = true
-      client.server_capabilities.documentRangeFormattingProvider = true
+      client.server_capabilities.documentRangeFormattingProvider = true ]]
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        command = "Prettier",
+      })
     end
   }
   -- }}}
