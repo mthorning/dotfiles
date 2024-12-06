@@ -23,6 +23,7 @@ local setConfigs = function()
       client.server_capabilities.documentFormattingProvider = true
       client.server_capabilities.documentRangeFormattingProvider = true ]]
       vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("PrettierGroup"),
         buffer = bufnr,
         command = "Prettier",
       })
@@ -170,6 +171,7 @@ local setConfigs = function()
     ),
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
+        group = vim.api.nvim_create_augroup("EslintGroup"),
         buffer = bufnr,
         command = "EslintFixAll",
       })
