@@ -12,9 +12,9 @@ local tms = function(opts)
       '-L',
       vim.fn.expand('$HOME'),
       vim.fn.expand('$HOME/code'),
-      vim.fn.expand('$HOME/server/apps'),
+      vim.fn.expand('$HOME/grafana'),
       '-type', 'd',
-      '-maxdepth', '1'
+      '-maxdepth', '2'
     }, opts),
     sorter = conf.file_sorter(opts),
     attach_mappings = function(prompt_bufnr)

@@ -50,7 +50,7 @@ require('lazy').setup({
   { 'mbbill/undotree', event = 'VeryLazy' },
   { 'prettier/vim-prettier', event = 'VeryLazy' },
   {
-    'norcalli/nvim-colorizer.lua', 
+    'norcalli/nvim-colorizer.lua',
     event = 'VeryLazy',
     config = function() require 'colorizer'.setup() end
   },
