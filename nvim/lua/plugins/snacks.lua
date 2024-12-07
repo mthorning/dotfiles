@@ -7,9 +7,11 @@ return {
     notifier = { enabled = true },
     quickfile = { enabled = true },
     statuscolumn = { enabled = true },
-    words = { enabled = true },
+    words = { enabled = false },
     lazygit = { enabled = true },
     dashboard = {
+      width = 40,
+      pane_gap = 4,
       preset = {
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
@@ -25,8 +27,43 @@ return {
         },
       },
       sections = {
-        { section = "keys", gap = 1, padding = 1 },
-        { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+        { section = "keys",   gap = 1, padding = 1 },
+        {
+          icon = " ",
+          title = "Recent Files",
+          section = "recent_files",
+          indent = 2,
+          padding = 1,
+          pane = 2,
+        },
+        {
+          icon = " ",
+          title = "Git Status",
+          section = "terminal",
+          enabled = function()
+            return Snacks.git.get_root() ~= nil
+          end,
+          cmd = "git status --short --branch --renames",
+          ttl = 5 * 60,
+          indent = 3,
+          padding = 1,
+          height = 5,
+          pane = 2,
+        },
+        {
+          icon = " ",
+          title = "Machete Status",
+          section = "terminal",
+          enabled = function()
+            return Snacks.git.get_root() ~= nil
+          end,
+          cmd = "git machete status",
+          ttl = 5 * 60,
+          indent = 3,
+          padding = 1,
+          height = 5,
+          pane = 2,
+        },
         { section = "startup" },
       },
     },
