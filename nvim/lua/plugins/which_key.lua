@@ -100,7 +100,7 @@ return {
       { '<leader>t.',      '<cmd>term<CR>',                                                                           desc = 'Here',                     nowait = false,    remap = false },
       { '<leader>ts',      '<cmd>split term://zsh | :startinsert<CR>',                                                desc = 'Horizontal split',         nowait = false,    remap = false },
       { '<leader>tt',      '<cmd>tabnew | :edit term://zsh | :startinsert<CR>',                                       desc = 'Tab',                      nowait = false,    remap = false },
-      { '<leader>tv',      '<cmd>vsplit | :startinsert<CR>',                                                          desc = 'Vert split',               nowait = false,    remap = false },
+      { '<leader>tv',      '<cmd>vsplit term://zsh | :startinsert<CR>',                                                          desc = 'Vert split',               nowait = false,    remap = false },
       { '<leader>w',       '<cmd>w<CR>',                                                                              desc = 'Save',                     nowait = false,    remap = false },
       { '<leader>x',       '<cmd>silent !chmod +x %<CR>',                                                             desc = 'Make Executable',          nowait = false,    remap = false },
       { '<leader>y',       '<cmd>let @+ = expand("%:p")<CR>',                                                         desc = 'Copy path',                nowait = false,    remap = false },

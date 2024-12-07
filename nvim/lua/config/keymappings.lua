@@ -13,6 +13,12 @@ set("n", "<C-j>", "<C-w>j")
 set("n", "<C-k>", "<C-w>k")
 set("n", "<C-l>", "<C-w>l")
 
+-- same for terminals
+set("t", "<C-h>", [[<C-\><C-N><C-w>h"]])
+set("t", "<C-j>", [[<C-\><C-N><C-w>j"]])
+set("t", "<C-k>", [[<C-\><C-N><C-w>k"]])
+set("t", "<C-l>", [[<C-\><C-N><C-w>l"]])
+
 -- resize with arrows
 set("n", "<S-Up>", ":resize +2<CR>")
 set("n", "<S-Down>", ":resize -2<CR>")
@@ -21,8 +27,7 @@ set("n", "<S-Right>", ":vertical resize +2<CR>")
 
 -- Tab switch
 set("n", "<Leader><TAB>", "gt")
-set("n", "<leader><S-TAB>", "gT")
-
+set("n", "<Leader><S-TAB>", "gT")
 -- Move selected line / block of text in visual mode
 set("v", "<C-j>", ":m '>+1<CR>gv=gv")
 set("v", "<C-k>", ":m '<-2<CR>gv=gv")
