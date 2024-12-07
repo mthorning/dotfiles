@@ -37,6 +37,7 @@ return {
   },
   { 'ThePrimeagen/harpoon',  event = 'VeryLazy', dependencies = 'nvim-lua/plenary.nvim' },
   { 'mbbill/undotree',       event = 'VeryLazy' },
+  { 'prettier/vim-prettier', event = 'VeryLazy' },
   {
     'norcalli/nvim-colorizer.lua',
     event = 'VeryLazy',

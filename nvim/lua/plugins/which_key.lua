@@ -88,9 +88,11 @@ return {
       { '<leader>lv',      '<cmd>vsplit | Telescope lsp_definitions<CR>',                                             desc = 'Goto Definition in split', nowait = false,    remap = false },
       { '<leader>lx',      '<cmd>LspRestart<CR>',                                                                     desc = 'Restart',                  nowait = false,    remap = false },
       { '<leader>m',       '<cmd>Telescope tmux_sessionizer<CR>',                                                     desc = 'Change repo',              nowait = false,    remap = false },
+
       { '<leader>n',       group = 'Notifications',                                                                   nowait = false,                    remap = false },
       { '<leader>nh',      '<cmd>lua Snacks.notifier.show_history()<CR>',                                             desc = 'History',                  nowait = false,    remap = false },
-      { '<leader>nx',      '<cmd>lua Snacks.notifier.hide()<CR>',                                                     desc = 'History',                  nowait = false,    remap = false },
+      { '<leader>nx',      '<cmd>lua Snacks.notifier.hide()<CR>',                                                     desc = 'Clear',                  nowait = false,    remap = false },
+
       { '<leader>p',       '<cmd>Lazy<CR>',                                                                           desc = 'Plugins',                  nowait = false,    remap = false },
       { '<leader>P',       '<cmd>Prettier<CR>',                                                                       desc = 'Prettier',                 nowait = false,    remap = false },
       { '<leader>q',       '<cmd>q<CR>',                                                                              desc = 'Quit',                     nowait = false,    remap = false },
