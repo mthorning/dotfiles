@@ -1,5 +1,6 @@
 return {
   'windwp/nvim-spectre',
+  enabled = false,
   cmd = 'Spectre',
   event = 'VeryLazy',
   opts = {

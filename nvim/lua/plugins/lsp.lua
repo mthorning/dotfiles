@@ -49,46 +49,46 @@ local setConfigs = function()
   table.insert(runtime_path, "lua/?.lua")
   table.insert(runtime_path, "lua/?/init.lua")
 
-  require'lspconfig'.lua_ls.setup {
-  on_init = function(client)
-    if client.workspace_folders then
-      local path = client.workspace_folders[1].name
-      if vim.uv.fs_stat(path..'/.luarc.json') or vim.uv.fs_stat(path..'/.luarc.jsonc') then
-        return
+  require 'lspconfig'.lua_ls.setup {
+    on_init = function(client)
+      if client.workspace_folders then
+        local path = client.workspace_folders[1].name
+        if vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc') then
+          return
+        end
       end
-    end
 
-    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
-      runtime = {
-        -- Tell the language server which version of Lua you're using
-        -- (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT'
-      },
-      -- Make the server aware of Neovim runtime files
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.env.VIMRUNTIME,
-          -- Depending on the usage, you might want to add additional paths here.
-          -- "${3rd}/luv/library"
-          -- "${3rd}/busted/library",
-        }
-        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-        -- library = vim.api.nvim_get_runtime_file("", true)
-      }
-    })
-  end,
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {
-          'vim',
+      client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+        runtime = {
+          -- Tell the language server which version of Lua you're using
+          -- (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT'
         },
-      },
+        -- Make the server aware of Neovim runtime files
+        workspace = {
+          checkThirdParty = false,
+          library = {
+            vim.env.VIMRUNTIME,
+            -- Depending on the usage, you might want to add additional paths here.
+            -- "${3rd}/luv/library"
+            -- "${3rd}/busted/library",
+          }
+          -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+          -- library = vim.api.nvim_get_runtime_file("", true)
+        }
+      })
+    end,
+    settings = {
+      Lua = {
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {
+            'vim',
+          },
+        },
+      }
     }
   }
-}
   -- }}}
 
   -- jsonls {{{
@@ -171,7 +171,7 @@ local setConfigs = function()
     ),
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
-        group = vim.api.nvim_create_augroup("EslintGroup"),
+        group = vim.api.nvim_create_augroup("EslintGroup", { clear = true }),
         buffer = bufnr,
         command = "EslintFixAll",
       })
@@ -219,12 +219,11 @@ local setConfigs = function()
     cmd = { lsp_servers .. "/zls" },
   }
   -- }}}
-
 end
 
 return {
-  { "williamboman/mason.nvim", opts = {}, event = 'VeryLazy' },
-  { "williamboman/mason-lspconfig.nvim", event = 'VeryLazy'  },
+  { "williamboman/mason.nvim",           opts = {},         event = 'VeryLazy' },
+  { "williamboman/mason-lspconfig.nvim", event = 'VeryLazy' },
   {
     'neovim/nvim-lspconfig',
     event = 'VeryLazy',
@@ -241,7 +240,7 @@ return {
     event = 'VeryLazy',
     opts = {
       debug = false,
-      use_saga_diagnostic_sign = true,
+      use_saga_diagnostic_sign = false,
       -- diagnostic sign
       error_sign = 'X',
       warn_sign = '⚠',
@@ -249,11 +248,9 @@ return {
       infor_sign = 'ℹ',
       diagnostic_header_icon = ' ',
       -- code action title icon
-      code_action_prompt = {
+      lightbulb = {
         enable = true,
-        sign = true,
-        sign_priority = 40,
-        virtual_text = false
+        sign = false,
       },
       finder_definition_icon = ' ',
       finder_reference_icon = ' ',
@@ -272,7 +269,10 @@ return {
       border_style = 'single',
       rename_prompt_prefix = '➤',
       server_filetype_map = {}
+    },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
     }
   },
-  { 'prettier/vim-prettier', event = 'VeryLazy' },
 }
