@@ -1,4 +1,29 @@
 -- vim:foldmethod=marker
+local makeNicerPopups = function()
+      vim.diagnostic.config({
+        virtual_text = false,
+        signs = true,
+        float = {
+          border = "single",
+          format = function(diagnostic)
+            return string.format(
+              "%s (%s) [%s]",
+              diagnostic.message,
+              diagnostic.source,
+              diagnostic.code or diagnostic.user_data.lsp.code
+            )
+          end,
+        },
+      })
+
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover, {
+          border = "single",
+          title = "hover"
+        }
+      )
+end
+
 local setConfigs = function()
   local lspconfig = require('lspconfig')
   local lsp_servers = vim.fn.stdpath('data') .. "/mason/bin"
@@ -234,22 +259,7 @@ return {
 
       setConfigs()
 
-      -- Nicer popups
-      vim.diagnostic.config({
-        virtual_text = false,
-        signs = true,
-        float = {
-          border = "single",
-          format = function(diagnostic)
-            return string.format(
-              "%s (%s) [%s]",
-              diagnostic.message,
-              diagnostic.source,
-              diagnostic.code or diagnostic.user_data.lsp.code
-            )
-          end,
-        },
-      })
+      makeNicerPopups()
     end
   },
   {
