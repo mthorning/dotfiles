@@ -35,9 +35,16 @@ return {
     config = function() require 'gitsigns'.setup() end,
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  { 'ThePrimeagen/harpoon',  event = 'VeryLazy', dependencies = 'nvim-lua/plenary.nvim' },
-  { 'mbbill/undotree',       event = 'VeryLazy' },
-  { 'prettier/vim-prettier', event = 'VeryLazy' },
+  { 'ThePrimeagen/harpoon', event = 'VeryLazy', dependencies = 'nvim-lua/plenary.nvim' },
+  { 'mbbill/undotree',      event = 'VeryLazy' },
+  {
+    'prettier/vim-prettier',
+    lazy = false,
+    config = function()
+      vim.g['prettier#exec_cmd_async'] = 1
+      vim.g['prettier#quickfix_enabled'] = 0
+    end
+  },
   {
     'norcalli/nvim-colorizer.lua',
     event = 'VeryLazy',
