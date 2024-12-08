@@ -45,14 +45,8 @@ set("n", "N", "Nzzzv")
 set("n", "J", "mzJ`z")
 
 -- LSP
-set("n", "<C-n>", "<cmd>Lspsaga diagnostic_jump_next<cr>")
-set("n", "<C-p>", "<cmd>Lspsaga diagnostic_jump_prev<cr>")
-
-set("n", "<C-b>",
-    "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<cr>")
-
-set("n", "<C-f>",
-    "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<cr>")
+set("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next()<cr>")
+set("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev()<cr>")
 
 -- Remove annoying weird keybinding
 set("i", "<", "<")
