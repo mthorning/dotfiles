@@ -1,27 +1,27 @@
 -- vim:foldmethod=marker
 local makeNicerPopups = function()
-      vim.diagnostic.config({
-        virtual_text = false,
-        signs = true,
-        float = {
-          border = "single",
-          format = function(diagnostic)
-            return string.format(
-              "%s (%s) [%s]",
-              diagnostic.message,
-              diagnostic.source,
-              diagnostic.code or diagnostic.user_data.lsp.code
-            )
-          end,
-        },
-      })
+  vim.diagnostic.config({
+    virtual_text = false,
+    signs = true,
+    float = {
+      border = "single",
+      format = function(diagnostic)
+        return string.format(
+          "%s (%s) [%s]",
+          diagnostic.message,
+          diagnostic.source,
+          diagnostic.code or diagnostic.user_data.lsp.code
+        )
+      end,
+    },
+  })
 
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-        vim.lsp.handlers.hover, {
-          border = "single",
-          title = "hover"
-        }
-      )
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+    vim.lsp.handlers.hover, {
+      border = "single",
+      title = "hover"
+    }
+  )
 end
 
 local setConfigs = function()
@@ -49,7 +49,6 @@ local setConfigs = function()
       client.server_capabilities.documentRangeFormattingProvider = true ]]
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = vim.api.nvim_create_augroup("PrettierGroup", { clear = true }),
-        buffer = bufnr,
         command = "Prettier",
       })
     end
