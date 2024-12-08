@@ -44,9 +44,7 @@ local setConfigs = function()
       "--stdio"
     },
     on_attach = function(client, bufnr)
-      --[[ client.server_capabilities.document_formatting = true
-      client.server_capabilities.documentFormattingProvider = true
-      client.server_capabilities.documentRangeFormattingProvider = true ]]
+      vim.g.opt.prettier.quickfix_enabled = 0;
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = vim.api.nvim_create_augroup("PrettierGroup", { clear = true }),
         command = "Prettier",
