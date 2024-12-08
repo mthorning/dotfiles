@@ -13,14 +13,16 @@ return {
       { '<leader>;',       '<cmd>lua Snacks.dashboard()<CR>',                                                         desc = 'Dashboard',                nowait = false,    remap = false },
       { '<leader><s-tab>', hidden = true,                                                                             nowait = false,                    remap = false },
       { '<leader><tab>',   hidden = true,                                                                             nowait = false,                    remap = false },
+      { '<leader>a',       '<cmd>wa<CR>',                                                                             desc = 'Save All',                 nowait = false,    remap = false },
 
       { '<leader>A',       group = 'AutoRun' },
       { '<leader>Ar',      '<cmd>AutoRun<CR>',                                                                        desc = 'Run',                      nowait = false,    remap = false },
       { '<leader>As',      '<cmd>AutoRunStop<CR>',                                                                    desc = 'Stop',                     nowait = false,    remap = false },
-      { '<leader>T',       '<cmd>tabnew<CR>',                                                                         desc = 'New Tab',                  nowait = false,    remap = false },
-      { '<leader>a',       '<cmd>wa<CR>',                                                                             desc = 'Save All',                 nowait = false,    remap = false },
+
+      { '<leader>c',       group = 'QuickFix',                                                                        nowait = false,                    remap = false },
       { '<leader>bd',      '<cmd>lua Snacks.bufdelete.delete()<CR>',                                                  desc = 'Delete buffer',            nowait = false,    remap = false },
       { '<leader>ba',      '<cmd>lua Snacks.bufdelete.all()<CR>',                                                     desc = 'Delete all buffers',       nowait = false,    remap = false },
+      { '<leader>bn',      '<cmd>lua Snacks.notify.info("Buffer "..vim.api.nvim_get_current_buf())<CR>',                         desc = 'Show number',              nowait = false,    remap = false },
 
       { '<leader>c',       group = 'QuickFix',                                                                        nowait = false,                    remap = false },
       { '<leader>cc',      '<cmd>cclose<CR>',                                                                         desc = 'Close',                    nowait = false,    remap = false },
@@ -91,7 +93,7 @@ return {
 
       { '<leader>n',       group = 'Notifications',                                                                   nowait = false,                    remap = false },
       { '<leader>nh',      '<cmd>lua Snacks.notifier.show_history()<CR>',                                             desc = 'History',                  nowait = false,    remap = false },
-      { '<leader>nx',      '<cmd>lua Snacks.notifier.hide()<CR>',                                                     desc = 'Clear',                  nowait = false,    remap = false },
+      { '<leader>nx',      '<cmd>lua Snacks.notifier.hide()<CR>',                                                     desc = 'Clear',                    nowait = false,    remap = false },
 
       { '<leader>p',       '<cmd>Lazy<CR>',                                                                           desc = 'Plugins',                  nowait = false,    remap = false },
       { '<leader>P',       '<cmd>Prettier<CR>',                                                                       desc = 'Prettier',                 nowait = false,    remap = false },
@@ -102,7 +104,7 @@ return {
       { '<leader>t.',      '<cmd>term<CR>',                                                                           desc = 'Here',                     nowait = false,    remap = false },
       { '<leader>ts',      '<cmd>split term://zsh | :startinsert<CR>',                                                desc = 'Horizontal split',         nowait = false,    remap = false },
       { '<leader>tt',      '<cmd>tabnew | :edit term://zsh | :startinsert<CR>',                                       desc = 'Tab',                      nowait = false,    remap = false },
-      { '<leader>tv',      '<cmd>vsplit term://zsh | :startinsert<CR>',                                                          desc = 'Vert split',               nowait = false,    remap = false },
+      { '<leader>tv',      '<cmd>vsplit term://zsh | :startinsert<CR>',                                               desc = 'Vert split',               nowait = false,    remap = false },
       { '<leader>w',       '<cmd>w<CR>',                                                                              desc = 'Save',                     nowait = false,    remap = false },
       { '<leader>x',       '<cmd>silent !chmod +x %<CR>',                                                             desc = 'Make Executable',          nowait = false,    remap = false },
       { '<leader>y',       '<cmd>let @+ = expand("%:p")<CR>',                                                         desc = 'Copy path',                nowait = false,    remap = false },

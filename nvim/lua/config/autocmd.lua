@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
   end
 })
 
-vim.api.nvim_create_autocmd("BufReadPre", {
+--[[ vim.api.nvim_create_autocmd("BufReadPre", {
   desc = 'Makes the help screen open in vertical split to the right',
   group = vim.api.nvim_create_augroup('Help', { clear = true }),
   pattern = '*.txt',
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
       vim.cmd('wincmd L')
     end
   end
-})
+}) ]]
 
 vim.api.nvim_create_autocmd("BufReadPre", {
   desc = 'Sets spell checking and wrapping on markdown files',
@@ -28,4 +28,13 @@ vim.api.nvim_create_autocmd("BufReadPre", {
     vim.opt.wrap = true
   end
 })
+
 vim.cmd("autocmd FileType markdown setlocal spell spelllang=en_gb wrap")
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = 'Highlights yanked text',
+  group = vim.api.nvim_create_augroup("HighlighOnYank", { clear = true}),
+  callback = function()
+    vim.highlight.on_yank { higroup='Visual', timeout=100 }
+  end
+})

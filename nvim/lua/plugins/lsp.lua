@@ -222,8 +222,8 @@ local setConfigs = function()
 end
 
 return {
-  { "williamboman/mason.nvim",           opts = {},         event = 'VeryLazy' },
-  { "williamboman/mason-lspconfig.nvim", event = 'VeryLazy' },
+  { "williamboman/mason.nvim",          opts = {} },
+  { "williamboman/mason-lspconfig.nvim" },
   {
     'neovim/nvim-lspconfig',
     event = 'VeryLazy',
@@ -236,43 +236,34 @@ return {
     end
   },
   {
-    'nvimdev/lspsaga.nvim',
-    event = 'VeryLazy',
+    "folke/lazydev.nvim",
+    ft = "lua",
     opts = {
-      debug = false,
-      use_saga_diagnostic_sign = false,
-      -- diagnostic sign
-      error_sign = 'X',
-      warn_sign = '⚠',
-      hint_sign = '?',
-      infor_sign = 'ℹ',
-      diagnostic_header_icon = ' ',
-      -- code action title icon
-      lightbulb = {
-        enable = true,
-        sign = false,
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
-      finder_definition_icon = ' ',
-      finder_reference_icon = ' ',
-      max_preview_lines = 10,
-      finder_action_keys = {
-        open = 'o',
-        vsplit = 'v',
-        split = 's',
-        quit = 'q',
-        scroll_down = '<C-f>',
-        scroll_up = '<C-b>'
-      },
-      code_action_keys = { quit = 'q', exec = '<CR>' },
-      rename_action_keys = { quit = '<C-c>', exec = '<CR>' },
-      definition_preview_icon = '  ',
-      border_style = 'single',
-      rename_prompt_prefix = '➤',
-      server_filetype_map = {}
     },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
-    }
+  },
+  {
+    'saghen/blink.cmp',
+    lazy = false,
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = 'v0.*',
+    opts = {
+      keymap = {
+        preset = 'default',
+        ['<C-space>'] = { 'select_and_accept' },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
+      },
+      sources = {
+        completion = {
+          enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+      },
+    },
+    opts_extend = { "sources.completion.enabled_providers" }
   },
 }
