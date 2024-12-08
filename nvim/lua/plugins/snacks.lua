@@ -55,7 +55,7 @@ return {
           title = "Machete Status",
           section = "terminal",
           enabled = function()
-            return Snacks.git.get_root() ~= nil
+            return Snacks.git.get_root() ~= nil and os.execute("git machete status >> /dev/null") == 0
           end,
           cmd = "git machete status",
           ttl = 5 * 60,
