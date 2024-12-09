@@ -45,6 +45,7 @@ local setConfigs = function()
     },
     on_attach = function(client, bufnr)
       vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
         group = vim.api.nvim_create_augroup("PrettierGroup", { clear = true }),
         command = "Prettier",
       })
