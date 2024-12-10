@@ -169,7 +169,7 @@ local getConfigs = function()
     },
     -- }}}
 
-    --[[ -- eslint {{{
+  -- eslint {{{
     eslint = {
       cmd = { lsp_servers .. "/vscode-eslint-language-server", "--stdio" },
       root_dir = lspconfig.util.root_pattern(
@@ -220,7 +220,7 @@ local getConfigs = function()
         }
       }
     },
-    -- }}} ]]
+  -- }}}
 
     -- zig {{{
     zls = {
