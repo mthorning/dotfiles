@@ -172,14 +172,6 @@ local getConfigs = function()
   -- eslint {{{
     eslint = {
       cmd = { lsp_servers .. "/vscode-eslint-language-server", "--stdio" },
-      root_dir = lspconfig.util.root_pattern(
-        "eslint.config.js",
-        "eslint.config.mjs",
-        ".eslintrc.js",
-        ".eslintrc.yaml",
-        "node_modules",
-        ".git"
-      ),
       on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
           group = vim.api.nvim_create_augroup("EslintGroup", { clear = true }),
