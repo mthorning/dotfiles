@@ -16,15 +16,6 @@ return {
     end
   },
   {
-    'folke/zen-mode.nvim',
-    cmd = 'ZenMode',
-    event = 'VeryLazy',
-    config = function()
-      require 'zen-mode'.setup()
-    end
-  },
-
-  {
     'karb94/neoscroll.nvim',
     event = 'VeryLazy',
     config = function() require 'neoscroll'.setup() end

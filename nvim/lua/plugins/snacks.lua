@@ -2,6 +2,9 @@ return {
   "folke/snacks.nvim",
   priority = 1000,
   lazy = false,
+  init = function()
+    require'snacks'.indent.enable()
+  end,
   opts = {
     bigfile = { enabled = true },
     notifier = { enabled = true },
@@ -9,6 +12,8 @@ return {
     statuscolumn = { enabled = true },
     words = { enabled = false },
     lazygit = { enabled = true },
+    indent = { enabled = true },
+    zen = { enabled = true },
     dashboard = {
       width = 40,
       pane_gap = 4,

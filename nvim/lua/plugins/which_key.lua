@@ -50,7 +50,7 @@ return {
       { '<leader>fS',      '<cmd>Telescope search_history<CR>',                                                       desc = 'Search History',           nowait = false,    remap = false },
       { '<leader>fb',      '<cmd>Telescope buffers<CR>',                                                              desc = 'Buffer',                   nowait = false,    remap = false },
       { '<leader>fc',      '<cmd>Telescope command_history<CR>',                                                      desc = 'Command History',          nowait = false,    remap = false },
-      { '<leader>fC',      '<cmd>:lua require("telescope.builtin").find_files{ cwd = vim.fn.stdpath("config") }<CR>',                                                      desc = 'Command History',          nowait = false,    remap = false },
+      { '<leader>fC',      '<cmd>:lua require("telescope.builtin").find_files{ cwd = vim.fn.stdpath("config") }<CR>', desc = 'Command History',          nowait = false,    remap = false },
       { '<leader>ff',      '<cmd>Telescope find_files<CR>',                                                           desc = 'File',                     nowait = false,    remap = false },
       { '<leader>fg',      '<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',              desc = 'Grep',                     nowait = false,    remap = false },
       { '<leader>fl',      '<cmd>Telescope resume<CR>',                                                               desc = 'Last Query',               nowait = false,    remap = false },
@@ -109,7 +109,7 @@ return {
       { '<leader>w',       '<cmd>w<CR>',                                                                              desc = 'Save',                     nowait = false,    remap = false },
       { '<leader>x',       '<cmd>silent !chmod +x %<CR>',                                                             desc = 'Make Executable',          nowait = false,    remap = false },
       { '<leader>y',       '<cmd>let @+ = expand("%:p")<CR>',                                                         desc = 'Copy path',                nowait = false,    remap = false },
-      { '<leader>z',       '<cmd>ZenMode<CR>',                                                                        desc = 'Zen Mode',                 nowait = false,    remap = false },
+      { '<leader>z',       '<cmd>lua require("snacks").zen()<CR>',                                                     desc = 'Zen Mode',                 nowait = false,    remap = false },
       { '<leader>u',       '<cmd>UndotreeToggle<CR>',                                                                 desc = 'Undo tree',                nowait = false,    remap = false },
     })
   end,
