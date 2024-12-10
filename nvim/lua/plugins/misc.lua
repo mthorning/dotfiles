@@ -55,5 +55,23 @@ return {
     event = "VeryLazy",
     config = true,
   },
+  {
+    "mikavilpas/yazi.nvim",
+    enabled = false,
+    lazy = false,
+    keys = {},
+    keymaps = {},
+    commit = "14ba86dbfa97361428ef2413f0cb207e968cc58e",
+    opts = {
+      open_for_directories = true,
+    },
+  },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+  },
   { 'f-person/git-blame.nvim', event = 'VeryLazy' },
 }
