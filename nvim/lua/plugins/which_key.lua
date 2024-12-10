@@ -50,6 +50,7 @@ return {
       { '<leader>fS',      '<cmd>Telescope search_history<CR>',                                                       desc = 'Search History',           nowait = false,    remap = false },
       { '<leader>fb',      '<cmd>Telescope buffers<CR>',                                                              desc = 'Buffer',                   nowait = false,    remap = false },
       { '<leader>fc',      '<cmd>Telescope command_history<CR>',                                                      desc = 'Command History',          nowait = false,    remap = false },
+      { '<leader>fC',      '<cmd>:lua require("telescope.builtin").find_files{ cwd = vim.fn.stdpath("config") }<CR>',                                                      desc = 'Command History',          nowait = false,    remap = false },
       { '<leader>ff',      '<cmd>Telescope find_files<CR>',                                                           desc = 'File',                     nowait = false,    remap = false },
       { '<leader>fg',      '<cmd>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',              desc = 'Grep',                     nowait = false,    remap = false },
       { '<leader>fl',      '<cmd>Telescope resume<CR>',                                                               desc = 'Last Query',               nowait = false,    remap = false },
