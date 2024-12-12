@@ -32,8 +32,8 @@ return {
         mappings = {
           i = {
             ['<C-c>'] = actions.close,
-            ['<C-j>'] = actions.move_selection_next,
-            ['<C-k>'] = actions.move_selection_previous,
+            ['<C-j>'] = actions.preview_scrolling_down,
+            ['<C-k>'] = actions.preview_scrolling_up,
             ['<C-q>'] = actions.smart_send_to_qflist +
             actions.open_qflist,
             ['<C-s>'] = actions.select_horizontal,
@@ -43,7 +43,7 @@ return {
             ['<C-j>'] = actions.move_selection_next,
             ['<C-k>'] = actions.move_selection_previous,
             ['<C-q>'] = actions.smart_send_to_qflist +
-            actions.open_qflist
+            actions.open_qflist,
           }
         }
       },

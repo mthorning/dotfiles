@@ -100,6 +100,8 @@ zinit light ntnyq/omz-plugin-pnpm
 zinit light MichaelAquilina/zsh-you-should-use
 zinit light wazum/zsh-directory-dot-expansion
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
     print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
