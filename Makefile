@@ -1,7 +1,8 @@
 hostname := $(shell uname -n)
 
-.PHONY: switch
-switch:
+.PHONY: update
+update:
+	nix flake update
 	home-manager switch --flake .#$(hostname)
 
 .PHONY: clean
