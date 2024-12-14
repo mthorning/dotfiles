@@ -29,6 +29,13 @@
       file."${homeDir}/.config/lazygit" = { source = ./lazygit; recursive = true; };
       file."${homeDir}/.config/kitty" = { source = ./kitty; recursive = true; };
     };
+    programs = {
+      direnv = {
+        enable = true;
+        enableBashIntegration = true; # see note on other shells below
+        nix-direnv.enable = true;
+      };
+      home-manager.enable = true;
+    };
     xdg.enable = true;
-    programs.home-manager.enable = true;
 }
