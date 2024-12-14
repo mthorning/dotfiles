@@ -1,2 +1,0 @@
-stow -d ./stowdirs/home -t $HOME base
-stow -d ./stowdirs/home -t $HOME --override=".zshrc" home 
