@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+let
+  homeDir = builtins.getEnv "HOME";
+in {
   home = {
     stateVersion = "23.11";
     username = "mattthorning";
@@ -8,5 +11,6 @@
       gh
     ];
 
+    file."${homeDir}/.zshrc" = { source = ./zshrc-work; };
   };
 }

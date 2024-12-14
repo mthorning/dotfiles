@@ -9,9 +9,13 @@
 
   outputs = { nixpkgs, home-manager, ... }: {
     homeConfigurations = {
-      myprofile = home-manager.lib.homeManagerConfiguration {
+      "Matts-MacBook-M1-Pro.local" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         modules = [ ./base.nix ./home.nix ];
+      };
+      workprofile = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        modules = [ ./base.nix ./work.nix ];
       };
     };
   };

@@ -1,6 +1,8 @@
-.PHONY: update
+hostname := $(shell uname -n)
+
+.PHONY: switch
 switch:
-	home-manager switch --flake .#myprofile
+	home-manager switch --flake .#$(hostname)
 
 .PHONY: clean
 clean:
