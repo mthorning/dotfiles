@@ -1,6 +1,6 @@
-.PHONY: install
-install:
-	brew bundle
+.PHONY: all
+all:
+	make brew
 
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
@@ -11,6 +11,10 @@ install:
 	npm i -g pnpm
 
 	curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh | bash
+
+.PHONY: brew
+brew:
+	brew bundle
 
 .PHONY: stow-shared
 stow-shared:
