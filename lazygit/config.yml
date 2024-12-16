@@ -28,4 +28,5 @@ gui:
     defaultFgColor:
       - "#c8d3f5"
 git:
-  skipHookPrefix: "WIP: "
+  skipHookPrefix: "WIP "
+  disableForcePushing: false
