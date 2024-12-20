@@ -37,7 +37,7 @@ local getConfigs = function()
           includeCompletionsForModuleExports = true
         }
       },
-      root_dir = lspconfig.util.root_pattern("package.json"),
+      root_dir = lspconfig.util.root_pattern(".git"),
       single_file_support = false,
       cmd = {
         lsp_servers .. "/typescript-language-server",
@@ -232,7 +232,7 @@ return {
   { "williamboman/mason-lspconfig.nvim" },
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
+    dependencies = { 'saghen/blink.cmp' },
     config = function()
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
           vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
