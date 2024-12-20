@@ -34,11 +34,10 @@ local getConfigs = function()
       init_options = {
         preferences = {
           disableSuggestions = false,
-          includeCompletionsForModuleExports = true
+          includeCompletionsForModuleExports = true,
+          sortImports = true
         }
       },
-      root_dir = lspconfig.util.root_pattern("package.json"),
-      single_file_support = false,
       cmd = {
         lsp_servers .. "/typescript-language-server",
         "--stdio"
@@ -233,7 +232,7 @@ return {
   { "williamboman/mason-lspconfig.nvim" },
   {
     'neovim/nvim-lspconfig',
-    event = 'VeryLazy',
+    dependencies = { 'saghen/blink.cmp' },
     config = function()
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
           vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -242,7 +241,7 @@ return {
       local servers = getConfigs()
 
       for server, config in pairs(servers) do
-        config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+        -- config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
         require'lspconfig'[server].setup(config)
       end
 
@@ -261,6 +260,7 @@ return {
   {
     'saghen/blink.cmp',
     lazy = false,
+    enabled = false,
     dependencies = 'rafamadriz/friendly-snippets',
     version = 'v0.*',
     opts = {

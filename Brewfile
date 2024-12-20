@@ -1,5 +1,3 @@
-tap "homebrew/cask-fonts"
-
 brew "stow"
 brew "neovim"
 brew "tmux"

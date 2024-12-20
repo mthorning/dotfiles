@@ -2,6 +2,7 @@ return {
   'simrat39/rust-tools.nvim',
   event = 'VeryLazy',
   ft = 'rust',
+  enabled = false,
   config = function()
     local rt = require("rust-tools")
     local lsp_servers = vim.fn.stdpath('data') .. "/lsp_servers"
