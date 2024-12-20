@@ -13,7 +13,12 @@ return {
     words = { enabled = false },
     lazygit = { enabled = true },
     indent = { enabled = true },
-    zen = { enabled = true },
+    zen = { 
+      enabled = true ,
+      toggles = {
+        dim = false,
+      }
+    },
     dashboard = {
       width = 40,
       pane_gap = 4,
@@ -21,7 +26,7 @@ return {
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
           { icon = " ", key = "t", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-          { icon = "󰈙 ", key = "e", desc = "Explorer", action = ":Yazi" },
+          { icon = "󰈙 ", key = "e", desc = "Explorer", action = ":Oil --float" },
           { icon = "", key = "g", desc = "Git", action = ":lua Snacks.lazygit()", enabled = package.loaded.lazy ~= nil },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
