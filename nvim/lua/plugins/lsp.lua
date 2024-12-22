@@ -92,6 +92,7 @@ local getConfigs = function()
           diagnostics = {
             -- Get the language server to recognize the `vim` global
             globals = {
+              'Snacks',
               'vim',
             },
           },

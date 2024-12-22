@@ -84,7 +84,7 @@ return {
       { '<leader>lf',      '<CMD>Telescope lsp_references<CR>',                                                       desc = 'References',               nowait = false,    remap = false },
       { '<leader>lh',      '<CMD>lua vim.lsp.buf.hover()<CR>',                                                        desc = 'Hover',                    nowait = false,    remap = false },
       { '<leader>ll',      '<CMD>lua vim.diagnostic.open_float()<CR>',                                                desc = 'Line Diagnostic',          nowait = false,    remap = false },
-      { '<leader>lr',      '<CMD>lua vim.lsp.buf.rename()<CR>',                                                       desc = 'Rename',                   nowait = false,    remap = false },
+      { '<leader>lr',      '<CMD>LspRename<CR>',                                                       desc = 'Rename',                   nowait = false,    remap = false },
       { '<leader>ls',      '<CMD>Telescope lsp_document_symbols<CR>',                                                 desc = 'Symbols',                  nowait = false,    remap = false },
       { '<leader>lt',      '<CMD>Telescope lsp_type_definitions<CR>',                                                 desc = 'Goto Type Definition',     nowait = false,    remap = false },
       { '<leader>lv',      '<CMD>vsplit | Telescope lsp_definitions<CR>',                                             desc = 'Goto Definition in split', nowait = false,    remap = false },
@@ -102,17 +102,23 @@ return {
       { '<leader>r',       '<CMD>GrugFar ripgrep<CR>',                                                                desc = 'Replace',                  nowait = false,    remap = false },
 
       { '<leader>t',       group = 'Terminal',                                                                        nowait = false,                    remap = false },
-      { '<leader>t.',      '<CMD>term<CR>',                                                                           desc = 'Here',                     nowait = false,    remap = false },
-      { '<leader>ts',      '<CMD>split term://zsh | :startinsert<CR>',                                                desc = 'Horizontal split',         nowait = false,    remap = false },
-      { '<leader>tT',      '<CMD>tabnew | :edit term://zsh | :startinsert<CR>',                                       desc = 'Tab',                      nowait = false,    remap = false },
-      { '<leader>tv',      '<CMD>vsplit term://zsh | :startinsert<CR>',                                               desc = 'Vert split',               nowait = false,    remap = false },
+      { '<leader>t.',      '<cmd>term<CR>',                                                                           desc = 'Here',                     nowait = false,    remap = false },
+      { '<leader>ts',      '<cmd>split term://zsh | :startinsert<CR>',                                                desc = 'Horizontal split',         nowait = false,    remap = false },
+      { '<leader>tt',      '<cmd>tabnew | :edit term://zsh | :startinsert<CR>',                                       desc = 'Tab',                      nowait = false,    remap = false },
+      { '<leader>tv',      '<cmd>vsplit term://zsh | :startinsert<CR>',                                               desc = 'Vert split',               nowait = false,    remap = false },
       { '<leader>tt',      '<CMD>Floaterminal<CR>',                                                                   desc = 'Float',                    nowait = false,    remap = false },
 
-      { '<leader>w',       '<CMD>w<CR>',                                                                              desc = 'Save',                     nowait = false,    remap = false },
-      { '<leader>x',       '<CMD>silent !chmod +x %<CR>',                                                             desc = 'Make Executable',          nowait = false,    remap = false },
-      { '<leader>y',       '<CMD>let @+ = expand("%:p")<CR>',                                                         desc = 'Copy path',                nowait = false,    remap = false },
-      { '<leader>z',       '<CMD>lua require("snacks").zen()<CR>',                                                     desc = 'Zen Mode',                 nowait = false,    remap = false },
-      { '<leader>u',       '<CMD>UndotreeToggle<CR>',                                                                 desc = 'Undo tree',                nowait = false,    remap = false },
+      { '<leader>w',       '<cmd>w<CR>',                                                                              desc = 'Save',                     nowait = false,    remap = false },
+
+      { '<leader>x',       group = 'Execute lua',                                                                         nowait = false,                    remap = false },
+      { '<leader>xf',      '<cmd>%lua<CR>',                                                                           desc = 'Execute file',             nowait = false,    remap = false },
+      { '<leader>xs',      "<cmd>'<,'>lua<CR>",                                                                       desc = 'Execute selection',        nowait = false,    remap = false },
+      { '<leader>xl',      "<cmd>.lua<CR>",                                                                           desc = 'Execute line',             nowait = false,    remap = false },
+
+
+      { '<leader>y',       '<cmd>let @+ = expand("%:p")<CR>',                                                         desc = 'Copy path',                nowait = false,    remap = false },
+      { '<leader>z',       '<cmd>lua require("snacks").zen()<CR>',                                                    desc = 'Zen Mode',                 nowait = false,    remap = false },
+      { '<leader>u',       '<cmd>UndotreeToggle<CR>',                                                                 desc = 'Undo tree',                nowait = false,    remap = false },
     })
   end,
 }
