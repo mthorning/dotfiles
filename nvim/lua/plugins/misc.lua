@@ -46,4 +46,5 @@ return {
     event = "VeryLazy",
     config = true,
   },
+  { 'echasnovski/mini.ai', version = false },
 }
