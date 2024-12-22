@@ -84,7 +84,7 @@ return {
       { '<leader>lf',      '<CMD>Telescope lsp_references<CR>',                                                       desc = 'References',               nowait = false,    remap = false },
       { '<leader>lh',      '<CMD>lua vim.lsp.buf.hover()<CR>',                                                        desc = 'Hover',                    nowait = false,    remap = false },
       { '<leader>ll',      '<CMD>lua vim.diagnostic.open_float()<CR>',                                                desc = 'Line Diagnostic',          nowait = false,    remap = false },
-      { '<leader>lr',      '<CMD>lua vim.lsp.buf.rename()<CR>',                                                       desc = 'Rename',                   nowait = false,    remap = false },
+      { '<leader>lr',      '<CMD>LspRename<CR>',                                                       desc = 'Rename',                   nowait = false,    remap = false },
       { '<leader>ls',      '<CMD>Telescope lsp_document_symbols<CR>',                                                 desc = 'Symbols',                  nowait = false,    remap = false },
       { '<leader>lt',      '<CMD>Telescope lsp_type_definitions<CR>',                                                 desc = 'Goto Type Definition',     nowait = false,    remap = false },
       { '<leader>lv',      '<CMD>vsplit | Telescope lsp_definitions<CR>',                                             desc = 'Goto Definition in split', nowait = false,    remap = false },

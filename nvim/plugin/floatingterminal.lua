@@ -31,7 +31,6 @@ local function create_floating_window(opts)
   }
 
   vim.api.nvim_create_autocmd('BufEnter', {
-    group = "floatingterminal",
     buffer = buf,
     callback = function()
       vim.cmd(":startinsert")
