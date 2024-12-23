@@ -1,131 +1,86 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    event = 'VeryLazy',
-    build = ":TSUpdate",
+    'nvim-treesitter/nvim-treesitter',
+    lazy = true,
+    build = ':TSUpdate',
     config = function()
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-        ensure_installed = { 'astro', 'tsx', 'typescript', 'html' },
-        sync_install = false,
+      require 'nvim-treesitter.configs'.setup {
+        ensure_installed = { 'javascript', 'go', 'typescript', 'tsx', 'html', 'css', 'lua' },
         auto_install = true,
+        sync_install = false,
+        autotag = { enabled = false },
         highlight = { enable = true, additional_vim_regex_highlighting = false },
         indent = { enable = true },
-        ignore_install = { "phpdoc", "c", "haskell" },
-        autotag = { enable = true },
+        ignore_install = {},
+        modules = {},
         textobjects = {
+          -- from treesitter-textobjects
+          lsp_interop = {
+            enable = true,
+            border = 'rounded',
+            floating_preview_opts = {},
+            peek_definition_code = {
+              ["<leader>lp"] = "@function.outer",
+            },
+          },
           select = {
             enable = true,
             lookahead = true,
+
             keymaps = {
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['aa'] = '@parameter.outer',
-              ['ia'] = '@parameter.inner'
-            }
-          }
-        }
-      })
-    end
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "parameter.inner",
+            },
+            include_surrounding_whitespace = true,
+          },
+        },
+      }
+    end,
   },
   {
     'windwp/nvim-ts-autotag',
     event = 'BufReadPre',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     config = function()
-      require('nvim-ts-autotag').setup({
+      require 'nvim-ts-autotag'.setup {
         opts = {
-          -- Defaults
-          enable_close = true, -- Auto close tags
-          enable_rename = true, -- Auto rename pairs of tags
-          enable_close_on_slash = true -- Auto close on trailing </
+          enable_close = true,
+          enable_rename = true,
+          enable_close_on_slash = true
         },
-        -- Also override individual filetype configs, these take priority.
-        -- Empty by default, useful if one of the "opts" global settings
-        -- doesn't work well in a specific filetype
-        per_filetype = {
-          --[[ ["html"] = {
-            enable_close = false
-          } ]]
-        }
-      })
-    end
-  },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    lazy = true,
-    build = ':TSUpdate',
-    config = function()
-      require 'nvim-treesitter.configs'.setup {
-        modules = {},
-        ensure_installed = { 'astro', 'typescript', 'tsx', 'html' },
-        auto_install = true,
-        sync_install = false,
-        highlight = { enable = true, additional_vim_regex_highlighting = false },
-        indent = { enable = true },
-        ignore_install = { "phpdoc", "c", "haskell" },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['aa'] = '@parameter.outer',
-              ['ia'] = '@parameter.inner'
-            }
-          }
-        }
       }
-    end,
+    end
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     event = 'VimEnter',
     opts = {
-      enable = true,        -- Enable this plugin (Can be enabled/disabled later via commands)
-      max_lines = 6,        -- How many lines the window should span. Values <= 0 mean no limit.
-      trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
-      patterns = {          -- Match patterns for TS nodes. These get wrapped to match at word boundaries.
-        -- For all filetypes
-        -- Note that setting an entry here replaces all other patterns for this entry.
-        -- By setting the 'default' entry below, you can control which nodes you want to
-        -- appear in the context window.
+      enable = true,
+      max_lines = 6,
+      trim_scope = 'outer',
+      patterns = {
         default = {
           'class', 'function', 'method', 'for', 'while', 'if', 'switch',
           'case'
         },
-        -- Patterns for specific filetypes
-        -- If a pattern is missing, *open a PR* so everyone can benefit.
-        tex = { 'chapter', 'section', 'subsection', 'subsubsection' },
         rust = { 'impl_item', 'struct', 'enum' },
-        scala = { 'object_definition' },
-        vhdl = { 'process_statement', 'architecture_body', 'entity_declaration' },
         markdown = { 'section' },
-        elixir = {
-          'anonymous_function', 'arguments', 'block', 'do_block', 'list',
-          'map', 'tuple', 'quoted_content'
-        },
         json = { 'pair' },
         yaml = { 'block_mapping_pair' }
       },
-      exact_patterns = {
-        -- Example for a specific filetype with Lua patterns
-        -- Treat patterns.rust as a Lua pattern (i.e "^impl_item$" will
-        -- exactly match "impl_item" only)
-        -- rust = true,
-      },
-
-      -- [!] The options below are exposed but shouldn't require your attention,
-      --     you can safely ignore them.
-
-      zindex = 20,     -- The Z-index of the context window
-      mode = 'cursor', -- Line used to calculate context. Choices: 'cursor', 'topline'
-      -- Separator between context and content. Should be a single character string, like '-'.
-      -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+      exact_patterns = {},
+      zindex = 20,
+      mode = 'cursor',
       separator = nil
     }
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = 'nvim-treesitter/nvim-treesitter'
   }
 }
