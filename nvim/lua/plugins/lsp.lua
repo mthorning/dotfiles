@@ -241,7 +241,7 @@ return {
       local servers = getConfigs()
 
       for server, config in pairs(servers) do
-        -- config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+        config.capabilities = require('cmp_nvim_lsp').default_capabilities()
         require'lspconfig'[server].setup(config)
       end
 

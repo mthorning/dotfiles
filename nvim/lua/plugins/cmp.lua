@@ -2,15 +2,30 @@ return {
   {
     'hrsh7th/nvim-cmp',
     event = 'VeryLazy',
-    dependencies = { 'hrsh7th/vim-vsnip-integ', 'hrsh7th/vim-vsnip' },
+    dependencies = {
+      'dcampos/cmp-snippy',
+      {
+        'dcampos/nvim-snippy',
+        config = function()
+          require 'snippy'.setup {
+            mappings = {
+              is = {
+                ['<Tab>'] = 'expand_or_advance',
+                ['<S-Tab>'] = 'previous',
+              },
+            }
+          }
+        end
+      },
+    },
     config = function()
       local cmp = require 'cmp'
 
       cmp.setup {
         snippet = {
           expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
-          end
+            require('snippy').expand_snippet(args.body)
+          end,
         },
         mapping = {
           ['<Up>'] = cmp.mapping.scroll_docs(-4),
@@ -25,7 +40,7 @@ return {
           })
         },
         sources = {
-          { name = 'nvim_lsp' }, { name = 'buffer' }, { name = 'path' }, {
+          { name = 'nvim_lsp' }, { name = 'buffer' }, { name = 'path' }, { name = 'snippy' }, {
           name = 'buffer',
           options = {
             get_bufnrs = function()
@@ -43,7 +58,7 @@ return {
               path = 'ﱮ',
               buffer = '﬘',
               zsh = '',
-              vsnip = '',
+              snippy = '',
               spell = '暈'
             })[entry.source.name]
 
@@ -51,11 +66,6 @@ return {
           end
         }
       }
-
-      vim.cmd([[
-        imap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
-        smap <expr> <C-n>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-n>'
-      ]])
     end
   },
   {
@@ -65,11 +75,6 @@ return {
   },
   {
     'hrsh7th/cmp-buffer',
-    event = 'BufReadPre',
-    dependencies = { 'hrsh7th/nvim-cmp' }
-  },
-  {
-    'hrsh7th/cmp-vsnip',
     event = 'BufReadPre',
     dependencies = { 'hrsh7th/nvim-cmp' }
   },
