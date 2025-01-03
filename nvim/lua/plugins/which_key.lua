@@ -44,7 +44,8 @@ return {
       { '<leader>dx',      '<CMD>lua require"dap".disconnect()<CR>',                                                  desc = 'Exit',                     nowait = false,    remap = false },
       { '<leader>de',      '<CMD>lua require("dapui").eval()<CR>',                                                    mode = { 'n', 'v' },               desc = 'Evaluate', nowait = false, remap = false },
 
-      { '<leader>e',       '<CMD>Oil --float<CR>',                                                                           desc = 'Explorer',                 nowait = false,    remap = false },
+      -- { '<leader>e',       '<CMD>Oil --float<CR>',                                                                           desc = 'Explorer',                 nowait = false,    remap = false },
+      { '<leader>e',       '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',                 nowait = false,    remap = false },
 
       { '<leader>f',       group = 'Find',                                                                            nowait = false,                    remap = false },
       { '<leader>fS',      '<CMD>Telescope search_history<CR>',                                                       desc = 'Search History',           nowait = false,    remap = false },

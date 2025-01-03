@@ -30,12 +30,6 @@ local function create_floating_window(opts)
     border = "rounded",
   }
 
-  vim.api.nvim_create_autocmd('BufEnter', {
-    buffer = buf,
-    callback = function()
-      vim.cmd(":startinsert")
-    end
-  })
   local win = vim.api.nvim_open_win(buf, true, win_config)
 
   return { buf = buf, win = win }

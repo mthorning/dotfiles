@@ -1,6 +1,6 @@
 return {
   'stevearc/oil.nvim',
-  enabled = true,
+  enabled = false,
   opts = {
     columns = {
       "icon",

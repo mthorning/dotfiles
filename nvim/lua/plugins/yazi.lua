@@ -1,6 +1,5 @@
 return {
   "mikavilpas/yazi.nvim",
-  enabled =false,
   lazy = false,
   keys = {},
   keymaps = {},
