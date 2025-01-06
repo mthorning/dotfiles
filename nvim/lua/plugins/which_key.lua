@@ -56,6 +56,7 @@ return {
       { '<leader>fg',      '<CMD>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',              desc = 'Grep',                     nowait = false,    remap = false },
       { '<leader>fl',      '<CMD>Telescope resume<CR>',                                                               desc = 'Last Query',               nowait = false,    remap = false },
       { '<leader>fm',      '<CMD>Telescope marks<CR>',                                                                desc = 'Marks',                    nowait = false,    remap = false },
+      { '<leader>fn',      '<CMD>ObsidianSearch<CR>',                                                                 desc = 'Notes',                    nowait = false,    remap = false },
       { '<leader>fh',      '<CMD>Telescope help_tags<CR>',                                                            desc = 'Help',                     nowait = false,    remap = false },
       { '<leader>fp',      '<CMD>lua require("spectre").open_visual()<CR>',                                           desc = 'Project',                  nowait = false,    remap = false },
       { '<leader>fq',      '<CMD>Telescope quickfix<CR>',                                                             desc = 'QuickFix',                 nowait = false,    remap = false },
@@ -85,7 +86,7 @@ return {
       { '<leader>lf',      '<CMD>Telescope lsp_references<CR>',                                                       desc = 'References',               nowait = false,    remap = false },
       { '<leader>lh',      '<CMD>lua vim.lsp.buf.hover()<CR>',                                                        desc = 'Hover',                    nowait = false,    remap = false },
       { '<leader>ll',      '<CMD>lua vim.diagnostic.open_float()<CR>',                                                desc = 'Line Diagnostic',          nowait = false,    remap = false },
-      { '<leader>lr',      '<CMD>LspRename<CR>',                                                       desc = 'Rename',                   nowait = false,    remap = false },
+      { '<leader>lr',      '<CMD>LspRename<CR>',                                                                      desc = 'Rename',                   nowait = false,    remap = false },
       { '<leader>ls',      '<CMD>Telescope lsp_document_symbols<CR>',                                                 desc = 'Symbols',                  nowait = false,    remap = false },
       { '<leader>lt',      '<CMD>Telescope lsp_type_definitions<CR>',                                                 desc = 'Goto Type Definition',     nowait = false,    remap = false },
       { '<leader>lv',      '<CMD>vsplit | Telescope lsp_definitions<CR>',                                             desc = 'Goto Definition in split', nowait = false,    remap = false },
@@ -111,7 +112,7 @@ return {
 
       { '<leader>w',       '<cmd>w<CR>',                                                                              desc = 'Save',                     nowait = false,    remap = false },
 
-      { '<leader>x',       group = 'Execute lua',                                                                         nowait = false,                    remap = false },
+      { '<leader>x',       group = 'Execute lua',                                                                     nowait = false,                    remap = false },
       { '<leader>xf',      '<cmd>%lua<CR>',                                                                           desc = 'Execute file',             nowait = false,    remap = false },
       { '<leader>xs',      "<cmd>'<,'>lua<CR>",                                                                       desc = 'Execute selection',        nowait = false,    remap = false },
       { '<leader>xl',      "<cmd>.lua<CR>",                                                                           desc = 'Execute line',             nowait = false,    remap = false },
