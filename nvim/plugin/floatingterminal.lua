@@ -46,4 +46,14 @@ local toggle_terminal = function()
   end
 end
 
+local reset_terminal = function()
+  state = {
+    floating = {
+      buf = -1,
+      win = -1,
+    }
+  }
+end
+
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
+vim.api.nvim_create_user_command("FloaterminalReset", reset_terminal, {})
