@@ -20,6 +20,7 @@ return {
     },
     future_features = {
       ya_emit_reveal = true,
+      ya_emit_open = true,
     },
     keymaps = {
       show_help = 'g?',

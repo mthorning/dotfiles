@@ -3,7 +3,7 @@ return {
   priority = 1000,
   lazy = false,
   init = function()
-    require'snacks'.indent.enable()
+    require 'snacks'.indent.enable()
   end,
   opts = {
     bigfile = { enabled = true },
@@ -13,11 +13,28 @@ return {
     words = { enabled = false },
     lazygit = { enabled = true },
     indent = { enabled = true },
-    zen = { 
-      enabled = true ,
+    zen = {
+      enabled = true,
       toggles = {
         dim = false,
-      }
+        git_signs = true,
+        mini_diff_signs = true,
+        diagnostics = true,
+        inlay_hints = true,
+      },
+      show = {
+        statusline = true, -- can only be shown when using the global statusline
+        tabline = false,
+      },
+      win = { style = "zen" },
+      zoom = {
+        toggles = {},
+        show = { statusline = true, tabline = true },
+        win = {
+          backdrop = false,
+          width = 0, -- full width
+        },
+      },
     },
     dashboard = {
       width = 40,
