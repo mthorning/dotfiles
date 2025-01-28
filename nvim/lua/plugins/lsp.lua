@@ -31,6 +31,9 @@ local getConfigs = function()
   return {
     -- ts_ls {{{
     ts_ls = {
+      root_dir = function(...)
+        return require'lspconfig.util'.root_pattern(".git")(...)
+      end,
       init_options = {
         preferences = {
           disableSuggestions = false,
@@ -169,8 +172,11 @@ local getConfigs = function()
     },
     -- }}}
 
-  -- eslint {{{
+    -- eslint {{{
     eslint = {
+      root_dir = function(...)
+        return require'lspconfig.util'.root_pattern(".git")(...)
+      end,
       cmd = { lsp_servers .. "/vscode-eslint-language-server", "--stdio" },
       on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
@@ -212,7 +218,7 @@ local getConfigs = function()
         }
       }
     },
-  -- }}}
+    -- }}}
 
     -- zig {{{
     zls = {
@@ -232,7 +238,7 @@ return {
   { "williamboman/mason-lspconfig.nvim" },
   {
     'neovim/nvim-lspconfig',
-    dependencies = { 'saghen/blink.cmp' },
+    dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
           vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -242,7 +248,7 @@ return {
 
       for server, config in pairs(servers) do
         config.capabilities = require('cmp_nvim_lsp').default_capabilities()
-        require'lspconfig'[server].setup(config)
+        require 'lspconfig'[server].setup(config)
       end
 
       makeNicerPopups()
@@ -256,28 +262,5 @@ return {
         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
       },
     },
-  },
-  {
-    'saghen/blink.cmp',
-    lazy = false,
-    enabled = false,
-    dependencies = 'rafamadriz/friendly-snippets',
-    version = 'v0.*',
-    opts = {
-      keymap = {
-        preset = 'default',
-        ['<C-space>'] = { 'select_and_accept' },
-      },
-      appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = 'mono'
-      },
-      sources = {
-        completion = {
-          enabled_providers = { 'lsp', 'path', 'snippets', 'buffer' },
-        },
-      },
-    },
-    opts_extend = { "sources.completion.enabled_providers" }
   },
 }
