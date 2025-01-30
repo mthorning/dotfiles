@@ -57,7 +57,7 @@ return {
     opts = {
       enabled = true,
       message_template = "<author> • <date>",
-      date_format = "%m-%d-%Y %H:%M:%S",
+      date_format = "%Y-%m-%d",
       virtual_text_column = 1,
     },
   }
