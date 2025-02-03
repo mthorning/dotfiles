@@ -56,7 +56,6 @@ return {
       { '<leader>fg',      '<CMD>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',              desc = 'Grep',                     nowait = false,    remap = false },
       { '<leader>fl',      '<CMD>Telescope resume<CR>',                                                               desc = 'Last Query',               nowait = false,    remap = false },
       { '<leader>fm',      '<CMD>Telescope marks<CR>',                                                                desc = 'Marks',                    nowait = false,    remap = false },
-      { '<leader>fn',      '<CMD>ObsidianSearch<CR>',                                                                 desc = 'Notes',                    nowait = false,    remap = false },
       { '<leader>fh',      '<CMD>Telescope help_tags<CR>',                                                            desc = 'Help',                     nowait = false,    remap = false },
       { '<leader>fp',      '<CMD>lua require("spectre").open_visual()<CR>',                                           desc = 'Project',                  nowait = false,    remap = false },
       { '<leader>fq',      '<CMD>Telescope quickfix<CR>',                                                             desc = 'QuickFix',                 nowait = false,    remap = false },
