@@ -1,3 +1,6 @@
-font-family = ""
-font-family = "MonoLisa"
+font-family = MonoLisa
+font-size = 18
+font-thicken = true
+font-thicken-strength = 150
 theme = "tokyonight-storm"
+fullscreen = true
