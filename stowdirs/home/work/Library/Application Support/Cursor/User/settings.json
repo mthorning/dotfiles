@@ -152,6 +152,16 @@
             "commands": [
                 "editor.action.formatDocument"
             ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "t",
+                "t"
+            ],
+            "commands": [
+                "workbench.action.terminal.toggleTerminal"
+            ]
         }
     ]
 }
