@@ -162,6 +162,28 @@
             "commands": [
                 "workbench.action.terminal.toggleTerminal"
             ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l",
+                "h"
+            ],
+            "commands": [
+                "editor.action.showHover"
+            ]
         }
-    ]
+    ],
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "<C-space>"
+            ],
+            "commands": [
+                "acceptSelectedSuggestion"
+            ]
+        },
+    ],
+    "extensions.ignoreRecommendations": true,
+    "editor.accessibilitySupport": "off"
 }
