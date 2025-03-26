@@ -27,7 +27,10 @@ return {
         initial_mode = 'insert',
         selection_strategy = 'reset',
         sorting_strategy = 'descending',
-        layout_strategy = 'horizontal',
+        layout_strategy = 'flex',
+        layout_config = {
+          flip_columns = 175
+        },
         file_ignore_patterns = { "node_modules", ".git" },
         mappings = {
           i = {
