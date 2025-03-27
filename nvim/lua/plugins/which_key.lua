@@ -78,7 +78,7 @@ return {
       { '<leader>l',       group = 'LSP',                                                                             nowait = false,                        remap = false },
       { '<leader>l/',      '<CMD>LspInfo<CR>',                                                                        desc = 'Info',                         nowait = false,    remap = false },
       { '<leader>l?',      '<CMD>Mason<CR>',                                                                          desc = 'Server Info',                  nowait = false,    remap = false },
-      { '<leader>lF',      '<CMD>lua vim.lsp.buf.format({ async = true })<CR>',                                       desc = 'Format',                       nowait = false,    remap = false },
+      { '<leader>lF',      '<CMD>CocAction("format")<CR>',                                       desc = 'Format',                       nowait = false,    remap = false },
       { '<leader>ld',      '<CMD>Telescope lsp_definitions<CR>',                                                      desc = 'Goto Definition',              nowait = false,    remap = false },
       { '<leader>lf',      '<CMD>Telescope lsp_references<CR>',                                                       desc = 'References',                   nowait = false,    remap = false },
       { '<leader>lh',      '<CMD>lua vim.lsp.buf.hover()<CR>',                                                        desc = 'Hover',                        nowait = false,    remap = false },
