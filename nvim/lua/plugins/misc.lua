@@ -60,5 +60,6 @@ return {
       date_format = "%Y-%m-%d",
       virtual_text_column = 1,
     },
-  }
+  },
+  { "github/copilot.vim" }
 }
