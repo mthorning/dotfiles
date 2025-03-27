@@ -1,0 +1,29 @@
+{
+  "tsserver.enable": true,
+  "typescript.suggestionActions.enabled": true,
+  "javascript.suggestionActions.enabled": true,
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+  "suggest.noselect": false,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "⚠",
+  "diagnostic.infoSign": "ℹ",
+  "diagnostic.hintSign": "➤",
+  "suggest.enablePreselect": true,
+  "suggest.echodocSupport": true,
+  "suggest.maxCompleteItemCount": 20,
+  "coc.preferences.hoverTarget": "float",
+  "coc.preferences.colorSupport": true,
+  "tsserver.formatOnType": true,
+  "diagnostic.checkCurrentLine": true,
+  "coc.preferences.jumpCommand": "vsplit",
+  "diagnostic.floatConfig": {
+    "border": false,
+    "enableMessage": false,
+    "focusable": false
+  },
+  "diagnostic.enableMessage": "never",
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.enableHighlightLineNumber": false,
+  "diagnostic.messageTarget": "none",
+  "diagnostic.enablePopupHover": false
+}

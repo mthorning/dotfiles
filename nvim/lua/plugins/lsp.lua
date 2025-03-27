@@ -45,6 +45,7 @@ local getConfigs = function()
         lsp_servers .. "/typescript-language-server",
         "--stdio"
       },
+      filetypes = {}, -- Disable typescript-language-server for all filetypes
       on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePre", {
           buffer = bufnr,
