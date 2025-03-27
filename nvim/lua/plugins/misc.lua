@@ -61,23 +61,20 @@ return {
       virtual_text_column = 1,
     },
   },
-  { 
+  {
     "github/copilot.vim",
     config = function()
-      -- Use Ctrl+Tab to accept Copilot suggestion
-      vim.keymap.set('i', '<C-Tab>', 'copilot#Accept("<CR>")', {
+      vim.keymap.set('i',  '<C-Tab>', 'copilot#Accept("\\<CR>")', {
         expr = true,
         silent = true,
         replace_keycodes = false
       })
-      
-      -- Use Ctrl+Shift+Tab to cycle through Copilot suggestions
+ 
       vim.keymap.set('i', '<C-S-Tab>', 'copilot#Next()', {
         expr = true,
         silent = true
       })
-      
-      -- Disable default Tab mapping for Copilot
+
       vim.g.copilot_no_tab_map = true
     end
   }
