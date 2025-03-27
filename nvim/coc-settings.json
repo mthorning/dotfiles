@@ -25,5 +25,8 @@
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.enableHighlightLineNumber": false,
   "diagnostic.messageTarget": "none",
-  "diagnostic.enablePopupHover": false
+  "diagnostic.enablePopupHover": false,
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
 }

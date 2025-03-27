@@ -13,10 +13,11 @@ return {
       end
     })
 
-    -- Set up coc extensions for typescript
+    -- Set up coc extensions for typescript and eslint
     vim.g.coc_global_extensions = {
       'coc-tsserver',
       'coc-json',
+      'coc-eslint',
     }
 
     -- Disable COC's diagnostic float windows (use your existing ones)
