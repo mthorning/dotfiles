@@ -2,7 +2,6 @@
   "tsserver.enable": true,
   "typescript.suggestionActions.enabled": true,
   "javascript.suggestionActions.enabled": true,
-  "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
   "snippets.userSnippetsDirectory": "~/dotfiles/nvim/snippets",
   "snippets.extends": {
     "javascriptreact": ["javascript"],
@@ -28,6 +27,9 @@
   "diagnostic.messageTarget": "float",
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
+  "eslint.useESLintClass": true,
+  "eslint.packageManager": "npm",
+  "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.validate": [
     "javascript",
     "javascriptreact",

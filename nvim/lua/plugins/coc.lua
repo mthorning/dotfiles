@@ -4,14 +4,6 @@ return {
   event = 'VeryLazy',
   ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
   config = function()
-    -- Disable diagnostics for typescript files in LSP to avoid duplicate messages
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-      callback = function()
-        -- Disable LSP diagnostics for these filetypes
-        vim.diagnostic.disable(0)
-      end
-    })
 
     -- Set up coc extensions for typescript, eslint, snippets and prettier
     vim.g.coc_global_extensions = {
@@ -49,12 +41,6 @@ return {
     end
     
     local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
-    -- Use tab for trigger completion with characters ahead and navigate
-    keyset("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
-    keyset("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
-    
-    -- Make <CR> to accept selected completion item or notify coc.nvim to format
-    keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
     
     -- Use <c-space> to select completion item
     keyset("i", "<c-space>", [[coc#pum#visible() ? coc#pum#confirm() : coc#refresh()]], opts)

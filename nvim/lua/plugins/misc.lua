@@ -61,25 +61,4 @@ return {
       virtual_text_column = 1,
     },
   },
-  {
-    "github/copilot.vim",
-    config = function()
-      -- Set this before the keymaps
-      vim.g.copilot_no_tab_map = true
-      
-      -- Use vim.schedule to ensure Copilot is loaded before setting keymaps
-      vim.schedule(function()
-        vim.keymap.set('i', '<C-Tab>', 'copilot#Accept("<CR>")', {
-          expr = true,
-          silent = true,
-          replace_keycodes = false
-        })
-        
-        vim.keymap.set('i', '<C-S-Tab>', 'copilot#Next()', {
-          expr = true,
-          silent = true
-        })
-      end)
-    end
-  }
 }
