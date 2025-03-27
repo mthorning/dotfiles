@@ -22,9 +22,9 @@ return {
       'coc-prettier',
     }
 
-    -- Disable COC's diagnostic float windows (use your existing ones)
+    -- Enable COC's diagnostic float windows for Ctrl-n navigation
     vim.g.coc_enable_locationlist = 0
-    vim.g.coc_diagnostic_disable_float = 1
+    vim.g.coc_diagnostic_disable_float = 0
     
     -- Make coc use same popup styling
     vim.g.coc_borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' }

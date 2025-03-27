@@ -14,23 +14,18 @@
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "➤",
   "suggest.enablePreselect": true,
-  "suggest.echodocSupport": true,
   "suggest.maxCompleteItemCount": 20,
-  "coc.preferences.hoverTarget": "float",
-  "coc.preferences.colorSupport": true,
-  "tsserver.formatOnType": true,
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.jumpCommand": "vsplit",
   "diagnostic.floatConfig": {
-    "border": false,
-    "enableMessage": false,
+    "border": true,
+    "rounded": true,
     "focusable": false
   },
-  "diagnostic.enableMessage": "never",
+  "diagnostic.enableMessage": "jump",
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.enableHighlightLineNumber": false,
-  "diagnostic.messageTarget": "none",
-  "diagnostic.enablePopupHover": false,
+  "diagnostic.messageTarget": "float",
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
   "eslint.validate": [
@@ -41,7 +36,6 @@
   ],
   "prettier.requireConfig": true,
   "prettier.onlyUseLocalVersion": true,
-  "prettier.disableSuccessMessage": true,
   "prettier.formatterPriority": 1,
   "snippets.ultisnips.pythonPrompt": false
 }

@@ -174,7 +174,7 @@ local getConfigs = function()
     -- }}}
 
     -- eslint {{{
-    eslint = {
+    --[[ eslint = {
       root_dir = function(...)
         return require'lspconfig.util'.root_pattern(".git")(...)
       end,
@@ -218,7 +218,7 @@ local getConfigs = function()
           mode = "location"
         }
       }
-    },
+    }, ]]
     -- }}}
 
     -- zig {{{
