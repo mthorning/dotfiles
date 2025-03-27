@@ -3,6 +3,11 @@
   "typescript.suggestionActions.enabled": true,
   "javascript.suggestionActions.enabled": true,
   "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
+  "snippets.userSnippetsDirectory": "~/dotfiles/nvim/snippets",
+  "snippets.extends": {
+    "javascriptreact": ["javascript"],
+    "typescriptreact": ["typescript"]
+  },
   "suggest.noselect": false,
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",
@@ -28,5 +33,15 @@
   "diagnostic.enablePopupHover": false,
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
-  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"]
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "prettier.requireConfig": true,
+  "prettier.onlyUseLocalVersion": true,
+  "prettier.disableSuccessMessage": true,
+  "prettier.formatterPriority": 1,
+  "snippets.ultisnips.pythonPrompt": false
 }

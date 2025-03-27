@@ -13,11 +13,13 @@ return {
       end
     })
 
-    -- Set up coc extensions for typescript and eslint
+    -- Set up coc extensions for typescript, eslint, snippets and prettier
     vim.g.coc_global_extensions = {
       'coc-tsserver',
       'coc-json',
       'coc-eslint',
+      'coc-snippets',
+      'coc-prettier',
     }
 
     -- Disable COC's diagnostic float windows (use your existing ones)
@@ -54,7 +56,7 @@ return {
     -- Make <CR> to accept selected completion item or notify coc.nvim to format
     keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
     
-    -- Use <c-space> to trigger completion
-    keyset("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+    -- Use <c-space> to select completion item
+    keyset("i", "<c-space>", [[coc#pum#visible() ? coc#pum#confirm() : coc#refresh()]], opts)
   end
 }
