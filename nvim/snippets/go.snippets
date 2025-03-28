@@ -1,21 +1,21 @@
 snippet fn "function"
-  func $1($2) {
-    $3
-  }
+func $1($2) {
+  $3
+}
 
 snippet fnr "function"
-  func $1($2) $3 {
-    $5
-    return $4
-  }
+func $1($2) $3 {
+  $5
+  return $4
+}
 
 snippet iferr "error handling"
-  if err != nil {
-    return ${1:nil}, err
-  }
+if err != nil {
+  return ${1:nil}, err
+}
 
 snippet httpHandler "HTTP handler"
-  func $1(w http.ResponseWriter, r *http.Request) {
-    $2
-  }
+func $1(w http.ResponseWriter, r *http.Request) {
+  $2
+}
 

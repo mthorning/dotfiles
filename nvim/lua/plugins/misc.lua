@@ -61,4 +61,28 @@ return {
       virtual_text_column = 1,
     },
   },
+  {
+    "github/copilot.vim",
+    config = function()
+      vim.keymap.set('i', '<Up>', 'copilot#Previous()', {
+        expr = true,
+        replace_keycodes = false
+      })
+      vim.keymap.set('i', '<Down>', 'copilot#Next()', {
+        expr = true,
+        replace_keycodes = false
+      })
+      vim.keymap.set('i', '<Right>', 'copilot#Accept("\\<CR>")', {
+        expr = true,
+        replace_keycodes = false
+      })
+      vim.keymap.set('i', '<Left>', 'copilot#Dismiss()', {
+        expr = true,
+        replace_keycodes = false
+      })
+
+
+      vim.g.copilot_no_tab_map = true
+    end
+  }
 }
