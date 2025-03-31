@@ -2,7 +2,7 @@ return {
   'neoclide/coc.nvim',
   branch = 'release',
   event = 'VeryLazy',
-  ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
+  ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact', 'lua' },
   config = function()
 
     -- Set up coc extensions for typescript, eslint, snippets and prettier
@@ -12,6 +12,7 @@ return {
       'coc-eslint',
       'coc-snippets',
       'coc-prettier',
+      'coc-lua',
     }
 
     -- Enable COC's diagnostic float windows for Ctrl-n navigation
@@ -44,5 +45,10 @@ return {
     
     -- Use <c-space> to select completion item
     keyset("i", "<c-space>", [[coc#pum#visible() ? coc#pum#confirm() : coc#refresh()]], opts)
+
+
+    keyset("n", "<C-n>", '<cmd>call CocAction("diagnosticNext")<cr>')
+    keyset("n", "<C-p>", '<cmd>call CocAction("diagnosticPrevious")<cr>')
+
   end
 }
