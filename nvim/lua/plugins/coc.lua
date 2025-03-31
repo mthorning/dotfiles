@@ -14,6 +14,10 @@ return {
       'coc-prettier',
       'coc-lua',
     }
+    
+    -- Configure Lua language server to recognize vim as a global
+    vim.g.coc_user_config = vim.g.coc_user_config or {}
+    vim.g.coc_user_config["Lua.diagnostics.globals"] = {"vim"}
 
     -- Enable COC's diagnostic float windows for Ctrl-n navigation
     vim.g.coc_enable_locationlist = 0
