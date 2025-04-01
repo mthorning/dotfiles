@@ -39,5 +39,6 @@
   "prettier.requireConfig": true,
   "prettier.onlyUseLocalVersion": true,
   "prettier.formatterPriority": 1,
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown"]
 }
