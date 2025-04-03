@@ -1,5 +1,6 @@
 return {
   {
+    enabled = false,
     'hrsh7th/nvim-cmp',
     event = 'VeryLazy',
     dependencies = {
@@ -80,11 +81,13 @@ return {
   },
   {
     'hrsh7th/cmp-nvim-lsp',
+    enabled = false,
     event = 'BufReadPre',
     dependencies = { 'hrsh7th/nvim-cmp' }
   },
   {
     'hrsh7th/cmp-buffer',
+    enabled = false,
     event = 'BufReadPre',
     dependencies = { 'hrsh7th/nvim-cmp' }
   },

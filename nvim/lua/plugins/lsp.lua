@@ -32,7 +32,7 @@ local getConfigs = function()
     -- ts_ls {{{
     ts_ls = {
       root_dir = function(...)
-        return require'lspconfig.util'.root_pattern(".git")(...)
+        return require 'lspconfig.util'.root_pattern(".git")(...)
       end,
       init_options = {
         preferences = {
@@ -235,11 +235,12 @@ local getConfigs = function()
 end
 
 return {
-  { "williamboman/mason.nvim",          opts = {} },
-  { "williamboman/mason-lspconfig.nvim" },
+  { "williamboman/mason.nvim", opts = {}, enabled=false },
+  { "williamboman/mason-lspconfig.nvim", enabled=false },
   {
     'neovim/nvim-lspconfig',
-    dependencies = { 'hrsh7th/nvim-cmp' },
+    -- dependencies = { 'hrsh7th/nvim-cmp' },
+    enabled = false,
     config = function()
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
           vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
@@ -248,7 +249,7 @@ return {
       local servers = getConfigs()
 
       for server, config in pairs(servers) do
-        config.capabilities = require('cmp_nvim_lsp').default_capabilities()
+        -- config.capabilities = require('cmp_nvim_lsp').default_capabilities()
         require 'lspconfig'[server].setup(config)
       end
 

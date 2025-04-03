@@ -44,15 +44,5 @@ set("n", "n", "nzzzv")
 set("n", "N", "Nzzzv")
 set("n", "J", "mzJ`z")
 
--- LSP/COC diagnostics navigation
-local isTsFile = function()
-  local ft = vim.bo.filetype
-  return ft == 'typescript' or ft == 'typescriptreact' or ft == 'javascript' or ft == 'javascriptreact'
-end
-
--- Use COC for TS/JS files, LSP for others (with popover)
-set("n", "<C-n>", "<cmd>lua if vim.tbl_contains({'typescript', 'typescriptreact', 'javascript', 'javascriptreact'}, vim.bo.filetype) then vim.cmd('call CocAction(\"diagnosticNext\")') else vim.diagnostic.goto_next({float = true}) end<cr>")
-set("n", "<C-p>", "<cmd>lua if vim.tbl_contains({'typescript', 'typescriptreact', 'javascript', 'javascriptreact'}, vim.bo.filetype) then vim.cmd('call CocAction(\"diagnosticPrevious\")') else vim.diagnostic.goto_prev({float = true}) end<cr>")
-
 -- Remove annoying weird keybinding
 set("i", "<", "<")

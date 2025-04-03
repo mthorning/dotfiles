@@ -2,9 +2,7 @@ return {
   'neoclide/coc.nvim',
   branch = 'release',
   event = 'VeryLazy',
-  ft = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact', 'lua' },
   config = function()
-
     -- Set up coc extensions for typescript, eslint, snippets and prettier
     vim.g.coc_global_extensions = {
       'coc-tsserver',
@@ -15,10 +13,6 @@ return {
       'coc-lua',
     }
     
-    -- Configure Lua language server to recognize vim as a global
-    vim.g.coc_user_config = vim.g.coc_user_config or {}
-    vim.g.coc_user_config["Lua.diagnostics.globals"] = {"vim"}
-
     -- Enable COC's diagnostic float windows for Ctrl-n navigation
     vim.g.coc_enable_locationlist = 0
     vim.g.coc_diagnostic_disable_float = 0

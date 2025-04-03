@@ -25,6 +25,11 @@
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.enableHighlightLineNumber": false,
   "diagnostic.messageTarget": "float",
+  "hover.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "focusable": false
+  },
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
   "eslint.useESLintClass": true,
@@ -40,12 +45,20 @@
   "prettier.onlyUseLocalVersion": true,
   "prettier.formatterPriority": 1,
   "snippets.ultisnips.pythonPrompt": false,
-  "css.format.enable": true,
-  "markdown.format.enable": true,
-  "[css]": {
+  "coc.preferences.formatOnSave": true,
+  "[markdown]": {
     "coc.preferences.formatOnSave": true
   },
-  "[markdown]": {
+  "[typescript]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[javascript]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[typescriptreact]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "[javascriptreact]": {
     "coc.preferences.formatOnSave": true
   }
 }
