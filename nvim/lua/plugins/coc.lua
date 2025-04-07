@@ -47,6 +47,17 @@ return {
 
     keyset("n", "<C-n>", '<cmd>call CocAction("diagnosticNext")<cr>')
     keyset("n", "<C-p>", '<cmd>call CocAction("diagnosticPrevious")<cr>')
+    
+    -- Manual formatting
+    keyset("n", "<leader>F", '<cmd>call CocAction("format")<cr>', {silent = true})
+    
+    -- Format on save for JavaScript/TypeScript files
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      pattern = {"*.js", "*.jsx", "*.ts", "*.tsx"},
+      callback = function()
+        vim.call("CocAction", "format")
+      end
+    })
 
   end
 }

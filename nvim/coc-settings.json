@@ -2,6 +2,8 @@
   "tsserver.enable": true,
   "typescript.suggestionActions.enabled": true,
   "javascript.suggestionActions.enabled": true,
+  "typescript.format.enabled": true,
+  "javascript.format.enabled": true,
   "snippets.userSnippetsDirectory": "~/dotfiles/nvim/snippets",
   "snippets.extends": {
     "javascriptreact": ["javascript"],
@@ -41,24 +43,26 @@
     "typescript",
     "typescriptreact"
   ],
-  "prettier.requireConfig": true,
-  "prettier.onlyUseLocalVersion": true,
-  "prettier.formatterPriority": 1,
+  "prettier.requireConfig": false,
+  "prettier.onlyUseLocalVersion": false,
+  "prettier.disableSuccessMessage": true,
+  "prettier.singleQuote": true,
+  "prettier.formatterPriority": 100,
+  "coc.preferences.formatOnSave": false,
   "snippets.ultisnips.pythonPrompt": false,
-  "coc.preferences.formatOnSave": true,
   "[markdown]": {
     "coc.preferences.formatOnSave": true
   },
   "[typescript]": {
-    "coc.preferences.formatOnSave": true
+    "coc.preferences.formatOnSave": false
   },
   "[javascript]": {
-    "coc.preferences.formatOnSave": true
+    "coc.preferences.formatOnSave": false
   },
   "[typescriptreact]": {
-    "coc.preferences.formatOnSave": true
+    "coc.preferences.formatOnSave": false
   },
   "[javascriptreact]": {
-    "coc.preferences.formatOnSave": true
+    "coc.preferences.formatOnSave": false
   }
 }

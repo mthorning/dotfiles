@@ -38,3 +38,29 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank { higroup='Visual', timeout=100 }
   end
 })
+
+-- Ensure format on save works for JS/TS files
+vim.api.nvim_create_autocmd("BufWritePre", {
+  desc = 'Format TypeScript/JavaScript files on save',
+  group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true}),
+  pattern = {"*.ts", "*.tsx", "*.js", "*.jsx"},
+  callback = function()
+    vim.cmd("silent call CocAction('format')")
+  end
+})
+
+-- Specifically for TypeScriptReact files
+vim.cmd([[
+  augroup TSXFormatting
+    autocmd!
+    autocmd FileType typescriptreact autocmd BufWritePre <buffer> silent! call CocAction('format')
+  augroup END
+]])
+
+-- Specifically for JavaScript and TypeScript files
+vim.cmd([[
+  augroup JSFormatting
+    autocmd!
+    autocmd FileType javascript,typescript,javascriptreact autocmd BufWritePre <buffer> silent! call CocAction('format')
+  augroup END
+]])

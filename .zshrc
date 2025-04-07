@@ -27,6 +27,7 @@ alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias rcat="cat"
 alias cat="bat"
 alias v="nvim"
+alias prc="gh pr checkout"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
