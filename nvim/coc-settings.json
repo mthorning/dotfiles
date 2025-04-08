@@ -1,31 +1,21 @@
 {
   "tsserver.enable": true,
-  "typescript.suggestionActions.enabled": true,
-  "javascript.suggestionActions.enabled": true,
-  "typescript.format.enabled": true,
-  "javascript.format.enabled": true,
   "snippets.userSnippetsDirectory": "~/dotfiles/nvim/snippets",
   "snippets.extends": {
     "javascriptreact": ["javascript"],
     "typescriptreact": ["typescript"]
   },
-  "suggest.noselect": false,
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "ℹ",
   "diagnostic.hintSign": "➤",
-  "suggest.enablePreselect": true,
-  "suggest.maxCompleteItemCount": 20,
-  "diagnostic.checkCurrentLine": true,
-  "coc.preferences.jumpCommand": "vsplit",
   "diagnostic.floatConfig": {
     "border": true,
     "rounded": true,
     "focusable": false
   },
-  "diagnostic.enableMessage": "jump",
-  "diagnostic.virtualTextCurrentLineOnly": false,
-  "diagnostic.enableHighlightLineNumber": false,
+  "diagnostic.enableMessage": "always",
+  "diagnostic.enableHighlightLineNumber": true,
   "diagnostic.messageTarget": "float",
   "hover.floatConfig": {
     "border": true,
@@ -34,8 +24,7 @@
   },
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
-  "eslint.useESLintClass": true,
-  "eslint.packageManager": "npm",
+  "eslint.packageManager": "pnpm",
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "eslint.validate": [
     "javascript",
@@ -43,26 +32,31 @@
     "typescript",
     "typescriptreact"
   ],
-  "prettier.requireConfig": false,
+  "prettier.requireConfig": true,
   "prettier.onlyUseLocalVersion": false,
-  "prettier.disableSuccessMessage": true,
-  "prettier.singleQuote": true,
   "prettier.formatterPriority": 100,
-  "coc.preferences.formatOnSave": false,
-  "snippets.ultisnips.pythonPrompt": false,
+  "coc.preferences.formatOnSave": true,
   "[markdown]": {
     "coc.preferences.formatOnSave": true
   },
   "[typescript]": {
-    "coc.preferences.formatOnSave": false
+    "coc.preferences.formatOnSave": true
   },
   "[javascript]": {
-    "coc.preferences.formatOnSave": false
+    "coc.preferences.formatOnSave": true
   },
   "[typescriptreact]": {
-    "coc.preferences.formatOnSave": false
+    "coc.preferences.formatOnSave": true
   },
   "[javascriptreact]": {
-    "coc.preferences.formatOnSave": false
-  }
+    "coc.preferences.formatOnSave": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "Lua.diagnostics.globals": [
+    "vim",
+    "Snacks"
+  ],
+  "snippets.ultisnips.pythonPrompt": false
 }

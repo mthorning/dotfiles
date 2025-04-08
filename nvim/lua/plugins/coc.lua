@@ -32,25 +32,25 @@ return {
 
     -- Setup completion: use tab for trigger completion
     local keyset = vim.keymap.set
-    
+
     -- Use Tab for trigger completion with characters ahead and navigate
     function _G.check_back_space()
       local col = vim.fn.col('.') - 1
       return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
     end
-    
+
     local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
-    
+
     -- Use <c-space> to select completion item
     keyset("i", "<c-space>", [[coc#pum#visible() ? coc#pum#confirm() : coc#refresh()]], opts)
 
 
     keyset("n", "<C-n>", '<cmd>call CocAction("diagnosticNext")<cr>')
     keyset("n", "<C-p>", '<cmd>call CocAction("diagnosticPrevious")<cr>')
-    
+
     -- Manual formatting
     keyset("n", "<leader>F", '<cmd>call CocAction("format")<cr>', {silent = true})
-    
+
     -- Format on save for JavaScript/TypeScript files
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = {"*.js", "*.jsx", "*.ts", "*.tsx"},

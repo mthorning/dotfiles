@@ -1,9 +1,9 @@
 return {
   {
-    enabled = false,
+    enabled = true,
     'hrsh7th/nvim-cmp',
     event = 'VeryLazy',
-    dependencies = {
+    --[[ dependencies = {
       'dcampos/cmp-snippy',
       {
         'dcampos/nvim-snippy',
@@ -18,10 +18,19 @@ return {
           }
         end
       },
-    },
+    }, ]]
     config = function()
       local cmp = require 'cmp'
 
+      cmp.setup {
+        sources = {
+          per_filetype = {
+            codecompanion = { "codecompanion" },
+          }
+        },
+      }
+
+      --[[
       -- Determine if the current buffer is a TypeScript or JavaScript file
       local is_ts_or_js = function()
         local ft = vim.bo.filetype
@@ -76,7 +85,7 @@ return {
             return vim_item
           end
         }
-      }
+      } ]]
     end
   },
   {
