@@ -235,21 +235,32 @@ local getConfigs = function()
 end
 
 return {
-  { "williamboman/mason.nvim", opts = {}, enabled=false },
-  { "williamboman/mason-lspconfig.nvim", enabled=false },
+  { "williamboman/mason.nvim", opts = {} },
+  { "williamboman/mason-lspconfig.nvim" },
   {
     'neovim/nvim-lspconfig',
-    -- dependencies = { 'hrsh7th/nvim-cmp' },
-    enabled = false,
     config = function()
+      -- Disable diagnostics display from native LSP to avoid conflicts with COC
       vim.lsp.handlers["textDocument/publishDiagnostics"] =
           vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-            { virtual_text = false })
+            { virtual_text = false, signs = false, underline = false, update_in_insert = false })
 
       local servers = getConfigs()
 
       for server, config in pairs(servers) do
-        -- config.capabilities = require('cmp_nvim_lsp').default_capabilities()
+        -- Disable attaching document formatting capability for LSP servers
+        local orig_on_attach = config.on_attach
+        config.on_attach = function(client, bufnr)
+          -- Disable document formatting from LSP so it doesn't conflict with COC
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+          
+          -- Call the original on_attach if it exists
+          if orig_on_attach then
+            orig_on_attach(client, bufnr)
+          end
+        end
+        
         require 'lspconfig'[server].setup(config)
       end
 
