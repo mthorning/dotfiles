@@ -15,7 +15,9 @@ return {
       { '<leader><tab>',   hidden = true,                                                                             nowait = false,                    remap = false },
       { '<leader>a',       '<CMD>wa<CR>',                                                                             desc = 'Save All',                 nowait = false,    remap = false },
 
-      { '<leader>c',       group = 'QuickFix',                                                                        nowait = false,                    remap = false },
+      { '<leader>A',       '<CMD>CodeCompanionChat Toggle<CR>',                                                       desc = 'Chat',                     nowait = false,    remap = false },
+
+      { '<leader>d',       group = 'Buffers',                                                                         nowait = false,                    remap = false },
       { '<leader>bd',      '<CMD>lua Snacks.bufdelete.delete()<CR>',                                                  desc = 'Delete buffer',            nowait = false,    remap = false },
       { '<leader>ba',      '<CMD>lua Snacks.bufdelete.all()<CR>',                                                     desc = 'Delete all buffers',       nowait = false,    remap = false },
       { '<leader>bn',      '<CMD>lua Snacks.notify.info("Buffer "..vim.api.nvim_get_current_buf())<CR>',              desc = 'Show number',              nowait = false,    remap = false },
@@ -25,6 +27,8 @@ return {
       { '<leader>cn',      '<CMD>cnext<CR>',                                                                          desc = 'Next',                     nowait = false,    remap = false },
       { '<leader>co',      '<CMD>copen<CR>',                                                                          desc = 'Open',                     nowait = false,    remap = false },
       { '<leader>cp',      '<CMD>cprev<CR>',                                                                          desc = 'Previous',                 nowait = false,    remap = false },
+
+      { '<leader>C',       '<cmd>let @+ = expand("%:p") | execute "silent !tmux split-window -h \'claude\'"<CR>',     desc = 'Copy path & open Claude',  nowait = false,    remap = false },
 
       { '<leader>d',       group = 'Debug',                                                                           nowait = false,                    remap = false },
       { '<leader>dB',      '<CMD>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',        desc = 'Conditional breakpoint',   nowait = false,    remap = false },

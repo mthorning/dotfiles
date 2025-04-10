@@ -11,12 +11,13 @@ return {
       'coc-snippets',
       'coc-prettier',
       'coc-lua',
+      'coc-pyright',
     }
-    
+
     -- Enable COC's diagnostic float windows for Ctrl-n navigation
     vim.g.coc_enable_locationlist = 0
     vim.g.coc_diagnostic_disable_float = 0
-    
+
     -- Make coc use same popup styling
     vim.g.coc_borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' }
 
@@ -39,7 +40,7 @@ return {
       return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
     end
 
-    local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+    local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
 
     -- Use <c-space> to select completion item
     keyset("i", "<c-space>", [[coc#pum#visible() ? coc#pum#confirm() : coc#refresh()]], opts)
@@ -49,15 +50,14 @@ return {
     keyset("n", "<C-p>", '<cmd>call CocAction("diagnosticPrevious")<cr>')
 
     -- Manual formatting
-    keyset("n", "<leader>F", '<cmd>call CocAction("format")<cr>', {silent = true})
+    keyset("n", "<leader>F", '<cmd>call CocAction("format")<cr>', { silent = true })
 
     -- Format on save for JavaScript/TypeScript files
     vim.api.nvim_create_autocmd("BufWritePre", {
-      pattern = {"*.js", "*.jsx", "*.ts", "*.tsx"},
+      pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
       callback = function()
         vim.call("CocAction", "format")
       end
     })
-
   end
 }

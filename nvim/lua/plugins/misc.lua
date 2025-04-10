@@ -62,53 +62,10 @@ return {
     },
   },
   {
-    "github/copilot.vim",
-    config = function()
-      vim.keymap.set('i', '<Up>', 'copilot#Previous()', {
-        expr = true,
-        replace_keycodes = false
-      })
-      vim.keymap.set('i', '<Down>', 'copilot#Next()', {
-        expr = true,
-        replace_keycodes = false
-      })
-      vim.keymap.set('i', '<Right>', 'copilot#Accept("\\<CR>")', {
-        expr = true,
-        replace_keycodes = false
-      })
-      vim.keymap.set('i', '<Left>', 'copilot#Dismiss()', {
-        expr = true,
-        replace_keycodes = false
-      })
-
-
-      vim.g.copilot_no_tab_map = true
-    end
-  },
-  {
     "FabijanZulj/blame.nvim",
     lazy = false,
     config = function()
       require('blame').setup {}
     end,
-  },
-  {
-    "olimorris/codecompanion.nvim",
-    config = function()
-      require("codecompanion").setup({
-        strategies = {
-          chat = {
-            adapter = "anthropic",
-          },
-          inline = {
-            adapter = "anthropic",
-          },
-        },
-      })
-    end,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
   },
 }

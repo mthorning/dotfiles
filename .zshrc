@@ -22,12 +22,12 @@ alias lg="lazygit"
 alias ls="lsd"
 alias ll="ls -al"
 alias ts="$HOME/.local/bin/tmux-sessioniser"
-alias weather="curl -s wttr.in | grep -v @igor_chubin"
-alias truro="curl -s wttr.in/truro | grep -v @igor_chubin"
+alias weather="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias rcat="cat"
 alias cat="bat"
 alias v="nvim"
 alias prc="gh pr checkout"
+alias c="claude"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -71,6 +71,10 @@ gitrecover() {
   find .git/objects/ -type f -empty | xargs rm
   git fetch -p
   git fsck --full
+}
+
+cs() {
+  tmux split-window -h 'claude'
 }
 
 
