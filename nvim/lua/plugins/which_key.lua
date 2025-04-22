@@ -9,6 +9,13 @@ return {
   },
   config = function()
     local wk = require('which-key')
+
+    local function open_claude_and_resize()
+      vim.fn.setreg('+', vim.fn.expand("%:p"))
+      vim.cmd("silent !tmux split-window -h -l 90 'claude'")
+      vim.defer_fn(function() vim.cmd("wincmd =") end, 100)
+    end
+
     wk.add({
       { '<leader>;',       '<CMD>lua Snacks.dashboard()<CR>',                                                         desc = 'Dashboard',                nowait = false,    remap = false },
       { '<leader><s-tab>', hidden = true,                                                                             nowait = false,                    remap = false },
@@ -28,7 +35,7 @@ return {
       { '<leader>co',      '<CMD>copen<CR>',                                                                          desc = 'Open',                     nowait = false,    remap = false },
       { '<leader>cp',      '<CMD>cprev<CR>',                                                                          desc = 'Previous',                 nowait = false,    remap = false },
 
-      { '<leader>C',       '<cmd>let @+ = expand("%:p") | execute "silent !tmux split-window -h \'claude\'"<CR>',     desc = 'Copy path & open Claude',  nowait = false,    remap = false },
+      { '<leader>C',       function() open_claude_and_resize() end,                                                   desc = 'Copy path & open Claude',  nowait = false,    remap = false },
 
       { '<leader>d',       group = 'Debug',                                                                           nowait = false,                    remap = false },
       { '<leader>dB',      '<CMD>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',        desc = 'Conditional breakpoint',   nowait = false,    remap = false },
