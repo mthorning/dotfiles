@@ -35,6 +35,7 @@
   "prettier.requireConfig": true,
   "prettier.onlyUseLocalVersion": false,
   "prettier.formatterPriority": 100,
+  "prettier.disableLanguages": ["go"],
   "coc.preferences.formatOnSave": true,
   "[markdown]": {
     "coc.preferences.formatOnSave": true
