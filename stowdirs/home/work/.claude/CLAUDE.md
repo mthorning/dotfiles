@@ -1,1 +1,2 @@
 - Do not add comments to lines unless asked to.
+- Don't add "Generated with Claude" or "Co-Authored-By Claude" to git commit messages

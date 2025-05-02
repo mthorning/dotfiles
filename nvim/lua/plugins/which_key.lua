@@ -94,7 +94,7 @@ return {
       { '<leader>lh',      '<CMD>call CocActionAsync("doHover")<CR>',                                                 desc = 'Hover',                    nowait = false,    remap = false },
       { '<leader>ll',      '<CMD>call CocActionAsync("diagnosticInfo")<CR>',                                          desc = 'Line Diagnostic',          nowait = false,    remap = false },
       { '<leader>lr',      '<CMD>call CocActionAsync("rename")<CR>',                                                  desc = 'Rename',                   nowait = false,    remap = false },
-      { '<leader>ls',      '<CMD>CocList symbols<CR>',                                                                desc = 'Symbols',                  nowait = false,    remap = false },
+      { '<leader>ls',      '<CMD>Telescope lsp_document_symbols<CR>',                                                desc = 'Document Symbols',         nowait = false,    remap = false },
       { '<leader>lt',      '<CMD>call CocActionAsync("jumpTypeDefinition")<CR>',                                      desc = 'Goto Type Definition',     nowait = false,    remap = false },
       { '<leader>lv',      '<CMD>call CocActionAsync("jumpDefinition", "vsplit")<CR>',                                desc = 'Goto Definition in split', nowait = false,    remap = false },
       { '<leader>lx',      '<CMD>CocRestart<CR>',                                                                     desc = 'Restart',                  nowait = false,    remap = false },
