@@ -94,40 +94,49 @@ return {
       { '<leader>lh',      '<CMD>call CocActionAsync("doHover")<CR>',                                                 desc = 'Hover',                    nowait = false,    remap = false },
       { '<leader>ll',      '<CMD>call CocActionAsync("diagnosticInfo")<CR>',                                          desc = 'Line Diagnostic',          nowait = false,    remap = false },
       { '<leader>lr',      '<CMD>call CocActionAsync("rename")<CR>',                                                  desc = 'Rename',                   nowait = false,    remap = false },
-      { '<leader>ls',      '<CMD>Telescope lsp_document_symbols<CR>',                                                desc = 'Document Symbols',         nowait = false,    remap = false },
+      { '<leader>ls',      '<CMD>Telescope lsp_document_symbols<CR>',                                                 desc = 'Document Symbols',         nowait = false,    remap = false },
       { '<leader>lt',      '<CMD>call CocActionAsync("jumpTypeDefinition")<CR>',                                      desc = 'Goto Type Definition',     nowait = false,    remap = false },
       { '<leader>lv',      '<CMD>call CocActionAsync("jumpDefinition", "vsplit")<CR>',                                desc = 'Goto Definition in split', nowait = false,    remap = false },
-      { '<leader>lx',      '<CMD>CocRestart<CR>',                                                                     desc = 'Restart',                  nowait = false,    remap = false },
+      {
+        '<leader>lx',
+        function()
+          vim.cmd('CocRestart')
+          vim.cmd('LspRestart')
+        end,
+        desc = 'Restart',
+        nowait = false,
+        remap = false
+      },
 
-      { '<leader>m',       '<CMD>Telescope tmux_sessionizer<CR>',                                                     desc = 'Change repo',              nowait = false,    remap = false },
+      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',               desc = 'Change repo',       nowait = false, remap = false },
 
-      { '<leader>n',       group = 'Notifications',                                                                   nowait = false,                    remap = false },
-      { '<leader>nh',      '<CMD>lua Snacks.notifier.show_history()<CR>',                                             desc = 'History',                  nowait = false,    remap = false },
-      { '<leader>nx',      '<CMD>lua Snacks.notifier.hide()<CR>',                                                     desc = 'Clear',                    nowait = false,    remap = false },
+      { '<leader>n',  group = 'Notifications',                             nowait = false,             remap = false },
+      { '<leader>nh', '<CMD>lua Snacks.notifier.show_history()<CR>',       desc = 'History',           nowait = false, remap = false },
+      { '<leader>nx', '<CMD>lua Snacks.notifier.hide()<CR>',               desc = 'Clear',             nowait = false, remap = false },
 
-      { '<leader>p',       '<CMD>Lazy<CR>',                                                                           desc = 'Plugins',                  nowait = false,    remap = false },
-      { '<leader>P',       '<CMD>Prettier<CR>',                                                                       desc = 'Prettier',                 nowait = false,    remap = false },
-      { '<leader>q',       '<CMD>q<CR>',                                                                              desc = 'Quit',                     nowait = false,    remap = false },
-      { '<leader>r',       '<CMD>GrugFar ripgrep<CR>',                                                                desc = 'Replace',                  nowait = false,    remap = false },
+      { '<leader>p',  '<CMD>Lazy<CR>',                                     desc = 'Plugins',           nowait = false, remap = false },
+      { '<leader>P',  '<CMD>Prettier<CR>',                                 desc = 'Prettier',          nowait = false, remap = false },
+      { '<leader>q',  '<CMD>q<CR>',                                        desc = 'Quit',              nowait = false, remap = false },
+      { '<leader>r',  '<CMD>GrugFar ripgrep<CR>',                          desc = 'Replace',           nowait = false, remap = false },
 
-      { '<leader>t',       group = 'Terminal',                                                                        nowait = false,                    remap = false },
-      { '<leader>t.',      '<cmd>term<CR>',                                                                           desc = 'Here',                     nowait = false,    remap = false },
-      { '<leader>ts',      '<cmd>split term://zsh | :startinsert<CR>',                                                desc = 'Horizontal split',         nowait = false,    remap = false },
-      { '<leader>tt',      '<cmd>tabnew | :edit term://zsh | :startinsert<CR>',                                       desc = 'Tab',                      nowait = false,    remap = false },
-      { '<leader>tv',      '<cmd>vsplit term://zsh | :startinsert<CR>',                                               desc = 'Vert split',               nowait = false,    remap = false },
-      { '<leader>tt',      '<CMD>Floaterminal<CR>',                                                                   desc = 'Float',                    nowait = false,    remap = false },
+      { '<leader>t',  group = 'Terminal',                                  nowait = false,             remap = false },
+      { '<leader>t.', '<cmd>term<CR>',                                     desc = 'Here',              nowait = false, remap = false },
+      { '<leader>ts', '<cmd>split term://zsh | :startinsert<CR>',          desc = 'Horizontal split',  nowait = false, remap = false },
+      { '<leader>tt', '<cmd>tabnew | :edit term://zsh | :startinsert<CR>', desc = 'Tab',               nowait = false, remap = false },
+      { '<leader>tv', '<cmd>vsplit term://zsh | :startinsert<CR>',         desc = 'Vert split',        nowait = false, remap = false },
+      { '<leader>tt', '<CMD>Floaterminal<CR>',                             desc = 'Float',             nowait = false, remap = false },
 
-      { '<leader>w',       '<cmd>w<CR>',                                                                              desc = 'Save',                     nowait = false,    remap = false },
+      { '<leader>w',  '<cmd>w<CR>',                                        desc = 'Save',              nowait = false, remap = false },
 
-      { '<leader>x',       group = 'Execute lua',                                                                     nowait = false,                    remap = false },
-      { '<leader>xf',      '<cmd>%lua<CR>',                                                                           desc = 'Execute file',             nowait = false,    remap = false },
-      { '<leader>xs',      "<cmd>'<,'>lua<CR>",                                                                       desc = 'Execute selection',        nowait = false,    remap = false },
-      { '<leader>xl',      "<cmd>.lua<CR>",                                                                           desc = 'Execute line',             nowait = false,    remap = false },
+      { '<leader>x',  group = 'Execute lua',                               nowait = false,             remap = false },
+      { '<leader>xf', '<cmd>%lua<CR>',                                     desc = 'Execute file',      nowait = false, remap = false },
+      { '<leader>xs', "<cmd>'<,'>lua<CR>",                                 desc = 'Execute selection', nowait = false, remap = false },
+      { '<leader>xl', "<cmd>.lua<CR>",                                     desc = 'Execute line',      nowait = false, remap = false },
 
 
-      { '<leader>y',       '<cmd>let @+ = expand("%:p")<CR>',                                                         desc = 'Copy path',                nowait = false,    remap = false },
-      { '<leader>z',       '<cmd>lua require("snacks").zen()<CR>',                                                    desc = 'Zen Mode',                 nowait = false,    remap = false },
-      { '<leader>u',       '<cmd>UndotreeToggle<CR>',                                                                 desc = 'Undo tree',                nowait = false,    remap = false },
+      { '<leader>y',  '<cmd>let @+ = expand("%:p")<CR>',                   desc = 'Copy path',         nowait = false, remap = false },
+      { '<leader>z',  '<cmd>lua require("snacks").zen()<CR>',              desc = 'Zen Mode',          nowait = false, remap = false },
+      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                           desc = 'Undo tree',         nowait = false, remap = false },
     })
   end,
 }

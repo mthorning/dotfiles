@@ -104,7 +104,6 @@ zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 zinit light ntnyq/omz-plugin-pnpm
 zinit light MichaelAquilina/zsh-you-should-use
-zinit light wazum/zsh-directory-dot-expansion
 
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
