@@ -17,3 +17,4 @@ vim.opt.undofile = true
 vim.opt.timeoutlen = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.syntax = 'on'
+vim.opt.grepprg = 'rg --vimgrep --smart-case --follow'
