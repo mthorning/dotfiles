@@ -9,13 +9,16 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-shift-g": "git_panel::ToggleFocus"
+      "cmd-shift-g": "git_panel::ToggleFocus",
+      "cmd-l": "workspace::ToggleLeftDock",
+      "cmd-b": "workspace::ToggleBottomDock",
+      "cmd-r": "workspace::ToggleRightDock"
     }
   },
   {
     "context": "Editor",
     "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
+      "cmd-l": "workspace::ToggleLeftDock"
     }
   },
   {
@@ -37,6 +40,15 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-u": "terminal::ScrollLineUp",
+      "ctrl-shift-u": "terminal::ScrollPageUp",
+      "ctrl-d": "terminal::ScrollLineDown",
+      "ctrl-shift-d": "terminal::ScrollPageDown"
     }
   }
 ]
