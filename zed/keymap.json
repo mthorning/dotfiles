@@ -7,18 +7,48 @@
 // from the command palette.
 [
   {
+    "bindings": {
+      "shift-escape": null
+    }
+  },
+  {
     "context": "Workspace",
     "bindings": {
       "cmd-shift-g": "git_panel::ToggleFocus",
       "cmd-l": "workspace::ToggleLeftDock",
       "cmd-b": "workspace::ToggleBottomDock",
-      "cmd-r": "workspace::ToggleRightDock"
+      "cmd-r": "workspace::ToggleRightDock",
+      "cmd-x": "workspace::CloseAllDocks"
+    }
+  },
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus"
     }
   },
   {
     "context": "Editor",
     "bindings": {
-      "cmd-l": "workspace::ToggleLeftDock"
+      "cmd-l": "workspace::ToggleLeftDock",
+      "ctrl-space": "editor::ConfirmCompletion",
+      "cmd-x": "workspace::CloseAllDocks"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "right": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && mode == full && edit_prediction",
+    "use_key_equivalents": true,
+    "bindings": {
+      "down": "editor::NextEditPrediction",
+      "up": "editor::PreviousEditPrediction",
+      "left": "editor::AcceptPartialEditPrediction"
     }
   },
   {
@@ -29,17 +59,38 @@
       "space l h": "editor::Hover",
       "space l F": "editor::Format",
       "space q": "pane::CloseActiveItem",
+      "space g d": "git::Diff",
+      "space z": "workspace::ToggleZoom",
       "ctrl-n": "editor::GoToDiagnostic",
       "ctrl-p": "editor::GoToPreviousDiagnostic"
     }
   },
   {
-    "context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel || Terminal",
+    "context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel || Terminal || AgentEditor",
     "bindings": {
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "GitPanel > Editor",
+    "bindings": {
+      "escape": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "MessageEditor > Editor",
+    "bindings": {
+      "escape": "agent::ToggleFocus"
     }
   },
   {
@@ -49,6 +100,34 @@
       "ctrl-shift-u": "terminal::ScrollPageUp",
       "ctrl-d": "terminal::ScrollLineDown",
       "ctrl-shift-d": "terminal::ScrollPageDown"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "ctrl-u": "project_panel::SelectParent"
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-g f": "git::Fetch",
+      "ctrl-g p": "git::Push",
+      "ctrl-g l": "git::Pull",
+      "ctrl-g shift-p": "git::ForcePush",
+      "ctrl-g d": "git::Diff",
+      "ctrl-g backspace": "git::RestoreTrackedFiles",
+      "ctrl-g shift-backspace": "git::TrashUntrackedFiles",
+      "ctrl-g a": "git::StageAll",
+      "ctrl-g x": "git::UnstageAll"
     }
   }
 ]
