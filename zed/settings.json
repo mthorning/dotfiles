@@ -7,64 +7,63 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "tab_bar": {
-    "show": true,
-    "show_nav_history_buttons": false
-  },
-  "tabs": {
-    "file_icons": true,
-    "git_status": true
-  },
-  "project_panel": {
-    "indent_size": 16
-  },
-  "preferred_line_length": 120,
-  "tab_size": 2,
-  "hard_tabs": false,
-  "features": {
-    "edit_prediction_provider": "copilot"
-  },
-  "agent": {
-    "always_allow_tool_actions": true,
-    "default_profile": "write",
-    "play_sound_when_agent_done": false,
-    "model_parameters": [
-      {
-        "provider": "anthropic",
-        "model": "claude-sonnet-4-latest",
-        "max_tokens": 4096,
-        "timeout": 30,
-        "max_context_tokens": 100000
-      }
-    ],
-    "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-latest"
-    },
-    "version": "2"
-  },
-  "vim_mode": true,
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
-  "buffer_font_family": "MonoLisa",
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Catppuccin Mocha"
-  },
-  "vim": {
-    "default_mode": "normal",
-    "toggle_relative_line_numbers": true,
-    "use_system_clipboard": "always",
-    "use_multiline_find": false,
-    "use_smartcase_find": false,
-    "highlight_on_yank_duration": 200,
-    "custom_digraphs": {},
-    "scroll_beyond_last_line": "one_page",
-    // Cursor shape for the each mode.
-    // Specify the mode as the key and the shape as the value.
-    // The mode can be one of the following: "normal", "replace", "insert", "visual".
-    // The shape can be one of the following: "block", "bar", "underline", "hollow".
-    "cursor_shape": {}
-  }
+	"tab_bar": {
+		"show": true,
+		"show_nav_history_buttons": false
+	},
+	"tabs": {
+		"file_icons": true,
+		"git_status": true
+	},
+	"project_panel": {
+		"indent_size": 16
+	},
+	"preferred_line_length": 120,
+	"tab_size": 2,
+	"features": {
+		"edit_prediction_provider": "copilot"
+	},
+	"agent": {
+		"always_allow_tool_actions": true,
+		"default_profile": "write",
+		"play_sound_when_agent_done": false,
+		"model_parameters": [
+			{
+				"provider": "anthropic",
+				"model": "claude-sonnet-4-latest",
+				"max_tokens": 4096,
+				"timeout": 30,
+				"max_context_tokens": 100000
+			}
+		],
+		"default_model": {
+			"provider": "anthropic",
+			"model": "claude-sonnet-4-latest"
+		},
+		"version": "2"
+	},
+	"vim_mode": true,
+	"ui_font_size": 16,
+	"buffer_font_size": 16,
+	"buffer_font_family": "MonoLisa",
+	"theme": {
+		"mode": "system",
+		"light": "One Light",
+		"dark": "Catppuccin Mocha"
+	},
+	"vim": {
+		"default_mode": "normal",
+		"toggle_relative_line_numbers": true,
+		"use_system_clipboard": "always",
+		"use_multiline_find": false,
+		"use_smartcase_find": false,
+		"highlight_on_yank_duration": 200,
+		"custom_digraphs": {},
+		"scroll_beyond_last_line": "one_page",
+		// Cursor shape for the each mode.
+		// Specify the mode as the key and the shape as the value.
+		// The mode can be one of the following: "normal", "replace", "insert", "visual".
+		// The shape can be one of the following: "block", "bar", "underline", "hollow".
+		"cursor_shape": {}
+	}
 }

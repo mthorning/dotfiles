@@ -18,7 +18,8 @@
       "cmd-l": "workspace::ToggleLeftDock",
       "cmd-b": "workspace::ToggleBottomDock",
       "cmd-r": "workspace::ToggleRightDock",
-      "cmd-x": "workspace::CloseAllDocks"
+      "cmd-x": "workspace::CloseAllDocks",
+      "cmd-z": "workspace::ToggleZoom"
     }
   },
   {
@@ -60,7 +61,6 @@
       "space l F": "editor::Format",
       "space q": "pane::CloseActiveItem",
       "space g d": "git::Diff",
-      "space z": "workspace::ToggleZoom",
       "ctrl-n": "editor::GoToDiagnostic",
       "ctrl-p": "editor::GoToPreviousDiagnostic"
     }
@@ -71,7 +71,8 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-w a": "pane::CloseAllItems"
     }
   },
   {
