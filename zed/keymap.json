@@ -18,8 +18,7 @@
       "cmd-l": "workspace::ToggleLeftDock",
       "cmd-b": "workspace::ToggleBottomDock",
       "cmd-r": "workspace::ToggleRightDock",
-      "cmd-x": "workspace::CloseAllDocks",
-      "cmd-z": "workspace::ToggleZoom"
+      "cmd-x": "workspace::CloseAllDocks"
     }
   },
   {
@@ -34,22 +33,7 @@
     "bindings": {
       "cmd-l": "workspace::ToggleLeftDock",
       "ctrl-space": "editor::ConfirmCompletion",
-      "cmd-x": "workspace::CloseAllDocks"
-    }
-  },
-  {
-    "context": "Editor && edit_prediction",
-    "bindings": {
-      "right": "editor::AcceptEditPrediction"
-    }
-  },
-  {
-    "context": "Editor && mode == full && edit_prediction",
-    "use_key_equivalents": true,
-    "bindings": {
-      "down": "editor::NextEditPrediction",
-      "up": "editor::PreviousEditPrediction",
-      "left": "editor::AcceptPartialEditPrediction"
+      "cmd-z": "workspace::CloseAllDocks"
     }
   },
   {
@@ -89,18 +73,13 @@
     }
   },
   {
-    "context": "MessageEditor > Editor",
-    "bindings": {
-      "escape": "agent::ToggleFocus"
-    }
-  },
-  {
     "context": "Terminal",
     "bindings": {
       "ctrl-u": "terminal::ScrollLineUp",
       "ctrl-shift-u": "terminal::ScrollPageUp",
       "ctrl-d": "terminal::ScrollLineDown",
-      "ctrl-shift-d": "terminal::ScrollPageDown"
+      "ctrl-shift-d": "terminal::ScrollPageDown",
+      "cmd-z": "workspace::ToggleZoom"
     }
   },
   {
@@ -129,6 +108,24 @@
       "ctrl-g shift-backspace": "git::TrashUntrackedFiles",
       "ctrl-g a": "git::StageAll",
       "ctrl-g x": "git::UnstageAll"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction && vim_mode == insert",
+    "bindings": {
+      "alt-tab": null,
+      "tab": null,
+      "down": "editor::NextEditPrediction",
+      "up": "editor::PreviousEditPrediction",
+      "left": "editor::AcceptPartialEditPrediction",
+      "right": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction_conflict",
+    "bindings": {
+      "right": "editor::AcceptEditPrediction",
+      "left": "editor::AcceptPartialEditPrediction"
     }
   }
 ]
