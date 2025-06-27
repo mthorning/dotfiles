@@ -39,14 +39,16 @@
   {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
+      "ctrl-n": "editor::GoToDiagnostic",
+      "ctrl-p": "editor::GoToPreviousDiagnostic",
       "space w": "workspace::Save",
       "space a": "workspace::SaveAll",
       "space l h": "editor::Hover",
       "space l F": "editor::Format",
       "space q": "pane::CloseActiveItem",
       "space g d": "git::Diff",
-      "ctrl-n": "editor::GoToDiagnostic",
-      "ctrl-p": "editor::GoToPreviousDiagnostic"
+      "space t": "workspace::NewCenterTerminal",
+      "space p": "pane::TogglePinTab"
     }
   },
   {
@@ -79,7 +81,11 @@
       "ctrl-shift-u": "terminal::ScrollPageUp",
       "ctrl-d": "terminal::ScrollLineDown",
       "ctrl-shift-d": "terminal::ScrollPageDown",
-      "cmd-z": "workspace::ToggleZoom"
+      "cmd-z": "workspace::ToggleZoom",
+      "shift-space p": "pane::TogglePinTab",
+      "shift-space q": "pane::CloseActiveItem",
+      "shift-space g d": "git::Diff",
+      "shift-space t": "workspace::NewCenterTerminal"
     }
   },
   {
@@ -114,7 +120,7 @@
     "context": "Editor && edit_prediction && vim_mode == insert",
     "bindings": {
       "alt-tab": null,
-      "tab": null,
+      "tab": "editor::Tab",
       "down": "editor::NextEditPrediction",
       "up": "editor::PreviousEditPrediction",
       "left": "editor::AcceptPartialEditPrediction",
