@@ -28,6 +28,9 @@
   "features": {
     "edit_prediction_provider": "copilot"
   },
+  "minimap": {
+    "display_in": "active_editor"
+  },
   "agent": {
     "always_allow_tool_actions": true,
     "default_profile": "write",
