@@ -18,7 +18,8 @@
       "cmd-l": "workspace::ToggleLeftDock",
       "cmd-b": "workspace::ToggleBottomDock",
       "cmd-r": "workspace::ToggleRightDock",
-      "cmd-x": "workspace::CloseAllDocks"
+      "cmd-x": "workspace::CloseAllDocks",
+      "cmd-t": "workspace::NewCenterTerminal"
     }
   },
   {
@@ -47,8 +48,9 @@
       "space l F": "editor::Format",
       "space q": "pane::CloseActiveItem",
       "space g d": "git::Diff",
-      "space t": "workspace::NewCenterTerminal",
-      "space p": "pane::TogglePinTab"
+      "space p": "pane::TogglePinTab",
+      "space f f": "file_finder::Toggle",
+      "space f t": "pane::DeploySearch"
     }
   },
   {
@@ -85,7 +87,9 @@
       "shift-space p": "pane::TogglePinTab",
       "shift-space q": "pane::CloseActiveItem",
       "shift-space g d": "git::Diff",
-      "shift-space t": "workspace::NewCenterTerminal"
+      "shift-space t": "workspace::NewCenterTerminal",
+      "shift-space f f": "file_finder::Toggle",
+      "shift-space f t": "pane::DeploySearch"
     }
   },
   {
@@ -108,7 +112,6 @@
       "ctrl-g f": "git::Fetch",
       "ctrl-g p": "git::Push",
       "ctrl-g l": "git::Pull",
-      "ctrl-g shift-p": "git::ForcePush",
       "ctrl-g d": "git::Diff",
       "ctrl-g backspace": "git::RestoreTrackedFiles",
       "ctrl-g shift-backspace": "git::TrashUntrackedFiles",
@@ -120,7 +123,6 @@
     "context": "Editor && edit_prediction && vim_mode == insert",
     "bindings": {
       "alt-tab": null,
-      "tab": "editor::Tab",
       "down": "editor::NextEditPrediction",
       "up": "editor::PreviousEditPrediction",
       "left": "editor::AcceptPartialEditPrediction",

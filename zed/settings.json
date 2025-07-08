@@ -25,6 +25,9 @@
   },
   "preferred_line_length": 120,
   "tab_size": 2,
+  "edit_predictions": {
+    "mode": "subtle"
+  },
   "features": {
     "edit_prediction_provider": "copilot"
   },
@@ -32,8 +35,42 @@
     "display_in": "active_editor"
   },
   "agent": {
+    "version": "2",
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3.7-sonnet"
+    },
+    "commit_message_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
+    },
+    "thread_summary_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
+    },
+    "profiles": {
+      "ask": {
+        "name": "Ask",
+        "tools": {
+          "contents": true,
+          "diagnostics": true,
+          "fetch": true,
+          "list_directory": true,
+          "now": true,
+          "find_path": true,
+          "read_file": true,
+          "open": true,
+          "grep": true,
+          "thinking": true,
+          "web_search": true,
+          "terminal": true
+        },
+        "enable_all_context_servers": false,
+        "context_servers": {}
+      }
+    },
     "always_allow_tool_actions": true,
-    "default_profile": "write",
+    "default_profile": "ask",
     "play_sound_when_agent_done": false,
     "model_parameters": [
       {
@@ -47,15 +84,16 @@
     "default_model": {
       "provider": "anthropic",
       "model": "claude-sonnet-4-latest"
-    },
-    "version": "2"
+    }
   },
   "vim_mode": true,
   "ui_font_size": 16,
+  "ui_font_fallbacks": ["Symbols Nerd Font Mono"],
   "buffer_font_size": 16,
   "buffer_font_family": "MonoLisa",
   "terminal": {
     "font_family": "MonoLisa",
+    "ui_font_fallbacks": ["Symbols Nerd Font Mono"],
     "default_height": 420,
     "font_size": 16
   },
