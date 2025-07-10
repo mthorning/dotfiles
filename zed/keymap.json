@@ -50,7 +50,8 @@
       "space g d": "git::Diff",
       "space p": "pane::TogglePinTab",
       "space f f": "file_finder::Toggle",
-      "space f t": "pane::DeploySearch"
+      "space f t": "pane::DeploySearch",
+      "space g h": ["task::Spawn", { "task_name": "Github Browse" }]
     }
   },
   {

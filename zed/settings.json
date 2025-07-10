@@ -32,6 +32,9 @@
     "edit_prediction_provider": "copilot"
   },
   "minimap": {
+    "show": "never",
+    "thumb": "always",
+    "thumb_border": "left_open",
     "display_in": "active_editor"
   },
   "agent": {
