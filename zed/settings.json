@@ -38,7 +38,6 @@
     "display_in": "active_editor"
   },
   "agent": {
-    "version": "2",
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "claude-3.7-sonnet"
@@ -85,8 +84,7 @@
       }
     ],
     "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-latest"
+      "provider": "copilot_chat",
     }
   },
   "vim_mode": true,
@@ -119,6 +117,20 @@
     "dart": {
       "settings": {
         "flutterHotReloadOnSave": "always"
+    }
+    },
+    "rust-analyzer": {
+      "initialization_options": {
+        "rustfmt": {
+          "overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"]
+        }
+      },
+      "procMacro": {
+        "ignored": [
+          // optional:
+          // "component",
+          "server"
+        ]
       }
     }
   }
