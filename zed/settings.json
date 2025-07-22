@@ -84,7 +84,8 @@
       }
     ],
     "default_model": {
-      "provider": "copilot_chat",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-latest"
     }
   },
   "vim_mode": true,
