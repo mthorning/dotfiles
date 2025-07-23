@@ -22,10 +22,16 @@ source ~/dotfiles/.zshrc
 alias cloud_sso="~/grafana/deployment_tools/scripts/sso/gcloud.sh && AWS_PROFILE=workloads-ops ~/grafana/deployment_tools/scripts/sso/aws.sh && ~/grafana/deployment_tools/scripts/sso/az.sh"
 
 reviews() {
-    { printf "%-7s %-45s %s\n" "ID" "TITLE" "AUTHOR"
-      printf "%s\n\n" "$(printf '─%.0s' {1..70})"
-      gh pr list --search "review-requested:@me" --json number,title,url,author,reviewRequests --jq '.[] | select(.reviewRequests[]? | .login? == "mthorning") | [.number, .title, .url, .author.login] | @tsv' | while IFS=$'\t' read -r num title url author; do
-          printf "\033]8;;%s\033\\#%s\033]8;;\033\\%-$((7-${#num}))s %-45s %s\n\n" "$url" "$num" "" "$title" "$author"
+    local username="mthorning"
+    local repositories="repo:grafana/irm repo:grafana/oncall-mobile-app"
+    { printf "%-7s %-45s %-20s %s\n" "ID" "TITLE" "REPO" "AUTHOR"
+      printf "%s\n\n" "$(printf '─%.0s' {1..85})"
+      gh pr list --search "review-requested:@me $repositories" --json number,title,url,author,reviewRequests,headRepository --jq '.[] | select(.reviewRequests[]? | .login? == "'"$username"'") | [.number, .title, .url, .author.login, .headRepository.name] | @tsv' | while IFS=$'\t' read -r num title url author repo; do
+          # Truncate title if longer than 42 characters (leaving room for "...")
+          if [ ${#title} -gt 42 ]; then
+              title="${title:0:42}..."
+          fi
+          printf "\033]8;;%s\033\\#%s\033]8;;\033\\%-$((7-${#num}))s %-45s %-20s %s\n\n" "$url" "$num" "" "$title" "$repo" "$author"
       done
     }
 }
