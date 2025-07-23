@@ -21,6 +21,15 @@ source ~/dotfiles/.zshrc
 
 alias cloud_sso="~/grafana/deployment_tools/scripts/sso/gcloud.sh && AWS_PROFILE=workloads-ops ~/grafana/deployment_tools/scripts/sso/aws.sh && ~/grafana/deployment_tools/scripts/sso/az.sh"
 
+reviews() {
+    { printf "%-7s %-45s %s\n" "ID" "TITLE" "AUTHOR"
+      printf "%s\n\n" "$(printf '─%.0s' {1..70})"
+      gh pr list --search "review-requested:@me" --json number,title,url,author,reviewRequests --jq '.[] | select(.reviewRequests[]? | .login? == "mthorning") | [.number, .title, .url, .author.login] | @tsv' | while IFS=$'\t' read -r num title url author; do
+          printf "\033]8;;%s\033\\#%s\033]8;;\033\\%-$((7-${#num}))s %-45s %s\n\n" "$url" "$num" "" "$title" "$author"
+      done
+    }
+}
+
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
