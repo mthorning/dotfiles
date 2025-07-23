@@ -3,7 +3,7 @@
   {
     "label": "Github Browse",
     "command": "gh",
-    "args": ["browse", "${ZED_RELATIVE_FILE}", "--commit=$(git rev-parse HEAD)"],
+    "args": ["browse", "${ZED_RELATIVE_FILE}:${ZED_ROW}", "--commit=$(git rev-parse HEAD)"],
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
     "reveal": "never",

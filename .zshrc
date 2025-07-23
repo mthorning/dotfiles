@@ -28,6 +28,7 @@ alias cat="bat"
 alias v="nvim"
 alias prc="gh pr checkout"
 alias c="claude"
+alias ta="tmux attach"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
