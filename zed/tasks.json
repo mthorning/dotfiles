@@ -3,7 +3,7 @@
   {
     "label": "Github Browse",
     "command": "gh",
-    "args": ["browse", "${ZED_RELATIVE_FILE}:${ZED_ROW}", "--commit=$(git rev-parse HEAD)"],
+    "args": ["browse", "${ZED_RELATIVE_FILE}:${ZED_ROW}", "--commit=main"],
     "use_new_terminal": false,
     "allow_concurrent_runs": false,
     "reveal": "never",
@@ -12,8 +12,8 @@
     "shell": "system"
   },
   {
-    "label": "Flutter run",
-    "command": "flutter_hot_reload",
+    "label": "Flutter hot",
+    "command": "dashmon",
     "cwd": "${ZED_WORKTREE_ROOT}/app",
     "args": ["--flavor dev", "-t lib/main.dart", "--dart-define-from-file=api-config.json"],
     "use_new_terminal": true,

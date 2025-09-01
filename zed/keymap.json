@@ -51,6 +51,7 @@
       "space p": "pane::TogglePinTab",
       "space f f": "file_finder::Toggle",
       "space f t": "pane::DeploySearch",
+      "space z": "workspace::ToggleCenteredLayout",
       "space g h": ["task::Spawn", { "task_name": "Github Browse" }]
     }
   },
@@ -90,7 +91,8 @@
       "shift-space g d": "git::Diff",
       "shift-space t": "workspace::NewCenterTerminal",
       "shift-space f f": "file_finder::Toggle",
-      "shift-space f t": "pane::DeploySearch"
+      "shift-space f t": "pane::DeploySearch",
+      "shift-space z": "workspace::ToggleCenteredLayout"
     }
   },
   {

@@ -60,3 +60,9 @@ export ANDROID_HOME="$HOME/android_sdk"
 
 # Source the main dotfiles p10k config
 source ~/dotfiles/.p10k.zsh
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh ]] && . /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh || true
+## [/Completion]
+
