@@ -34,7 +34,7 @@
     "bindings": {
       "cmd-l": "workspace::ToggleLeftDock",
       "ctrl-space": "editor::ConfirmCompletion",
-      "cmd-z": "workspace::CloseAllDocks"
+      "cmd-x": "workspace::CloseAllDocks"
     }
   },
   {
