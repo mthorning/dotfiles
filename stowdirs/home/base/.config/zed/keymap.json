@@ -1,0 +1,142 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "bindings": {
+      "shift-escape": null
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus",
+      "cmd-l": "workspace::ToggleLeftDock",
+      "cmd-b": "workspace::ToggleBottomDock",
+      "cmd-r": "workspace::ToggleRightDock",
+      "cmd-x": "workspace::CloseAllDocks",
+      "cmd-t": "workspace::NewCenterTerminal"
+    }
+  },
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "cmd-l": "workspace::ToggleLeftDock",
+      "ctrl-space": "editor::ConfirmCompletion",
+      "cmd-x": "workspace::CloseAllDocks"
+    }
+  },
+  {
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "ctrl-n": "editor::GoToDiagnostic",
+      "ctrl-p": "editor::GoToPreviousDiagnostic",
+      "space w": "workspace::Save",
+      "space a": "workspace::SaveAll",
+      "space l h": "editor::Hover",
+      "space l F": "editor::Format",
+      "space q": "pane::CloseActiveItem",
+      "space g d": "git::Diff",
+      "space p": "pane::TogglePinTab",
+      "space f f": "file_finder::Toggle",
+      "space f t": "pane::DeploySearch",
+      "space z": "workspace::ToggleCenteredLayout",
+      "space g h": ["task::Spawn", { "task_name": "Github Browse" }]
+    }
+  },
+  {
+    "context": "GitPanel || ProjectPanel || CollabPanel || OutlinePanel || ChatPanel || VimControl || EmptyPane || SharedScreen || MarkdownPreview || KeyContextView || DebugPanel || Terminal || AgentEditor",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-w a": "pane::CloseAllItems"
+    }
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "GitPanel > Editor",
+    "bindings": {
+      "escape": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-u": "terminal::ScrollLineUp",
+      "ctrl-shift-u": "terminal::ScrollPageUp",
+      "ctrl-d": "terminal::ScrollLineDown",
+      "ctrl-shift-d": "terminal::ScrollPageDown",
+      "cmd-z": "workspace::ToggleZoom",
+      "shift-space p": "pane::TogglePinTab",
+      "shift-space q": "pane::CloseActiveItem",
+      "shift-space g d": "git::Diff",
+      "shift-space t": "workspace::NewCenterTerminal",
+      "shift-space f f": "file_finder::Toggle",
+      "shift-space f t": "pane::DeploySearch",
+      "shift-space z": "workspace::ToggleCenteredLayout"
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "ctrl-u": "project_panel::SelectParent"
+    }
+  },
+  {
+    "context": "vim_mode == normal || vim_mode == visual",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-g f": "git::Fetch",
+      "ctrl-g p": "git::Push",
+      "ctrl-g l": "git::Pull",
+      "ctrl-g d": "git::Diff",
+      "ctrl-g backspace": "git::RestoreTrackedFiles",
+      "ctrl-g shift-backspace": "git::TrashUntrackedFiles",
+      "ctrl-g a": "git::StageAll",
+      "ctrl-g x": "git::UnstageAll"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction && vim_mode == insert",
+    "bindings": {
+      "alt-tab": null,
+      "down": "editor::NextEditPrediction",
+      "up": "editor::PreviousEditPrediction",
+      "left": "editor::AcceptPartialEditPrediction",
+      "right": "editor::AcceptEditPrediction"
+    }
+  },
+  {
+    "context": "Editor && edit_prediction_conflict",
+    "bindings": {
+      "right": "editor::AcceptEditPrediction",
+      "left": "editor::AcceptPartialEditPrediction"
+    }
+  }
+]
