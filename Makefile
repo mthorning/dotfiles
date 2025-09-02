@@ -1,3 +1,20 @@
+.DEFAULT_GOAL := help
+
+.PHONY: help
+help:
+	@echo "Available commands:"
+	@echo "  make all           - Install homebrew, nvm, node, pnpm, and zinit"
+	@echo "  make brew          - Install homebrew packages from Brewfile"
+	@echo ""
+	@echo "  make stow-shared   - Install shared/base configuration files"
+	@echo "  make stow-personal - Install personal configuration (base + personal)"
+	@echo "  make stow-work     - Install work configuration (base + work)"
+	@echo ""
+	@echo "  make unstow-shared   - Remove shared/base symlinks"
+	@echo "  make unstow-personal - Remove personal configuration symlinks"
+	@echo "  make unstow-work     - Remove work configuration symlinks"
+	@echo "  make unstow-all      - Remove all stow-managed symlinks"
+
 .PHONY: all
 all:
 	make brew
@@ -20,13 +37,33 @@ brew:
 stow-shared:
 	stow -d ./stowdirs/home -t $$HOME base
 
-.PHONY: stow-home
-stow-home:
+.PHONY: stow-personal
+stow-personal:
 	make stow-shared
-	stow -d ./stowdirs/home -t $$HOME --override=".zshrc" home 
+	stow -d ./stowdirs/home -t $$HOME --override=".zshrc" personal
 
 .PHONY: stow-work
 stow-work:
 	make stow-shared
-	stow -d ./stowdirs/home -t $$HOME --override=".zshrc" work 
+	stow -d ./stowdirs/home -t $$HOME --override=".zshrc" work
 	stow -d ./stowdirs/etc/ -t /etc/ work
+
+.PHONY: unstow-shared
+unstow-shared:
+	stow -d ./stowdirs/home -t $$HOME -D base
+
+.PHONY: unstow-personal
+unstow-personal:
+	stow -d ./stowdirs/home -t $$HOME -D personal
+	make unstow-shared
+
+.PHONY: unstow-work
+unstow-work:
+	stow -d ./stowdirs/etc/ -t /etc/ -D work
+	stow -d ./stowdirs/home -t $$HOME -D work
+	make unstow-shared
+
+.PHONY: unstow-all
+unstow-all:
+	-stow -d ./stowdirs/home -t $$HOME -D base personal work
+	-stow -d ./stowdirs/etc/ -t /etc/ -D work
