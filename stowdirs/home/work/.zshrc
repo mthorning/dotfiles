@@ -36,8 +36,7 @@ reviews() {
     }
 }
 
-unalias gcd 2>/dev/null
-gcd() {
+cdg() {
   DIR=$(find ~/grafana -maxdepth 1 -type d | sed "s|$HOME/grafana/||" | fzf --preview "ls -la ~/grafana/{}")
 
   if [[ -z "$DIR" ]]; then
