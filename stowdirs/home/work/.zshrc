@@ -36,8 +36,15 @@ reviews() {
     }
 }
 
-cdg() {
-  DIR=$(find ~/grafana -maxdepth 1 -type d | sed "s|$HOME/grafana/||" | fzf --preview "ls -la ~/grafana/{}")
+cg() {
+  # If an argument is provided, try to cd directly to it first
+  if [[ -n "$1" ]] && [[ -d ~/grafana/"$1" ]]; then
+    cd ~/grafana/"$1"
+    return 0
+  fi
+
+  # Open fzf, optionally with the argument as initial query
+  DIR=$(find ~/grafana -maxdepth 1 -type d | sed "s|$HOME/grafana/||" | fzf --query="$1" --preview "ls -la ~/grafana/{}")
 
   if [[ -z "$DIR" ]]; then
     return 0
