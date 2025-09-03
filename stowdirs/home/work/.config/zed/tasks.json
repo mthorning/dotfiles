@@ -12,10 +12,23 @@
     "shell": "system"
   },
   {
+    "label": "Github PR Open",
+    "command": "gh",
+    "args": ["pr", "view", "--web"],
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "never",
+    "reveal_target": "dock",
+    "hide": "always",
+    "shell": "system"
+  },
+  {
     "label": "Flutter hot",
-    "command": "dashmon",
-    "cwd": "${ZED_WORKTREE_ROOT}/app",
-    "args": ["--flavor dev", "-t lib/main.dart", "--dart-define-from-file=api-config.json"],
+    "command": "sh",
+    "args": [
+      "-c",
+      "cd ${ZED_WORKTREE_ROOT}/app && dashmon --flavor dev -t lib/main.dart --dart-define-from-file=api-config.json"
+    ],
     "use_new_terminal": true,
     "allow_concurrent_runs": false,
     "reveal": "never",
