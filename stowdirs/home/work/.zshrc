@@ -36,6 +36,17 @@ reviews() {
     }
 }
 
+unalias gcd 2>/dev/null
+gcd() {
+  DIR=$(find ~/grafana -maxdepth 1 -type d | sed "s|$HOME/grafana/||" | fzf --preview "ls -la ~/grafana/{}")
+
+  if [[ -z "$DIR" ]]; then
+    return 0
+  fi
+
+  cd ~/grafana/"$DIR"
+}
+
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -65,4 +76,3 @@ source ~/dotfiles/.p10k.zsh
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh ]] && . /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
-
