@@ -215,7 +215,6 @@
   "buffer_font_family": "MonoLisa",
   "terminal": {
     "font_family": "MonoLisa",
-    "ui_font_fallbacks": ["Symbols Nerd Font Mono"],
     "default_height": 420,
     "font_size": 16
   },
@@ -223,11 +222,9 @@
     "default_mode": "normal",
     "toggle_relative_line_numbers": true,
     "use_system_clipboard": "always",
-    "use_multiline_find": false,
     "use_smartcase_find": false,
     "highlight_on_yank_duration": 200,
     "custom_digraphs": {},
-    "scroll_beyond_last_line": "one_page",
     // Cursor shape for the each mode.
     // Specify the mode as the key and the shape as the value.
     // The mode can be one of the following: "normal", "replace", "insert", "visual".
@@ -256,13 +253,6 @@
         "rustfmt": {
           "overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"]
         }
-      },
-      "procMacro": {
-        "ignored": [
-          // optional:
-          // "component",
-          "server"
-        ]
       }
     }
   }
