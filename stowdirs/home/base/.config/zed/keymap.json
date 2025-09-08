@@ -8,7 +8,8 @@
 [
   {
     "bindings": {
-      "shift-escape": null
+      "shift-escape": null,
+      "cmd-o": "file_finder::Toggle"
     }
   },
   {
@@ -19,7 +20,9 @@
       "cmd-b": "workspace::ToggleBottomDock",
       "cmd-r": "workspace::ToggleRightDock",
       "cmd-x": "workspace::CloseAllDocks",
-      "cmd-t": "workspace::NewCenterTerminal"
+      "cmd-t": "workspace::NewCenterTerminal",
+      "cmd-p": "command_palette::Toggle",
+      "cmd-o": "file_finder::Toggle"
     }
   },
   {
@@ -32,9 +35,9 @@
   {
     "context": "Editor",
     "bindings": {
-      "cmd-l": "workspace::ToggleLeftDock",
       "ctrl-space": "editor::ConfirmCompletion",
-      "cmd-x": "workspace::CloseAllDocks"
+      "cmd-x": "workspace::CloseAllDocks",
+      "cmd-l": "workspace::ToggleLeftDock"
     }
   },
   {
