@@ -21,6 +21,10 @@
     "dark": "Catppuccin Macchiato",
     "light": "One Light"
   },
+  "centered_layout": {
+    "left_padding": 0.0,
+    "right_padding": 0.0
+  },
   "tab_bar": {
     "show": true,
     "show_nav_history_buttons": false
