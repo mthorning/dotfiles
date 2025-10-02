@@ -16,6 +16,7 @@ if [ -f '/Users/mthorning/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 alias irmdb="kubectl exec -it mysql-0 -n devenv -- mysql --user=user --password=pass --database=grafana_incident"
 alias irmreset="make down && make cluster/down && make clean-dist && make cluster/up && make irm-local/up"
 alias cc="git add . && claude \"commit code\""
+alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
 
 source ~/dotfiles/.zshrc
 
@@ -82,3 +83,8 @@ source ~/dotfiles/.p10k.zsh
 ## Completion scripts setup. Remove the following line to uninstall
 [[ -f /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh ]] && . /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/mthorning/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
