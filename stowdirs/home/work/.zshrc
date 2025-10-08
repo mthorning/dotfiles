@@ -18,8 +18,10 @@ alias irmreset="make down && make cluster/down && make clean-dist && make cluste
 alias cc="git add . && claude \"commit code\""
 alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
 
+# Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
 
+# Work-specific aliases
 alias cloud_sso="~/grafana/deployment_tools/scripts/sso/gcloud.sh && AWS_PROFILE=workloads-ops ~/grafana/deployment_tools/scripts/sso/aws.sh && ~/grafana/deployment_tools/scripts/sso/az.sh"
 
 reviews() {
@@ -54,37 +56,40 @@ cg() {
   cd ~/grafana/"$DIR"
 }
 
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Work-specific development paths
+# Flutter and Dart
+export PATH="$HOME/development/flutter/bin:$PATH"
+export PATH="$HOME/flutter/flutter/bin:$PATH" # Keep both for compatibility
+export PATH="$HOME/.pub-cache/bin:$PATH"
 
-export PATH=$HOME/development/flutter/bin:$PATH
-
+# Ruby (if available)
 if [ -d "/opt/homebrew/opt/ruby/bin" ]; then
-  export PATH=/opt/homebrew/opt/ruby/bin:$PATH
-  export PATH=`gem environment gemdir`/bin:$PATH
-
-  #For compilers to find ruby:
+  export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+  export PATH="$(gem environment gemdir)/bin:$PATH"
   export LDFLAGS="-L/opt/homebrew/opt/ruby/lib"
   export CPPFLAGS="-I/opt/homebrew/opt/ruby/include"
 fi
 
-export PATH=$HOME/.gem/bin:$PATH
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$PATH":"$HOME/android_sdk/cmdline-tools/latest/bin"
+# Java and Android SDK
 export JAVA_HOME="/opt/homebrew/opt/openjdk@17"
-export PATH="$JAVA_HOME/bin:$PATH"
 export ANDROID_HOME="$HOME/android_sdk"
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export ANDROID_AVD_HOME="$HOME/.android/avd"
 
-# Source the main dotfiles p10k config
-source ~/dotfiles/.p10k.zsh
+# Consolidated Android/Java PATH (avoid duplicates)
+export PATH="$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_SDK_ROOT/build-tools/35.0.0:$PATH"
 
-## [Completion]
-## Completion scripts setup. Remove the following line to uninstall
+# Work-specific completions (lightweight additions only)
+# Dart CLI completions
 [[ -f /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh ]] && . /Users/mthorning/.config/.dart-cli-completion/zsh-config.zsh || true
-## [/Completion]
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+
+# Docker completions (add to fpath, compinit already handled by main config)
 fpath=(/Users/mthorning/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
+
+# Override NVM lazy loading for work if you need immediate access
+# Uncomment the following lines if you need Node.js available immediately:
+# unset -f nvm node npm npx
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
