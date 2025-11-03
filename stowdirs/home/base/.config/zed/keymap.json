@@ -56,7 +56,8 @@
       "space f t": "pane::DeploySearch",
       "space z": "workspace::ToggleCenteredLayout",
       "space g h": ["task::Spawn", { "task_name": "Github Browse" }],
-      "space g o": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }]
+      "space g o": ["task::Spawn", { "task_name": "LazyGit", "reveal_target": "center" }],
+      "space g m": ["task::Spawn", { "task_name": "Machete", "reveal_target": "center" }]
     }
   },
   {

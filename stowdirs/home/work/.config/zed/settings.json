@@ -297,6 +297,16 @@
           "overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"]
         }
       }
+    },
+    "golangci-lint": {
+      "initialization_options": {
+        "command": ["/opt/homebrew/bin/golangci-lint", "run", "--out-format", "json", "--print-issued-lines=false", "--print-linter-name=false", "--issues-exit-code=1"]
+      }
+    }
+  },
+  "languages": {
+    "Go": {
+      "language_servers": ["gopls", "golangci-lint"]
     }
   }
 }

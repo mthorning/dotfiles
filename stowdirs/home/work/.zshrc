@@ -25,11 +25,9 @@ source ~/dotfiles/.zshrc
 alias cloud_sso="~/grafana/deployment_tools/scripts/sso/gcloud.sh && AWS_PROFILE=workloads-ops ~/grafana/deployment_tools/scripts/sso/aws.sh && ~/grafana/deployment_tools/scripts/sso/az.sh"
 
 reviews() {
-    local username="mthorning"
-    local repositories="repo:grafana/irm repo:grafana/oncall-mobile-app"
     { printf "%-7s %-45s %-20s %s\n" "ID" "TITLE" "REPO" "AUTHOR"
       printf "%s\n\n" "$(printf '─%.0s' {1..85})"
-      gh pr list --search "review-requested:@me $repositories" --json number,title,url,author,reviewRequests,headRepository --jq '.[] | select(.reviewRequests[]? | .login? == "'"$username"'") | [.number, .title, .url, .author.login, .headRepository.name] | @tsv' | while IFS=$'\t' read -r num title url author repo; do
+      gh search prs --review-requested=@me --repo=grafana/irm --repo=grafana/oncall-mobile-app --repo=grafana/oncall --repo=grafana/gops-labels --state=open --json number,title,url,author,repository --jq '.[] | [.number, .title, .url, .author.login, .repository.name] | @tsv' | while IFS=$'\t' read -r num title url author repo; do
           # Truncate title if longer than 42 characters (leaving room for "...")
           if [ ${#title} -gt 42 ]; then
               title="${title:0:42}..."
