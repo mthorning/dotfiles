@@ -83,11 +83,3 @@ export PATH="$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/l
 
 # Docker completions (add to fpath, compinit already handled by main config)
 fpath=(/Users/mthorning/.docker/completions $fpath)
-
-# Override NVM lazy loading for work if you need immediate access
-# Uncomment the following lines if you need Node.js available immediately:
-# unset -f nvm node npm npx
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
