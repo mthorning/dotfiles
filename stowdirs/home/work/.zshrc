@@ -17,6 +17,7 @@ alias irmdb="kubectl exec -it mysql-0 -n devenv -- mysql --user=user --password=
 alias irmreset="make down && make cluster/down && make clean-dist && make cluster/up && make irm-local/up"
 alias cc="git add . && claude \"commit code\""
 alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
+alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
