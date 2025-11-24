@@ -29,4 +29,4 @@ gui:
   #     - "#c8d3f5"
 git:
   skipHookPrefix: "WIP "
-  disableForcePushing: false
+  disableForcePushing: true
