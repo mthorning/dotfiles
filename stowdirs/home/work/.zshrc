@@ -55,6 +55,23 @@ cg() {
   cd ~/grafana/"$DIR"
 }
 
+irm-up() {
+  local session_name="irm-tilt"
+  local session_dir="$HOME/grafana/irm"
+
+  if ! tmux has-session -t "$session_name" 2>/dev/null; then
+    tmux new-session -d -s "$session_name" -c "$session_dir"
+  fi
+
+  tmux send-keys -t "$session_name" "orb start k8s && kubectl config use-context orbstack && make irm-local/up" C-m
+
+  if [[ -n "$TMUX" ]]; then
+    tmux switch-client -t "$session_name"
+  else
+    tmux attach -t "$session_name"
+  fi
+}
+
 # Work-specific development paths
 # Flutter and Dart
 export PATH="$HOME/development/flutter/bin:$PATH"
