@@ -7,6 +7,8 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "disable_ai": false,
+  "show_edit_predictions": false,
   "context_servers": {
     "mcp-server-context7": {
       "source": "extension",
