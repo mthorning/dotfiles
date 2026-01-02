@@ -46,7 +46,6 @@ stow-personal:
 stow-work:
 	make stow-shared
 	stow -d ./stowdirs/home -t $$HOME --override=".zshrc" work
-	stow -d ./stowdirs/etc/ -t /etc/ work
 
 .PHONY: unstow-shared
 unstow-shared:

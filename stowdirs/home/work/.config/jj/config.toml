@@ -1,0 +1,12 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Matt Thorning"
+email = "matt.thorning@grafana.com"
+
+[revset-aliases]
+# Shows main, your active bookmarks, and any work currently on top of them
+'stack' = 'main | ancestors(bookmarks(), 2) | @'
+
+[aliases]
+stack = ["log", "-r", "stack"]
