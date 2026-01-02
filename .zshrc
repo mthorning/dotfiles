@@ -40,6 +40,20 @@ setopt hist_save_no_dups
 setopt hist_find_no_dups
 setopt autopushd
 
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
+# Global alias expansion on space
+globalias() {
+   zle _expand_alias
+   zle expand-word
+   zle self-insert
+}
+zle -N globalias
+bindkey ' ' globalias
+
 bindkey '^@' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
