@@ -57,6 +57,7 @@ bindkey ' ' globalias
 bindkey '^@' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey -r '^[h'
 
 eval "$(fzf --zsh)"
 
@@ -96,3 +97,6 @@ if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
 else
   compinit -C
 fi
+
+# Initialize starship prompt
+eval "$(starship init zsh)"
