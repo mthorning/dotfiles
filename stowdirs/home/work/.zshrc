@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/mthorning/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/mthorning/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -53,23 +46,6 @@ cg() {
   fi
 
   cd ~/grafana/"$DIR"
-}
-
-irm-up() {
-  local session_name="irm-tilt"
-  local session_dir="$HOME/grafana/irm"
-
-  if ! tmux has-session -t "$session_name" 2>/dev/null; then
-    tmux new-session -d -s "$session_name" -c "$session_dir"
-  fi
-
-  tmux send-keys -t "$session_name" "orb start k8s && kubectl config use-context orbstack && make irm-local/up" C-m
-
-  if [[ -n "$TMUX" ]]; then
-    tmux switch-client -t "$session_name"
-  else
-    tmux attach -t "$session_name"
-  fi
 }
 
 # Work-specific development paths
