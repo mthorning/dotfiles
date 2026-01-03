@@ -1,0 +1,12 @@
+[custom.jj]
+command = "jj-starship"
+when = "jj-starship detect"
+
+[git_branch]
+disabled = true
+
+[git_commit]
+disabled = true
+
+[git_status]
+disabled = true
