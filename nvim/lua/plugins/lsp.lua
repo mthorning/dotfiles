@@ -25,7 +25,6 @@ local makeNicerPopups = function()
 end
 
 local getConfigs = function()
-  local lspconfig = require('lspconfig')
   local lsp_servers = vim.fn.stdpath('data') .. "/mason/bin"
 
   return {
@@ -155,7 +154,7 @@ local getConfigs = function()
     -- gopls {{{
     gopls = {
       cmd = { lsp_servers .. "/gopls" },
-      root_dir = lspconfig.util.root_pattern("go.mod", ".git")
+      root_dir = require'lspconfig.util'.root_pattern("go.mod", ".git")
     },
     -- }}}
 
@@ -254,14 +253,15 @@ return {
           -- Disable document formatting from LSP so it doesn't conflict with COC
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
-          
+
           -- Call the original on_attach if it exists
           if orig_on_attach then
             orig_on_attach(client, bufnr)
           end
         end
-        
-        require 'lspconfig'[server].setup(config)
+
+        vim.lsp.config(server, config)
+        vim.lsp.enable(server)
       end
 
       makeNicerPopups()
