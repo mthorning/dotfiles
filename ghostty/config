@@ -5,4 +5,4 @@ font-thicken-strength = 150
 keybind = shift+enter=text:\x1b\r
 window-width = 999
 window-height = 999
-theme = dark:Ayu,light:Ayu Light
+theme = dark:Ayu Mirage,light:Ayu Light

@@ -7,55 +7,56 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "always_treat_brackets_as_autoclosed": true,
   "disable_ai": false,
   "show_edit_predictions": false,
   "context_servers": {
     "mcp-server-context7": {
       "enabled": true,
       "settings": {
-        "default_minimum_tokens": "10000"
-      }
-    }
+        "default_minimum_tokens": "10000",
+      },
+    },
   },
   "theme": {
     "mode": "system",
-    "dark": "Ayu Dark",
-    "light": "Ayu Light"
+    "dark": "Ayu Mirage",
+    "light": "Ayu Light",
   },
   "tab_bar": {
     "show": true,
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
   },
   "tabs": {
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
   },
   "project_panel": {
-    "indent_size": 16
+    "indent_size": 16,
   },
   "preferred_line_length": 120,
   "tab_size": 2,
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "minimap": {
     "show": "never",
     "thumb": "always",
     "thumb_border": "left_open",
-    "display_in": "active_editor"
+    "display_in": "active_editor",
   },
   "agent": {
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-3.7-sonnet"
+      "model": "claude-3.7-sonnet",
     },
     "commit_message_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
     "thread_summary_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
     "profiles": {
       "ask": {
@@ -72,11 +73,11 @@
           "grep": true,
           "thinking": true,
           "web_search": true,
-          "terminal": true
+          "terminal": true,
         },
         "enable_all_context_servers": false,
-        "context_servers": {}
-      }
+        "context_servers": {},
+      },
     },
     "always_allow_tool_actions": true,
     "default_profile": "write",
@@ -84,13 +85,13 @@
     "model_parameters": [
       {
         "provider": "anthropic",
-        "model": "claude-sonnet-4-latest"
-      }
+        "model": "claude-sonnet-4-latest",
+      },
     ],
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
-    }
+      "model": "gpt-4.1",
+    },
   },
   "vim_mode": true,
   "ui_font_size": 16,
@@ -100,7 +101,7 @@
   "terminal": {
     "font_family": "MonoLisa",
     "default_height": 420,
-    "font_size": 16
+    "font_size": 16,
   },
   "vim": {
     "default_mode": "normal",
@@ -109,7 +110,7 @@
     "use_smartcase_find": false,
     "highlight_on_yank_duration": 200,
     "custom_digraphs": {},
-    "cursor_shape": {}
+    "cursor_shape": {},
   },
   "lsp": {
     "rust-analyzer": {
@@ -118,16 +119,19 @@
           "maxLength": null,
           "lifetimeElisionHints": {
             "enable": "skip_trivial",
-            "useParameterNames": true
+            "useParameterNames": true,
           },
           "closureReturnTypeHints": {
-            "enable": "always"
-          }
+            "enable": "always",
+          },
         },
-        "rustfmt": {
-          "overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"]
-        }
-      }
-    }
-  }
+      },
+    },
+  },
+  "languages": {
+    "rust": {
+      "tab_size": 2,
+      "hard_tabs": false,
+    },
+  },
 }
