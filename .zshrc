@@ -18,6 +18,8 @@ alias v="nvim"
 alias prc="gh pr checkout"
 alias c="claude"
 alias ta="tmux attach"
+alias pr="pnpm run"
+alias p="pnpm"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
