@@ -9,7 +9,6 @@
 {
   "context_servers": {
     "mcp-server-github": {
-      "source": "extension",
       "enabled": true,
       "settings": {
         "github_personal_access_token": "$GITHUB_MCP_PERSONAL_ACCESS_TOKEN"
@@ -18,8 +17,8 @@
   },
   "theme": {
     "mode": "system",
-    "dark": "Catppuccin Macchiato",
-    "light": "One Light"
+    "dark": "Ayu Mirage",
+    "light": "Ayu Light"
   },
   "centered_layout": {
     "left_padding": 0.0,
