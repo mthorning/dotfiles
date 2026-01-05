@@ -10,3 +10,6 @@ disabled = true
 
 [git_status]
 disabled = true
+
+[kubernetes]
+disabled = false

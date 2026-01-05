@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "always_treat_brackets_as_autoclosed": true,
+  "use_autoclose": false,
+  "show_edit_predictions": false,
+  "edit_predictions": {
+    "mode": "subtle"
+  },
   "context_servers": {
     "mcp-server-github": {
       "enabled": true,

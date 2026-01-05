@@ -5,8 +5,9 @@ name = "Matt Thorning"
 email = "matt.thorning@grafana.com"
 
 [revset-aliases]
-# Shows main, your active bookmarks, and any work currently on top of them
-'stack' = 'main | ancestors(bookmarks(), 2) | @'
+'stack' = 'main@origin | main | ancestors(bookmarks(), 2) | @'
+"context" = 'main..@ | main'
 
 [aliases]
+context = ["log", "-r", "context"]
 stack = ["log", "-r", "stack"]
