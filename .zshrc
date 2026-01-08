@@ -20,6 +20,7 @@ alias y="yazi"
 alias p="pnpm"
 alias pr="pnpm run"
 alias pin="pnpm install"
+alias pls="pnpm ls"
 
 alias g="git"
 alias gl="git pull"
