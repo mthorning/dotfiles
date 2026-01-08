@@ -7,63 +7,66 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "sticky_scroll": {
+    "enabled": true,
+  },
   "always_treat_brackets_as_autoclosed": true,
   "use_autoclose": false,
   "show_edit_predictions": false,
   "edit_predictions": {
-    "mode": "subtle"
+    "mode": "subtle",
   },
   "context_servers": {
     "mcp-server-github": {
       "enabled": true,
       "settings": {
-        "github_personal_access_token": "$GITHUB_MCP_PERSONAL_ACCESS_TOKEN"
-      }
-    }
+        "github_personal_access_token": "$GITHUB_MCP_PERSONAL_ACCESS_TOKEN",
+      },
+    },
   },
   "theme": {
     "mode": "system",
     "dark": "Ayu Mirage",
-    "light": "Ayu Light"
+    "light": "Ayu Light",
   },
   "centered_layout": {
     "left_padding": 0.0,
-    "right_padding": 0.0
+    "right_padding": 0.0,
   },
   "tab_bar": {
     "show": true,
-    "show_nav_history_buttons": false
+    "show_nav_history_buttons": false,
   },
   "tabs": {
     "file_icons": true,
-    "git_status": true
+    "git_status": true,
   },
   "project_panel": {
-    "indent_size": 16
+    "indent_size": 16,
   },
   "preferred_line_length": 120,
   "tab_size": 2,
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "minimap": {
     "show": "never",
     "thumb": "always",
     "thumb_border": "left_open",
-    "display_in": "active_editor"
+    "display_in": "active_editor",
   },
   "agent": {
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-3.7-sonnet"
+      "model": "claude-3.7-sonnet",
     },
     "commit_message_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
     "thread_summary_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-4.1",
     },
     "profiles": {
       "write": {
@@ -84,7 +87,7 @@
           "grep": true,
           "terminal": true,
           "thinking": true,
-          "web_search": true
+          "web_search": true,
         },
         "enable_all_context_servers": true,
         "context_servers": {
@@ -128,16 +131,16 @@
               "assign_copilot_to_issue": false,
               "update_pull_request_branch": false,
               "get_issue_comments": true,
-              "get_issue": true
-            }
+              "get_issue": true,
+            },
           },
           "mcp-server-context7": {
             "tools": {
               "resolve-library-id": true,
-              "get-library-docs": true
-            }
-          }
-        }
+              "get-library-docs": true,
+            },
+          },
+        },
       },
       "ask": {
         "name": "Ask",
@@ -153,7 +156,7 @@
           "grep": true,
           "thinking": true,
           "web_search": true,
-          "terminal": true
+          "terminal": true,
         },
         "enable_all_context_servers": false,
         "context_servers": {
@@ -170,21 +173,21 @@
               "get_pull_request_comments": true,
               "get_issue": true,
               "get_issue_comments": true,
-              "get_commit": true
-            }
+              "get_commit": true,
+            },
           },
           "mcp-server-context7": {
             "tools": {
               "resolve-library-id": true,
-              "get-library-docs": true
-            }
-          }
-        }
+              "get-library-docs": true,
+            },
+          },
+        },
       },
       "github": {
         "name": "GitHub",
         "tools": {
-          "edit_file": true
+          "edit_file": true,
         },
         "enable_all_context_servers": false,
         "context_servers": {
@@ -237,11 +240,11 @@
               "get_discussion_comments": true,
               "get_commit": true,
               "get_discussion": true,
-              "add_comment_to_pending_review": true
-            }
-          }
-        }
-      }
+              "add_comment_to_pending_review": true,
+            },
+          },
+        },
+      },
     },
     "always_allow_tool_actions": true,
     "default_profile": "write",
@@ -249,13 +252,13 @@
     "model_parameters": [
       {
         "provider": "anthropic",
-        "model": "claude-sonnet-4-latest"
-      }
+        "model": "claude-sonnet-4-latest",
+      },
     ],
     "default_model": {
       "provider": "anthropic",
-      "model": "claude-sonnet-4-5-latest"
-    }
+      "model": "claude-sonnet-4-5-latest",
+    },
   },
   "vim_mode": true,
   "ui_font_fallbacks": ["Symbols Nerd Font Mono"],
@@ -264,7 +267,7 @@
   "terminal": {
     "font_family": "MonoLisa",
     "default_height": 420,
-    "font_size": 16
+    "font_size": 16,
   },
   "vim": {
     "default_mode": "normal",
@@ -277,41 +280,43 @@
     // Specify the mode as the key and the shape as the value.
     // The mode can be one of the following: "normal", "replace", "insert", "visual".
     // The shape can be one of the following: "block", "bar", "underline", "hollow".
-    "cursor_shape": {}
+    "cursor_shape": {},
   },
   "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "ui.diagnostic.analyses": {
+          "golangci-lint": true,
+        },
+      },
+    },
     "dart": {
       "settings": {
         "flutterHotReloadOnSave": "always",
         "flutterDaemonLogFile": "/tmp/flutter-daemon.log",
         "analysisExcludedFolders": [".dart_tool", "build"],
         "enableSnippets": true,
-        "maxCompletionItems": 100
+        "maxCompletionItems": 100,
       },
       "initialization_options": {
         "onlyAnalyzeProjectsWithOpenFiles": false,
         "suggestFromUnimportedLibraries": true,
         "closingLabels": true,
         "outline": true,
-        "flutterOutline": true
-      }
+        "flutterOutline": true,
+      },
     },
     "rust-analyzer": {
       "initialization_options": {
         "rustfmt": {
-          "overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"]
-        }
-      }
+          "overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"],
+        },
+      },
     },
-    "golangci-lint": {
-      "initialization_options": {
-        "command": ["/opt/homebrew/bin/golangci-lint", "run", "--out-format", "json", "--print-issued-lines=false", "--print-linter-name=false", "--issues-exit-code=1"]
-      }
-    }
   },
   "languages": {
     "Go": {
-      "language_servers": ["gopls", "golangci-lint"]
-    }
-  }
+      "language_servers": ["gopls", "golangci-lint"],
+    },
+  },
 }

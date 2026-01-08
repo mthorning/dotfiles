@@ -60,10 +60,12 @@ globalias() {
 zle -N globalias
 bindkey ' ' globalias
 
+bindkey -e
 bindkey '^@' autosuggest-accept
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 bindkey -r '^[h'
+bindkey -r '^['
 
 eval "$(fzf --zsh)"
 

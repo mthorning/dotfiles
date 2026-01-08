@@ -11,6 +11,7 @@ alias irmreset="make down && make cluster/down && make clean-dist && make cluste
 alias cc="git add . && claude \"commit code\""
 alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
 alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
+alias tc="pnpm run type-check"
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
