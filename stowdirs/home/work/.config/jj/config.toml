@@ -9,5 +9,5 @@ email = "matt.thorning@grafana.com"
 "context" = 'main..@ | main'
 
 [aliases]
-context = ["log", "-r", "context"]
+ctx = ["log", "-r", "context"]
 stack = ["log", "-r", "stack"]

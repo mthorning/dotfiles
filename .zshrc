@@ -6,11 +6,11 @@ source ~/completion-for-pnpm.zsh
 # Defer compinit until after zinit plugins are loaded
 # This will be called later in the config
 
+alias src="source ~/.zshrc"
 alias m="git machete"
 alias lg="lazygit"
 alias ls="lsd"
 alias ll="ls -al"
-alias ts="$HOME/.local/bin/tmux-sessioniser"
 alias weather="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias cat="bat"
 alias v="nvim"
@@ -25,6 +25,9 @@ alias pls="pnpm ls"
 alias g="git"
 alias gl="git pull"
 alias prc="gh pr checkout"
+
+alias ts="$HOME/.local/bin/tmux-sessioniser"
+alias ta="tmux attach"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
