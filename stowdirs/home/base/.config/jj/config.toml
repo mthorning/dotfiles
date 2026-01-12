@@ -2,6 +2,12 @@
 
 [user]
 name = "Matt Thorning"
+email = "matthewthorning@gmail.com"
+
+[[--scope]]
+--when.repositories = ["~/grafana"]
+# --when.hostnames = ["work-laptop"]
+[--scope.user]
 email = "matt.thorning@grafana.com"
 
 [revset-aliases]
