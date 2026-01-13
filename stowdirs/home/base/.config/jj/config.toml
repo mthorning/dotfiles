@@ -5,10 +5,15 @@ name = "Matt Thorning"
 email = "matthewthorning@gmail.com"
 
 [[--scope]]
---when.repositories = ["~/grafana"]
-# --when.hostnames = ["work-laptop"]
+--when.hostnames = ["Matts-GMBP.local"]
 [--scope.user]
 email = "matt.thorning@grafana.com"
+
+[[--scope]]
+--when.hostnames = ["Matts-GMBP.local"]
+--when.repositories = ["~/dotfiles"]
+[--scope.user]
+email = "matthewthorning@gmail.com"
 
 [revset-aliases]
 'stack' = 'main@origin | main | ancestors(bookmarks(), 2) | @'
