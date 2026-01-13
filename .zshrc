@@ -55,14 +55,6 @@ zle -N edit-command-line
 bindkey '^xe' edit-command-line
 bindkey '^x^e' edit-command-line
 
-# Global alias expansion on space
-globalias() {
-   zle _expand_alias
-   zle expand-word
-   zle self-insert
-}
-zle -N globalias
-bindkey ' ' globalias
 
 bindkey -e
 bindkey '^@' autosuggest-accept
