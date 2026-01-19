@@ -17,16 +17,25 @@ return {
     end
 
     wk.add({
-      { '<C-n>', '<CMD>lua vim.diagnostic.goto_next()<CR>', desc = 'Next Diagnostic', nowait = false, remap = false },
-      { '<C-p>', '<CMD>lua vim.diagnostic.goto_prev()<CR>', desc = 'Prev Diagnostic', nowait = false, remap = false },
-
+      { '<leader>;',       '<CMD>lua Snacks.dashboard()<CR>',                                                         desc = 'Dashboard',                nowait = false,    remap = false },
+      { '<leader><s-tab>', hidden = true,                                                                             nowait = false,                    remap = false },
+      { '<leader><tab>',   hidden = true,                                                                             nowait = false,                    remap = false },
       { '<leader>a',       '<CMD>wa<CR>',                                                                             desc = 'Save All',                 nowait = false,    remap = false },
+
+      { '<leader>A',       '<CMD>CodeCompanionChat Toggle<CR>',                                                       desc = 'Chat',                     nowait = false,    remap = false },
+
+      { '<leader>d',       group = 'Buffers',                                                                         nowait = false,                    remap = false },
+      { '<leader>bd',      '<CMD>lua Snacks.bufdelete.delete()<CR>',                                                  desc = 'Delete buffer',            nowait = false,    remap = false },
+      { '<leader>ba',      '<CMD>lua Snacks.bufdelete.all()<CR>',                                                     desc = 'Delete all buffers',       nowait = false,    remap = false },
+      { '<leader>bn',      '<CMD>lua Snacks.notify.info("Buffer "..vim.api.nvim_get_current_buf())<CR>',              desc = 'Show number',              nowait = false,    remap = false },
 
       { '<leader>c',       group = 'QuickFix',                                                                        nowait = false,                    remap = false },
       { '<leader>cc',      '<CMD>cclose<CR>',                                                                         desc = 'Close',                    nowait = false,    remap = false },
       { '<leader>cn',      '<CMD>cnext<CR>',                                                                          desc = 'Next',                     nowait = false,    remap = false },
       { '<leader>co',      '<CMD>copen<CR>',                                                                          desc = 'Open',                     nowait = false,    remap = false },
       { '<leader>cp',      '<CMD>cprev<CR>',                                                                          desc = 'Previous',                 nowait = false,    remap = false },
+
+      { '<leader>C',       function() open_claude_and_resize() end,                                                   desc = 'Copy path & open Claude',  nowait = false,    remap = false },
 
       { '<leader>d',       group = 'Debug',                                                                           nowait = false,                    remap = false },
       { '<leader>dB',      '<CMD>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',        desc = 'Conditional breakpoint',   nowait = false,    remap = false },
@@ -42,6 +51,7 @@ return {
       { '<leader>dx',      '<CMD>lua require"dap".disconnect()<CR>',                                                  desc = 'Exit',                     nowait = false,    remap = false },
       { '<leader>de',      '<CMD>lua require("dapui").eval()<CR>',                                                    mode = { 'n', 'v' },               desc = 'Evaluate', nowait = false, remap = false },
 
+      -- { '<leader>e',       '<CMD>Oil --float<CR>',                                                                           desc = 'Explorer',                 nowait = false,    remap = false },
       { '<leader>e',       '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',                 nowait = false,    remap = false },
 
       { '<leader>f',       group = 'Find',                                                                            nowait = false,                    remap = false },
@@ -61,13 +71,36 @@ return {
       { '<leader>ft',      "<CMD>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",            desc = 'Text',                     nowait = false,    remap = false },
       { '<leader>fw',      '<CMD>Telescope grep_string<CR>',                                                          desc = 'Word under cursor',        nowait = false,    remap = false },
 
+      { '<leader>d',       group = 'Git',                                                                             nowait = false,                    remap = false },
+      { '<leader>go',      '<CMD>lua Snacks.lazygit()<CR>',                                                           desc = 'LazyGit',                  nowait = false,    remap = false },
+      { '<leader>gb',      '<CMD>lua Snacks.git.blame_line()<CR>',                                                    desc = 'Blame Line',               nowait = false,    remap = false },
+      { '<leader>gf',      '<CMD>BlameToggle<CR>',                                                                    desc = 'Blame File',               nowait = false,    remap = false },
+      { '<leader>gx',      '<CMD>lua Snacks.gitbrowse()<CR>',                                                         desc = 'Open repo',                nowait = false,    remap = false },
+
+      { '<leader>h',       group = 'Harpoon',                                                                         nowait = false,                    remap = false },
+      { '<leader>ha',      '<CMD>lua require("harpoon.mark").add_file()<CR>',                                         desc = 'Add Mark',                 nowait = false,    remap = false },
+      { '<leader>he',      '<CMD>lua require("harpoon.ui").toggle_quick_menu()<CR>',                                  desc = 'Show Marks',               nowait = false,    remap = false },
+      { '<leader>hn',      '<CMD>lua require("harpoon.ui").nav_next()<CR>',                                           desc = 'Next',                     nowait = false,    remap = false },
+      { '<leader>hp',      '<CMD>lua require("harpoon.ui").nav_prev()<CR>',                                           desc = 'Prev',                     nowait = false,    remap = false },
+      { '<leader>hs',      '<CMD>Telescope harpoon marks<CR>',                                                        desc = 'Search',                   nowait = false,    remap = false },
+      { '<leader>j',       '<CMD>silent !tmux neww ff<CR>',                                                           desc = 'Manage feature flags',     nowait = false,    remap = false },
+
       { '<leader>l',       group = 'LSP',                                                                             nowait = false,                    remap = false },
+      { '<leader>l/',      '<CMD>LspInfo<CR>',                                                                        desc = 'Info',                     nowait = false,    remap = false },
       { '<leader>l?',      '<CMD>Mason<CR>',                                                                          desc = 'Server Info',              nowait = false,    remap = false },
-      { '<leader>lF',      '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                         desc = 'Format',                   nowait = false,    remap = false },
+      { '<leader>lF',      '<CMD>call CocActionAsync("format")<CR>',                                                  desc = 'Format',                   nowait = false,    remap = false },
+      { '<leader>ld',      '<CMD>call CocActionAsync("jumpDefinition")<CR>',                                          desc = 'Goto Definition',          nowait = false,    remap = false },
+      { '<leader>lf',      '<CMD>call CocActionAsync("jumpReferences")<CR>',                                          desc = 'References',               nowait = false,    remap = false },
+      { '<leader>lh',      '<CMD>call CocActionAsync("doHover")<CR>',                                                 desc = 'Hover',                    nowait = false,    remap = false },
+      { '<leader>ll',      '<CMD>call CocActionAsync("diagnosticInfo")<CR>',                                          desc = 'Line Diagnostic',          nowait = false,    remap = false },
+      { '<leader>lr',      '<CMD>call CocActionAsync("rename")<CR>',                                                  desc = 'Rename',                   nowait = false,    remap = false },
       { '<leader>ls',      '<CMD>Telescope lsp_document_symbols<CR>',                                                 desc = 'Document Symbols',         nowait = false,    remap = false },
+      { '<leader>lt',      '<CMD>call CocActionAsync("jumpTypeDefinition")<CR>',                                      desc = 'Goto Type Definition',     nowait = false,    remap = false },
+      { '<leader>lv',      '<CMD>call CocActionAsync("jumpDefinition", "vsplit")<CR>',                                desc = 'Goto Definition in split', nowait = false,    remap = false },
       {
         '<leader>lx',
         function()
+          vim.cmd('CocRestart')
           vim.cmd('LspRestart')
         end,
         desc = 'Restart',
@@ -77,8 +110,14 @@ return {
 
       { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',               desc = 'Change repo',       nowait = false, remap = false },
 
+      { '<leader>n',  group = 'Notifications',                             nowait = false,             remap = false },
+      { '<leader>nh', '<CMD>lua Snacks.notifier.show_history()<CR>',       desc = 'History',           nowait = false, remap = false },
+      { '<leader>nx', '<CMD>lua Snacks.notifier.hide()<CR>',               desc = 'Clear',             nowait = false, remap = false },
+
       { '<leader>p',  '<CMD>Lazy<CR>',                                     desc = 'Plugins',           nowait = false, remap = false },
+      { '<leader>P',  '<CMD>Prettier<CR>',                                 desc = 'Prettier',          nowait = false, remap = false },
       { '<leader>q',  '<CMD>q<CR>',                                        desc = 'Quit',              nowait = false, remap = false },
+      { '<leader>r',  '<CMD>GrugFar ripgrep<CR>',                          desc = 'Replace',           nowait = false, remap = false },
 
       { '<leader>t',  group = 'Terminal',                                  nowait = false,             remap = false },
       { '<leader>t.', '<cmd>term<CR>',                                     desc = 'Here',              nowait = false, remap = false },
@@ -89,7 +128,14 @@ return {
 
       { '<leader>w',  '<cmd>w<CR>',                                        desc = 'Save',              nowait = false, remap = false },
 
+      { '<leader>x',  group = 'Execute lua',                               nowait = false,             remap = false },
+      { '<leader>xf', '<cmd>%lua<CR>',                                     desc = 'Execute file',      nowait = false, remap = false },
+      { '<leader>xs', "<cmd>'<,'>lua<CR>",                                 desc = 'Execute selection', nowait = false, remap = false },
+      { '<leader>xl', "<cmd>.lua<CR>",                                     desc = 'Execute line',      nowait = false, remap = false },
+
+
       { '<leader>y',  '<cmd>let @+ = expand("%:p")<CR>',                   desc = 'Copy path',         nowait = false, remap = false },
+      { '<leader>z',  '<cmd>lua require("snacks").zen()<CR>',              desc = 'Zen Mode',          nowait = false, remap = false },
       { '<leader>u',  '<cmd>UndotreeToggle<CR>',                           desc = 'Undo tree',         nowait = false, remap = false },
     })
   end,

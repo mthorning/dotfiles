@@ -18,18 +18,3 @@ vim.opt.timeoutlen = 0
 vim.opt.signcolumn = 'yes'
 vim.opt.syntax = 'on'
 vim.opt.grepprg = 'rg --vimgrep --smart-case --follow'
-vim.opt.clipboard = 'unnamedplus'
-
-vim.diagnostic.config({
-  float = {
-    border = "rounded",
-    source = "always",
-  },
-})
-
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or "rounded"
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end

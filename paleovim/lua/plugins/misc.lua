@@ -4,7 +4,17 @@ return {
   { 'NvChad/nvim-colorizer.lua',      event = 'VeryLazy' },
   { 'b3nj5m1n/kommentary',            event = 'VeryLazy' },
   { 'RRethy/vim-illuminate',          event = 'VeryLazy' },
-  { 'mhinz/vim-startify' },
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd([[colorscheme tokyonight-moon]])
+
+      vim.g.tokyonight_italic_functions = 1
+      vim.g.tokyonight_italic_keywords = 0
+    end
+  },
   {
     'karb94/neoscroll.nvim',
     event = 'VeryLazy',
@@ -32,6 +42,16 @@ return {
     config = function() require 'colorizer'.setup() end
   },
   {
+    'windwp/nvim-autopairs',
+    event = "VeryLazy",
+    config = true,
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+    opts = {},
+  },
+  {
     "f-person/git-blame.nvim",
     event = "VeryLazy",
     opts = {
@@ -40,5 +60,12 @@ return {
       date_format = "%Y-%m-%d",
       virtual_text_column = 1,
     },
+  },
+  {
+    "FabijanZulj/blame.nvim",
+    lazy = false,
+    config = function()
+      require('blame').setup {}
+    end,
   },
 }

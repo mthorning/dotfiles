@@ -1,4 +1,5 @@
-return {
+return {}
+--[[ return {
   {
     'hrsh7th/nvim-cmp',
     event = 'VeryLazy',
@@ -90,4 +91,4 @@ return {
     event = 'BufReadPre',
     dependencies = { 'hrsh7th/nvim-cmp' }
   },
-}
+} ]]

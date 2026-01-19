@@ -1,3 +1,5 @@
+-- vim:foldmethod=marker
+--
 return {
   {
    'mfussenegger/nvim-dap',
@@ -11,6 +13,7 @@ return {
 
   local dap = require('dap')
 
+  -- deno {{{
     -- see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#vscode-js-debug-1
 
     require("dap").adapters["pwa-node"] = {
@@ -40,7 +43,9 @@ return {
         attachSimplePort = 9229,
       },
     }
+  -- }}}
 
+  -- zig {{{
     -- see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#ccrust-via-lldb-vscode
 
     dap.set_log_level('DEBUG')
@@ -70,7 +75,9 @@ return {
         args = {},
       },
     }
+  -- }}}
 
+  -- go {{{
       -- see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#go
       dap.adapters.go = {
         type = 'executable';
@@ -107,6 +114,7 @@ return {
             } ]]
         },
      }
+  -- }}}
 
   end
 },
