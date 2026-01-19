@@ -24,6 +24,7 @@ alias pls="pnpm ls"
 
 alias g="git"
 alias gl="git pull"
+alias gco="git checkout"
 alias prc="gh pr checkout"
 
 alias ts="$HOME/.local/bin/tmux-sessioniser"

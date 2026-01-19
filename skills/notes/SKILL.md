@@ -16,8 +16,8 @@ When the user asks to "check my notes" or search for something:
 - **Read**: Use `read_file` to retrieve the full content of relevant matches.
 
 ### 2. Add to Notes
-When the user asks to "add that to my notes":
-- **Default Location**: Unless a specific file is mentioned, append the information to the **Current Daily Note**.
+When the user asks to "add that to my notes" or "make a not of that":
+- **Default Location**: Unless a specific file is mentioned or it's obvious where the note should be made, append the information to the **Current Daily Note**.
   - Path format: `/Users/mthorning/Documents/Notes/Daily/YYYY-MM-DD.md` (e.g., `2025-01-16.md`).
   - **Create if missing**: If today's daily note doesn't exist, create it.
 - **Format**:

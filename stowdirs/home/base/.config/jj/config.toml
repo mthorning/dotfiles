@@ -17,8 +17,14 @@ email = "matthewthorning@gmail.com"
 
 [revset-aliases]
 'stack' = 'main@origin | main | ancestors(bookmarks(), 2) | @'
-"context" = 'main..@ | main'
+'context' = 'main..@ | main'
+'log' = '(present(@) | ancestors(immutable_heads().., 2) | present(trunk()))' # This is the builtin log
 
 [aliases]
 ctx = ["log", "-r", "context"]
 stack = ["log", "-r", "stack"]
+
+[ui]
+pager = "delta"
+diff-formatter = ":git"
+
