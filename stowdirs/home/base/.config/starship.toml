@@ -1,3 +1,5 @@
+scan_timeout = 100
+
 [custom.jj]
 command = "jj-starship"
 when = "jj-starship detect"
