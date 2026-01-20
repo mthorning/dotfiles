@@ -15,3 +15,6 @@ disabled = true
 
 [kubernetes]
 disabled = false
+contexts = [
+  { context_pattern = ".*prod.*", style = "red bold" },
+]
