@@ -91,6 +91,8 @@ return {
 
       { '<leader>y',  '<cmd>let @+ = expand("%:p")<CR>',                   desc = 'Copy path',         nowait = false, remap = false },
       { '<leader>u',  '<cmd>UndotreeToggle<CR>',                           desc = 'Undo tree',         nowait = false, remap = false },
+
+      { '<leader>;',  '<CMD>Startify<CR>',                                 desc = 'Start screen',      nowait = false, remap = false },
     })
   end,
 }
