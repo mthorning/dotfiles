@@ -96,8 +96,8 @@ return {
       { '<leader>w',  '<cmd>w<CR>',                          desc = 'Save',         nowait = false, remap = false },
 
       { '<leader>y',  group = 'Yank',                        nowait = false,        remap = false },
-      { '<leader>ya', desc = 'Absolute path',                nowait = false,        remap = false },
-      { '<leader>yr', desc = 'Relative path',                nowait = false,        remap = false },
+      { '<leader>ya', '<CMD>YankAbsolutePath<CR>', mode = { 'n', 'v' }, desc = 'Absolute path', nowait = false, remap = false },
+      { '<leader>yr', '<CMD>YankRelativePath<CR>', mode = { 'n', 'v' }, desc = 'Relative path', nowait = false, remap = false },
       { '<leader>u',  '<cmd>UndotreeToggle<CR>',             desc = 'Undo tree',    nowait = false, remap = false },
 
       { '<leader>;',  '<CMD>Startify<CR>',                   desc = 'Start screen', nowait = false, remap = false },
