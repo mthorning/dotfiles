@@ -49,6 +49,7 @@ vim.lsp.enable('ts_ls')
 
 vim.lsp.config['gopls'] = {
   cmd = { lsp_servers .. "/gopls" },
+  filetypes = { "go" },
   root_markers = { 'go.mod', '.git' }
 }
 vim.lsp.enable('gopls')
