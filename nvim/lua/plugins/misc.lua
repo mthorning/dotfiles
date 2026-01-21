@@ -3,7 +3,20 @@ return {
   { 'christoomey/vim-tmux-navigator', event = 'VeryLazy' },
   { 'NvChad/nvim-colorizer.lua',      event = 'VeryLazy' },
   { 'b3nj5m1n/kommentary',            event = 'VeryLazy' },
-  { 'RRethy/vim-illuminate',          event = 'VeryLazy' },
+  {
+    'RRethy/vim-illuminate',
+    event = 'VeryLazy',
+    config = function()
+      require('illuminate').configure({
+        providers = { 'lsp' },
+        delay = 200,
+        filetypes_denylist = { 'NvimTree' },
+      })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = '#383838' })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = '#383838' })
+      vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = '#383838' })
+    end
+  },
   { 'mhinz/vim-startify' },
   {
     'karb94/neoscroll.nvim',
