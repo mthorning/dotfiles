@@ -4,7 +4,7 @@ return {
   config = function()
     require('ayu').setup({
       mirage = true,
-      terminal = true,
+      terminal = false,
     })
     require('ayu').colorscheme()
   end

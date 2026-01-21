@@ -19,6 +19,7 @@ return {
     wk.add({
       { '<C-n>', '<CMD>lua vim.diagnostic.goto_next()<CR>', desc = 'Next Diagnostic', nowait = false, remap = false },
       { '<C-p>', '<CMD>lua vim.diagnostic.goto_prev()<CR>', desc = 'Prev Diagnostic', nowait = false, remap = false },
+      { 'gs', '<CMD>Telescope lsp_document_symbols<CR>', desc = 'Document Symbols', nowait = false, remap = false },
 
       { '<leader>a',       '<CMD>wa<CR>',                                                                             desc = 'Save All',                 nowait = false,    remap = false },
 
@@ -89,7 +90,9 @@ return {
 
       { '<leader>w',  '<cmd>w<CR>',                                        desc = 'Save',              nowait = false, remap = false },
 
-      { '<leader>y',  '<cmd>let @+ = expand("%:p")<CR>',                   desc = 'Copy path',         nowait = false, remap = false },
+      { '<leader>y',  group = 'Yank',             nowait = false, remap = false },
+      { '<leader>ya', desc = 'Absolute path',     nowait = false, remap = false },
+      { '<leader>yr', desc = 'Relative path',     nowait = false, remap = false },
       { '<leader>u',  '<cmd>UndotreeToggle<CR>',                           desc = 'Undo tree',         nowait = false, remap = false },
 
       { '<leader>;',  '<CMD>Startify<CR>',                                 desc = 'Start screen',      nowait = false, remap = false },

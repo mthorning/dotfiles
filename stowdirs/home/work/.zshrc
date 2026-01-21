@@ -12,7 +12,7 @@ alias cc="git add . && claude \"commit code\""
 alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
 alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
 alias tc="pnpm run type-check"
-alias tilt="k9s --context=orbstack -A -c pod"
+alias k9tilt="k9s --context=orbstack -A -c pod"
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
