@@ -77,26 +77,19 @@ return {
         remap = false
       },
 
-      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',               desc = 'Change repo',      nowait = false, remap = false },
+      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>', desc = 'Change repo',  nowait = false, remap = false },
 
-      { '<leader>p',  '<CMD>Lazy<CR>',                                     desc = 'Plugins',          nowait = false, remap = false },
-      { '<leader>q',  '<CMD>q<CR>',                                        desc = 'Quit',             nowait = false, remap = false },
+      { '<leader>p',  '<CMD>Lazy<CR>',                       desc = 'Plugins',      nowait = false, remap = false },
+      { '<leader>q',  '<CMD>q<CR>',                          desc = 'Quit',         nowait = false, remap = false },
 
-      { '<leader>t',  group = 'Terminal',                                  nowait = false,            remap = false },
-      { '<leader>t.', '<cmd>term<CR>',                                     desc = 'Here',             nowait = false, remap = false },
-      { '<leader>ts', '<cmd>split term://zsh | :startinsert<CR>',          desc = 'Horizontal split', nowait = false, remap = false },
-      { '<leader>tt', '<cmd>tabnew | :edit term://zsh | :startinsert<CR>', desc = 'Tab',              nowait = false, remap = false },
-      { '<leader>tv', '<cmd>vsplit term://zsh | :startinsert<CR>',         desc = 'Vert split',       nowait = false, remap = false },
-      { '<leader>tt', '<CMD>Floaterminal<CR>',                             desc = 'Float',            nowait = false, remap = false },
+      { '<leader>w',  '<cmd>w<CR>',                          desc = 'Save',         nowait = false, remap = false },
 
-      { '<leader>w',  '<cmd>w<CR>',                                        desc = 'Save',             nowait = false, remap = false },
+      { '<leader>y',  group = 'Yank',                        nowait = false,        remap = false },
+      { '<leader>ya', desc = 'Absolute path',                nowait = false,        remap = false },
+      { '<leader>yr', desc = 'Relative path',                nowait = false,        remap = false },
+      { '<leader>u',  '<cmd>UndotreeToggle<CR>',             desc = 'Undo tree',    nowait = false, remap = false },
 
-      { '<leader>y',  group = 'Yank',                                      nowait = false,            remap = false },
-      { '<leader>ya', desc = 'Absolute path',                              nowait = false,            remap = false },
-      { '<leader>yr', desc = 'Relative path',                              nowait = false,            remap = false },
-      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                           desc = 'Undo tree',        nowait = false, remap = false },
-
-      { '<leader>;',  '<CMD>Startify<CR>',                                 desc = 'Start screen',     nowait = false, remap = false },
+      { '<leader>;',  '<CMD>Startify<CR>',                   desc = 'Start screen', nowait = false, remap = false },
     })
   end,
 }

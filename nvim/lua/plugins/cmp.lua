@@ -21,12 +21,6 @@ return {
     config = function()
       local cmp = require 'cmp'
 
-      -- Determine if the current buffer is a TypeScript or JavaScript file
-      local is_ts_or_js = function()
-        local ft = vim.bo.filetype
-        return ft == 'typescript' or ft == 'typescriptreact' or ft == 'javascript' or ft == 'javascriptreact'
-      end
-
       cmp.setup {
         snippet = {
           expand = function(args)
@@ -45,10 +39,6 @@ return {
             behavior = cmp.SelectBehavior.Insert
           })
         },
-        -- Only use LSP completion for non-TS/JS files
-        enabled = function()
-          return not is_ts_or_js()
-        end,
         sources = {
           { name = 'nvim_lsp' }, { name = 'buffer' }, { name = 'path' }, { name = 'snippy' }, {
           name = 'buffer',

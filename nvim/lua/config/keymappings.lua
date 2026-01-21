@@ -25,24 +25,12 @@ set("n", "<S-Down>", ":resize -2<CR>")
 set("n", "<S-Left>", ":vertical resize -2<CR>")
 set("n", "<S-Right>", ":vertical resize +2<CR>")
 
--- Tab switch
-set("n", "<Leader><TAB>", "gt")
-set("n", "<Leader><S-TAB>", "gT")
--- Move selected line / block of text in visual mode
-set("v", "<C-j>", ":m '>+1<CR>gv=gv")
-set("v", "<C-k>", ":m '<-2<CR>gv=gv")
-
 -- better indenting in visual mode
 set("v", "<", "<gv")
 set("v", ">", ">gv")
 
 -- Yank end of line
 set("n", "Y", "y$$")
-
--- Keeping it centered
-set("n", "n", "nzzzv")
-set("n", "N", "Nzzzv")
-set("n", "J", "mzJ`z")
 
 -- Remove annoying weird keybinding
 set("i", "<", "<")
