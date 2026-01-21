@@ -19,11 +19,11 @@ vim.opt.signcolumn = 'yes'
 vim.opt.syntax = 'on'
 vim.opt.grepprg = 'rg --vimgrep --smart-case --follow'
 vim.opt.clipboard = 'unnamedplus'
+vim.g.rust_recommended_style = 0
 
 vim.diagnostic.config({
   float = {
     border = "rounded",
-    source = "always",
   },
 })
 
