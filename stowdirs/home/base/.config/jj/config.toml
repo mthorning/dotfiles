@@ -27,4 +27,5 @@ stack = ["log", "-r", "stack"]
 [ui]
 pager = "delta"
 diff-formatter = ":git"
+default-command = "log"
 
