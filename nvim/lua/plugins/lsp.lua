@@ -76,7 +76,7 @@ local function has_conflict_markers(bufnr)
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
   for _, line in ipairs(lines) do
     if line:match("^<<<<<<<") or line:match("^%%%%%%%") or
-       line:match("^%+%+%+%+%+%+%+") or line:match("^>>>>>>>") then
+        line:match("^%+%+%+%+%+%+%+") or line:match("^>>>>>>>") then
       return true
     end
   end
@@ -129,5 +129,23 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 
 return {
   { "williamboman/mason.nvim", opts = {} },
-
+  {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local lint = require("lint")
+      lint.linters_by_ft = {
+        javascript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        go = { "golangcilint" },
+      }
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+    end,
+  },
 }
