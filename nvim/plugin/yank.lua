@@ -65,8 +65,10 @@ local function yank_absolute()
     yank_visual_with_path(get_buffer_absolute())
   else
     local path = get_buffer_absolute()
-    vim.fn.setreg('+', path)
-    vim.notify('Yanked: ' .. path)
+    local line_num = vim.fn.line('.')
+    local path_with_line = path .. ':' .. line_num
+    vim.fn.setreg('+', path_with_line)
+    vim.notify('Yanked: ' .. path_with_line)
   end
 end
 
@@ -76,8 +78,10 @@ local function yank_relative()
     yank_visual_with_path(get_buffer_cwd_relative())
   else
     local path = get_buffer_cwd_relative()
-    vim.fn.setreg('+', path)
-    vim.notify('Yanked: ' .. path)
+    local line_num = vim.fn.line('.')
+    local path_with_line = path .. ':' .. line_num
+    vim.fn.setreg('+', path_with_line)
+    vim.notify('Yanked: ' .. path_with_line)
   end
 end
 
