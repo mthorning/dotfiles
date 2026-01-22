@@ -17,7 +17,12 @@ return {
       vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = '#383838' })
     end
   },
-  { 'mhinz/vim-startify' },
+  {
+    'mhinz/vim-startify',
+    config = function()
+      vim.g.startify_change_to_dir = 0
+    end
+  },
   {
     'karb94/neoscroll.nvim',
     event = 'VeryLazy',
