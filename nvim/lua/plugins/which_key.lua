@@ -19,7 +19,6 @@ return {
     wk.add({
       { '<C-n>',      '<CMD>lua vim.diagnostic.goto_next()<CR>',                                                 desc = 'Next Diagnostic',        nowait = false,    remap = false },
       { '<C-p>',      '<CMD>lua vim.diagnostic.goto_prev()<CR>',                                                 desc = 'Prev Diagnostic',        nowait = false,    remap = false },
-      { 'gs',         '<CMD>Telescope lsp_document_symbols<CR>',                                                 desc = 'Document Symbols',       nowait = false,    remap = false },
 
       { '<leader>a',  '<CMD>wa<CR>',                                                                             desc = 'Save All',               nowait = false,    remap = false },
 

@@ -56,7 +56,13 @@ return {
           override_file_sorter = true
         }
       },
-      pickers = { find_files = { hidden = true } }
+      pickers = {
+        find_files = { hidden = true },
+        lsp_document_symbols = {
+          fname_width = 60,
+          symbol_width = 60,
+        }
+      }
     }
 
     require('telescope').load_extension('harpoon')
