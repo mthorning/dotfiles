@@ -10,11 +10,19 @@ return {
   config = function()
     local wk = require('which-key')
 
-    local function open_claude_and_resize()
-      vim.fn.setreg('+', vim.fn.expand("%:p"))
-      vim.cmd("silent !tmux split-window -h -l 90 'claude'")
-      vim.defer_fn(function() vim.cmd("wincmd =") end, 100)
+    local add_toqflist = function()
+      local diagnostics = vim.diagnostic.get(0, {
+        everity_sort = true
+      })
+      vim.fn.setqflist({}, 'r', {
+        title =
+        "Diagnostics",
+        items =
+            vim.diagnostic.toqflist(diagnostics)
+      })
+      vim.cmd("copen")
     end
+
 
     wk.add({
       { '<C-n>',      '<CMD>lua vim.diagnostic.goto_next()<CR>',                                                 desc = 'Next Diagnostic',        nowait = false,    remap = false },
@@ -39,7 +47,7 @@ return {
       { '<leader>dm', '<CMD>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = 'Message',                nowait = false,    remap = false },
       { '<leader>do', '<CMD>lua require"dap".step_over()<CR>',                                                   desc = 'Step over',              nowait = false,    remap = false },
       { '<leader>dr', '<CMD>lua require"dap".repl.open()<CR>',                                                   desc = 'REPL',                   nowait = false,    remap = false },
-      { '<leader>dx', '<CMD>lua require"dap".disconnect()<CR>',                                                  desc = 'Exit',                   nowait = false,    remap = false },
+      { '<leader>dx', '<CMD>DapClose<CR>',                                                                      desc = 'Close Session',          nowait = false,    remap = false },
       { '<leader>de', '<CMD>lua require("dapui").eval()<CR>',                                                    mode = { 'n', 'v' },             desc = 'Evaluate', nowait = false, remap = false },
 
       { '<leader>e',  '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',               nowait = false,    remap = false },
@@ -68,6 +76,7 @@ return {
       { '<leader>ld', '<CMD>lua vim.lsp.buf.definition()<CR>',                                                   desc = 'Definition',             nowait = false,    remap = false },
       { '<leader>lv', '<CMD>vsplit<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                    desc = 'Definition (vsplit)',    nowait = false,    remap = false },
       { '<leader>le', '<CMD>lua vim.diagnostic.open_float()<CR>',                                                desc = 'Diagnostics',            nowait = false,    remap = false },
+      { '<leader>le', add_toqflist,                                                                              desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>lF', '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                         desc = 'Format',                 nowait = false,    remap = false },
       { '<leader>lh', '<CMD>lua vim.lsp.buf.hover()<CR>',                                                        desc = 'Hover',                  nowait = false,    remap = false },
       { '<leader>li', '<CMD>lua vim.lsp.buf.implementation()<CR>',                                               desc = 'Implementation',         nowait = false,    remap = false },
@@ -87,19 +96,19 @@ return {
         remap = false
       },
 
-      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>', desc = 'Change repo',  nowait = false, remap = false },
+      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>', desc = 'Change repo',  nowait = false,         remap = false },
 
-      { '<leader>p',  '<CMD>Lazy<CR>',                       desc = 'Plugins',      nowait = false, remap = false },
-      { '<leader>q',  '<CMD>q<CR>',                          desc = 'Quit',         nowait = false, remap = false },
+      { '<leader>p',  '<CMD>Lazy<CR>',                       desc = 'Plugins',      nowait = false,         remap = false },
+      { '<leader>q',  '<CMD>q<CR>',                          desc = 'Quit',         nowait = false,         remap = false },
 
-      { '<leader>w',  '<cmd>w<CR>',                          desc = 'Save',         nowait = false, remap = false },
+      { '<leader>w',  '<cmd>w<CR>',                          desc = 'Save',         nowait = false,         remap = false },
 
       { '<leader>y',  group = 'Yank',                        nowait = false,        remap = false },
-      { '<leader>ya', '<CMD>YankAbsolutePath<CR>', mode = { 'n', 'v' }, desc = 'Absolute path', nowait = false, remap = false },
-      { '<leader>yr', '<CMD>YankRelativePath<CR>', mode = { 'n', 'v' }, desc = 'Relative path', nowait = false, remap = false },
-      { '<leader>u',  '<cmd>UndotreeToggle<CR>',             desc = 'Undo tree',    nowait = false, remap = false },
+      { '<leader>ya', '<CMD>YankAbsolutePath<CR>',           mode = { 'n', 'v' },   desc = 'Absolute path', nowait = false, remap = false },
+      { '<leader>yr', '<CMD>YankRelativePath<CR>',           mode = { 'n', 'v' },   desc = 'Relative path', nowait = false, remap = false },
+      { '<leader>u',  '<cmd>UndotreeToggle<CR>',             desc = 'Undo tree',    nowait = false,         remap = false },
 
-      { '<leader>;',  '<CMD>Startify<CR>',                   desc = 'Start screen', nowait = false, remap = false },
+      { '<leader>;',  '<CMD>Startify<CR>',                   desc = 'Start screen', nowait = false,         remap = false },
     })
   end,
 }

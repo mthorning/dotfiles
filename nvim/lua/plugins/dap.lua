@@ -71,6 +71,42 @@ return {
       },
     }
 
+    local dap_args = {}
+    dap.configurations.rust = {
+      {
+        name = "Launch file",
+        type = "lldb",
+        request = "launch",
+        program = function()
+            local input = vim.fn.input('Path to executable and args (separated by --): ', vim.fn.getcwd() .. '/target/debug/', 'file')
+            local program_path = input
+            local args_str = ""
+            local sep_idx = input:find(" -- ", 1, true)
+
+            if sep_idx then
+                program_path = input:sub(1, sep_idx - 1)
+                args_str = input:sub(sep_idx + #(" -- "))
+            end
+
+            -- trim whitespace
+            program_path = program_path:gsub("^%s+", ""):gsub("%s+$", "")
+
+            if args_str ~= "" then
+                dap_args = vim.split(args_str, ' ')
+            else
+                dap_args = {}
+            end
+
+            return program_path
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = function()
+            return dap_args
+        end,
+      },
+    }
+
       -- see https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation#go
       dap.adapters.go = {
         type = 'executable';
@@ -99,12 +135,6 @@ return {
           port = 2345;
           host = '127.0.0.1';
           debugAdapter = 'dlv-dap';
-          --[[ substitutePath = {
-                {
-                    from: '${workspaceFolder}',
-                    to: '/usr/src/app'
-                }
-            } ]]
         },
      }
 

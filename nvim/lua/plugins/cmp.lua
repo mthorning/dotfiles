@@ -22,10 +22,6 @@ return {
         sources = {
           {
             name = 'nvim_lsp',
-            entry_filter = function(entry, ctx)
-              local kind = require('cmp.types.lsp').CompletionItemKind[entry:get_kind()]
-              return vim.tbl_contains({ 'Method', 'Function', 'Field', 'Property', 'Variable' }, kind)
-            end
           }, { name = 'path' }, {
           name = 'buffer',
           options = {
