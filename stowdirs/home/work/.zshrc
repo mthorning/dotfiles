@@ -21,14 +21,16 @@ source ~/dotfiles/.zshrc
 alias cloud_sso="~/grafana/deployment_tools/scripts/sso/gcloud.sh && AWS_PROFILE=workloads-ops ~/grafana/deployment_tools/scripts/sso/aws.sh && ~/grafana/deployment_tools/scripts/sso/az.sh"
 
 reviews() {
-    { printf "%-7s %-45s %-20s %s\n" "ID" "TITLE" "REPO" "AUTHOR"
-      printf "%s\n\n" "$(printf '─%.0s' {1..85})"
-      gh search prs --review-requested=@me --repo=grafana/irm --repo=grafana/oncall-mobile-app --repo=grafana/oncall --repo=grafana/gops-labels --state=open --json number,title,url,author,repository --jq '.[] | [.number, .title, .url, .author.login, .repository.name] | @tsv' | while IFS=$'\t' read -r num title url author repo; do
-          # Truncate title if longer than 42 characters (leaving room for "...")
+    { printf "%-8s %-7s %-45s %-20s %s\n" "ID" "DRAFT" "TITLE" "REPO" "AUTHOR"
+      printf "%s\n\n" "$(printf '─%.0s' {1..100})"
+      gh search prs --review-requested=@me --repo=grafana/irm --repo=grafana/oncall-mobile-app --repo=grafana/oncall --repo=grafana/gops-labels --state=open --json number,title,url,author,repository,isDraft --jq '.[] | [.number, .title, .url, .author.login, .repository.name, .isDraft] | @tsv' | while IFS=$'\t' read -r num title url author repo draft; do
           if [ ${#title} -gt 42 ]; then
               title="${title:0:42}..."
           fi
-          printf "\033]8;;%s\033\\#%s\033]8;;\033\\%-$((7-${#num}))s %-45s %-20s %s\n\n" "$url" "$num" "" "$title" "$repo" "$author"
+          draft_str=$([ "$draft" = "true" ] && echo "Yes" || echo "No")
+          id_link=$(printf "\033]8;;%s\033\\#%s\033]8;;\033\\" "$url" "$num")
+          padding=$(printf "%$((8 - ${#num} - 1))s" "")
+          printf "%s%s %-7s %-45s %-20s %s\n\n" "$id_link" "$padding" "$draft_str" "$title" "$repo" "$author"
       done
     }
 }

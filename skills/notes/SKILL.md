@@ -24,7 +24,7 @@ When the user asks to "add that to my notes" or "make a not of that":
   - Append a bullet point (`- `) followed by the content.
   - Ensure the content is formatted in Markdown.
 
-### 2. Add to Tasks
+### 3. Add to Tasks
 When the user asks to "add that to my tasks":
 - **Default Location**: Unless a specific file is mentioned, append the information to the **Current Daily Note**.
   - Path format: `/Users/mthorning/Documents/Notes/Daily/YYYY-MM-DD.md` (e.g., `2025-01-16.md`).
@@ -32,6 +32,12 @@ When the user asks to "add that to my tasks":
 - **Format**:
   - Append a task item (`- [ ] `) followed by the content.
   - Ensure the content is formatted in Markdown.
+
+### 4. Commit and Push Changes
+After making any updates to notes (adding, editing, etc.), always commit and push the changes:
+- Run the script: `~/dotfiles/skills/notes/commit-and-push.sh "<description>"`
+- The description should briefly describe what was added/changed (e.g., "Add project notes", "Add task for code review")
+- This script will automatically commit, set the main bookmark, and push to git
 
 
 ## Constraints & Rules (from AGENTS.md)
