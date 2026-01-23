@@ -31,8 +31,9 @@ alias prc="gh pr checkout"
 alias ts="$HOME/.local/bin/tmux-sessioniser"
 alias ta="tmux attach"
 
-function jb() {
-  jj bookmark list --template '
+# Widget to insert jj bookmark at cursor
+function jjb-widget() {
+  local bookmark=$(jj bookmark list --template '
     if(!self.remote(),
       separate(" | ",
         name,
@@ -40,8 +41,15 @@ function jb() {
         if(self.synced(), "[in-sync]", "[out-of-sync]")
       ) ++ "\n"
     )
-  ' | fzf --height 40% --reverse --header "Select Bookmark" | awk -F' | ' '{print $1}'
+  ' | fzf --height 40% --reverse --header "Select Bookmark" | awk -F' | ' '{print $1}')
+
+  if [[ -n "$bookmark" ]]; then
+    LBUFFER="${LBUFFER}${bookmark}"
+  fi
+  zle reset-prompt
 }
+zle -N jjb-widget
+bindkey '^b' jjb-widget
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
