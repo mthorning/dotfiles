@@ -4,6 +4,13 @@ return {
   { 'NvChad/nvim-colorizer.lua',      event = 'VeryLazy' },
   { 'b3nj5m1n/kommentary',            event = 'VeryLazy' },
   {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+
+    -- Completion for `blink.cmp`
+    -- dependencies = { "saghen/blink.cmp" },
+  },
+  {
     'RRethy/vim-illuminate',
     event = 'VeryLazy',
     config = function()
