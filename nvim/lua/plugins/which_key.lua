@@ -23,6 +23,11 @@ return {
       vim.cmd("copen")
     end
 
+    local add_conflicts_to_qflist = function()
+      vim.cmd('silent! vimgrep /<<<<<<< /gj **/*')
+      vim.cmd('copen')
+    end
+
 
     wk.add({
       { '<C-n>',      '<CMD>lua vim.diagnostic.goto_next()<CR>',                                                 desc = 'Next Diagnostic',        nowait = false,    remap = false },
@@ -32,6 +37,8 @@ return {
 
       { '<leader>c',  group = 'QuickFix',                                                                        nowait = false,                  remap = false },
       { '<leader>cc', '<CMD>cclose<CR>',                                                                         desc = 'Close',                  nowait = false,    remap = false },
+      { '<leader>cd', add_toqflist,                                                                              desc = 'Diagnostics',            nowait = false,    remap = false },
+      { '<leader>cf', add_conflicts_to_qflist,                                                                   desc = 'Find conflicts',         nowait = false,    remap = false },
       { '<leader>cn', '<CMD>cnext<CR>',                                                                          desc = 'Next',                   nowait = false,    remap = false },
       { '<leader>co', '<CMD>copen<CR>',                                                                          desc = 'Open',                   nowait = false,    remap = false },
       { '<leader>cp', '<CMD>cprev<CR>',                                                                          desc = 'Previous',               nowait = false,    remap = false },
@@ -55,13 +62,11 @@ return {
       { '<leader>f',  group = 'Find',                                                                            nowait = false,                  remap = false },
       { '<leader>fS', '<CMD>Telescope search_history<CR>',                                                       desc = 'Search History',         nowait = false,    remap = false },
       { '<leader>fb', '<CMD>Telescope buffers<CR>',                                                              desc = 'Buffer',                 nowait = false,    remap = false },
-      { '<leader>fc', '<CMD>lua require("telescope.builtin").grep_string({ search = "<<<<<<< conflict" })<CR>', desc = 'Conflicts',              nowait = false,    remap = false },
       { '<leader>ff', '<CMD>Telescope find_files<CR>',                                                           desc = 'File',                   nowait = false,    remap = false },
       { '<leader>fg', '<CMD>lua require("telescope").extensions.live_grep_raw.live_grep_raw()<CR>',              desc = 'Grep',                   nowait = false,    remap = false },
       { '<leader>fl', '<CMD>Telescope resume<CR>',                                                               desc = 'Last Query',             nowait = false,    remap = false },
       { '<leader>fm', '<CMD>Telescope marks<CR>',                                                                desc = 'Marks',                  nowait = false,    remap = false },
       { '<leader>fh', '<CMD>Telescope help_tags<CR>',                                                            desc = 'Help',                   nowait = false,    remap = false },
-      { '<leader>fp', '<CMD>lua require("spectre").open_visual()<CR>',                                           desc = 'Project',                nowait = false,    remap = false },
       { '<leader>fq', '<CMD>Telescope quickfix<CR>',                                                             desc = 'QuickFix',               nowait = false,    remap = false },
       { '<leader>fr', '<CMD>Telescope oldfiles<CR>',                                                             desc = 'Recent',                 nowait = false,    remap = false },
       { '<leader>fs', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                        desc = 'Symbols',                nowait = false,    remap = false },
@@ -76,7 +81,6 @@ return {
       { '<leader>ld', '<CMD>lua vim.lsp.buf.definition()<CR>',                                                   desc = 'Definition',             nowait = false,    remap = false },
       { '<leader>lv', '<CMD>vsplit<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                    desc = 'Definition (vsplit)',    nowait = false,    remap = false },
       { '<leader>le', '<CMD>lua vim.diagnostic.open_float()<CR>',                                                desc = 'Diagnostics',            nowait = false,    remap = false },
-      { '<leader>le', add_toqflist,                                                                              desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>lF', '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                         desc = 'Format',                 nowait = false,    remap = false },
       { '<leader>lh', '<CMD>lua vim.lsp.buf.hover()<CR>',                                                        desc = 'Hover',                  nowait = false,    remap = false },
       { '<leader>li', '<CMD>lua vim.lsp.buf.implementation()<CR>',                                               desc = 'Implementation',         nowait = false,    remap = false },
