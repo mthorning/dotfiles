@@ -1,6 +1,6 @@
 ---
 name: pr-review
-description: Display review comments for the PR associated with the current Jujutsu branch/bookmark. Use when the user asks to see review comments, PR feedback, or wants to view the PR for their current branch.
+description: View the PR associated with the current Jujutsu branch/bookmark, including its diff, changes, and any review comments. Use when the user asks to see the PR, check changes, view the diff, or see review feedback for their current branch.
 ---
 
 # PR Review
