@@ -31,6 +31,27 @@ alias prc="gh pr checkout"
 alias ts="$HOME/.local/bin/tmux-sessioniser"
 alias ta="tmux attach"
 
+function jb() {
+  jj bookmark list --template '
+    if(!self.remote(),
+      separate(" | ",
+        name,
+        self.normal_target().description().first_line(),
+        if(self.synced(), "[in-sync]", "[out-of-sync]")
+      ) ++ "\n"
+    )
+  ' | fzf --height 40% --reverse --header "Select Bookmark" | awk -F' | ' '{print $1}'
+}
+
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
+}
+
 export EDITOR="nvim"
 export VISUAL="nvim"
 
@@ -64,15 +85,6 @@ bindkey -r '^[h'
 bindkey -r '^['
 
 eval "$(fzf --zsh)"
-
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-          builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
 
 ####################
 # Functions:
