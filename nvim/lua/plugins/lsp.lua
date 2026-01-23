@@ -90,7 +90,6 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     if has_conflict_markers(bufnr) then
       vim.diagnostic.enable(false, { bufnr = bufnr })
       buffers_with_conflicts[bufnr] = true
-      vim.notify("Conflict markers detected - LSP diagnostics disabled", vim.log.levels.WARN)
     end
   end,
 })
@@ -102,11 +101,9 @@ local function check_and_update_diagnostics(bufnr)
   if has_conflicts and not was_disabled then
     vim.diagnostic.enable(false, { bufnr = bufnr })
     buffers_with_conflicts[bufnr] = true
-    vim.notify("Conflict markers detected - LSP diagnostics disabled", vim.log.levels.WARN)
   elseif not has_conflicts and was_disabled then
     vim.diagnostic.enable(true, { bufnr = bufnr })
     buffers_with_conflicts[bufnr] = nil
-    vim.notify("Conflict markers resolved - LSP diagnostics re-enabled", vim.log.levels.INFO)
   end
 end
 

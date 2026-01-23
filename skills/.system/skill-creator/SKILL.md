@@ -273,15 +273,15 @@ When creating a new skill from scratch, always run the `init_skill.py` script. T
 Usage:
 
 ```bash
-scripts/init_skill.py <skill-name> --path <output-directory> [--resources scripts,references,assets] [--examples]
+python3 scripts/init_skill.py <skill-name> --path <output-directory> [--resources scripts,references,assets] [--examples]
 ```
 
 Examples:
 
 ```bash
-scripts/init_skill.py my-skill --path skills/public
-scripts/init_skill.py my-skill --path skills/public --resources scripts,references
-scripts/init_skill.py my-skill --path skills/public --resources scripts --examples
+python3 scripts/init_skill.py my-skill --path skills/public
+python3 scripts/init_skill.py my-skill --path skills/public --resources scripts,references
+python3 scripts/init_skill.py my-skill --path skills/public --resources scripts --examples
 ```
 
 The script:
@@ -341,13 +341,13 @@ Write instructions for using the skill and its bundled resources.
 Once development of the skill is complete, it must be packaged into a distributable .skill file that gets shared with the user. The packaging process automatically validates the skill first to ensure it meets all requirements:
 
 ```bash
-scripts/package_skill.py <path/to/skill-folder>
+python3 scripts/package_skill.py <path/to/skill-folder>
 ```
 
 Optional output directory specification:
 
 ```bash
-scripts/package_skill.py <path/to/skill-folder> ./dist
+python3 scripts/package_skill.py <path/to/skill-folder> ./dist
 ```
 
 The packaging script will:

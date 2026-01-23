@@ -10,9 +10,9 @@ return {
   config = function()
     local wk = require('which-key')
 
-    local add_toqflist = function()
+    local add_diagnostics_to_qflist = function()
       local diagnostics = vim.diagnostic.get(0, {
-        everity_sort = true
+        severity_sort = true
       })
       vim.fn.setqflist({}, 'r', {
         title =
@@ -24,7 +24,20 @@ return {
     end
 
     local add_conflicts_to_qflist = function()
-      vim.cmd('silent! vimgrep /<<<<<<< /gj **/*')
+      local cmd = vim.fn.executable('rg') == 1
+        and "rg --vimgrep '<<<<<<<' 2>/dev/null"
+        or "git grep -n '<<<<<<<' 2>/dev/null"
+
+      local results = vim.fn.systemlist(cmd)
+      if vim.v.shell_error ~= 0 or #results == 0 then
+        vim.notify('No conflicts found', vim.log.levels.INFO)
+        return
+      end
+
+      vim.fn.setqflist({}, 'r', {
+        title = 'Merge Conflicts',
+        lines = results
+      })
       vim.cmd('copen')
     end
 
@@ -37,7 +50,7 @@ return {
 
       { '<leader>c',  group = 'QuickFix',                                                                        nowait = false,                  remap = false },
       { '<leader>cc', '<CMD>cclose<CR>',                                                                         desc = 'Close',                  nowait = false,    remap = false },
-      { '<leader>cd', add_toqflist,                                                                              desc = 'Diagnostics',            nowait = false,    remap = false },
+      { '<leader>cd', add_diagnostics_to_qflist,                                                                              desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>cf', add_conflicts_to_qflist,                                                                   desc = 'Find conflicts',         nowait = false,    remap = false },
       { '<leader>cn', '<CMD>cnext<CR>',                                                                          desc = 'Next',                   nowait = false,    remap = false },
       { '<leader>co', '<CMD>copen<CR>',                                                                          desc = 'Open',                   nowait = false,    remap = false },
@@ -93,7 +106,10 @@ return {
       {
         '<leader>lx',
         function()
-          vim.cmd('LspRestart')
+          for _, client in ipairs(vim.lsp.get_clients()) do
+            vim.lsp.stop_client(client.id)
+          end
+          vim.cmd('edit')
         end,
         desc = 'Restart',
         nowait = false,

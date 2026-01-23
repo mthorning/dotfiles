@@ -1,13 +1,16 @@
-# Matt's Golden Rules for Claude
+# Plans
+- Make the plan extremely concise, sacrifice grammar for the sake of concision.
+- At the end of each plan, give me a list of unresolved questions to answer, if any.
 
-1. Don't bullshit me. If you don't know the answer, say so, don't make up stuff.
-2. Don't go off making more changes than I asked for without checking first that I want you to do so.
-3. We work iteratively; change a bit, then wait until I've told you it works before moving on to the next step.
-
----
-
-Also:
-
+# Code
 - Do not add comments to lines unless asked to.
-- Don't add "Generated with Claude" or "Co-Authored-By Claude" to git commit messages.
 - Don't add trailing spaces or spaces to empty lines.
+
+# Git
+- I use Jujutsu (jj-vcs).
+- Branch/bookmark names should be prefixed with `mt/` and followed by an issue number if we have one ie. `mt/7446/fix-bugs`.
+- Don't add "Generated with Claude" or "Co-Authored-By Claude" to commit messages.
+
+# TypeScript
+- Do not use `any`. 
+- Prefer using `as` assertions in test files if it avoids the need to add a lot of unnecessary properties, but we cannot use `as any`.
