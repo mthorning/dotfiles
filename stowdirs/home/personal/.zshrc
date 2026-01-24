@@ -1,6 +1,8 @@
 
 source ~/dotfiles/.zshrc
 
+alias ai="copilot"
+
 # Flutter development
 export PATH=$HOME/flutter/flutter/bin:$PATH
 export ANDROID_AVD_HOME=$HOME/.android/avd
