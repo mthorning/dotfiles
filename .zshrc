@@ -31,6 +31,11 @@ alias prc="gh pr checkout"
 alias ts="$HOME/.local/bin/tmux-sessioniser"
 alias ta="tmux attach"
 
+# Start theme watcher if not already running
+if ! pgrep -f "theme-watcher" > /dev/null 2>&1; then
+  nohup ~/dotfiles/bin/theme-watcher > /dev/null 2>&1 &
+fi
+
 # Widget to insert jj bookmark at cursor
 function jjb-widget() {
   local bookmark=$(jj bookmark list --template '

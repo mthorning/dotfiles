@@ -3,22 +3,40 @@ return {
   event = 'VimEnter',
   dependencies = { 'nvim-tree/nvim-web-devicons', lazy = true },
   config = function()
-    local lualine = require('lualine')
+    local function setup_lualine()
+      local lualine = require('lualine')
 
-    -- Ayu color palette (will adapt based on light/dark mode automatically)
-    local colors = {
-      bg       = '#212733',
-      fg       = '#d9d7ce',
-      yellow   = '#ffcc66',
-      cyan     = '#5ccfe6',
-      darkblue = '#0f1419',
-      green    = '#bae67e',
-      orange   = '#ffae57',
-      violet   = '#dfbfff',
-      magenta  = '#d4bfff',
-      blue     = '#73d0ff',
-      red      = '#f28779',
-    }
+    -- Ayu color palette (adapts based on light/dark mode)
+    local colors = {}
+    if vim.o.background == 'light' then
+      colors = {
+        bg       = '#fafafa',
+        fg       = '#5c6166',
+        yellow   = '#f29718',
+        cyan     = '#55b4d4',
+        darkblue = '#131721',
+        green    = '#86b300',
+        orange   = '#f07171',
+        violet   = '#a37acc',
+        magenta  = '#a37acc',
+        blue     = '#399ee6',
+        red      = '#f07171',
+      }
+    else
+      colors = {
+        bg       = '#212733',
+        fg       = '#d9d7ce',
+        yellow   = '#ffcc66',
+        cyan     = '#5ccfe6',
+        darkblue = '#0f1419',
+        green    = '#bae67e',
+        orange   = '#ffae57',
+        violet   = '#dfbfff',
+        magenta  = '#d4bfff',
+        blue     = '#73d0ff',
+        red      = '#f28779',
+      }
+    end
 
     local conditions = {
       buffer_not_empty = function()
@@ -157,6 +175,15 @@ return {
       padding = { left = 1 },
     }
 
-    lualine.setup(config)
+      lualine.setup(config)
+    end
+    
+    -- Initial setup
+    setup_lualine()
+    
+    -- Reconfigure when colorscheme changes
+    vim.api.nvim_create_autocmd('ColorScheme', {
+      callback = setup_lualine
+    })
   end
 }
