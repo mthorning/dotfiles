@@ -25,8 +25,8 @@ return {
 
     local add_conflicts_to_qflist = function()
       local cmd = vim.fn.executable('rg') == 1
-        and "rg --vimgrep '<<<<<<<' 2>/dev/null"
-        or "git grep -n '<<<<<<<' 2>/dev/null"
+          and "rg --vimgrep '<<<<<<<' 2>/dev/null"
+          or "git grep -n '<<<<<<<' 2>/dev/null"
 
       local results = vim.fn.systemlist(cmd)
       if vim.v.shell_error ~= 0 or #results == 0 then
@@ -50,7 +50,7 @@ return {
 
       { '<leader>c',  group = 'QuickFix',                                                                        nowait = false,                  remap = false },
       { '<leader>cc', '<CMD>cclose<CR>',                                                                         desc = 'Close',                  nowait = false,    remap = false },
-      { '<leader>cd', add_diagnostics_to_qflist,                                                                              desc = 'Diagnostics',            nowait = false,    remap = false },
+      { '<leader>cd', add_diagnostics_to_qflist,                                                                 desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>cf', add_conflicts_to_qflist,                                                                   desc = 'Find conflicts',         nowait = false,    remap = false },
       { '<leader>cn', '<CMD>cnext<CR>',                                                                          desc = 'Next',                   nowait = false,    remap = false },
       { '<leader>co', '<CMD>copen<CR>',                                                                          desc = 'Open',                   nowait = false,    remap = false },
@@ -67,7 +67,7 @@ return {
       { '<leader>dm', '<CMD>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = 'Message',                nowait = false,    remap = false },
       { '<leader>do', '<CMD>lua require"dap".step_over()<CR>',                                                   desc = 'Step over',              nowait = false,    remap = false },
       { '<leader>dr', '<CMD>lua require"dap".repl.open()<CR>',                                                   desc = 'REPL',                   nowait = false,    remap = false },
-      { '<leader>dx', '<CMD>DapClose<CR>',                                                                      desc = 'Close Session',          nowait = false,    remap = false },
+      { '<leader>dx', '<CMD>DapClose<CR>',                                                                       desc = 'Close Session',          nowait = false,    remap = false },
       { '<leader>de', '<CMD>lua require("dapui").eval()<CR>',                                                    mode = { 'n', 'v' },             desc = 'Evaluate', nowait = false, remap = false },
 
       { '<leader>e',  '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',               nowait = false,    remap = false },
@@ -116,19 +116,22 @@ return {
         remap = false
       },
 
-      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>', desc = 'Change repo',  nowait = false,         remap = false },
+      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',     desc = 'Change repo',  nowait = false,         remap = false },
 
-      { '<leader>p',  '<CMD>Lazy<CR>',                       desc = 'Plugins',      nowait = false,         remap = false },
-      { '<leader>q',  '<CMD>q<CR>',                          desc = 'Quit',         nowait = false,         remap = false },
+      { '<leader>p',  '<CMD>Lazy<CR>',                           desc = 'Plugins',      nowait = false,         remap = false },
+      { '<leader>q',  '<CMD>q<CR>',                              desc = 'Quit',         nowait = false,         remap = false },
 
-      { '<leader>w',  '<cmd>w<CR>',                          desc = 'Save',         nowait = false,         remap = false },
+      { '<leader>w',  '<cmd>w<CR>',                              desc = 'Save',         nowait = false,         remap = false },
 
-      { '<leader>y',  group = 'Yank',                        nowait = false,        remap = false },
-      { '<leader>ya', '<CMD>YankAbsolutePath<CR>',           mode = { 'n', 'v' },   desc = 'Absolute path', nowait = false, remap = false },
-      { '<leader>yr', '<CMD>YankRelativePath<CR>',           mode = { 'n', 'v' },   desc = 'Relative path', nowait = false, remap = false },
-      { '<leader>u',  '<cmd>UndotreeToggle<CR>',             desc = 'Undo tree',    nowait = false,         remap = false },
+      { '<leader>y',  group = 'Yank',                            nowait = false,        remap = false },
+      { '<leader>ya', '<CMD>YankAbsolutePath<CR>',               mode = { 'n', 'v' },   desc = 'Absolute path', nowait = false, remap = false },
+      { '<leader>yr', '<CMD>YankRelativePath<CR>',               mode = { 'n', 'v' },   desc = 'Relative path', nowait = false, remap = false },
+      { '<leader>yd', '<CMD>YankDiagnosticRelative<CR>',         desc = 'Diagnostic (relative)', nowait = false, remap = false },
+      { '<leader>yD', '<CMD>YankDiagnosticAbsolute<CR>',         desc = 'Diagnostic (absolute)', nowait = false, remap = false },
+      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',    nowait = false,         remap = false },
 
-      { '<leader>;',  '<CMD>Startify<CR>',                   desc = 'Start screen', nowait = false,         remap = false },
+      { '<leader>.',  '<CMD>source ~/.config/nvim/init.lua<CR>', desc = 'Source',       nowait = false,         remap = false },
+      { '<leader>;',  '<CMD>Startify<CR>',                       desc = 'Start screen', nowait = false,         remap = false },
     })
   end,
 }

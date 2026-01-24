@@ -85,6 +85,50 @@ local function yank_relative()
   end
 end
 
+local get_severity_string = function(severity)
+  local severity_map = {
+    [vim.diagnostic.severity.ERROR] = 'ERROR',
+    [vim.diagnostic.severity.WARN] = 'WARN',
+    [vim.diagnostic.severity.INFO] = 'INFO',
+    [vim.diagnostic.severity.HINT] = 'HINT',
+  }
+  return severity_map[severity] or 'UNKNOWN'
+end
+
+local yank_diagnostic_with_path = function(path)
+  local line = vim.fn.line('.')
+  local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
+  
+  if #diagnostics == 0 then
+    vim.notify('No diagnostic at cursor position', vim.log.levels.WARN)
+    return
+  end
+  
+  local diagnostic = diagnostics[1]
+  
+  local start_line = diagnostic.lnum + 1
+  local end_line = diagnostic.end_lnum and (diagnostic.end_lnum + 1) or start_line
+  local line_range = format_line_range(start_line, end_line)
+  
+  local severity_str = get_severity_string(diagnostic.severity)
+  local path_with_lines = path .. ':' .. line_range
+  
+  local result = path_with_lines .. '\n\n[' .. severity_str .. '] ' .. diagnostic.message
+  vim.fn.setreg('+', result)
+  
+  vim.notify('Yanked diagnostic: ' .. path_with_lines)
+end
+
+local function yank_diagnostic_absolute()
+  yank_diagnostic_with_path(get_buffer_absolute())
+end
+
+local function yank_diagnostic_relative()
+  yank_diagnostic_with_path(get_buffer_cwd_relative())
+end
+
 vim.api.nvim_create_user_command('YankAbsolutePath', yank_absolute, {})
 vim.api.nvim_create_user_command('YankRelativePath', yank_relative, {})
+vim.api.nvim_create_user_command('YankDiagnosticAbsolute', yank_diagnostic_absolute, {})
+vim.api.nvim_create_user_command('YankDiagnosticRelative', yank_diagnostic_relative, {})
 
