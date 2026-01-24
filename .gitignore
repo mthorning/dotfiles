@@ -2,6 +2,3 @@ lazygit/*
 !lazygit/config.yml
 karabiner/automatic_backups/
 .DS_Store
-.aider*
-!.aider.conf.yml
-!.aiderignore
