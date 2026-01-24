@@ -31,6 +31,8 @@ alias prc="gh pr checkout"
 alias ts="$HOME/.local/bin/tmux-sessioniser"
 alias ta="tmux attach"
 
+alias cleanup_tm_snaps="sudo tmutil listlocalsnapshots / | grep 'com.apple.TimeMachine' | awk -F. '{print \$NF}' | xargs -I {} sudo tmutil deletelocalsnapshots {}"
+
 # Start theme watcher if not already running
 if ! pgrep -f "theme-watcher" > /dev/null 2>&1; then
   nohup ~/dotfiles/bin/theme-watcher > /dev/null 2>&1 &
