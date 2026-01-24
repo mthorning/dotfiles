@@ -128,14 +128,10 @@ return {
         color = { fg = colors.magenta, gui = 'bold' },
       }
 
-      ins_left { 'location' }
-
-      ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
-
-      ins_left {
+      ins_right {
         'diagnostics',
         sources = { 'nvim_diagnostic' },
-        symbols = { error = ' ', warn = ' ', info = ' ' },
+        symbols = { error = 'x', warn = '!', info = 'i' },
         diagnostics_color = {
           error = { fg = colors.red },
           warn = { fg = colors.yellow },
@@ -145,7 +141,7 @@ return {
 
       ins_right {
         'diff',
-        symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
+        symbols = { added = '+', modified = '~', removed = '-' },
         diff_color = {
           added = { fg = colors.green },
           modified = { fg = colors.orange },
@@ -154,11 +150,10 @@ return {
         cond = conditions.hide_in_width,
       }
 
-      ins_right {
-        'filetype',
-        color = { fg = colors.cyan, gui = 'bold' },
-      }
 
+      ins_right { 'location' }
+
+      ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 
       lualine.setup(config)
     end
