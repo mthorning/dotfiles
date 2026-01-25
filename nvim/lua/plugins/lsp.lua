@@ -136,7 +136,7 @@ return {
         javascriptreact = { "eslint_d" },
         typescript = { "eslint_d" },
         typescriptreact = { "eslint_d" },
-        go = { "golangcilint" },
+        go = vim.fn.executable("golangci-lint") == 1 and { "golangcilint" } or {},
       }
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
         callback = function()
