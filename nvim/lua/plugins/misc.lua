@@ -19,9 +19,21 @@ return {
         delay = 200,
         filetypes_denylist = { 'NvimTree' },
       })
-      vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = '#383838' })
-      vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = '#383838' })
-      vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = '#383838' })
+      local function set_illuminate_hl()
+        local visual = vim.api.nvim_get_hl(0, { name = 'Visual' })
+        local bg = visual.bg
+        if bg then
+          vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = string.format('#%06x', bg) })
+          vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = string.format('#%06x', bg) })
+          vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = string.format('#%06x', bg) })
+        end
+      end
+      vim.defer_fn(set_illuminate_hl, 100)
+      vim.api.nvim_create_autocmd('ColorScheme', {
+        callback = function()
+          vim.defer_fn(set_illuminate_hl, 50)
+        end,
+      })
     end
   },
   {
@@ -41,7 +53,6 @@ return {
     config = function() require 'gitsigns'.setup() end,
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  { 'ThePrimeagen/harpoon', event = 'VeryLazy', dependencies = 'nvim-lua/plenary.nvim' },
   { 'mbbill/undotree',      event = 'VeryLazy' },
   {
     'prettier/vim-prettier',
@@ -50,11 +61,6 @@ return {
       vim.g['prettier#exec_cmd_async'] = 1
       vim.g['prettier#quickfix_enabled'] = 0
     end
-  },
-  {
-    'norcalli/nvim-colorizer.lua',
-    event = 'VeryLazy',
-    config = function() require 'colorizer'.setup() end
   },
   {
     "f-person/git-blame.nvim",
