@@ -52,6 +52,7 @@ return {
       { '<leader>cc', '<CMD>cclose<CR>',                                                                         desc = 'Close',                  nowait = false,    remap = false },
       { '<leader>cd', add_diagnostics_to_qflist,                                                                 desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>cf', add_conflicts_to_qflist,                                                                   desc = 'Find conflicts',         nowait = false,    remap = false },
+      { '<leader>cg', '<CMD>Gitsign setqflist<CR>',                                                              desc = 'Find conflicts',         nowait = false,    remap = false },
       { '<leader>cn', '<CMD>cnext<CR>',                                                                          desc = 'Next',                   nowait = false,    remap = false },
       { '<leader>co', '<CMD>copen<CR>',                                                                          desc = 'Open',                   nowait = false,    remap = false },
       { '<leader>cp', '<CMD>cprev<CR>',                                                                          desc = 'Previous',               nowait = false,    remap = false },
@@ -71,6 +72,11 @@ return {
       { '<leader>de', '<CMD>lua require("dapui").eval()<CR>',                                                    mode = { 'n', 'v' },             desc = 'Evaluate', nowait = false, remap = false },
 
       { '<leader>e',  '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',               nowait = false,    remap = false },
+
+      { '<leader>g',  group = 'Git',                                                                             nowait = false,                  remap = false },
+      { '<leader>gv', '<CMD>Gitsigns preview_hunk_inline<CR>',                                                   desc = 'View',               nowait = false,    remap = false },
+      { '<leader>gp', '<CMD>Gitsigns prev_hunk<CR>',                                                             desc = 'Previous',               nowait = false,    remap = false },
+      { '<leader>gn', '<CMD>Gitsigns next_hunk<CR>',                                                             desc = 'Next',               nowait = false,    remap = false },
 
       { '<leader>f',  group = 'Find',                                                                            nowait = false,                  remap = false },
       { '<leader>fS', '<CMD>Telescope search_history<CR>',                                                       desc = 'Search History',         nowait = false,    remap = false },
@@ -124,8 +130,8 @@ return {
       { '<leader>w',  '<cmd>w<CR>',                              desc = 'Save',                  nowait = false, remap = false },
 
       { '<leader>y',  group = 'Yank',                            nowait = false,                 remap = false },
-      { '<leader>yT', '<CMD>YankAbsolutePath<CR>',               desc = 'Text (absolute)', nowait = false, remap = false },
-      { '<leader>yt', '<CMD>YankRelativePath<CR>',               desc = 'Text (relative)', nowait = false, remap = false },
+      { '<leader>yT', '<CMD>YankAbsolutePath<CR>',               desc = 'Text (absolute)',       nowait = false, remap = false },
+      { '<leader>yt', '<CMD>YankRelativePath<CR>',               desc = 'Text (relative)',       nowait = false, remap = false },
       { '<leader>yd', '<CMD>YankDiagnosticRelative<CR>',         desc = 'Diagnostic (relative)', nowait = false, remap = false },
       { '<leader>yD', '<CMD>YankDiagnosticAbsolute<CR>',         desc = 'Diagnostic (absolute)', nowait = false, remap = false },
       { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',             nowait = false, remap = false },
