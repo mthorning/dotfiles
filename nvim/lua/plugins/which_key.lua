@@ -116,22 +116,22 @@ return {
         remap = false
       },
 
-      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',     desc = 'Change repo',  nowait = false,         remap = false },
+      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',     desc = 'Change repo',           nowait = false, remap = false },
 
-      { '<leader>p',  '<CMD>Lazy<CR>',                           desc = 'Plugins',      nowait = false,         remap = false },
-      { '<leader>q',  '<CMD>q<CR>',                              desc = 'Quit',         nowait = false,         remap = false },
+      { '<leader>p',  '<CMD>Lazy<CR>',                           desc = 'Plugins',               nowait = false, remap = false },
+      { '<leader>q',  '<CMD>q<CR>',                              desc = 'Quit',                  nowait = false, remap = false },
 
-      { '<leader>w',  '<cmd>w<CR>',                              desc = 'Save',         nowait = false,         remap = false },
+      { '<leader>w',  '<cmd>w<CR>',                              desc = 'Save',                  nowait = false, remap = false },
 
-      { '<leader>y',  group = 'Yank',                            nowait = false,        remap = false },
-      { '<leader>ya', '<CMD>YankAbsolutePath<CR>',               mode = { 'n', 'v' },   desc = 'Absolute path', nowait = false, remap = false },
-      { '<leader>yr', '<CMD>YankRelativePath<CR>',               mode = { 'n', 'v' },   desc = 'Relative path', nowait = false, remap = false },
+      { '<leader>y',  group = 'Yank',                            nowait = false,                 remap = false },
+      { '<leader>yT', '<CMD>YankAbsolutePath<CR>',               desc = 'Text (absolute)', nowait = false, remap = false },
+      { '<leader>yt', '<CMD>YankRelativePath<CR>',               desc = 'Text (relative)', nowait = false, remap = false },
       { '<leader>yd', '<CMD>YankDiagnosticRelative<CR>',         desc = 'Diagnostic (relative)', nowait = false, remap = false },
       { '<leader>yD', '<CMD>YankDiagnosticAbsolute<CR>',         desc = 'Diagnostic (absolute)', nowait = false, remap = false },
-      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',    nowait = false,         remap = false },
+      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',             nowait = false, remap = false },
 
-      { '<leader>.',  '<CMD>source ~/.config/nvim/init.lua<CR>', desc = 'Source',       nowait = false,         remap = false },
-      { '<leader>;',  '<CMD>Startify<CR>',                       desc = 'Start screen', nowait = false,         remap = false },
+      { '<leader>.',  '<CMD>source ~/.config/nvim/init.lua<CR>', desc = 'Source',                nowait = false, remap = false },
+      { '<leader>;',  '<CMD>Startify<CR>',                       desc = 'Start screen',          nowait = false, remap = false },
     })
   end,
 }
