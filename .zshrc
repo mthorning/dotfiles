@@ -28,7 +28,7 @@ alias gco="git checkout"
 alias gst="git status"
 alias prc="gh pr checkout"
 
-alias ts="$HOME/.local/bin/tmux-sessioniser"
+alias ts="$HOME/.local/bin/tmux-sessioniser 2> /dev/null"
 alias ta="tmux attach"
 
 alias cleanup_tm_snaps="sudo tmutil listlocalsnapshots / | grep 'com.apple.TimeMachine' | awk -F. '{print \$NF}' | xargs -I {} sudo tmutil deletelocalsnapshots {}"
