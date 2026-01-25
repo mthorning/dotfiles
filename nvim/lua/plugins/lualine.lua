@@ -90,7 +90,7 @@ return {
 
       ins_left {
         function()
-          return string.upper(vim.fn.mode())
+          return " "..string.upper(vim.fn.mode())
         end,
         color = function()
           local mode_color = {

@@ -1,3 +1,11 @@
+autoload -Uz compinit
+# Check if we need to regenerate completions (once per day)
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # Load pnpm completion (keep this as it's lightweight)
@@ -119,15 +127,6 @@ esac
 # pnpm end
 
 source <(COMPLETE=zsh jj)
-
-
-autoload -Uz compinit
-# Check if we need to regenerate completions (once per day)
-if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
-  compinit
-else
-  compinit -C
-fi
 
 # Initialize starship prompt
 eval "$(starship init zsh)"
