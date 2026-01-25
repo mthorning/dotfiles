@@ -3,8 +3,8 @@
 .PHONY: help
 help:
 	@echo "Available commands:"
-	@echo "  make all           - Install homebrew, nvm, node, pnpm, and zinit"
-	@echo "  make brew          - Install homebrew packages from Brewfile"
+	@echo "  make all              - Install homebrew, nvm, node, pnpm, and zinit"
+	@echo "  make brew             - Install homebrew packages from Brewfile"
 	@echo ""
 	@echo "  make stow-shared   - Install shared/base configuration files"
 	@echo "  make stow-personal - Install personal configuration (base + personal)"
