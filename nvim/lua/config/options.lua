@@ -20,6 +20,7 @@ vim.opt.syntax = 'on'
 vim.opt.grepprg = 'rg --vimgrep --smart-case --follow'
 vim.opt.clipboard = 'unnamedplus'
 vim.g.rust_recommended_style = 0
+vim.opt.laststatus = 3
 
 vim.diagnostic.config({
   float = {

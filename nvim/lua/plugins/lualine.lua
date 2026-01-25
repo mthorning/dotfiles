@@ -10,7 +10,7 @@ return {
       local colors = {}
       if vim.o.background == 'light' then
         colors = {
-          bg       = '#fafafa',
+          bg       = '#f3f4f5',
           fg       = '#5c6166',
           yellow   = '#f29718',
           cyan     = '#55b4d4',
