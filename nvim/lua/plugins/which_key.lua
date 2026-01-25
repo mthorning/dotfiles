@@ -116,7 +116,7 @@ return {
         remap = false
       },
 
-      { '<leader>s',  '<CMD>Telescope tmux_sessionizer<CR>',     desc = 'Change repo',           nowait = false, remap = false },
+      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',     desc = 'Change repo',           nowait = false, remap = false },
 
       { '<leader>p',  '<CMD>Lazy<CR>',                           desc = 'Plugins',               nowait = false, remap = false },
       { '<leader>q',  '<CMD>q<CR>',                              desc = 'Quit',                  nowait = false, remap = false },
