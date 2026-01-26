@@ -41,6 +41,20 @@ return {
       vim.cmd('copen')
     end
 
+    local open_github_browse = function()
+      local absolute_path = vim.fn.expand('%:p')
+      local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+      local relative_path = absolute_path:gsub('^' .. vim.pesc(git_root) .. '/', '')
+      local line = vim.fn.line('.')
+      local default_branch = vim.fn.systemlist('git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null')[1]
+      if default_branch and default_branch ~= '' then
+        default_branch = default_branch:gsub('^origin/', '')
+      else
+        default_branch = vim.fn.systemlist('git rev-parse --verify main 2>/dev/null')[1] and 'main' or 'master'
+      end
+      vim.fn.system(string.format('gh browse "%s:%s" --commit=%s', relative_path, line, default_branch))
+    end
+
 
     wk.add({
       { '<C-n>',      '<CMD>lua vim.diagnostic.goto_next()<CR>',                                                 desc = 'Next Diagnostic',        nowait = false,    remap = false },
@@ -74,9 +88,10 @@ return {
       { '<leader>e',  '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',               nowait = false,    remap = false },
 
       { '<leader>g',  group = 'Git',                                                                             nowait = false,                  remap = false },
-      { '<leader>gv', '<CMD>Gitsigns preview_hunk_inline<CR>',                                                   desc = 'View',               nowait = false,    remap = false },
+      { '<leader>gv', '<CMD>Gitsigns preview_hunk_inline<CR>',                                                   desc = 'View',                   nowait = false,    remap = false },
       { '<leader>gp', '<CMD>Gitsigns prev_hunk<CR>',                                                             desc = 'Previous',               nowait = false,    remap = false },
-      { '<leader>gn', '<CMD>Gitsigns next_hunk<CR>',                                                             desc = 'Next',               nowait = false,    remap = false },
+      { '<leader>gn', '<CMD>Gitsigns next_hunk<CR>',                                                             desc = 'Next',                   nowait = false,    remap = false },
+      { '<leader>go', open_github_browse,                                                                        desc = 'Open in GitHub',         nowait = false,    remap = false },
 
       { '<leader>f',  group = 'Find',                                                                            nowait = false,                  remap = false },
       { '<leader>fS', '<CMD>Telescope search_history<CR>',                                                       desc = 'Search History',         nowait = false,    remap = false },
@@ -122,22 +137,24 @@ return {
         remap = false
       },
 
-      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',     desc = 'Change repo',           nowait = false, remap = false },
+      { '<leader>m',  '<CMD>Telescope tmux_sessionizer<CR>',     desc = 'Change repo',           nowait = false,           remap = false },
 
-      { '<leader>p',  '<CMD>Lazy<CR>',                           desc = 'Plugins',               nowait = false, remap = false },
-      { '<leader>q',  '<CMD>q<CR>',                              desc = 'Quit',                  nowait = false, remap = false },
+      { '<leader>p',  '<CMD>Lazy<CR>',                           desc = 'Plugins',               nowait = false,           remap = false },
+      { '<leader>q',  '<CMD>q<CR>',                              desc = 'Quit',                  nowait = false,           remap = false },
 
-      { '<leader>w',  '<cmd>w<CR>',                              desc = 'Save',                  nowait = false, remap = false },
+      { '<leader>w',  '<cmd>w<CR>',                              desc = 'Save',                  nowait = false,           remap = false },
 
       { '<leader>y',  group = 'Yank',                            nowait = false,                 remap = false },
-      { '<leader>yT', '<CMD>YankAbsolutePath<CR>',               desc = 'Text (absolute)',       nowait = false, remap = false },
-      { '<leader>yt', '<CMD>YankRelativePath<CR>',               desc = 'Text (relative)',       nowait = false, remap = false },
-      { '<leader>yd', '<CMD>YankDiagnosticRelative<CR>',         desc = 'Diagnostic (relative)', nowait = false, remap = false },
-      { '<leader>yD', '<CMD>YankDiagnosticAbsolute<CR>',         desc = 'Diagnostic (absolute)', nowait = false, remap = false },
-      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',             nowait = false, remap = false },
+      { '<leader>yd', '<CMD>YankDiagnosticRelative<CR>',         desc = 'Diagnostic (relative)', nowait = false,           remap = false },
+      { '<leader>yD', '<CMD>YankDiagnosticAbsolute<CR>',         desc = 'Diagnostic (absolute)', nowait = false,           remap = false },
+      { '<leader>yp', '<CMD>YankPathRelative<CR>',               desc = 'Path (relative)',       nowait = false,           remap = false },
+      { '<leader>yP', '<CMD>YankPathAbsolute<CR>',               desc = 'Path (absolute)',       nowait = false,           remap = false },
+      { '<leader>yt', '<CMD>YankRelativePath<CR>',               mode = { 'v' },                 desc = 'Text (relative)', nowait = false, remap = false },
+      { '<leader>yT', '<CMD>YankAbsolutePath<CR>',               mode = { 'v' },                 desc = 'Text (absolute)', nowait = false, remap = false },
 
-      { '<leader>.',  '<CMD>source ~/.config/nvim/init.lua<CR>', desc = 'Source',                nowait = false, remap = false },
-      { '<leader>;',  '<CMD>Startify<CR>',                       desc = 'Start screen',          nowait = false, remap = false },
+      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',             nowait = false,           remap = false },
+      { '<leader>.',  '<CMD>source ~/.config/nvim/init.lua<CR>', desc = 'Source',                nowait = false,           remap = false },
+      { '<leader>;',  '<CMD>Startify<CR>',                       desc = 'Start screen',          nowait = false,           remap = false },
     })
   end,
 }

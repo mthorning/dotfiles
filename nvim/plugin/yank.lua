@@ -127,8 +127,22 @@ local function yank_diagnostic_relative()
   yank_diagnostic_with_path(get_buffer_cwd_relative())
 end
 
+local function yank_path_absolute()
+  local path = get_buffer_absolute()
+  vim.fn.setreg('+', path)
+  vim.notify('Yanked: ' .. path)
+end
+
+local function yank_path_relative()
+  local path = get_buffer_cwd_relative()
+  vim.fn.setreg('+', path)
+  vim.notify('Yanked: ' .. path)
+end
+
 vim.api.nvim_create_user_command('YankAbsolutePath', yank_absolute, {})
 vim.api.nvim_create_user_command('YankRelativePath', yank_relative, {})
 vim.api.nvim_create_user_command('YankDiagnosticAbsolute', yank_diagnostic_absolute, {})
 vim.api.nvim_create_user_command('YankDiagnosticRelative', yank_diagnostic_relative, {})
+vim.api.nvim_create_user_command('YankPathAbsolute', yank_path_absolute, {})
+vim.api.nvim_create_user_command('YankPathRelative', yank_path_relative, {})
 

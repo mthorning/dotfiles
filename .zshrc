@@ -22,7 +22,6 @@ alias ll="ls -al"
 alias weather="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias cat="bat"
 alias v="nvim"
-alias c="claude"
 alias y="yazi"
 
 alias p="pnpm"
@@ -40,11 +39,6 @@ alias ts="$HOME/.local/bin/tmux-sessioniser 2> /dev/null"
 alias ta="tmux attach"
 
 alias cleanup_tm_snaps="sudo tmutil listlocalsnapshots / | grep 'com.apple.TimeMachine' | awk -F. '{print \$NF}' | xargs -I {} sudo tmutil deletelocalsnapshots {}"
-
-# Start theme watcher if not already running
-if ! pgrep -f "theme-watcher" > /dev/null 2>&1; then
-  nohup ~/dotfiles/bin/theme-watcher > /dev/null 2>&1 &
-fi
 
 # Widget to insert jj bookmark at cursor
 function jjb-widget() {
@@ -64,7 +58,6 @@ function jjb-widget() {
   zle reset-prompt
 }
 zle -N jjb-widget
-bindkey '^b' jjb-widget
 
 function y() {
   local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
@@ -108,6 +101,9 @@ bindkey -r '^[h'
 bindkey -r '^['
 
 eval "$(fzf --zsh)"
+
+# Bind jjb-widget after fzf init to avoid conflicts
+bindkey '^b' jjb-widget
 
 ####################
 # Functions:
