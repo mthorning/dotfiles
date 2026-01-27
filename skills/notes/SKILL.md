@@ -17,7 +17,7 @@ When the user asks to "check my notes" or search for something:
 
 ### 2. Add to Notes
 When the user asks to "add that to my notes" or "make a not of that":
-- **Default Location**: Unless a specific file is mentioned or it's obvious where the note should be made, append the information to the **Current Daily Note**.
+- **Default Location**: We should attempt to find a suitable location for the note. If the user says to create a new note/file then we should add a new file with an appropriate title to the Knowledge directory. If it's a small piece of information then we should check the files in the Knowledge directory to see if there is a suitable file to add it to. If there is nowhere obvious then append the information to the **Current Daily Note**.
   - Path format: `/Users/mthorning/Documents/Notes/Daily/YYYY-MM-DD.md` (e.g., `2025-01-16.md`).
   - **Create if missing**: If today's daily note doesn't exist, create it.
 - **Format**:

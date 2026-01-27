@@ -53,6 +53,9 @@ cg() {
   cd ~/grafana/"$DIR"
 }
 
+# Daily notes directory for Obsidian
+export DAILY_NOTES_DIR="$HOME/Documents/Notes/Daily"
+
 # Work-specific development paths
 # Flutter and Dart
 export PATH="$HOME/development/flutter/bin:$PATH"

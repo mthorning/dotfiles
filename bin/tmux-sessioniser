@@ -3,7 +3,7 @@ SESSION=$1
 
 if [[ -z $SESSION ]]; then
   # don't forget to update the tmux_sessionize telescope extension as well
-  SESSION=$(find -L ~ ~/grafana ~/code -path -prune -o -type d -maxdepth 2 -print | fzf)
+  SESSION=$(find -L ~ ~/Documents ~/grafana ~/code -path -prune -o -type d -maxdepth 2 -print | fzf)
 fi
 
 if [[ -z $SESSION ]]; then

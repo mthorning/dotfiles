@@ -56,6 +56,13 @@ return {
     end
 
 
+    local daily_notes_dir = os.getenv('DAILY_NOTES_DIR')
+    local open_daily_note = function()
+      local date = os.date('%Y-%m-%d')
+      local file_path = string.format('%s/%s.md', daily_notes_dir, date)
+      vim.cmd('edit ' .. file_path)
+    end
+
     wk.add({
       { '<C-n>',      '<CMD>lua vim.diagnostic.goto_next()<CR>',                                                 desc = 'Next Diagnostic',        nowait = false,    remap = false },
       { '<C-p>',      '<CMD>lua vim.diagnostic.goto_prev()<CR>',                                                 desc = 'Prev Diagnostic',        nowait = false,    remap = false },
@@ -143,6 +150,8 @@ return {
       { '<leader>q',  '<CMD>q<CR>',                              desc = 'Quit',                  nowait = false,           remap = false },
 
       { '<leader>w',  '<cmd>w<CR>',                              desc = 'Save',                  nowait = false,           remap = false },
+
+      daily_notes_dir and { '<leader>t', open_daily_note, desc = 'Today\'s note', nowait = false, remap = false } or nil,
 
       { '<leader>y',  group = 'Yank',                            nowait = false,                 remap = false },
       { '<leader>yd', '<CMD>YankDiagnosticRelative<CR>',         desc = 'Diagnostic (relative)', nowait = false,           remap = false },
