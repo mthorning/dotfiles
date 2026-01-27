@@ -19,12 +19,12 @@ if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
     exit 0
 fi
 
-if ! tmux has-session -t "$SESSION_NAME" 2> /dev/null; then
+if ! tmux has-session -t "=$SESSION_NAME" 2> /dev/null; then
   tmux new-session -ds "$SESSION_NAME" -c "$SESSION"
 fi
 
 if [[ -n "$TMUX" ]]; then
-  tmux switch-client -t $SESSION_NAME
+  tmux switch-client -t "=$SESSION_NAME"
 else
-  tmux attach -t $SESSION_NAME
+  tmux attach -t "=$SESSION_NAME"
 fi
