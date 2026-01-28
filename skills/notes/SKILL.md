@@ -35,7 +35,7 @@ When the user asks to "add that to my tasks":
 
 ### 4. Commit and Push Changes
 After making any updates to notes (adding, editing, etc.), always commit and push the changes:
-- Run the script: `~/dotfiles/skills/notes/commit-and-push.sh "<description>"`
+- Run the script: `~/dotfiles/skills/notes/scripts/commit-and-push.sh "<description>"`
 - The description should briefly describe what was added/changed (e.g., "Add project notes", "Add task for code review")
 - This script will automatically commit, set the main bookmark, and push to git
 

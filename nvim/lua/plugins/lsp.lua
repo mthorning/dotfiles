@@ -75,7 +75,7 @@ local buffers_with_conflicts = {}
 local function has_conflict_markers(bufnr)
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
   for _, line in ipairs(lines) do
-    if line:match("^<<<<<<<") or line:match("^%%%%%%%") or
+    if line:match("^<<<<<<<") or line:match("^%%%%%%%%%%%%%%") or
         line:match("^%+%+%+%+%+%+%+") or line:match("^>>>>>>>") then
       return true
     end

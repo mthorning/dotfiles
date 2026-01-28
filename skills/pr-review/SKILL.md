@@ -1,13 +1,15 @@
 ---
 name: pr-review
-description: View the PR associated with the current Jujutsu branch/bookmark, including its diff, changes, and any review comments. Use when the user asks to see the PR, check changes, view the diff, or see review feedback for their current branch. Can also accept a GitHub PR URL to view any PR from any repository.
+description: View or update PRs associated with the current Jujutsu branch/bookmark. Use when the user asks to see the PR, check changes, view the diff, see review feedback, or update the PR description. Can also accept a GitHub PR URL to work with any PR from any repository.
 ---
 
-# PR Review
+# PR Review & Update
 
-View review comments and details for pull requests. Can view either the PR associated with the current Jujutsu bookmark or any PR from a GitHub URL.
+View PR details, review comments, and update PR descriptions. Works with either the current Jujutsu bookmark or any GitHub PR URL.
 
 ## Usage
+
+### Viewing a PR
 
 View PR from current bookmark:
 ```bash
@@ -19,17 +21,54 @@ View PR from GitHub URL:
 bash scripts/get_pr_reviews.sh "https://github.com/owner/repo/pull/123"
 ```
 
-### Local Bookmark Mode (no arguments)
+**Local Bookmark Mode (no arguments)**
 The script will:
 1. Find the bookmark on current revision, or traverse parent revisions if needed
 2. Search for a PR matching that bookmark/branch name
 3. Display the PR details including review comments using `gh pr view`
 
-### GitHub URL Mode (with URL argument)
+**GitHub URL Mode (with URL argument)**
 The script will:
 1. Parse the GitHub PR URL to extract the repository and PR number
 2. Check if a local copy exists in `~/grafana/` directory
 3. Use `gh pr view` with the appropriate repository context
+
+### Updating a PR
+
+Update PR from current bookmark:
+```bash
+bash scripts/update-pr.sh
+```
+
+Update specific PR by URL:
+```bash
+bash scripts/update-pr.sh "https://github.com/owner/repo/pull/123"
+```
+
+Create new PR:
+```bash
+bash scripts/update-pr.sh --create
+```
+
+**Workflow for updating PR descriptions:**
+1. Find the PR (from current bookmark or provided URL)
+2. Show current PR description if exists
+3. Gather context from commits using `jj log` and `jj diff`
+4. Use AskUserQuestion to gather:
+   - **Why**: The reason for the change
+   - **Issue reference**: Related issue number (optional)
+   - **What**: What was changed
+5. Format description with Why/What sections:
+   ```markdown
+   ## Why
+   [Explanation of the reason for the change]
+
+   Relates to #[issue-number]
+
+   ## What
+   [Description of what was changed]
+   ```
+6. Update using `bash scripts/update-pr.sh` (reads from stdin)
 
 ## How It Works
 
