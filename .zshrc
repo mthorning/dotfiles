@@ -70,6 +70,7 @@ function y() {
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$HOME/.local/bin"

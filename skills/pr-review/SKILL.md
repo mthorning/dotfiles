@@ -1,11 +1,11 @@
 ---
 name: pr-review
-description: View or update PRs associated with the current Jujutsu branch/bookmark. Use when the user asks to see the PR, check changes, view the diff, see review feedback, or update the PR description. Can also accept a GitHub PR URL to work with any PR from any repository.
+description: Create, view, or update PRs associated with the current Jujutsu branch/bookmark. Use when the user asks to create a PR, see the PR, check changes, view the diff, see review feedback, or update the PR description. Can also accept a GitHub PR URL to work with any PR from any repository.
 ---
 
-# PR Review & Update
+# PR Creation, Review & Update
 
-View PR details, review comments, and update PR descriptions. Works with either the current Jujutsu bookmark or any GitHub PR URL.
+Create new PRs, view PR details, review comments, and update PR descriptions. Works with either the current Jujutsu bookmark or any GitHub PR URL.
 
 ## Usage
 
@@ -58,17 +58,17 @@ bash scripts/update-pr.sh --create
    - **Why**: The reason for the change
    - **Issue reference**: Related issue number (optional)
    - **What**: What was changed
-5. Format description with Why/What sections:
+5. If issue number provided, fetch issue details using `gh issue view <issue-number>` for additional context
+6. Format description with Why/What sections:
+   ## What
+   [Description of what was changed]
    ```markdown
    ## Why
    [Explanation of the reason for the change]
 
    Relates to #[issue-number]
-
-   ## What
-   [Description of what was changed]
    ```
-6. Update using `bash scripts/update-pr.sh` (reads from stdin)
+7. Update using `bash scripts/update-pr.sh` (reads from stdin)
 
 ## How It Works
 

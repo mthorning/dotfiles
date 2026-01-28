@@ -19,6 +19,7 @@ email = "matthewthorning@gmail.com"
 'stack' = 'main@origin | main | ancestors(bookmarks(), 2) | @'
 'context' = 'main..@ | main'
 'log' = '(present(@) | ancestors(immutable_heads().., 2) | present(trunk()))' # This is the builtin log
+'cursor' = 'author("cursoragent@cursor.com")'
 
 [aliases]
 ctx = ["log", "-r", "context"]

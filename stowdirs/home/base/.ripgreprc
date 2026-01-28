@@ -1,0 +1,33 @@
+# Ripgrep configuration file
+# Set RIPGREP_CONFIG_PATH=~/.ripgreprc to enable
+
+# Smart case: case-insensitive if pattern is all lowercase, case-sensitive otherwise
+--smart-case
+
+# Search hidden files and directories (but still respect .gitignore)
+--hidden
+
+# Follow symbolic links
+--follow
+
+# Limit line length to prevent performance issues with minified files
+--max-columns=150
+--max-columns-preview
+
+# Show line numbers
+--line-number
+
+# Exclude directories
+--glob=!.git/*
+--glob=!node_modules/*
+--glob=!dist/*
+--glob=!build/*
+--glob=!coverage/*
+--glob=!.cache/*
+
+# Exclude specific file patterns
+--glob=!*.min.js
+--glob=!*.min.css
+--glob=!package-lock.json
+--glob=!yarn.lock
+--glob=!pnpm-lock.yaml
