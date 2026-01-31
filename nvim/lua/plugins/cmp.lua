@@ -34,13 +34,13 @@ return {
         formatting = {
           format = function(entry, vim_item)
             vim_item.menu = ({
-              nvim_lsp = 'ﲳ',
-              nvim_lua = '',
-              treesitter = '',
-              path = 'ﱮ',
-              buffer = '﬘',
-              zsh = '',
-              spell = '暈'
+              nvim_lsp = '󰒋',     -- LSP
+              nvim_lua = '',     -- Lua
+              treesitter = '󰔱',   -- Treesitter
+              path = '󰉋',        -- Path
+              buffer = '󰈙',      -- Buffer
+              zsh = '',         -- Shell
+              spell = '󰓆'        -- Spell
             })[entry.source.name]
 
             return vim_item
