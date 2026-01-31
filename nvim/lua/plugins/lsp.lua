@@ -58,6 +58,10 @@ vim.lsp.config['rust-analyzer'] = {
   cmd = { lsp_servers .. "/rust-analyzer" },
   filetypes = { "rust" },
   root_markers = { 'Cargo.toml', '.git' },
+  on_attach = function(client, bufnr)
+    -- Work around occasional rust-analyzer panics triggered by on-type formatting (e.g. on Enter).
+    client.server_capabilities.documentOnTypeFormattingProvider = nil
+  end,
   settings = {
     ["rust-analyzer"] = {
       cargo = { allFeatures = true },
