@@ -42,7 +42,7 @@ return {
     end
 
     local add_typecheck_to_qflist = function()
-      local cmd = "pnpm typecheck"
+      local cmd = "pnpm type-check"
       local results = vim.fn.systemlist(cmd .. ' 2>&1')
 
       vim.fn.setqflist({}, 'r', {
