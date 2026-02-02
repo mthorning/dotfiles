@@ -37,7 +37,8 @@ When the user asks to "add that to my tasks":
 After making any updates to notes (adding, editing, etc.), always commit and push the changes:
 - Run the script: `~/dotfiles/skills/notes/scripts/commit-and-push.sh "<description>"`
 - The description should briefly describe what was added/changed (e.g., "Add project notes", "Add task for code review")
-- This script will automatically commit, set the main bookmark, and push to git
+- The script automatically changes to `/Users/mthorning/Documents/Notes` before running jj commands, so it can be invoked from any directory
+- The script will commit, set the main bookmark, and push to git
 
 
 ## Constraints & Rules (from AGENTS.md)

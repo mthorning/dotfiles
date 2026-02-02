@@ -41,6 +41,30 @@ return {
       vim.cmd('copen')
     end
 
+    local add_typecheck_to_qflist = function()
+      local cmd = "pnpm typecheck"
+      local results = vim.fn.systemlist(cmd .. ' 2>&1')
+
+      vim.fn.setqflist({}, 'r', {
+        title = 'TypeScript',
+        lines = results,
+        efm = '%*[^:]: %f(%l\\,%c): %trror TS%n: %m,%f(%l\\,%c): %trror TS%n: %m,%f(%l\\,%c): %tarning TS%n: %m'
+      })
+      vim.cmd('copen')
+    end
+
+    local add_lint_to_qflist = function()
+      local cmd = "pnpm lint"
+      local results = vim.fn.systemlist(cmd .. ' 2>&1')
+
+      vim.fn.setqflist({}, 'r', {
+        title = 'ESLint',
+        lines = results,
+        efm = '%*[^:]: %f: line %l\\, col %c\\, %trror - %m,%f: line %l\\, col %c\\, %trror - %m'
+      })
+      vim.cmd('copen')
+    end
+
     local open_github_browse = function()
       local absolute_path = vim.fn.expand('%:p')
       local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
@@ -74,9 +98,11 @@ return {
       { '<leader>cd', add_diagnostics_to_qflist,                                                                 desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>cf', add_conflicts_to_qflist,                                                                   desc = 'Find conflicts',         nowait = false,    remap = false },
       { '<leader>cg', '<CMD>Gitsign setqflist<CR>',                                                              desc = 'Find conflicts',         nowait = false,    remap = false },
+      { '<leader>cl', add_lint_to_qflist,                                                                        desc = 'Lint',                   nowait = false,    remap = false },
       { '<leader>cn', '<CMD>cnext<CR>',                                                                          desc = 'Next',                   nowait = false,    remap = false },
       { '<leader>co', '<CMD>copen<CR>',                                                                          desc = 'Open',                   nowait = false,    remap = false },
       { '<leader>cp', '<CMD>cprev<CR>',                                                                          desc = 'Previous',               nowait = false,    remap = false },
+      { '<leader>ct', add_typecheck_to_qflist,                                                                   desc = 'TypeCheck',              nowait = false,    remap = false },
 
       { '<leader>d',  group = 'Debug',                                                                           nowait = false,                  remap = false },
       { '<leader>dB', '<CMD>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',        desc = 'Conditional breakpoint', nowait = false,    remap = false },
@@ -115,22 +141,23 @@ return {
       { '<leader>fw', '<CMD>Telescope grep_string<CR>',                                                          desc = 'Word under cursor',      nowait = false,    remap = false },
 
       { '<leader>l',  group = 'LSP',                                                                             nowait = false,                  remap = false },
-      { '<leader>l?', '<CMD>Mason<CR>',                                                                          desc = 'Server Info',            nowait = false,    remap = false },
       { '<leader>l/', '<CMD>checkhealth vim.lsp<CR>',                                                            desc = 'Server Info',            nowait = false,    remap = false },
-      { '<leader>la', '<CMD>lua vim.lsp.buf.code_action()<CR>',                                                  desc = 'Code Action',            nowait = false,    remap = false },
+      { '<leader>l?', '<CMD>Mason<CR>',                                                                          desc = 'Server Info',            nowait = false,    remap = false },
       { '<leader>lD', '<CMD>lua vim.lsp.buf.declaration()<CR>',                                                  desc = 'Declaration',            nowait = false,    remap = false },
-      { '<leader>ld', '<CMD>lua vim.lsp.buf.definition()<CR>',                                                   desc = 'Definition',             nowait = false,    remap = false },
-      { '<leader>lv', '<CMD>vsplit<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                    desc = 'Definition (vsplit)',    nowait = false,    remap = false },
-      { '<leader>le', '<CMD>lua vim.diagnostic.open_float()<CR>',                                                desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>lF', '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                         desc = 'Format',                 nowait = false,    remap = false },
+      { '<leader>lR', '<CMD>LspRename<CR>',                                                                      desc = 'Rename',                 nowait = false,    remap = false },
+      { '<leader>lS', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                        desc = 'Workspace Symbols',      nowait = false,    remap = false },
+      { '<leader>la', '<CMD>lua vim.lsp.buf.code_action()<CR>',                                                  desc = 'Code Action',            nowait = false,    remap = false },
+      { '<leader>ld', '<CMD>lua vim.lsp.buf.definition()<CR>',                                                   desc = 'Definition',             nowait = false,    remap = false },
+      { '<leader>le', '<CMD>lua vim.diagnostic.open_float()<CR>',                                                desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>lh', '<CMD>lua vim.lsp.buf.hover()<CR>',                                                        desc = 'Hover',                  nowait = false,    remap = false },
       { '<leader>li', '<CMD>lua vim.lsp.buf.implementation()<CR>',                                               desc = 'Implementation',         nowait = false,    remap = false },
       { '<leader>lk', '<CMD>lua vim.lsp.buf.signature_help()<CR>',                                               desc = 'Signature Help',         nowait = false,    remap = false },
-      { '<leader>lR', '<CMD>LspRename<CR>',                                                                      desc = 'Rename',                 nowait = false,    remap = false },
       { '<leader>lr', '<CMD>Telescope lsp_references<CR>',                                                       desc = 'References',             nowait = false,    remap = false },
-      { '<leader>lS', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                        desc = 'Workspace Symbols',      nowait = false,    remap = false },
       { '<leader>ls', '<CMD>Telescope lsp_document_symbols<CR>',                                                 desc = 'Document Symbols',       nowait = false,    remap = false },
+      { '<leader>lS', '<CMD>split<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                    desc = 'Definition (vsplit)',    nowait = false,    remap = false },
       { '<leader>lt', '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                              desc = 'Type Definition',        nowait = false,    remap = false },
+      { '<leader>lv', '<CMD>vsplit<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                    desc = 'Definition (vsplit)',    nowait = false,    remap = false },
       {
         '<leader>lx',
         function()

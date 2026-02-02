@@ -24,6 +24,15 @@ email = "matthewthorning@gmail.com"
 [aliases]
 ctx = ["log", "-r", "context"]
 stack = ["log", "-r", "stack"]
+pre-commit = [
+  "util",
+  "exec",
+  "--",
+  "bash",
+  "-c",
+  "jj diff -r @ --name-only --no-pager | xargs pre-commit run --files",
+]
+
 
 [ui]
 pager = "delta"
