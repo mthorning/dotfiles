@@ -38,6 +38,9 @@ alias prc="gh pr checkout"
 alias ts="$HOME/.local/bin/tmux-sessioniser 2> /dev/null"
 alias ta="tmux attach"
 
+alias qf="sed 's/$/:1:1:modified/' | nvim -q -"
+
+
 alias cleanup_tm_snaps="sudo tmutil listlocalsnapshots / | grep 'com.apple.TimeMachine' | awk -F. '{print \$NF}' | xargs -I {} sudo tmutil deletelocalsnapshots {}"
 
 # Widget to insert jj bookmark at cursor

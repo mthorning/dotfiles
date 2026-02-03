@@ -97,7 +97,7 @@ return {
       { '<leader>cc', '<CMD>cclose<CR>',                                                                         desc = 'Close',                  nowait = false,    remap = false },
       { '<leader>cd', add_diagnostics_to_qflist,                                                                 desc = 'Diagnostics',            nowait = false,    remap = false },
       { '<leader>cf', add_conflicts_to_qflist,                                                                   desc = 'Find conflicts',         nowait = false,    remap = false },
-      { '<leader>cg', '<CMD>Gitsign setqflist<CR>',                                                              desc = 'Find conflicts',         nowait = false,    remap = false },
+      { '<leader>cg', '<CMD>Gitsign setqflist<CR>',                                                              desc = 'Git changes',         nowait = false,    remap = false },
       { '<leader>cl', add_lint_to_qflist,                                                                        desc = 'Lint',                   nowait = false,    remap = false },
       { '<leader>cn', '<CMD>cnext<CR>',                                                                          desc = 'Next',                   nowait = false,    remap = false },
       { '<leader>co', '<CMD>copen<CR>',                                                                          desc = 'Open',                   nowait = false,    remap = false },

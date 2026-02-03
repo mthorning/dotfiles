@@ -30,7 +30,7 @@ pre-commit = [
   "--",
   "bash",
   "-c",
-  "jj diff -r @ --name-only --no-pager | xargs pre-commit run --files",
+  "jj diff -r 'main..@' --name-only --no-pager | xargs pre-commit run --files",
 ]
 
 
