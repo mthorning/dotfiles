@@ -87,6 +87,20 @@ return {
       vim.cmd('edit ' .. file_path)
     end
 
+    local dap_close_session = function()
+      local ok_dap, dap = pcall(require, 'dap')
+      if ok_dap then
+        pcall(dap.terminate, dap)
+        pcall(dap.disconnect, dap)
+        pcall(function()
+          dap.repl.close()
+        end)
+      end
+      pcall(function()
+        require('dapui').close()
+      end)
+    end
+
     wk.add({
       { '<C-n>',      '<CMD>lua vim.diagnostic.goto_next()<CR>',                                                 desc = 'Next Diagnostic',        nowait = false,    remap = false },
       { '<C-p>',      '<CMD>lua vim.diagnostic.goto_prev()<CR>',                                                 desc = 'Prev Diagnostic',        nowait = false,    remap = false },
@@ -115,7 +129,7 @@ return {
       { '<leader>dm', '<CMD>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = 'Message',                nowait = false,    remap = false },
       { '<leader>do', '<CMD>lua require"dap".step_over()<CR>',                                                   desc = 'Step over',              nowait = false,    remap = false },
       { '<leader>dr', '<CMD>lua require"dap".repl.open()<CR>',                                                   desc = 'REPL',                   nowait = false,    remap = false },
-      { '<leader>dx', '<CMD>DapClose<CR>',                                                                       desc = 'Close Session',          nowait = false,    remap = false },
+      { '<leader>dx', dap_close_session,                                                                      desc = 'Close Session',          nowait = false,    remap = false },
       { '<leader>de', '<CMD>lua require("dapui").eval()<CR>',                                                    mode = { 'n', 'v' },             desc = 'Evaluate', nowait = false, remap = false },
 
       { '<leader>e',  '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',               nowait = false,    remap = false },
