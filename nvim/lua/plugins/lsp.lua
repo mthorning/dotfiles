@@ -74,6 +74,13 @@ vim.lsp.config['rust-analyzer'] = {
 }
 vim.lsp.enable('rust-analyzer')
 
+vim.lsp.config['pyright'] = {
+  cmd = { lsp_servers .. "/pyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_markers = { 'pyproject.toml', 'setup.py', 'setup.cfg', 'requirements.txt', 'Pipfile', '.git' }
+}
+vim.lsp.enable('pyright')
+
 local buffers_with_conflicts = {}
 
 local function has_conflict_markers(bufnr)
