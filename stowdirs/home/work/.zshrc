@@ -6,7 +6,7 @@ if [ -f '/Users/mthorning/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 # eval "$(direnv hook zsh)"
 
-alias ai="codex"
+alias ai="claude"
 alias irmdb="kubectl exec -it mysql-0 -n devenv -- mysql --user=user --password=pass --database=grafana_incident"
 alias irmreset="make down && make cluster/down && make clean-dist && make cluster/up && make irm-local/up"
 alias cc="git add . && claude \"commit code\""

@@ -32,7 +32,7 @@ return {
         layout_config = {
           flip_columns = 175
         },
-        file_ignore_patterns = { "node_modules", ".git" },
+        file_ignore_patterns = { "node_modules", ".git", "workspace%-" },
         mappings = {
           i = {
             ['<C-c>'] = actions.close,
