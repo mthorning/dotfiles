@@ -6,7 +6,7 @@ if [ -f '/Users/mthorning/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 # eval "$(direnv hook zsh)"
 
-alias ai="claude"
+alias ai="codex"
 alias irmdb="kubectl exec -it mysql-0 -n devenv -- mysql --user=user --password=pass --database=grafana_incident"
 alias irmreset="make down && make cluster/down && make clean-dist && make cluster/up && make irm-local/up"
 alias cc="git add . && claude \"commit code\""
@@ -14,6 +14,7 @@ alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
 alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
 alias tc="pnpm run type-check"
 alias k9tilt="k9s --context=orbstack -A -c pod"
+alias grass="grafana-assistant"
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
