@@ -86,3 +86,4 @@ export PATH="$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/l
 
 # Docker completions (add to fpath, compinit already handled by main config)
 fpath=(/Users/mthorning/.docker/completions $fpath)
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"

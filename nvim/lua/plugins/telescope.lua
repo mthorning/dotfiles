@@ -55,6 +55,13 @@ return {
         fzy_native = {
           override_generic_sorter = false,
           override_file_sorter = true
+        },
+        live_grep_args = {
+          mappings = {
+            i = {
+              ["<C-a>"] = require("telescope-live-grep-args.actions").quote_prompt(),
+            },
+          },
         }
       },
       pickers = {
