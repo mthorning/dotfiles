@@ -24,6 +24,7 @@ email = "matthewthorning@gmail.com"
 [aliases]
 ctx = ["log", "-r", "context"]
 stack = ["log", "-r", "stack"]
+stat = ["diff", "--stat"]
 pre-commit = [
   "util",
   "exec",
