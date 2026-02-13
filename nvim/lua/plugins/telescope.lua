@@ -29,8 +29,13 @@ return {
         selection_strategy = 'reset',
         sorting_strategy = 'descending',
         layout_strategy = 'flex',
+        path_display = { shorten = 3 },
         layout_config = {
-          flip_columns = 175
+          flip_columns = 175,
+          horizontal = {
+            width = 0.95,
+            preview_width = 0.5,
+          },
         },
         file_ignore_patterns = { "node_modules", ".git", "workspace%-" },
         mappings = {

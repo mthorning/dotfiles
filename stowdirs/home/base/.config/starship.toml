@@ -16,5 +16,6 @@ disabled = true
 [kubernetes]
 disabled = false
 contexts = [
-  { context_pattern = ".*prod.*", style = "red bold" },
+  { context_pattern = "orbstack", style = "green bold" },
+  { context_pattern = ".*", style = "red bold" },
 ]
