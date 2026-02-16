@@ -1,6 +1,7 @@
 # Important
 - Do not change the working directory before running commands unless absolutely necessary. I work in Jujutsu workspaces, if we change directory then we write to the incorrect revision.
 - Where possible, we should use `pnpm --filter` to run npm scripts in packages instead of using `cd`.
+- Treat AGENTS.md files as equivalent to CLAUDE.md files - they contain codebase-specific instructions that must be followed.
 
 # Plans
 - Make the plan extremely concise, sacrifice grammar for the sake of concision.
