@@ -222,7 +222,7 @@ return {
 
       { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',             nowait = false,           remap = false },
       { '<leader>.',  '<CMD>source ~/.config/nvim/init.lua<CR>', desc = 'Source',                nowait = false,           remap = false },
-      { '<leader>;',  '<CMD>Startify<CR>',                       desc = 'Start screen',          nowait = false,           remap = false },
+      { '<leader>;',  '<CMD>Alpha<CR>',                          desc = 'Start screen',          nowait = false,           remap = false },
     })
   end,
 }

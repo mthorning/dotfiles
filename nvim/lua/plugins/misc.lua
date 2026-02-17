@@ -37,12 +37,6 @@ return {
     end
   },
   {
-    'mhinz/vim-startify',
-    config = function()
-      vim.g.startify_change_to_dir = 0
-    end
-  },
-  {
     'karb94/neoscroll.nvim',
     event = 'VeryLazy',
     config = function() require 'neoscroll'.setup() end
