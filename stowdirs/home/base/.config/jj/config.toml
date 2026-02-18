@@ -25,6 +25,7 @@ email = "matthewthorning@gmail.com"
 ctx = ["log", "-r", "context"]
 stack = ["log", "-r", "stack"]
 stat = ["diff", "--stat"]
+gp = ["git", "push"]
 pre-commit = [
   "util",
   "exec",

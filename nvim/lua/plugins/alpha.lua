@@ -39,7 +39,7 @@ return {
         dashboard.button('e', '  Explorer', '<cmd>Yazi<CR>'),
         dashboard.button('f', '  Find files', '<cmd>Telescope find_files<CR>'),
         dashboard.button('t', '  Text', '<cmd>lua require("telescope").extensions.live_grep_args.live_grep_args({ prompt_title = "Text (C-a for args)" })<CR>'),
-        dashboard.button('c', '  Conflicts', '<cmd>lua local cmd = vim.fn.executable("rg") == 1 and "rg --vimgrep \'<<<<<<<\' 2>/dev/null" or "git grep -n \'<<<<<<<\' 2>/dev/null"; local results = vim.fn.systemlist(cmd); if vim.v.shell_error ~= 0 or #results == 0 then vim.notify("No conflicts found", vim.log.levels.INFO); return end; vim.fn.setqflist({}, "r", { title = "Merge Conflicts", lines = results }); vim.cmd("copen")<CR>'),
+        dashboard.button('c', '  Conflicts', '<cmd>lua local cmd = vim.fn.executable("rg") == 1 and "rg --vimgrep \'<<<<<<<\' 2>/dev/null" or "git grep -n \'<<<<<<<\' 2>/dev/null"; local results = vim.fn.systemlist(cmd); if vim.v.shell_error ~= 0 or #results == 0 then vim.notify("No conflicts found", vim.log.levels.INFO); return end; vim.fn.setqflist({}, "r", { title = "Merge Conflicts", lines = results }); vim.cmd("copen"); vim.cmd("cfirst")<CR>'),
         dashboard.button('r', '  Recent files', '<cmd>Telescope oldfiles<CR>'),
         dashboard.button('q', '  Quit', '<cmd>qa<CR>'),
       }
