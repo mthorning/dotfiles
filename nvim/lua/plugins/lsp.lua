@@ -74,6 +74,84 @@ vim.lsp.config['rust-analyzer'] = {
 }
 vim.lsp.enable('rust-analyzer')
 
+local eslint_config_files = {
+  '.eslintrc', '.eslintrc.js', '.eslintrc.cjs', '.eslintrc.yaml',
+  '.eslintrc.yml', '.eslintrc.json', 'eslint.config.js', 'eslint.config.mjs',
+  'eslint.config.cjs', 'eslint.config.ts', 'eslint.config.mts', 'eslint.config.cts',
+}
+
+vim.lsp.config['eslint'] = {
+  cmd = { lsp_servers .. "/vscode-eslint-language-server", "--stdio" },
+  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  workspace_required = true,
+  root_dir = function(bufnr, on_dir)
+    if vim.fs.root(bufnr, { 'deno.json', 'deno.jsonc' }) then return end
+    local root = vim.fs.root(bufnr, { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lock', '.git' })
+      or vim.fn.getcwd()
+    local filename = vim.api.nvim_buf_get_name(bufnr)
+    local found = vim.fs.find(eslint_config_files, {
+      path = filename, type = 'file', limit = 1, upward = true,
+      stop = vim.fs.dirname(root),
+    })[1]
+    if found then on_dir(root) end
+  end,
+  before_init = function(_, config)
+    local root = config.root_dir
+    if not root then return end
+    config.settings = config.settings or {}
+    config.settings.workspaceFolder = {
+      uri = root,
+      name = vim.fn.fnamemodify(root, ':t'),
+    }
+    local flat_configs = vim.tbl_filter(function(f) return f:match('config') end, eslint_config_files)
+    for _, f in ipairs(flat_configs) do
+      local found = vim.fn.globpath(root, f, true, true)
+      found = vim.tbl_filter(function(p) return not p:find('[/\\]node_modules[/\\]') end, found)
+      if #found > 0 then
+        config.settings.experimental = { useFlatConfig = true }
+        break
+      end
+    end
+  end,
+  settings = {
+    validate = 'on',
+    useESLintClass = false,
+    experimental = { useFlatConfig = false },
+    codeActionOnSave = { enable = false, mode = 'all' },
+    format = true,
+    quiet = false,
+    onIgnoredFiles = 'off',
+    rulesCustomizations = {},
+    run = 'onType',
+    problems = { shortenToSingleLine = false },
+    nodePath = '',
+    workingDirectory = { mode = 'auto' },
+    codeAction = {
+      disableRuleComment = { enable = true, location = 'separateLine' },
+      showDocumentation = { enable = true },
+    },
+  },
+  handlers = {
+    ['eslint/openDoc'] = function(_, result)
+      if result then vim.ui.open(result.url) end
+      return {}
+    end,
+    ['eslint/confirmESLintExecution'] = function(_, result)
+      if not result then return end
+      return 4
+    end,
+    ['eslint/probeFailed'] = function()
+      vim.notify('[eslint] probe failed.', vim.log.levels.WARN)
+      return {}
+    end,
+    ['eslint/noLibrary'] = function()
+      vim.notify('[eslint] Unable to find ESLint library.', vim.log.levels.WARN)
+      return {}
+    end,
+  },
+}
+vim.lsp.enable('eslint')
+
 vim.lsp.config['pyright'] = {
   cmd = { lsp_servers .. "/pyright-langserver", "--stdio" },
   filetypes = { "python" },
@@ -143,10 +221,10 @@ return {
     config = function()
       local lint = require("lint")
       lint.linters_by_ft = {
-        javascript = { "eslint_d" },
-        javascriptreact = { "eslint_d" },
-        typescript = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
+        -- javascript = { "eslint_d" },
+        -- javascriptreact = { "eslint_d" },
+        -- typescript = { "eslint_d" },
+        -- typescriptreact = { "eslint_d" },
         go = vim.fn.executable("golangci-lint") == 1 and { "golangcilint" } or {},
       }
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
