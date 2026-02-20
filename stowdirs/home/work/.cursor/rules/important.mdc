@@ -1,0 +1,8 @@
+---
+description: Important
+alwaysApply: true
+---
+
+# Important
+
+- I sometimes use Jujutsu workspaces which are directories in the repo root – do not `cd` before running commands as this leads to making changes against the incorrect Jujutsu revisions.

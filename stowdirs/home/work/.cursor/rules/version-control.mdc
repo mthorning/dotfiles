@@ -1,0 +1,9 @@
+---
+description: Version control
+alwaysApply: true
+---
+
+# Version Control
+
+- I use Jujutsu, not git
+- Use the `gh` cli tool to interact with GitHub
