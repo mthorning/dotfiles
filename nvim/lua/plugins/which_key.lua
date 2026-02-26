@@ -88,6 +88,7 @@ return {
       local absolute_path = vim.fn.expand('%:p')
       local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
       local relative_path = absolute_path:gsub('^' .. vim.pesc(git_root) .. '/', '')
+      relative_path = relative_path:gsub('^workspace%-[^/]*/', '')
       local line = vim.fn.line('.')
       local default_branch = vim.fn.systemlist('git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null')[1]
       if default_branch and default_branch ~= '' then
