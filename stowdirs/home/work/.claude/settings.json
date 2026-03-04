@@ -169,8 +169,8 @@
         "matcher": "Edit|Write",
         "hooks": [
           {
-            "type": "prompt",
-            "prompt": "Current working directory: $PWD. Verify this matches your intended Jujutsu workspace. Respond 'approve' to proceed or 'deny' if this is incorrect."
+            "type": "command",
+            "command": "bash -c 'workspace_dir=\"\"; current=\"$PWD\"; while [[ \"$current\" != \"/\" ]]; do if [[ \"$(basename \"$current\")\" == workspace-* ]]; then workspace_dir=\"$current\"; break; fi; current=\"$(dirname \"$current\")\"; done; [[ -z \"$workspace_dir\" ]] && exit 0; file_path=\"${TOOL_INPUT_file_path:-}\"; if [[ -n \"$file_path\" && \"$file_path\" != \"$workspace_dir\"* ]]; then echo \"Blocked: $file_path is outside workspace $workspace_dir\"; exit 2; fi; exit 0'"
           }
         ]
       }
@@ -193,6 +193,5 @@
   },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
-  },
-  "effortLevel": "medium"
+  }
 }

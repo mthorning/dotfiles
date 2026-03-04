@@ -86,3 +86,7 @@ export PATH="$JAVA_HOME/bin:$ANDROID_HOME/emulator:$ANDROID_HOME/cmdline-tools/l
 # Docker completions (add to fpath, compinit already handled by main config)
 fpath=(/Users/mthorning/.docker/completions $fpath)
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

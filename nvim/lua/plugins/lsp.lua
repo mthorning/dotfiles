@@ -23,20 +23,45 @@ vim.lsp.config['lua_ls'] = {
 }
 vim.lsp.enable('lua_ls')
 
-vim.lsp.config['ts_ls'] = {
-  root_markers = { '.git' },
-  init_options = {
-    preferences = {
-      disableSuggestions = false,
-      includeCompletionsForModuleExports = true,
-      sortImports = true
-    }
-  },
-  cmd = {
-    lsp_servers .. "/typescript-language-server",
-    "--stdio"
-  },
+-- vim.lsp.config['ts_ls'] = {
+--   root_markers = { '.git' },
+--   init_options = {
+--     preferences = {
+--       disableSuggestions = false,
+--       includeCompletionsForModuleExports = true,
+--       sortImports = true
+--     }
+--   },
+--   cmd = {
+--     lsp_servers .. "/typescript-language-server",
+--     "--stdio"
+--   },
+--   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+--   on_attach = function(client, bufnr)
+--     vim.api.nvim_create_autocmd("BufWritePre", {
+--       buffer = bufnr,
+--       group = vim.api.nvim_create_augroup("PrettierGroup", { clear = true }),
+--       command = "Prettier",
+--     })
+--   end
+-- }
+-- vim.lsp.enable('ts_ls')
+
+vim.lsp.config['tsgo'] = {
+  cmd = function(dispatchers, config)
+    local cmd = 'tsgo'
+    local local_cmd = (config or {}).root_dir and config.root_dir .. '/node_modules/.bin/tsgo'
+    if local_cmd and vim.fn.executable(local_cmd) == 1 then
+      cmd = local_cmd
+    end
+    return vim.lsp.rpc.start({ cmd, '--lsp', '--stdio' }, dispatchers)
+  end,
   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+  root_dir = function(bufnr, on_dir)
+    if vim.fs.root(bufnr, { 'deno.json', 'deno.jsonc', 'deno.lock' }) then return end
+    local root = vim.fs.root(bufnr, { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock', '.git' })
+    if root then on_dir(root) end
+  end,
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -45,7 +70,7 @@ vim.lsp.config['ts_ls'] = {
     })
   end
 }
-vim.lsp.enable('ts_ls')
+vim.lsp.enable('tsgo')
 
 vim.lsp.config['gopls'] = {
   cmd = { lsp_servers .. "/gopls" },
