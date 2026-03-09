@@ -37,7 +37,7 @@ return {
             preview_width = 0.5,
           },
         },
-        file_ignore_patterns = { "node_modules", ".git", "workspace%-" },
+        file_ignore_patterns = { "node_modules", "^%.git/", "workspace%-" },
         mappings = {
           i = {
             ['<C-c>'] = actions.close,

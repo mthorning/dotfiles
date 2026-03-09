@@ -5,41 +5,47 @@ description: Tools for searching, reading, and adding to the user's personal not
 
 # Notes Manager Skill
 
-This skill allows the agent to interact with the user's Obsidian notes located at `/Users/mthorning/Documents/Notes`.
+This skill allows the agent to interact with the user's Obsidian notes using the `obsidian` CLI tool.
+
+## Obsidian CLI
+
+All vault interactions should use the `obsidian` CLI. Key commands:
+
+- **Search**: `obsidian search query="<text>"` or `obsidian search:context query="<text>"` for results with surrounding lines
+- **Read file**: `obsidian read file="<name>"` or `obsidian read path="<path>"`
+- **Read daily note**: `obsidian daily:read`
+- **Append to file**: `obsidian append file="<name>" content="<text>"`
+- **Append to daily note**: `obsidian daily:append content="<text>"`
+- **Create file**: `obsidian create name="<name>" path="<folder/name.md>" content="<text>"`
+- **List files**: `obsidian files folder="<path>"`
+- **List tasks**: `obsidian tasks` (add `todo` or `done` flags to filter)
+- **Get daily note path**: `obsidian daily:path`
+
+Use `\n` for newlines in content values.
 
 ## Capabilities
 
 ### 1. Check/Search Notes
 When the user asks to "check my notes" or search for something:
-- **Search**: Use `grep -r` or `ripgrep` (if available) to search specifically within the `/Users/mthorning/Documents/Notes` directory.
-- **Context**: Prioritize the `Daily/` and `Knowledge/` folders unless instructed otherwise.
-- **Read**: Use `read_file` to retrieve the full content of relevant matches.
+- Use `obsidian search:context query="<text>"` to find matches with context.
+- Use `obsidian read` to retrieve full content of relevant files.
+- Prioritize the `Daily/` and `Knowledge/` folders unless instructed otherwise.
 
 ### 2. Add to Notes
-When the user asks to "add that to my notes" or "make a not of that":
-- **Default Location**: We should attempt to find a suitable location for the note. If the user says to create a new note/file then we should add a new file with an appropriate title to the Knowledge directory. If it's a small piece of information then we should check the files in the Knowledge directory to see if there is a suitable file to add it to. If there is nowhere obvious then append the information to the **Current Daily Note**.
-  - Path format: `/Users/mthorning/Documents/Notes/Daily/YYYY-MM-DD.md` (e.g., `2025-01-16.md`).
-  - **Create if missing**: If today's daily note doesn't exist, create it.
-- **Format**:
-  - Append a bullet point (`- `) followed by the content.
-  - Ensure the content is formatted in Markdown.
+When the user asks to "add that to my notes" or "make a note of that":
+- **Default Location**: Find a suitable location. If a new note/file is needed, create it in the Knowledge directory with `obsidian create`. If it's a small piece of information, search existing Knowledge files for a suitable one. If nowhere obvious, use `obsidian daily:append`.
+- **Format**: Bullet point (`- `) followed by the content in Markdown.
 
 ### 3. Add to Tasks
 When the user asks to "add that to my tasks":
-- **Default Location**: Unless a specific file is mentioned, append the information to the **Current Daily Note**.
-  - Path format: `/Users/mthorning/Documents/Notes/Daily/YYYY-MM-DD.md` (e.g., `2025-01-16.md`).
-  - **Create if missing**: If today's daily note doesn't exist, create it.
-- **Format**:
-  - Append a task item (`- [ ] `) followed by the content.
-  - Ensure the content is formatted in Markdown.
+- **Default Location**: Unless specified, append to the daily note with `obsidian daily:append`.
+- **Format**: Task item (`- [ ] `) followed by the content in Markdown.
 
 ### 4. Commit and Push Changes
-After making any updates to notes (adding, editing, etc.), always commit and push the changes:
-- Run the script: `~/dotfiles/skills/notes/scripts/commit-and-push.sh "<description>"`
-- The description should briefly describe what was added/changed (e.g., "Add project notes", "Add task for code review")
-- The script automatically changes to `/Users/mthorning/Documents/Notes` before running jj commands, so it can be invoked from any directory
-- The script will commit, set the main bookmark, and push to git
-
+After making any updates to notes, commit and push:
+- Run: `~/dotfiles/skills/notes/scripts/commit-and-push.sh "<description>"`
+- The description should briefly describe what was added/changed.
+- The script handles changing to the Notes directory and running jj commands.
 
 ## Constraints & Rules (from AGENTS.md)
 1. **Preserve Structure**: Do not create new top-level directories.
@@ -49,10 +55,14 @@ After making any updates to notes (adding, editing, etc.), always commit and pus
 ## Example Workflows
 
 - **User**: "Check my notes for 'project alpha'."
-  - **Action**: `grep -r "project alpha" /Users/mthorning/Documents/Notes`
-  
-- **User**: "Add this conversation to my notes."
-  - **Action**: 
-    1. specific_file = `/Users/mthorning/Documents/Notes/Daily/$(date +%Y-%m-%d).md`
-    2. Read file to check existing content.
-    3. Append the summary/content to that file.
+  - **Action**: `obsidian search:context query="project alpha"`
+
+- **User**: "Add this to my notes."
+  - **Action**:
+    1. `obsidian daily:append content="- <summary>"`
+    2. Run commit-and-push script.
+
+- **User**: "Add a task to review the PR."
+  - **Action**:
+    1. `obsidian daily:append content="- [ ] Review the PR"`
+    2. Run commit-and-push script.

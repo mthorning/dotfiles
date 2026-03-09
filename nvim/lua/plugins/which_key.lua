@@ -167,7 +167,15 @@ return {
       { '<leader>ff', '<CMD>Telescope find_files<CR>',                                                                                        desc = 'File',                   nowait = false,    remap = false },
       { '<leader>fl', '<CMD>Telescope resume<CR>',                                                                                            desc = 'Last Query',             nowait = false,    remap = false },
       { '<leader>fm', '<CMD>Telescope marks<CR>',                                                                                             desc = 'Marks',                  nowait = false,    remap = false },
-      { '<leader>fh', '<CMD>Telescope help_tags<CR>',                                                                                         desc = 'Help',                   nowait = false,    remap = false },
+      { '<leader>fh', function()
+        require('telescope.builtin').help_tags({
+          attach_mappings = function(_, map)
+            map('i', '<CR>', require('telescope.actions').select_vertical)
+            map('n', '<CR>', require('telescope.actions').select_vertical)
+            return true
+          end
+        })
+      end,                                                                                                                                        desc = 'Help',                   nowait = false,    remap = false },
       { '<leader>fq', '<CMD>Telescope quickfix<CR>',                                                                                          desc = 'QuickFix',               nowait = false,    remap = false },
       { '<leader>fr', '<CMD>Telescope oldfiles<CR>',                                                                                          desc = 'Recent',                 nowait = false,    remap = false },
       { '<leader>fs', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                                                     desc = 'Symbols',                nowait = false,    remap = false },
