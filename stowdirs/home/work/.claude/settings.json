@@ -1,14 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Read(**)",
+      "Read(*)",
       "WebFetch(*)",
       "Grep(*)",
       "Bash(ls *)",
       "Bash(pnpm * install)",
       "Bash(pnpm * type-check)",
       "Bash(pnpm * lint)",
-      "Bash(pnpm * test*)"
+      "Bash(pnpm * test*)",
+      "Bash(playwright-cli *)"
     ],
     "deny": [
       "// ==================== DESTRUCTIVE GIT OPERATIONS ====================",
@@ -30,10 +31,6 @@
       "Bash(jj bookmark forget *)",
       "Bash(jj tag forget *)",
       "Bash(jj operation abandon *)",
-      "// ==================== DESTRUCTIVE FILE OPERATIONS ====================",
-      "// Recursive, force, or bulk deletion operations",
-      "Bash(rm *)",
-      "Bash(rmdir *)",
       "// ==================== SYSTEM COMMANDS ====================",
       "Bash(sudo *)",
       "Bash(su *)",
@@ -159,29 +156,31 @@
       "Bash(gh pr close *)",
       "Bash(gh issue create *)",
       "Bash(gh issue close *)",
-      "Bash(gh release create *)"
+      "Bash(gh release create *)",
+      "// ==================== DESTRUCTIVE FILE OPERATIONS ====================",
+      "// Recursive, force, or bulk deletion operations",
+      "Bash(rm *)",
+      "Bash(rmdir *)"
     ],
     "defaultMode": "default"
   },
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "Edit|Write",
+        "matcher": "Bash",
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'workspace_dir=\"\"; current=\"$PWD\"; while [[ \"$current\" != \"/\" ]]; do if [[ \"$(basename \"$current\")\" == workspace-* ]]; then workspace_dir=\"$current\"; break; fi; current=\"$(dirname \"$current\")\"; done; [[ -z \"$workspace_dir\" ]] && exit 0; file_path=\"${TOOL_INPUT_file_path:-}\"; if [[ -n \"$file_path\" && \"$file_path\" != \"$workspace_dir\"* ]]; then echo \"Blocked: $file_path is outside workspace $workspace_dir\"; exit 2; fi; exit 0'"
+            "command": "bash -c 'cmd=\"${TOOL_INPUT_command:-}\"; if echo \"$cmd\" | grep -qE \"(^|[[:space:]])git([[:space:]]|$)\"; then echo \"Use jj instead of git.\"; exit 2; fi; exit 0'"
           }
         ]
-      }
-    ],
-    "PostToolUse": [
+      },
       {
         "matcher": "Edit|Write",
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'file_path=\"${TOOL_INPUT_file_path:-}\"; [[ \"$file_path\" == *.ts || \"$file_path\" == *.tsx ]] && cd \"$(dirname \"$file_path\")\" && tsc --noEmit 2>&1 | head -20 || true'"
+            "command": "bash -c 'workspace_dir=\"\"; current=\"$PWD\"; while [[ \"$current\" != \"/\" ]]; do if [[ \"$(basename \"$current\")\" == workspace-* ]]; then workspace_dir=\"$current\"; break; fi; current=\"$(dirname \"$current\")\"; done; [[ -z \"$workspace_dir\" ]] && exit 0; file_path=\"${TOOL_INPUT_file_path:-}\"; if [[ -n \"$file_path\" && \"$file_path\" != \"$workspace_dir\"* ]]; then echo \"Blocked: $file_path is outside workspace $workspace_dir\"; exit 2; fi; exit 0'"
           }
         ]
       }
@@ -193,6 +192,5 @@
   },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
-  },
-  "model": "opus"
+  }
 }
