@@ -4,12 +4,18 @@
       "Read(*)",
       "WebFetch(*)",
       "Grep(*)",
+      "Bash(find *)",
+      "Bash(gh pr diff *)",
+      "Bash(gh pr view *)",
+      "Bash(grep *)",
       "Bash(ls *)",
-      "Bash(pnpm * install)",
-      "Bash(pnpm * type-check)",
-      "Bash(pnpm * lint)",
-      "Bash(pnpm * test*)",
-      "Bash(playwright-cli *)"
+      "Bash(pnpm * * install)",
+      "Bash(pnpm * * type-check)",
+      "Bash(pnpm * * lint*)",
+      "Bash(pnpm * * test*)",
+      "Bash(pnpm * * generate-types)",
+      "Bash(playwright-cli *)",
+      "Bash(rg *)"
     ],
     "deny": [
       "// ==================== DESTRUCTIVE GIT OPERATIONS ====================",

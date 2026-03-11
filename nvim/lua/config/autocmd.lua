@@ -44,6 +44,15 @@ vim.api.nvim_create_autocmd("FileType", {
   end
 })
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+  desc = 'Binds Enter to :wq for zsh command-line editor temp files',
+  group = vim.api.nvim_create_augroup('ZshCmdlineEdit', { clear = true }),
+  pattern = '/private/tmp/*.zsh',
+  callback = function()
+    vim.keymap.set('n', '<CR>', '<CMD>wq<CR>', { buffer = true })
+  end
+})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = 'Highlights yanked text',
   group = vim.api.nvim_create_augroup("HighlighOnYank", { clear = true}),
