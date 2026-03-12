@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   group = vim.api.nvim_create_augroup('ZshCmdlineEdit', { clear = true }),
   pattern = '/private/tmp/*.zsh',
   callback = function()
-    vim.keymap.set('n', '<CR>', '<CMD>wq<CR>', { buffer = true })
+    vim.keymap.set({'n', 'i'}, '<CR>', '<CMD>wq<CR>', { buffer = true })
   end
 })
 
