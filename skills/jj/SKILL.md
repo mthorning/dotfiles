@@ -14,8 +14,8 @@ When user requests to commit and push:
 1. Review changes with `jj status` and `jj diff`
 2. Draft one-sentence commit message describing changes
 3. Use AskUserQuestion to confirm commit message
-4. Get current bookmark with `bash scripts/get-bookmark.sh`
-5. Run `bash scripts/commit-and-push.sh "<message>" "<bookmark>"`
+4. Get current bookmark with `bash ~/dotfiles/skills/jj/scripts/get-bookmark.sh`
+5. Run `bash ~/dotfiles/skills/jj/scripts/commit-and-push.sh "<message>" "<bookmark>"`
 6. Script will commit, set bookmark on @-, and prompt for push confirmation
 
 ## Scripts
@@ -25,7 +25,7 @@ When user requests to commit and push:
 Find bookmark on current or parent revisions.
 
 ```bash
-bash scripts/get-bookmark.sh
+bash ~/dotfiles/skills/jj/scripts/get-bookmark.sh
 ```
 
 Returns bookmark name or exits with error if none found.
@@ -35,7 +35,7 @@ Returns bookmark name or exits with error if none found.
 Commit, set bookmark, and push.
 
 ```bash
-bash scripts/commit-and-push.sh "commit message" "bookmark-name"
+bash ~/dotfiles/skills/jj/scripts/commit-and-push.sh "commit message" "bookmark-name"
 ```
 
 Workflow:

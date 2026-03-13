@@ -7,18 +7,23 @@ description: Create, view, or update PRs associated with the current Jujutsu bra
 
 Create new PRs, view PR details, review comments, and update PR descriptions. Works with either the current Jujutsu bookmark or any GitHub PR URL.
 
+## Important Rules
+
+- **All PRs must be created in draft mode.** Always pass `--draft` to `gh pr create`, with no exceptions — even if the skill scripts cannot be found and you fall back to calling `gh` directly.
+- Scripts must be run using their absolute path: `~/dotfiles/skills/pr-review/scripts/<script-name>`
+
 ## Usage
 
 ### Viewing a PR
 
 View PR from current bookmark:
 ```bash
-bash scripts/get_pr_reviews.sh
+bash ~/dotfiles/skills/pr-review/scripts/get_pr_reviews.sh
 ```
 
 View PR from GitHub URL:
 ```bash
-bash scripts/get_pr_reviews.sh "https://github.com/owner/repo/pull/123"
+bash ~/dotfiles/skills/pr-review/scripts/get_pr_reviews.sh "https://github.com/owner/repo/pull/123"
 ```
 
 **Local Bookmark Mode (no arguments)**
@@ -37,17 +42,17 @@ The script will:
 
 Update PR from current bookmark:
 ```bash
-bash scripts/update-pr.sh
+bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh
 ```
 
 Update specific PR by URL:
 ```bash
-bash scripts/update-pr.sh "https://github.com/owner/repo/pull/123"
+bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh "https://github.com/owner/repo/pull/123"
 ```
 
-Create new PR:
+Create new PR (always in draft mode):
 ```bash
-bash scripts/update-pr.sh --create
+bash <skill-dir>/scripts/update-pr.sh --create
 ```
 
 **Workflow for updating PR descriptions:**
@@ -57,18 +62,22 @@ bash scripts/update-pr.sh --create
 4. Use AskUserQuestion to gather:
    - **Why**: The reason for the change
    - **Issue reference**: Related issue number (optional)
-   - **What**: What was changed
+   - **Type**: Conventional commit type (feat, fix, docs, refactor, test, chore, perf, ci, build, style, revert)
+   - **Scope**: Optional scope (e.g. component or area affected)
 5. If issue number provided, fetch issue details using `gh issue view <issue-number>` for additional context
-6. Format description with Why/What sections:
+6. Format the PR title using conventional commits: `type(scope): short description` (omit scope if not applicable)
+7. Update the jj revision description to match: `jj describe -m "type(scope): short description"`
+8. Format PR body with Why/What sections:
+   ```markdown
    ## What
    [Description of what was changed]
-   ```markdown
+
    ## Why
    [Explanation of the reason for the change]
 
    Relates to #[issue-number]
    ```
-7. Update using `bash scripts/update-pr.sh` (reads from stdin)
+9. Update using `bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh` (reads from stdin)
 
 ## How It Works
 

@@ -25,11 +25,12 @@ return {
 
     require("telescope").setup {
       defaults = {
+        dynamic_preview_title = true,
         initial_mode = 'insert',
         selection_strategy = 'reset',
         sorting_strategy = 'descending',
         layout_strategy = 'flex',
-        path_display = { shorten = 3 },
+        path_display = { shortn = 4},
         layout_config = {
           flip_columns = 175,
           horizontal = {
