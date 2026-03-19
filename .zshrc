@@ -22,7 +22,6 @@ alias ll="ls -al"
 alias weather="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias cat="bat"
 alias v="nvim"
-alias y="yazi"
 
 alias p="pnpm"
 alias pr="pnpm run"
@@ -62,15 +61,6 @@ function jjb-widget() {
   zle reset-prompt
 }
 zle -N jjb-widget
-
-function y() {
-  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-  yazi "$@" --cwd-file="$tmp"
-  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-          builtin cd -- "$cwd"
-  fi
-  rm -f -- "$tmp"
-}
 
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -113,10 +103,15 @@ bindkey '^b' jjb-widget
 ####################
 # Functions:
 
-gitrecover() {
-  find .git/objects/ -type f -empty | xargs rm
-  git fetch -p
-  git fsck --full
+# Will leave you in yazi dir with `q` or previous
+# location with `Q`
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  yazi "$@" --cwd-file="$tmp"
+  if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+          builtin cd -- "$cwd"
+  fi
+  rm -f -- "$tmp"
 }
 
 # pnpm

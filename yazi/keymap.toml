@@ -1,4 +1,9 @@
 [[mgr.prepend_keymap]]
+on   = [ "q" ]
+run  = "quit --cwd-file"
+desc = "Quit and change directory"
+
+[[mgr.prepend_keymap]]
 on   = [ "<Enter>" ]
 run = "plugin --sync smart-enter"
 desc = "Enter the child directory, or open the file"

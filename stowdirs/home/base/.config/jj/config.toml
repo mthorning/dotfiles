@@ -20,6 +20,7 @@ email = "matthewthorning@gmail.com"
 'context' = 'main..@ | main'
 'log' = '(present(@) | ancestors(immutable_heads().., 2) | present(trunk()))' # This is the builtin log
 'cursor' = 'author("cursoragent@cursor.com")'
+'today' = 'author_date(after:"yesterday")'
 
 [aliases]
 ctx = ["log", "-r", "context"]
