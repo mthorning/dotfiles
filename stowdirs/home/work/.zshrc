@@ -14,6 +14,7 @@ alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
 alias tc="pnpm run type-check"
 alias k9tilt="k9s --context=orbstack -A -c pod"
 alias grass="grafana-assistant"
+alias ai="claude"
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
