@@ -92,3 +92,29 @@ export PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+playwright-report() {
+  local zip_file="${1:-$(ls -t ~/Downloads/playwright-report*.zip 2>/dev/null | head -1)}"
+
+  if [[ -z "$zip_file" ]]; then
+    echo "Usage: playwright-report <trace.zip>"
+    return 1
+  fi
+
+  if [[ ! -f "$zip_file" ]]; then
+    echo "File not found: $zip_file"
+    return 1
+  fi
+
+  local base="$HOME/Downloads/playwright"
+  local target="$base"
+  local i=2
+  while [[ -d "$target" ]]; do
+    target="${base}${i}"
+    ((i++))
+  done
+
+  mkdir -p "$target"
+  unzip -q "$zip_file" -d "$target"
+  npx --yes playwright show-report "$target"
+}
