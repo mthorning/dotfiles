@@ -15,6 +15,7 @@ alias tc="pnpm run type-check"
 alias k9tilt="k9s --context=orbstack -A -c pod"
 alias grass="grafana-assistant"
 alias ai="claude"
+alias create-pr="claude \"Create a PR\""
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc

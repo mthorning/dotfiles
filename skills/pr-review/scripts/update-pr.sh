@@ -137,7 +137,7 @@ if [ "$create_mode" = true ]; then
         title="$bookmark"
     fi
 
-    gh pr create --title "$title" --body "$description" --draft
+    gh pr create --title "$title" --body "$description" --draft --head "$bookmark" --base main
     echo "" >&2
     echo "PR created successfully!" >&2
 else
