@@ -17,6 +17,11 @@
 - Don't add "Generated with Claude" or "Co-Authored-By Claude" to commit messages.
 - I use Jujutsu workspaces, if the cwd is in a directory prefixed with `workspace-` then only files under this directory should be edited; files in the root will be on a different Jujutsu revision and _should not be edited_.
 
+# Creating PRs
+- Since I use Jujutsu, `gh pr create` will fail with "not on any branch" unless a git branch exists first.
+- Before running `gh pr create`, always create a jj bookmark and push it: `jj bookmark create <name> && jj git push --bookmark <name>`.
+- Derive the bookmark name from the work being done, following the `mt/` prefix convention.
+
 # TypeScript
 - Do not use `any`. 
 - Prefer using `as` assertions in test files if it avoids the need to add a lot of unnecessary properties, but we cannot use `as any`. `@ts-expect-error` is also acceptable in test but we need to append a comment for the linter not to error.
