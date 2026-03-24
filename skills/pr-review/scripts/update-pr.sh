@@ -1,9 +1,9 @@
 #!/bin/bash
 # Script to update or create PR description with structured Why/What format
 # Usage:
-#   ./update-pr.sh                                          # Use current bookmark
-#   ./update-pr.sh "https://github.com/owner/repo/pull/123" # Use specific PR URL
-#   ./update-pr.sh --create                                 # Create new PR
+#   ./update-pr.sh                                              # Use current bookmark
+#   ./update-pr.sh "https://github.com/owner/repo/pull/123"    # Use specific PR URL
+#   ./update-pr.sh --create --title "feat: my change"          # Create new PR (body via stdin)
 
 set -e
 
@@ -53,12 +53,15 @@ create_mode=false
 pr_url=""
 repo=""
 pr_number=""
+title=""
 
-if [ "$1" = "--create" ]; then
-    create_mode=true
-elif [ -n "$1" ]; then
-    pr_url="$1"
-fi
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --create) create_mode=true; shift ;;
+        --title) title="$2"; shift 2 ;;
+        *) pr_url="$1"; shift ;;
+    esac
+done
 
 # Determine PR context
 if [ -n "$pr_url" ]; then
@@ -130,13 +133,15 @@ fi
 
 # Create or update PR
 if [ "$create_mode" = true ]; then
-    echo "Creating new PR..." >&2
-    # Extract title from first line of description or use bookmark
-    title=$(echo "$description" | head -1 | sed 's/^## *//' | sed 's/^# *//')
     if [ -z "$title" ]; then
-        title="$bookmark"
+        echo "Error: --title is required when creating a PR" >&2
+        exit 1
     fi
 
+    echo "Pushing bookmark '$bookmark' to remote..." >&2
+    jj git push --bookmark "$bookmark" >&2
+
+    echo "Creating new PR..." >&2
     gh pr create --title "$title" --body "$description" --draft --head "$bookmark" --base main
     echo "" >&2
     echo "PR created successfully!" >&2

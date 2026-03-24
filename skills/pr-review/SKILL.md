@@ -52,10 +52,12 @@ bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh "https://github.com/owner/
 
 Create new PR (always in draft mode):
 ```bash
-bash <skill-dir>/scripts/update-pr.sh --create
+echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "type(scope): short description"
 ```
 
-**Workflow for updating PR descriptions:**
+The script automatically pushes the bookmark to remote before calling `gh pr create`.
+
+**Workflow for creating or updating PR descriptions:**
 1. Find the PR (from current bookmark or provided URL)
 2. Show current PR description if exists
 3. Gather context from commits using `jj log` and `jj diff`
@@ -66,7 +68,9 @@ bash <skill-dir>/scripts/update-pr.sh --create
    - **Scope**: Optional scope (e.g. component or area affected)
 5. If issue number provided, fetch issue details using `gh issue view <issue-number>` for additional context
 6. Format the PR title using conventional commits: `type(scope): short description` (omit scope if not applicable)
-7. Update the jj revision description to match: `jj describe -m "type(scope): short description"`
+7. Check the current revision description: `jj log -r @ -T 'description'`.
+   - If empty: run `jj describe -m "type(scope): short description"`
+   - If not empty: compare it to the title you would set. If they are broadly consistent (same intent, minor wording differences), keep the existing description as-is. If they differ meaningfully, use AskUserQuestion to show both the existing description and the proposed one, and ask the user whether to update it.
 8. Format PR body with Why/What sections:
    ```markdown
    ## What
@@ -77,7 +81,14 @@ bash <skill-dir>/scripts/update-pr.sh --create
 
    Relates to #[issue-number]
    ```
-9. Update using `bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh` (reads from stdin)
+9. For **create**: pipe body to script with `--title` flag:
+   ```bash
+   echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "<title>"
+   ```
+   For **update**: pipe body to script:
+   ```bash
+   echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh
+   ```
 
 ## How It Works
 
