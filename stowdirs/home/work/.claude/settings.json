@@ -22,9 +22,20 @@
       "Bash(pnpm * * test*)",
       "Bash(pnpm * * generate-types)",
       "Bash(playwright-cli *)",
-      "Bash(rg *)"
+      "Bash(rg *)",
+      "Bash(tmux capture-pane*)",
+      "Bash(gh api *)"
     ],
     "deny": [
+      "// ==================== GH API WRITE OPERATIONS ====================",
+      "Bash(gh api *--method POST*)",
+      "Bash(gh api *--method PUT*)",
+      "Bash(gh api *--method PATCH*)",
+      "Bash(gh api *--method DELETE*)",
+      "Bash(gh api *-X POST*)",
+      "Bash(gh api *-X PUT*)",
+      "Bash(gh api *-X PATCH*)",
+      "Bash(gh api *-X DELETE*)",
       "// ==================== DESTRUCTIVE GIT OPERATIONS ====================",
       "// Force operations that rewrite history or skip safety checks",
       "Bash(git push *)",
@@ -187,7 +198,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash -c 'cmd=\"${TOOL_INPUT_command:-}\"; if echo \"$cmd\" | grep -qE \"(^|[[:space:]])git([[:space:]]|$)\"; then echo \"Use jj instead of git.\"; exit 2; fi; exit 0'"
+            "command": "bash -c 'cmd=\"${TOOL_INPUT_command:-}\"; if echo \"$cmd\" | grep -qE \"(^|[[:space:]])git([[:space:]]|$)\"; then echo \"Use jj instead of git.\"; exit 2; fi; if echo \"$cmd\" | grep -qE \"(^|&&|;|\\|\\|)[[:space:]]*cd[[:space:]/~]\"; then echo \"Do not use cd — use absolute paths or pnpm --filter instead (jj workspace constraint).\"; exit 2; fi; exit 0'"
           }
         ]
       },
