@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+raw_marked=$(tmux show-environment -g TMUX_MARKED_PANES 2>/dev/null || true)
+[[ "$raw_marked" == TMUX_MARKED_PANES=* ]] || exit 0
+MARKED="${raw_marked#TMUX_MARKED_PANES=}"
+[[ -z "$MARKED" ]] && exit 0
+
+raw_index=$(tmux show-environment -g TMUX_MARKED_INDEX 2>/dev/null || true)
+if [[ "$raw_index" == TMUX_MARKED_INDEX=* ]]; then
+    INDEX="${raw_index#TMUX_MARKED_INDEX=}"
+else
+    INDEX="-1"
+fi
+
+IFS=':' read -ra ALL_PANES <<< "$MARKED"
+LIVE_PANES=()
+for PANE in "${ALL_PANES[@]}"; do
+    [[ -z "$PANE" ]] && continue
+    result=$(tmux display-message -t "$PANE" -p '#{pane_id}' 2>/dev/null || true)
+    [[ "$result" == "$PANE" ]] && LIVE_PANES+=("$PANE")
+done
+
+COUNT=${#LIVE_PANES[@]}
+[[ $COUNT -eq 0 ]] && { tmux set-environment -g TMUX_MARKED_PANES ""; exit 0; }
+
+NEW_MARKED=$(printf '%s:' "${LIVE_PANES[@]}")
+NEW_MARKED="${NEW_MARKED%:}"
+[[ "$NEW_MARKED" != "$MARKED" ]] && tmux set-environment -g TMUX_MARKED_PANES "$NEW_MARKED"
+
+[[ $INDEX -ge $COUNT ]] && INDEX=$((COUNT - 1))
+INDEX=$(( (INDEX + 1) % COUNT ))
+PANE_ID="${LIVE_PANES[$INDEX]}"
+
+tmux set-environment -g TMUX_MARKED_INDEX "$INDEX"
+
+SESSION=$(tmux display-message -t "$PANE_ID" -p '#{session_name}')
+WINDOW=$(tmux display-message -t "$PANE_ID" -p '#{window_index}')
+tmux switch-client -t "$SESSION"
+tmux select-window -t "$SESSION:$WINDOW"
+tmux select-pane -t "$PANE_ID"

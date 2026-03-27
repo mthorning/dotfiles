@@ -16,6 +16,7 @@
       "Bash(jj log*)",
       "Bash(ls*)",
       "Bash(obsidian read *)",
+      "Bash(perl*)",
       "Bash(pnpm * * install *)",
       "Bash(pnpm * * type-check)",
       "Bash(pnpm * * lint*)",

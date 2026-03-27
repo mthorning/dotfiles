@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+PANE_ID=$(tmux display-message -p '#{pane_id}')
+
+raw=$(tmux show-environment -g TMUX_MARKED_PANES 2>/dev/null || true)
+if [[ "$raw" == TMUX_MARKED_PANES=* ]]; then
+    MARKED="${raw#TMUX_MARKED_PANES=}"
+else
+    MARKED=""
+fi
+
+if [[ ":${MARKED}:" == *":${PANE_ID}:"* ]]; then
+    NEW=""
+    IFS=':' read -ra PANES <<< "$MARKED"
+    for P in "${PANES[@]}"; do
+        [[ "$P" == "$PANE_ID" ]] && continue
+        NEW="${NEW:+$NEW:}$P"
+    done
+    MARKED="$NEW"
+    tmux display-message -d 1000 "unmarked"
+else
+    MARKED="${MARKED:+$MARKED:}${PANE_ID}"
+    tmux display-message -d 1000 "marked"
+fi
+
+tmux set-environment -g TMUX_MARKED_PANES "$MARKED"
+tmux set-environment -g TMUX_MARKED_INDEX "-1"
