@@ -28,7 +28,11 @@ NEW_MARKED="${NEW_MARKED%:}"
 [[ "$NEW_MARKED" != "$MARKED" ]] && tmux set-environment -g TMUX_MARKED_PANES "$NEW_MARKED"
 
 [[ $INDEX -ge $COUNT ]] && INDEX=$((COUNT - 1))
-INDEX=$(( (INDEX + 1) % COUNT ))
+if [[ "${1:-}" == "backward" ]]; then
+    INDEX=$(( (INDEX - 1 + COUNT) % COUNT ))
+else
+    INDEX=$(( (INDEX + 1) % COUNT ))
+fi
 PANE_ID="${LIVE_PANES[$INDEX]}"
 
 tmux set-environment -g TMUX_MARKED_INDEX "$INDEX"
