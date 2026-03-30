@@ -17,11 +17,11 @@
       "Bash(ls*)",
       "Bash(obsidian read *)",
       "Bash(perl*)",
-      "Bash(pnpm * * install *)",
-      "Bash(pnpm * * type-check)",
-      "Bash(pnpm * * lint*)",
-      "Bash(pnpm * * test*)",
-      "Bash(pnpm * * generate-types)",
+      "Bash(pnpm* install *)",
+      "Bash(pnpm* type*check)",
+      "Bash(pnpm* lint*)",
+      "Bash(pnpm* test*)",
+      "Bash(pnpm* generate-types)",
       "Bash(playwright-cli *)",
       "Bash(rg *)",
       "Bash(tmux capture-pane*)",
@@ -219,7 +219,9 @@
     "command": "/Users/mthorning/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
+    "gopls-lsp@claude-plugins-official": true,
+    "slack@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "skipDangerousModePermissionPrompt": true,
+  "model": "opus[1m]"
 }
