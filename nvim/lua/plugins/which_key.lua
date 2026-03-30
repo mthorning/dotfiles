@@ -185,6 +185,8 @@ return {
       { '<leader>l',  group = 'LSP',                                                                                                          nowait = false,                  remap = false },
       { '<leader>l/', '<CMD>checkhealth vim.lsp<CR>',                                                                                         desc = 'Server Info',            nowait = false,    remap = false },
       { '<leader>l?', '<CMD>Mason<CR>',                                                                                                       desc = 'Server Info',            nowait = false,    remap = false },
+      { 'grt',        '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                                                              desc = 'Type Definition',        nowait = false,    remap = false },
+      { 'grx',        '<CMD>lua vim.lsp.codelens.run()<CR>',                                                                                   desc = 'Run Codelens',           nowait = false,    remap = false },
       { '<leader>lD', '<CMD>lua vim.lsp.buf.declaration()<CR>',                                                                               desc = 'Declaration',            nowait = false,    remap = false },
       { '<leader>lF', '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                                                      desc = 'Format',                 nowait = false,    remap = false },
       { '<leader>lR', '<CMD>LspRename<CR>',                                                                                                   desc = 'Rename',                 nowait = false,    remap = false },
@@ -229,7 +231,7 @@ return {
       { '<leader>yt', '<CMD>YankRelativePath<CR>',               mode = { 'v' },                 desc = 'Text (relative)', nowait = false, remap = false },
       { '<leader>yT', '<CMD>YankAbsolutePath<CR>',               mode = { 'v' },                 desc = 'Text (absolute)', nowait = false, remap = false },
 
-      { '<leader>u',  '<cmd>UndotreeToggle<CR>',                 desc = 'Undo tree',             nowait = false,           remap = false },
+      { '<leader>u',  '<cmd>Undotree<CR>',                       desc = 'Undo tree',             nowait = false,           remap = false },
       { '<leader>.',  '<CMD>source ~/.config/nvim/init.lua<CR>', desc = 'Source',                nowait = false,           remap = false },
       { '<leader>;',  '<CMD>Alpha<CR>',                          desc = 'Start screen',          nowait = false,           remap = false },
     })

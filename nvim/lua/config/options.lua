@@ -22,15 +22,5 @@ vim.opt.clipboard = 'unnamedplus'
 vim.g.rust_recommended_style = 0
 vim.opt.laststatus = 3
 
-vim.diagnostic.config({
-  float = {
-    border = "rounded",
-  },
-})
-
-local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-  opts = opts or {}
-  opts.border = opts.border or "rounded"
-  return orig_util_open_floating_preview(contents, syntax, opts, ...)
-end
+vim.opt.winborder = "rounded"
+vim.opt.pumborder = "rounded"

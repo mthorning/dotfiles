@@ -40,7 +40,6 @@ return {
     config = function() require 'gitsigns'.setup() end,
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
-  { 'mbbill/undotree',      event = 'VeryLazy' },
   {
     'prettier/vim-prettier',
     lazy = false,

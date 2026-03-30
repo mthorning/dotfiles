@@ -63,17 +63,6 @@ return {
       enable = true,
       max_lines = 6,
       trim_scope = 'outer',
-      patterns = {
-        default = {
-          'class', 'function', 'method', 'for', 'while', 'if', 'switch',
-          'case'
-        },
-        rust = { 'impl_item', 'struct', 'enum' },
-        markdown = { 'section' },
-        json = { 'pair' },
-        yaml = { 'block_mapping_pair' }
-      },
-      exact_patterns = {},
       zindex = 20,
       mode = 'cursor',
       separator = nil
