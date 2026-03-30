@@ -222,6 +222,5 @@
     "gopls-lsp@claude-plugins-official": true,
     "slack@claude-plugins-official": true
   },
-  "skipDangerousModePermissionPrompt": true,
-  "model": "opus[1m]"
+  "skipDangerousModePermissionPrompt": true
 }
