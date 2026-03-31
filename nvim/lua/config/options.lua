@@ -16,7 +16,7 @@ vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
 vim.opt.undofile = true
 vim.opt.timeoutlen = 0
 vim.opt.signcolumn = 'yes'
-vim.opt.syntax = 'on'
+
 vim.opt.grepprg = 'rg --vimgrep --smart-case --follow'
 vim.opt.clipboard = 'unnamedplus'
 vim.g.rust_recommended_style = 0
