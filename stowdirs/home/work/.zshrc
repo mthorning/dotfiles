@@ -14,7 +14,6 @@ alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
 alias tc="pnpm run type-check"
 alias k9tilt="k9s --context=orbstack -A -c pod"
 alias grass="grafana-assistant"
-alias ai="claude"
 alias create-pr="claude \"Create a PR\""
 
 # Source main dotfiles config (contains all the core setup)
@@ -122,7 +121,8 @@ playwright-report() {
 
  # ── Sandboxed agent wrappers ──────────────────────────────────────────────────
   _AGENT_SANDBOX="$HOME/dotfiles/sandbox/safe-agent.sh"
-  alias safe-claude="$_AGENT_SANDBOX claude --dangerously-skip-permissions"
-  alias safe-cursor="$_AGENT_SANDBOX cursor"
-  alias safe-codex="$_AGENT_SANDBOX codex --dangerously-bypass-approvals-and-sandbox"
+  alias claude="$_AGENT_SANDBOX claude --dangerously-skip-permissions"
+  alias ai="$_AGENT_SANDBOX claude --dangerously-skip-permissions"
+  alias cursor="$_AGENT_SANDBOX cursor"
+  alias codex="$_AGENT_SANDBOX codex --dangerously-bypass-approvals-and-sandbox"
 

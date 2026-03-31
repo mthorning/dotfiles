@@ -17,11 +17,25 @@ if [[ ":${MARKED}:" == *":${PANE_ID}:"* ]]; then
         NEW="${NEW:+$NEW:}$P"
     done
     MARKED="$NEW"
+    tmux set-option -up -t "$PANE_ID" @marked
     tmux display-message -d 1000 "unmarked"
 else
     MARKED="${MARKED:+$MARKED:}${PANE_ID}"
+    tmux set-option -p -t "$PANE_ID" @marked 1
     tmux display-message -d 1000 "marked"
 fi
 
 tmux set-environment -g TMUX_MARKED_PANES "$MARKED"
 tmux set-environment -g TMUX_MARKED_INDEX "-1"
+
+MARK_COLOR="#a6cc70"
+if defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark; then
+    BORDER="#343d4a"
+    ACTIVE="#ffcc66"
+else
+    BORDER="#e7eaed"
+    ACTIVE="#fa8d3e"
+fi
+
+tmux set-option -g pane-border-style "fg=#{?@marked,$MARK_COLOR,$BORDER}"
+tmux set-option -g pane-active-border-style "fg=#{?@marked,$MARK_COLOR,$ACTIVE}"
