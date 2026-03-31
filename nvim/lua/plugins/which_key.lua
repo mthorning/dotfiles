@@ -122,8 +122,8 @@ return {
     end
 
     wk.add({
-      { '<C-n>',      '<CMD>lua vim.diagnostic.goto_next()<CR>',                                                                              desc = 'Next Diagnostic',        nowait = false,    remap = false },
-      { '<C-p>',      '<CMD>lua vim.diagnostic.goto_prev()<CR>',                                                                              desc = 'Prev Diagnostic',        nowait = false,    remap = false },
+      { '<C-n>',      '<CMD>lua vim.diagnostic.jump({ count = 1 })<CR>',                                                                        desc = 'Next Diagnostic',        nowait = false,    remap = false },
+      { '<C-p>',      '<CMD>lua vim.diagnostic.jump({ count = -1 })<CR>',                                                                       desc = 'Prev Diagnostic',        nowait = false,    remap = false },
 
       { '<leader>a',  '<CMD>wa<CR>',                                                                                                          desc = 'Save All',               nowait = false,    remap = false },
 
@@ -199,7 +199,7 @@ return {
       { '<leader>lk', '<CMD>lua vim.lsp.buf.signature_help()<CR>',                                                                            desc = 'Signature Help',         nowait = false,    remap = false },
       { '<leader>lr', '<CMD>Telescope lsp_references<CR>',                                                                                    desc = 'References',             nowait = false,    remap = false },
       { '<leader>ls', '<CMD>Telescope lsp_document_symbols<CR>',                                                                              desc = 'Document Symbols',       nowait = false,    remap = false },
-      { '<leader>lS', '<CMD>split<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                                                  desc = 'Definition (vsplit)',    nowait = false,    remap = false },
+      { '<leader>lH', '<CMD>split<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                                                  desc = 'Definition (split)',     nowait = false,    remap = false },
       { '<leader>lt', '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                                                           desc = 'Type Definition',        nowait = false,    remap = false },
       { '<leader>lv', '<CMD>vsplit<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                                                 desc = 'Definition (vsplit)',    nowait = false,    remap = false },
       {

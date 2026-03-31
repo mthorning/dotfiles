@@ -1,7 +1,8 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
-    lazy = true,
+    branch = 'master',
+    event = { 'BufReadPost', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
       require 'nvim-treesitter.configs'.setup {
@@ -14,7 +15,6 @@ return {
         ignore_install = {},
         modules = {},
         textobjects = {
-          -- from treesitter-textobjects
           lsp_interop = {
             enable = true,
             border = 'rounded',
@@ -26,14 +26,13 @@ return {
           select = {
             enable = true,
             lookahead = true,
-
             keymaps = {
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
               ["ac"] = "@class.outer",
               ["ic"] = "@class.inner",
               ["aa"] = "@parameter.outer",
-              ["ia"] = "parameter.inner",
+              ["ia"] = "@parameter.inner",
             },
             include_surrounding_whitespace = true,
           },
