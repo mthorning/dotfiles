@@ -15,6 +15,7 @@ alias tc="pnpm run type-check"
 alias k9tilt="k9s --context=orbstack -A -c pod"
 alias grass="grafana-assistant"
 alias create-pr="claude \"Create a PR\""
+alias ai="claude"
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
@@ -122,7 +123,6 @@ playwright-report() {
  # ── Sandboxed agent wrappers ──────────────────────────────────────────────────
   _AGENT_SANDBOX="$HOME/dotfiles/sandbox/safe-agent.sh"
   alias claude="$_AGENT_SANDBOX claude --dangerously-skip-permissions"
-  alias ai="$_AGENT_SANDBOX claude --dangerously-skip-permissions"
   alias cursor="$_AGENT_SANDBOX cursor"
   alias codex="$_AGENT_SANDBOX codex --dangerously-bypass-approvals-and-sandbox"
 

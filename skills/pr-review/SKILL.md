@@ -71,16 +71,42 @@ The script automatically pushes the bookmark to remote before calling `gh pr cre
 7. Check the current revision description: `jj log -r @ -T 'description'`.
    - If empty: run `jj describe -m "type(scope): short description"`
    - If not empty: compare it to the title you would set. If they are broadly consistent (same intent, minor wording differences), keep the existing description as-is. If they differ meaningfully, use AskUserQuestion to show both the existing description and the proposed one, and ask the user whether to update it.
-8. Format PR body with Why/What sections:
+8. Format PR body using the template below. Always include **What?**, **Why?**, and **How to test**. Include optional sections only when they add value — omit them entirely rather than leaving them empty.
    ```markdown
-   ## What
-   [Description of what was changed]
+   ## What?
+   [What is being changed, from the user's perspective — behavior, not implementation. 1-2 paragraphs or bullets.]
 
-   ## Why
-   [Explanation of the reason for the change]
+   ## Why?
+   [Reason for the change. Link issues or feature requests where applicable.]
 
    Relates to #[issue-number]
+
+   ## How to test
+   [Brief summary of test coverage. Bullet any manual steps to exercise the functionality.]
+
+   ## Key decisions
+   *Optional — omit for simple PRs.*
+   [Choices where there were meaningful alternatives: "we chose A over B because C." Only forks in the road a reviewer might question.]
+
+   ## Notes to reviewers
+   *Optional — omit if nothing stands out.*
+   [Things reviewers should scrutinize: deployment ordering, large-table migrations, feature flags, backward compatibility, prod-vs-dev differences.]
+
+   ## Background info
+   *Optional — omit for simple or self-contained changes.*
+   [Context about the code and system this change interacts with, for reviewers unfamiliar with the area. 1-2 paragraphs or bullets.]
    ```
+
+   **Intellectual honesty — don't overstate what you know:**
+   - Flag operational concerns (migrations, performance, scale) — don't reassure.
+   - Don't claim a migration is safe or fast; state what it does and flag it for the reviewer.
+   - If you haven't profiled performance, don't say "this should be fast" — state what changed.
+
+   **Tone — blameless language:**
+   - Never judge prior code: no "over-engineered", "hacky", "bad", "messy", "broken".
+   - Describe what changed and why neutrally: "Simplify X to align with Y", "Consolidate X into Y".
+   - Focus on outcomes, not corrections of mistakes.
+
 9. For **create**: pipe body to script with `--title` flag:
    ```bash
    echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "<title>"
