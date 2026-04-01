@@ -29,13 +29,7 @@
     ],
     "deny": [
       "// ==================== GH API WRITE OPERATIONS ====================",
-      "Bash(gh api *--method POST*)",
-      "Bash(gh api *--method PUT*)",
-      "Bash(gh api *--method PATCH*)",
       "Bash(gh api *--method DELETE*)",
-      "Bash(gh api *-X POST*)",
-      "Bash(gh api *-X PUT*)",
-      "Bash(gh api *-X PATCH*)",
       "Bash(gh api *-X DELETE*)",
       "Bash(gh repo delete *)",
       "Bash(gh repo archive *)",
@@ -146,6 +140,13 @@
       "Bash(firebase deploy --only hosting:production *)"
     ],
     "ask": [
+      "// ==================== GH API WRITE OPERATIONS ====================",
+      "Bash(gh api *--method POST*)",
+      "Bash(gh api *--method PUT*)",
+      "Bash(gh api *--method PATCH*)",
+      "Bash(gh api *-X POST*)",
+      "Bash(gh api *-X PUT*)",
+      "Bash(gh api *-X PATCH*)",
       "// ==================== GIT WRITE OPERATIONS (MODERATE RISK) ====================",
       "// These override the broad Bash(git *) allow",
       "// NOTE: Prefix-matched, so git -C /path commit won't be caught.",

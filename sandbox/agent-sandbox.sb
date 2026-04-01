@@ -147,7 +147,8 @@
     (global-name "com.apple.DiskArbitration.diskarbitrationd")
     (global-name "com.apple.analyticsd.messagetracer")
     (global-name "com.apple.system.logger")
-    (global-name "com.apple.coreservices.launchservicesd"))
+    (global-name "com.apple.coreservices.launchservicesd")
+    (global-name "com.apple.pasteboard.pbs"))
 
 (allow system-socket)
 
@@ -447,6 +448,15 @@
     (home-prefix "/.local/bin/codex")
     (home-subpath "/.codex")
     (home-subpath "/.cache/codex"))
+
+;; ---------------------------------------------------------------------------
+;; 60-agents/pi  ·  pi-coding-agent (@mariozechner/pi-coding-agent)
+;; Binary is an nvm-managed Node package (covered by ~/.config/nvm RW above).
+;; Runtime state (sessions, settings, lock files) lives under ~/.pi/.
+;; ---------------------------------------------------------------------------
+
+(allow file-read* file-write*
+    (home-subpath "/.pi"))
 
 ;; ---------------------------------------------------------------------------
 ;; Approved local tools  ·  Explicit read grants for permitted ~/.local/bin tools

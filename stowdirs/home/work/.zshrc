@@ -125,4 +125,5 @@ playwright-report() {
   alias claude="$_AGENT_SANDBOX claude --dangerously-skip-permissions"
   alias cursor="$_AGENT_SANDBOX cursor"
   alias codex="$_AGENT_SANDBOX codex --dangerously-bypass-approvals-and-sandbox"
+  alias pi="$_AGENT_SANDBOX pi"
 
