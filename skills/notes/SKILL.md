@@ -1,5 +1,5 @@
 ---
-name: Notes Manager
+name: notes
 description: Tools for searching, reading, and adding to the user's personal notes (Obsidian vault).
 ---
 
@@ -41,9 +41,9 @@ When the user asks to "add that to my tasks":
 - **Default Location**: Unless specified, append to the daily note with `obsidian daily:append`.
 - **Format**: Task item (`- [ ] `) followed by the content in Markdown.
 
-### 4. Commit and Push Changes
+### 4. Sync Notes (Commit and Push)
 After making any updates to notes, commit and push:
-- Run: `~/dotfiles/skills/notes/scripts/commit-and-push.sh "<description>"`
+- Run: `bash ~/dotfiles/skills/notes/scripts/sync-notes.sh "<description>"`
 - The description should briefly describe what was added/changed.
 - The script handles changing to the Notes directory and running jj commands.
 
@@ -60,9 +60,9 @@ After making any updates to notes, commit and push:
 - **User**: "Add this to my notes."
   - **Action**:
     1. `obsidian daily:append content="- <summary>"`
-    2. Run commit-and-push script.
+    2. Run sync-notes script.
 
 - **User**: "Add a task to review the PR."
   - **Action**:
     1. `obsidian daily:append content="- [ ] Review the PR"`
-    2. Run commit-and-push script.
+    2. Run sync-notes script.

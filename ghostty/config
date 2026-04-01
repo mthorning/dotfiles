@@ -2,7 +2,6 @@ font-family = MonoLisa
 font-size = 18
 font-thicken = true
 font-thicken-strength = 150
-keybind = shift+enter=text:\x1b\r
 window-width = 999
 window-height = 999
 theme = dark:Ayu Mirage,light:Ayu Light

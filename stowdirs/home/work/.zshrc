@@ -121,9 +121,8 @@ playwright-report() {
 }
 
  # ── Sandboxed agent wrappers ──────────────────────────────────────────────────
-  _AGENT_SANDBOX="$HOME/dotfiles/sandbox/safe-agent.sh"
-  alias claude="$_AGENT_SANDBOX claude --dangerously-skip-permissions"
-  alias cursor="$_AGENT_SANDBOX cursor"
-  alias codex="$_AGENT_SANDBOX codex --dangerously-bypass-approvals-and-sandbox"
-  alias pi="$_AGENT_SANDBOX pi"
+  alias codex="nono run --profile codex -- codex --dangerously-bypass-approvals-and-sandbox"
+  alias claude="nono run --profile claude-code -- claude --dangerously-skip-permissions"
+  alias cursor="nono run --profile cursor -- cursor"
+  alias pi="nono run --profile pi -- pi"
 
