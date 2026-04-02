@@ -124,8 +124,12 @@ esac
 
 source <(COMPLETE=zsh jj)
 
-# Sync pi theme with macOS appearance
+# Sync pi theme with macOS appearance (on startup + watch for changes)
 ~/dotfiles/bin/pi-sync-theme 2>/dev/null
+if command -v dark-notify &>/dev/null && ! pgrep -f 'dark-notify.*pi-sync-theme' &>/dev/null; then
+    dark-notify -o -c ~/dotfiles/bin/pi-sync-theme &>/dev/null &
+    disown
+fi
 
 # Initialize starship prompt
 eval "$(starship init zsh)"

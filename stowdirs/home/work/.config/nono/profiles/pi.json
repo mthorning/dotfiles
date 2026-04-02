@@ -24,8 +24,12 @@
   "filesystem": {
     "allow": [
       "$HOME/.pi",
-      "$HOME/.config/nvm",
-      "$HOME/.local/share/nvim"
+      "$HOME/.agents",
+      "$HOME/.config",
+      "$HOME/.npm",
+      "$HOME/.local/share",
+      "$HOME/grafana",
+      "$HOME/dotfiles"
     ]
   },
   "rollback": {

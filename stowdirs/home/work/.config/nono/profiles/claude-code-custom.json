@@ -8,7 +8,9 @@
   "extends": "claude-code",
   "filesystem": {
     "allow": [
-      "$HOME/.local/share/nvim"
+      "$HOME/.local/share/nvim",
+      "$HOME/.config",
+      "$HOME/.local/share"
     ]
   }
 }

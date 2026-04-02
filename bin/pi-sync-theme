@@ -1,29 +1,43 @@
 #!/usr/bin/env bash
 # Sync pi theme with macOS system appearance
-# Called from .zshrc on shell startup
+# Called from .zshrc on shell startup and by dark-notify on theme change
+#
+# Usage:
+#   pi-sync-theme          # auto-detect from macOS
+#   pi-sync-theme dark      # force dark
+#   pi-sync-theme light     # force light
 
 SETTINGS_FILE="$HOME/.pi/agent/settings.json"
 
-# Detect macOS appearance (returns "Dark" or empty/error for Light)
-if defaults read -g AppleInterfaceStyle &>/dev/null; then
-    THEME="dark-custom"
+# Create settings file if it doesn't exist
+mkdir -p "$(dirname "$SETTINGS_FILE")"
+[[ -f "$SETTINGS_FILE" ]] || echo '{}' > "$SETTINGS_FILE"
+
+# Determine theme: use argument if given, otherwise detect from macOS
+if [[ -n "$1" ]]; then
+    case "$1" in
+        dark)  THEME="dark-custom" ;;
+        light) THEME="light-custom" ;;
+        *)     THEME="$1" ;;
+    esac
 else
-    THEME="light-custom"
+    if defaults read -g AppleInterfaceStyle &>/dev/null; then
+        THEME="dark-custom"
+    else
+        THEME="light-custom"
+    fi
 fi
 
-# Update settings.json if it exists
-if [[ -f "$SETTINGS_FILE" ]]; then
-    if command -v jq &>/dev/null; then
-        tmp=$(mktemp)
-        jq --arg theme "$THEME" '.theme = $theme' "$SETTINGS_FILE" > "$tmp" && mv "$tmp" "$SETTINGS_FILE"
-    else
-        python3 -c "
-import json
-with open('$SETTINGS_FILE', 'r') as f:
-    settings = json.load(f)
+# Update settings.json
+if command -v jq &>/dev/null; then
+    tmp=$(mktemp)
+    jq --arg theme "$THEME" '.theme = $theme' "$SETTINGS_FILE" > "$tmp" && mv "$tmp" "$SETTINGS_FILE"
+else
+    python3 -c "
+import json, pathlib
+p = pathlib.Path('$SETTINGS_FILE')
+settings = json.loads(p.read_text()) if p.exists() else {}
 settings['theme'] = '$THEME'
-with open('$SETTINGS_FILE', 'w') as f:
-    json.dump(settings, f, indent=2)
+p.write_text(json.dumps(settings, indent=2))
 "
-    fi
 fi

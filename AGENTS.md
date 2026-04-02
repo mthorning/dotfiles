@@ -1,6 +1,6 @@
 # AGENTS.md - Dotfiles Guide
 
-Personal dotfiles managed with **GNU Stow** for profile-based configuration (personal/work/shared).
+Personal dotfiles managed with **GNU Stow** for profile-based configuration (personal/work/shared). The coding agent is **pi** running inside **nono** (capability-based sandbox) for safe, controlled file/network access.
 
 ## Repository Structure
 
@@ -18,11 +18,28 @@ yazi/         # Yazi file manager
 lazygit/      # Lazygit config
 ghostty/      # Ghostty terminal
 
+# Pi agent config:
+.pi/agent/pi-permissions.jsonc  # Tool/bash permission rules (pi-level)
+
+# Nono sandbox config (work profile):
+stowdirs/home/work/.config/nono/profiles/pi.json  # Nono sandbox profile for pi
+
 # Other:
 Brewfile      # Homebrew packages
 Makefile      # Stow commands
-skills/       # Custom skills/scripts
+skills/       # Pi skills (see below)
 ```
+
+## Nono Sandbox
+
+Pi runs inside **nono** (`nono run --profile pi -- pi`), which provides OS-level sandboxing:
+
+- **Filesystem**: only the working directory (readwrite) and explicitly allowed paths (`$HOME/.pi`, nvm, nvim data) are accessible
+- **Security groups**: `node_runtime`, `git_config`, `unlink_protection`, etc. grant common access patterns
+- **Rollback**: nono can snapshot and restore file changes made during a session
+- **Audit**: all sandboxed commands are logged for review (`nono audit`)
+
+Nono enforces the outer security boundary (what the process *can* touch), while pi's own permissions in `.pi/agent/pi-permissions.jsonc` control what the agent *will* do (allow/ask/deny per tool and bash command).
 
 ## How Stow Works
 
@@ -48,6 +65,7 @@ make all              # Install brew, nvm, node, pnpm, zinit
 3. **Config directories at root** (`nvim/`, `zed/`, etc.) are symlinked from `stowdirs/home/base/.config/`
 4. **After editing**, changes reflect immediately via symlinks—just commit to git
 5. **Tool stack**: neovim, zed, tmux, yazi, lazygit, starship, jj (jujutsu), fzf, ripgrep
+6. **Two layers of permissions**: nono (OS-level sandbox in `nono/profiles/pi.json`) and pi (agent-level in `.pi/agent/pi-permissions.jsonc`)
 
 ## Common Tasks
 
@@ -64,3 +82,18 @@ mkdir -p stowdirs/home/work/.config/myapp
 cp stowdirs/home/base/.config/myapp/config.yml stowdirs/home/work/.config/myapp/
 # Edit work version to differ from base
 ```
+
+## Skills
+
+Pi skills live in `skills/` and provide task-specific instructions:
+
+| Skill | Description |
+|-------|-------------|
+| `code-search` | Searching codebases effectively |
+| `docs` | Documentation tasks |
+| `grafana` | Grafana dashboard/config work |
+| `jj` | Jujutsu VCS workflows |
+| `notes` | Note-taking with Obsidian |
+| `pr-review` | Pull request review workflows |
+| `skill-updating` | Creating/updating skills |
+| `tmux-pane` | Tmux pane interaction |

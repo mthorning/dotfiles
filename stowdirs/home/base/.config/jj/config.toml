@@ -27,6 +27,7 @@ ctx = ["log", "-r", "context"]
 stack = ["log", "-r", "stack"]
 stat = ["diff", "--stat"]
 gp = ["git", "push"]
+gf = ["git", "fetch"]
 pre-commit = [
   "util",
   "exec",

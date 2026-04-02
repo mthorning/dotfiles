@@ -35,7 +35,7 @@ brew:
 
 .PHONY: stow-shared
 stow-shared:
-	stow -d ./stowdirs/home -t $$HOME base
+	stow -d ./stowdirs/home -t $$HOME --no-folding base
 
 .PHONY: stow-personal
 stow-personal:
@@ -49,7 +49,7 @@ stow-work:
 
 .PHONY: unstow-shared
 unstow-shared:
-	stow -d ./stowdirs/home -t $$HOME -D base
+	stow -d ./stowdirs/home -t $$HOME --no-folding -D base
 
 .PHONY: unstow-personal
 unstow-personal:
@@ -64,5 +64,9 @@ unstow-work:
 
 .PHONY: unstow-all
 unstow-all:
-	-stow -d ./stowdirs/home -t $$HOME -D base personal work
+	-stow -d ./stowdirs/home -t $$HOME --no-folding -D base personal work
 	-stow -d ./stowdirs/etc/ -t /etc/ -D work
+
+.PHONY: commit
+commit:
+	jj squash --ignore-immutable && jj git push
