@@ -58,13 +58,18 @@ return {
     'nvim-treesitter/nvim-treesitter-context',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     event = 'VimEnter',
+    -- enabled = false, -- Uncomment if still broken after :Lazy sync
     opts = {
       enable = true,
       max_lines = 6,
       trim_scope = 'outer',
       zindex = 20,
       mode = 'cursor',
-      separator = nil
+      separator = nil,
+      on_attach = function(buf)
+        local ft = vim.bo[buf].filetype
+        return ft ~= 'markdown'  -- disable for markdown until fixed
+      end
     }
   },
   {

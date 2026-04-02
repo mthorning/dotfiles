@@ -1,0 +1,14 @@
+{
+  "$schema": "https://nono.dev/schemas/nono-profile.schema.json",
+  "meta": {
+    "name": "claude-code-custom",
+    "version": "1.0.0",
+    "description": "Extends built-in claude-code with nvim data access"
+  },
+  "extends": "claude-code",
+  "filesystem": {
+    "allow": [
+      "$HOME/.local/share/nvim"
+    ]
+  }
+}

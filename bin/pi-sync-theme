@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Sync pi theme with macOS system appearance
+# Called from .zshrc on shell startup
+
+SETTINGS_FILE="$HOME/.pi/agent/settings.json"
+
+# Detect macOS appearance (returns "Dark" or empty/error for Light)
+if defaults read -g AppleInterfaceStyle &>/dev/null; then
+    THEME="dark-custom"
+else
+    THEME="light-custom"
+fi
+
+# Update settings.json if it exists
+if [[ -f "$SETTINGS_FILE" ]]; then
+    if command -v jq &>/dev/null; then
+        tmp=$(mktemp)
+        jq --arg theme "$THEME" '.theme = $theme' "$SETTINGS_FILE" > "$tmp" && mv "$tmp" "$SETTINGS_FILE"
+    else
+        python3 -c "
+import json
+with open('$SETTINGS_FILE', 'r') as f:
+    settings = json.load(f)
+settings['theme'] = '$THEME'
+with open('$SETTINGS_FILE', 'w') as f:
+    json.dump(settings, f, indent=2)
+"
+    fi
+fi

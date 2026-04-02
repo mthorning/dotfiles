@@ -8,14 +8,12 @@ if [ -f '/Users/mthorning/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 alias irmdb="kubectl exec -it mysql-0 -n devenv -- mysql --user=user --password=pass --database=grafana_incident"
 alias irmreset="make down && make cluster/down && make clean-dist && make cluster/up && make irm-local/up"
-alias cc="git add . && claude \"commit code\""
 alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
 alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
 alias tc="pnpm run type-check"
-alias k9tilt="k9s --context=orbstack -A -c pod"
 alias grass="grafana-assistant"
-alias create-pr="claude \"Create a PR\""
-alias ai="claude"
+alias create-pr="ai \"Create a PR\""
+alias ai="pi"
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc
@@ -121,8 +119,7 @@ playwright-report() {
 }
 
  # ── Sandboxed agent wrappers ──────────────────────────────────────────────────
-  alias codex="nono run --profile codex -- codex --dangerously-bypass-approvals-and-sandbox"
-  alias claude="nono run --profile claude-code -- claude --dangerously-skip-permissions"
-  alias cursor="nono run --profile cursor -- cursor"
-  alias pi="nono run --profile pi -- pi"
+  alias claude="nono run --allow-cwd --profile claude-code-custom -- claude --dangerously-skip-permissions"
+  alias pi="nono run --profile pi --allow-cwd -- pi"
+  alias cursor="nono run --profile cursor --allow-cwd -- cursor"
 

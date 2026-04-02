@@ -24,7 +24,8 @@
   "filesystem": {
     "allow": [
       "$HOME/.pi",
-      "$HOME/.config/nvm"
+      "$HOME/.config/nvm",
+      "$HOME/.local/share/nvim"
     ]
   },
   "rollback": {

@@ -124,5 +124,8 @@ esac
 
 source <(COMPLETE=zsh jj)
 
+# Sync pi theme with macOS appearance
+~/dotfiles/bin/pi-sync-theme 2>/dev/null
+
 # Initialize starship prompt
 eval "$(starship init zsh)"
