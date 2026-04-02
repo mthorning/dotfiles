@@ -393,14 +393,16 @@ Alternatively, create an extension similar to Claude's PreToolUse hook.
 
 ## TODO Checklist
 
-- [ ] Move `.pi` to root
-- [ ] Create symlink in stowdirs/home/base
-- [ ] Fix skills symlink path
-- [ ] Install pi-permission-system (`pi install npm:pi-permission-system`)
-- [ ] Create `.pi/agent/pi-permissions.jsonc` with translated rules
-- [ ] Create `.pi/agent/extensions/protected-paths.ts` for secret file blocking
+- [x] Move `.pi` to root
+- [x] Create symlink in stowdirs/home/base
+- [x] Fix skills symlink path
+- [x] Install pi-permission-system (via git clone - npm cache issue)
+- [x] Create `.pi/agent/pi-permissions.jsonc` with translated rules
+- [x] Create `.pi/agent/extensions/protected-paths.ts` for secret file blocking
 - [ ] Test permissions work correctly
 - [ ] Commit changes
+
+**Note:** npm cache has root-owned files. Run `sudo chown -R $(id -u):$(id -g) ~/.npm` to fix.
 
 ---
 
