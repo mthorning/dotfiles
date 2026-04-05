@@ -24,3 +24,8 @@ vim.opt.laststatus = 3
 
 vim.opt.winborder = "rounded"
 vim.opt.pumborder = "rounded"
+
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr   = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldenable = false
+vim.opt.foldlevel  = 99

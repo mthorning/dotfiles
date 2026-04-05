@@ -61,6 +61,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+  desc = 'Enable built-in treesitter highlighting',
+  group = vim.api.nvim_create_augroup('TreesitterHighlight', { clear = true }),
+  callback = function(ev)
+    pcall(vim.treesitter.start, ev.buf)
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = 'LSP keymaps',
   group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),

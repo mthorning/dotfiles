@@ -125,6 +125,9 @@ return {
       { '<C-n>',      '<CMD>lua vim.diagnostic.jump({ count = 1 })<CR>',                                                                        desc = 'Next Diagnostic',        nowait = false,    remap = false },
       { '<C-p>',      '<CMD>lua vim.diagnostic.jump({ count = -1 })<CR>',                                                                       desc = 'Prev Diagnostic',        nowait = false,    remap = false },
 
+      { ']n', desc = 'Next TS node', nowait = false, remap = false },
+      { '[n', desc = 'Prev TS node', nowait = false, remap = false },
+
       { '<leader>a',  '<CMD>wa<CR>',                                                                                                          desc = 'Save All',               nowait = false,    remap = false },
 
       { '<leader>c',  group = 'QuickFix',                                                                                                     nowait = false,                  remap = false },
