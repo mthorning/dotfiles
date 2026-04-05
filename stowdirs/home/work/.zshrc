@@ -118,8 +118,3 @@ playwright-report() {
   npx --yes playwright show-report "$target"
 }
 
- # ── Sandboxed agent wrappers ──────────────────────────────────────────────────
-  alias claude="nono run --allow-cwd --profile claude-code-custom -- claude --dangerously-skip-permissions"
-  alias pi="nono run --profile pi --allow-cwd -- pi"
-  alias cursor="nono run --profile cursor --allow-cwd -- cursor"
-

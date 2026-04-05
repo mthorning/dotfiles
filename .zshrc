@@ -43,6 +43,12 @@ alias qf="sed 's/$/:1:1:modified/' | nvim -q -"
 
 alias cleanup_tm_snaps="sudo tmutil listlocalsnapshots / | grep 'com.apple.TimeMachine' | awk -F. '{print \$NF}' | xargs -I {} sudo tmutil deletelocalsnapshots {}"
 
+# ── Sandboxed agent wrappers ──────────────────────────────────────────────────
+alias claude="nono run --allow-cwd --profile claude-code-custom -- claude --dangerously-skip-permissions"
+alias pi="nono run --profile pi --allow-cwd -- pi"
+alias cursor="nono run --profile cursor --allow-cwd -- cursor"
+
+
 # Widget to insert jj bookmark at cursor
 function jjb-widget() {
   local bookmark=$(jj bookmark list --template '

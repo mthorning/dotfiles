@@ -23,6 +23,7 @@
   },
   "filesystem": {
     "allow": [
+      "$HOME/.nvm/versions/node",
       "$HOME/.pi",
       "$HOME/.agents",
       "$HOME/.config",
