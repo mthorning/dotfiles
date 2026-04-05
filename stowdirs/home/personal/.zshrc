@@ -1,7 +1,7 @@
 
 source ~/dotfiles/.zshrc
 
-alias ai="copilot"
+alias ai="pi"
 
 # Flutter development
 export PATH=$HOME/flutter/flutter/bin:$PATH
