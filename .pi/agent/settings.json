@@ -1,0 +1,12 @@
+{
+  "shellPath": "/bin/zsh",
+  "theme": "dark-custom",
+  "lastChangelogVersion": "0.66.1",
+  "packages": [
+    "npm:pi-vim",
+    "npm:pi-jujutsu"
+  ],
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4",
+  "defaultThinkingLevel": "medium"
+}

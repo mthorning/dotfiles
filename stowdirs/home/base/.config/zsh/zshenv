@@ -1,0 +1,18 @@
+# Shared zsh environment for interactive and non-interactive shells.
+
+path+=(
+  "$HOME/.cargo/bin"
+  "$HOME/.local/bin"
+  "$HOME/go/bin"
+)
+export PATH
+
+if [[ -f "$HOME/.deno/env" ]]; then
+  . "$HOME/.deno/env"
+fi
+
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac

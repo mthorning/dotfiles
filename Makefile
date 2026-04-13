@@ -40,12 +40,12 @@ stow-shared:
 .PHONY: stow-personal
 stow-personal:
 	make stow-shared
-	stow -d ./stowdirs/home -t $$HOME --override=".zshrc" personal
+	stow -d ./stowdirs/home -t $$HOME --override=".zshrc|.zshenv" personal
 
 .PHONY: stow-work
 stow-work:
 	make stow-shared
-	stow -d ./stowdirs/home -t $$HOME --override=".zshrc" work
+	stow -d ./stowdirs/home -t $$HOME --override=".zshrc|.zshenv" work
 
 .PHONY: unstow-shared
 unstow-shared:
@@ -58,14 +58,12 @@ unstow-personal:
 
 .PHONY: unstow-work
 unstow-work:
-	stow -d ./stowdirs/etc/ -t /etc/ -D work
 	stow -d ./stowdirs/home -t $$HOME -D work
 	make unstow-shared
 
 .PHONY: unstow-all
 unstow-all:
 	-stow -d ./stowdirs/home -t $$HOME --no-folding -D base personal work
-	-stow -d ./stowdirs/etc/ -t /etc/ -D work
 
 .PHONY: commit
 commit:

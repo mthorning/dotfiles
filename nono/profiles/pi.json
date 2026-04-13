@@ -29,8 +29,13 @@
       "$HOME/.config",
       "$HOME/.npm",
       "$HOME/.local/share",
+      "$HOME/.ssh",
+      "$HOME/.cache/pre-commit",
+      "$HOME/.dart-tool",
+      "$HOME/.pub-cache",
       "$HOME/grafana",
-      "$HOME/dotfiles"
+      "$HOME/dotfiles",
+      "$HOME/development/flutter"
     ]
   },
   "rollback": {

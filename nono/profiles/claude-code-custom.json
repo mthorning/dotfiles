@@ -10,7 +10,9 @@
     "allow": [
       "$HOME/.local/share/nvim",
       "$HOME/.config",
-      "$HOME/.local/share"
+      "$HOME/.local/share",
+      "$HOME/.ssh",
+      "$HOME/.cache/pre-commit"
     ]
   }
 }

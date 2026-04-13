@@ -25,14 +25,22 @@
     
     "git push *": "ask",
     "git push": "ask",
+    "git fetch *": "ask",
+    "git fetch": "ask",
+    "git pull *": "ask",
+    "git pull": "ask",
     "git merge *": "ask",
     "git rebase *": "ask",
     "git cherry-pick *": "ask",
     
     "jj git push *": "ask",
+    "jj git fetch *": "ask",
+    "jj git fetch": "ask",
     
+    "gh pr create *": "ask",
     "gh pr merge *": "ask",
     "gh pr close *": "ask",
+    "gh issue create *": "ask",
     "gh issue close *": "ask",
     "gh release create *": "ask",
 

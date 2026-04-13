@@ -72,10 +72,6 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
-export PATH="$PATH:$HOME/.cargo/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$HOME/go/bin"
-. "$HOME/.deno/env"
 
 
 HISTSIZE=5000
@@ -120,13 +116,6 @@ function y() {
   rm -f -- "$tmp"
 }
 
-# pnpm
-export PNPM_HOME="/Users/mthorning/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 
 source <(COMPLETE=zsh jj)
 

@@ -55,7 +55,12 @@ Create new PR (always in draft mode):
 echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "type(scope): short description"
 ```
 
-The script automatically pushes the bookmark to remote before calling `gh pr create`.
+Optionally provide the base branch explicitly:
+```bash
+echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "type(scope): short description" --base develop
+```
+
+The script automatically detects the repository default branch before calling `gh pr create`. If it cannot determine the default branch, ask the user for the base branch and pass it via `--base`, or provide it when the script prompts.
 
 **Workflow for creating or updating PR descriptions:**
 1. Find the PR (from current bookmark or provided URL)
@@ -107,9 +112,14 @@ The script automatically pushes the bookmark to remote before calling `gh pr cre
    - Describe what changed and why neutrally: "Simplify X to align with Y", "Consolidate X into Y".
    - Focus on outcomes, not corrections of mistakes.
 
-9. For **create**: pipe body to script with `--title` flag:
+9. Before **create**, determine the repository default branch with `gh repo view --json defaultBranchRef --jq .defaultBranchRef.name`.
+   - If detection fails, use AskUserQuestion to get the base branch from the user.
+10. For **create**: pipe body to script with `--title` and, when needed, `--base`:
    ```bash
    echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "<title>"
+   ```
+   ```bash
+   echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "<title>" --base "<base-branch>"
    ```
    For **update**: pipe body to script:
    ```bash

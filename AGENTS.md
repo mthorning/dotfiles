@@ -94,6 +94,7 @@ Pi skills live in `skills/` and provide task-specific instructions:
 | `grafana` | Grafana dashboard/config work |
 | `jj` | Jujutsu VCS workflows |
 | `notes` | Note-taking with Obsidian |
+| `plans` | Write repo-local planning markdown files |
 | `pr-review` | Pull request review workflows |
 | `skill-updating` | Creating/updating skills |
 | `tmux-pane` | Tmux pane interaction |

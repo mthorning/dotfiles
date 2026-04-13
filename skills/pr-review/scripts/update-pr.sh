@@ -4,6 +4,7 @@
 #   ./update-pr.sh                                              # Use current bookmark
 #   ./update-pr.sh "https://github.com/owner/repo/pull/123"    # Use specific PR URL
 #   ./update-pr.sh --create --title "feat: my change"          # Create new PR (body via stdin)
+#   ./update-pr.sh --create --title "feat: my change" --base develop
 
 set -e
 
@@ -48,17 +49,46 @@ find_bookmark() {
     return 1
 }
 
+# Determine the repository default branch, prompting if auto-detection fails
+get_default_branch() {
+    local repo="$1"
+    local default_branch=""
+
+    if [ -n "$repo" ]; then
+        default_branch=$(gh repo view "$repo" --json defaultBranchRef --jq '.defaultBranchRef.name' 2>/dev/null || true)
+    else
+        default_branch=$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name' 2>/dev/null || true)
+    fi
+
+    if [ -n "$default_branch" ]; then
+        echo "$default_branch"
+        return 0
+    fi
+
+    echo "Could not determine the repository default branch automatically." >&2
+    read -p "Enter the base branch for this PR: " default_branch >&2
+
+    if [ -z "$default_branch" ]; then
+        echo "Error: Base branch is required to create a PR" >&2
+        return 1
+    fi
+
+    echo "$default_branch"
+}
+
 # Main execution
 create_mode=false
 pr_url=""
 repo=""
 pr_number=""
 title=""
+base_branch=""
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --create) create_mode=true; shift ;;
         --title) title="$2"; shift 2 ;;
+        --base) base_branch="$2"; shift 2 ;;
         *) pr_url="$1"; shift ;;
     esac
 done
@@ -138,11 +168,15 @@ if [ "$create_mode" = true ]; then
         exit 1
     fi
 
+    if [ -z "$base_branch" ]; then
+        base_branch=$(get_default_branch "$repo")
+    fi
+
     echo "Pushing bookmark '$bookmark' to remote..." >&2
     jj git push --bookmark "$bookmark" >&2
 
-    echo "Creating new PR..." >&2
-    gh pr create --title "$title" --body "$description" --draft --head "$bookmark" --base main
+    echo "Creating new PR against '$base_branch'..." >&2
+    gh pr create --title "$title" --body "$description" --draft --head "$bookmark" --base "$base_branch"
     echo "" >&2
     echo "PR created successfully!" >&2
 else
