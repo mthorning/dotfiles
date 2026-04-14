@@ -12,8 +12,9 @@ alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
 alias nats="nats --server=nats.devenv.svc.cluster.local:4222 --user=nats-token"
 alias tc="pnpm run type-check"
 alias grass="grafana-assistant"
-alias create-pr="ai \"Create a PR using the JJ skill\""
+alias create-pr="pi-pr \"Create a PR using the JJ skill\""
 alias ai="pi"
+review-pr() { pi-review "Review $1 using the PR review skill"; }
 
 # Source main dotfiles config (contains all the core setup)
 source ~/dotfiles/.zshrc

@@ -41,6 +41,33 @@ Pi runs inside **nono** (`nono run --profile pi -- pi`), which provides OS-level
 
 Nono enforces the outer security boundary (what the process *can* touch), while pi's own permissions in `.pi/agent/pi-permissions.jsonc` control what the agent *will* do (allow/ask/deny per tool and bash command).
 
+### GitHub CLI auth inside pi
+
+`gh` in the normal shell uses the macOS keychain (`gh auth status` shows `Logged in ... (keyring)`). Inside pi, direct keychain access may fail, so `gh` can return `401 Unauthorized` even when it works outside the sandbox.
+
+This repo solves that by launching pi with a nono-injected credential:
+
+```zsh
+alias pi="nono run --profile pi --allow-cwd --env-credential-map github_token GH_TOKEN -- pi"
+```
+
+One-time setup to copy the existing `gh` token into nono's credential store:
+
+```bash
+security add-generic-password -U -s "nono" -a "github_token" -w "$(gh auth token)"
+```
+
+Useful checks:
+
+```bash
+gh auth token              # run outside pi to read token from gh's keyring auth
+pi
+gh auth status
+gh pr status
+```
+
+If GitHub commands fail in pi with auth errors, first verify that the `github_token` nono credential exists and that the `pi` alias still includes `--env-credential-map github_token GH_TOKEN`.
+
 ## How Stow Works
 
 Stow creates symlinks from `stowdirs/home/{profile}/` to `$HOME`. Files in `stowdirs/home/base/.config/zed/keymap.json` → `$HOME/.config/zed/keymap.json`.

@@ -1,9 +1,9 @@
 {
   "$schema": "https://nono.dev/schemas/nono-profile.schema.json",
   "meta": {
-    "name": "pi",
+    "name": "pi-safe",
     "version": "1.0.0",
-    "description": "Compatibility wrapper for legacy pi profile usage; aligned with the safer default profile"
+    "description": "Default safer pi profile for everyday local coding, editing, notes, and inspection"
   },
   "extends": "default",
   "workdir": {

@@ -61,7 +61,7 @@ Optionally provide the base branch explicitly:
 echo "<body>" | bash ~/dotfiles/skills/pr-workflow/scripts/update-pr.sh --create --title "type(scope): short description" --base develop
 ```
 
-The script automatically detects the repository default branch before calling `gh pr create`. If it cannot determine the default branch, ask the user for the base branch and pass it via `--base`, or provide it when the script prompts.
+The script automatically detects the repository default branch before calling `gh pr create`. If it cannot determine the default branch, ask the user for the base branch and pass it via `--base`.
 
 **Workflow for creating or updating PR descriptions:**
 1. Find the PR (from current bookmark or provided URL)
@@ -114,7 +114,7 @@ The script automatically detects the repository default branch before calling `g
    - Focus on outcomes, not corrections of mistakes.
 
 9. Before **create**, determine the repository default branch with `gh repo view --json defaultBranchRef --jq .defaultBranchRef.name`.
-   - If detection fails, use AskUserQuestion to get the base branch from the user.
+   - If detection fails, use AskUserQuestion to get the base branch from the user and pass it via `--base`.
 10. For **create**: pipe body to script with `--title` and, when needed, `--base`:
    ```bash
    echo "<body>" | bash ~/dotfiles/skills/pr-workflow/scripts/update-pr.sh --create --title "<title>"
@@ -133,6 +133,9 @@ The script uses:
 - `jj log` to find bookmarks on current (@), parent (@-), or grandparent (@--) revisions
 - `gh pr list` to find the PR number for the branch
 - `gh pr view` to display full PR details with reviews and comments
+- `gh pr create --draft` for creation, with optional `--no-push` support when the remote branch already exists
+
+If no PR exists for the current bookmark and you are not creating one, the update script now fails closed and tells you to re-run with `--create` instead of prompting interactively.
 
 ## Manual Alternative
 

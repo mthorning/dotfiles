@@ -2,4 +2,4 @@
 # Keep this file lightweight so tools like Pi get the same PATH as your shell.
 
 [[ -f "$HOME/.config/zsh/zshenv" ]] && source "$HOME/.config/zsh/zshenv"
-[[ -f "$HOME/.config/zsh/zshenv_vars" ]] && source "$HOME/.config/zsh/zshenv_vars"
+[[ -f "$HOME/.zshenv_vars" ]] && source "$HOME/.zshenv_vars"

@@ -1,9 +1,9 @@
 {
   "$schema": "https://nono.dev/schemas/nono-profile.schema.json",
   "meta": {
-    "name": "pi",
+    "name": "pi-grafana",
     "version": "1.0.0",
-    "description": "Compatibility wrapper for legacy pi profile usage; aligned with the safer default profile"
+    "description": "Dedicated pi profile for grafana-assistant and observability workflows"
   },
   "extends": "default",
   "workdir": {
@@ -45,6 +45,7 @@
     "exclude_globs": ["*.tmp.[0-9]*.[0-9]*"]
   },
   "network": {
-    "block": false
+    "block": false,
+    "network_profile": "developer"
   }
 }

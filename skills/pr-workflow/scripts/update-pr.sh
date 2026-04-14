@@ -1,14 +1,14 @@
 #!/bin/bash
 # Script to update or create PR description with structured Why/What format
 # Usage:
-#   ./update-pr.sh                                              # Use current bookmark
-#   ./update-pr.sh "https://github.com/owner/repo/pull/123"    # Use specific PR URL
+#   ./update-pr.sh                                              # Update PR for current bookmark
+#   ./update-pr.sh "https://github.com/owner/repo/pull/123"    # Update specific PR by URL
 #   ./update-pr.sh --create --title "feat: my change"          # Create new PR (body via stdin)
 #   ./update-pr.sh --create --title "feat: my change" --base develop
+#   ./update-pr.sh --create --title "feat: my change" --no-push
 
-set -e
+set -euo pipefail
 
-# Parse GitHub PR URL to extract repo and PR number
 parse_github_url() {
     local url="$1"
 
@@ -23,24 +23,22 @@ parse_github_url() {
     return 1
 }
 
-# Find the bookmark associated with current or parent revisions
 find_bookmark() {
-    local bookmark=$(jj log -r @ -T 'bookmarks' --no-graph 2>/dev/null | grep -v '^$' | grep -v '^~$' || true)
+    local bookmark
 
+    bookmark=$(jj log -r @ -T 'bookmarks' --no-graph 2>/dev/null | grep -v '^$' | grep -v '^~$' || true)
     if [ -n "$bookmark" ]; then
         echo "$bookmark"
         return 0
     fi
 
     bookmark=$(jj log -r '@-' -T 'bookmarks' --no-graph 2>/dev/null | grep -v '^$' | grep -v '^~$' || true)
-
     if [ -n "$bookmark" ]; then
         echo "$bookmark"
         return 0
     fi
 
     bookmark=$(jj log -r '@--' -T 'bookmarks' --no-graph 2>/dev/null | grep -v '^$' | grep -v '^~$' || true)
-
     if [ -n "$bookmark" ]; then
         echo "$bookmark"
         return 0
@@ -49,7 +47,6 @@ find_bookmark() {
     return 1
 }
 
-# Determine the repository default branch, prompting if auto-detection fails
 get_default_branch() {
     local repo="$1"
     local default_branch=""
@@ -65,37 +62,61 @@ get_default_branch() {
         return 0
     fi
 
-    echo "Could not determine the repository default branch automatically." >&2
-    read -p "Enter the base branch for this PR: " default_branch >&2
-
-    if [ -z "$default_branch" ]; then
-        echo "Error: Base branch is required to create a PR" >&2
-        return 1
-    fi
-
-    echo "$default_branch"
+    echo "Error: Could not determine the repository default branch automatically." >&2
+    echo "Pass --base <branch> explicitly when creating the PR." >&2
+    return 1
 }
 
-# Main execution
 create_mode=false
 pr_url=""
 repo=""
 pr_number=""
 title=""
 base_branch=""
+bookmark=""
+push_mode="push"
 
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --create) create_mode=true; shift ;;
-        --title) title="$2"; shift 2 ;;
-        --base) base_branch="$2"; shift 2 ;;
-        *) pr_url="$1"; shift ;;
+        --title)
+            [ $# -ge 2 ] || { echo "Error: --title requires a value" >&2; exit 1; }
+            title="$2"
+            shift 2
+            ;;
+        --base)
+            [ $# -ge 2 ] || { echo "Error: --base requires a value" >&2; exit 1; }
+            base_branch="$2"
+            shift 2
+            ;;
+        --no-push)
+            push_mode="skip"
+            shift
+            ;;
+        --push)
+            push_mode="push"
+            shift
+            ;;
+        --)
+            shift
+            break
+            ;;
+        -*)
+            echo "Error: Unknown option: $1" >&2
+            exit 1
+            ;;
+        *)
+            if [ -n "$pr_url" ]; then
+                echo "Error: Unexpected extra argument: $1" >&2
+                exit 1
+            fi
+            pr_url="$1"
+            shift
+            ;;
     esac
 done
 
-# Determine PR context
 if [ -n "$pr_url" ]; then
-    # GitHub URL provided
     parsed=$(parse_github_url "$pr_url")
 
     if [ -z "$parsed" ]; then
@@ -109,7 +130,6 @@ if [ -n "$pr_url" ]; then
 
     echo "Using PR #$pr_number from $repo" >&2
 else
-    # Use local bookmark
     bookmark=$(find_bookmark)
 
     if [ -z "$bookmark" ]; then
@@ -120,25 +140,15 @@ else
 
     echo "Found bookmark: $bookmark" >&2
 
-    # Try to find existing PR
     pr_number=$(gh pr list --state all --json number,headRefName --jq ".[] | select(.headRefName == \"$bookmark\") | .number" | head -1 || true)
 
-    if [ -z "$pr_number" ]; then
-        if [ "$create_mode" = false ]; then
-            echo "" >&2
-            echo "No PR found for branch '$bookmark'" >&2
-            read -p "Create new PR? [y/N] " -n 1 -r >&2
-            echo "" >&2
-            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                echo "Cancelled" >&2
-                exit 1
-            fi
-            create_mode=true
-        fi
+    if [ -z "$pr_number" ] && [ "$create_mode" = false ]; then
+        echo "Error: No PR found for branch '$bookmark'." >&2
+        echo "Re-run with --create to create a new draft PR." >&2
+        exit 1
     fi
 fi
 
-# Show current PR description if exists
 if [ -n "$pr_number" ]; then
     echo "" >&2
     echo "Current PR description:" >&2
@@ -153,7 +163,6 @@ if [ -n "$pr_number" ]; then
     echo "" >&2
 fi
 
-# Read new description from stdin
 description=$(cat)
 
 if [ -z "$description" ]; then
@@ -161,8 +170,12 @@ if [ -z "$description" ]; then
     exit 1
 fi
 
-# Create or update PR
 if [ "$create_mode" = true ]; then
+    if [ -z "$bookmark" ]; then
+        echo "Error: PR creation requires a local bookmark context." >&2
+        exit 1
+    fi
+
     if [ -z "$title" ]; then
         echo "Error: --title is required when creating a PR" >&2
         exit 1
@@ -172,13 +185,18 @@ if [ "$create_mode" = true ]; then
         base_branch=$(get_default_branch "$repo")
     fi
 
-    echo "Pushing bookmark '$bookmark' to remote..." >&2
-    jj git push --bookmark "$bookmark" >&2
+    if [ "$push_mode" = "push" ]; then
+        echo "Pushing bookmark '$bookmark' to remote..." >&2
+        jj git push --bookmark "$bookmark" >&2
+    else
+        echo "Skipping push because --no-push was specified." >&2
+        echo "Ensure branch '$bookmark' already exists on the remote before creating the PR." >&2
+    fi
 
-    echo "Creating new PR against '$base_branch'..." >&2
+    echo "Creating new draft PR against '$base_branch'..." >&2
     gh pr create --title "$title" --body "$description" --draft --head "$bookmark" --base "$base_branch"
     echo "" >&2
-    echo "PR created successfully!" >&2
+    echo "Draft PR created successfully!" >&2
 else
     echo "Updating PR description..." >&2
     if [ -n "$repo" ]; then
