@@ -1,6 +1,11 @@
 [[mgr.prepend_keymap]]
 on   = [ "q" ]
-run  = "quit --cwd-file"
+run  = "quit --no-cwd-file"
+desc = "Quit without changing directory"
+
+[[mgr.prepend_keymap]]
+on   = [ "Q" ]
+run  = "quit"
 desc = "Quit and change directory"
 
 [[mgr.prepend_keymap]]
