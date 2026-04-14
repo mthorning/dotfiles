@@ -71,6 +71,11 @@ M.parsers = {
     url      = 'https://github.com/tree-sitter/tree-sitter-json',
     files    = { 'src/parser.c' },
   },
+  {
+    lang     = 'jsonnet',
+    url      = 'https://github.com/sourcegraph/tree-sitter-jsonnet',
+    files    = { 'src/parser.c', 'src/scanner.c' },
+  },
   -- lua, markdown, vimdoc, c are bundled with Neovim
 }
 

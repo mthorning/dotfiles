@@ -26,6 +26,7 @@ This directory is intended to be ignored globally by Git/Jujutsu.
    - `<repo root>/matt-plans/`
 
 3. Choose a clear markdown filename.
+   - prefix with date like `24/04/22-`
    - Use a short kebab-case slug based on the topic.
    - If the user does not provide a filename, prefer one of:
      - `plan-<topic>.md`

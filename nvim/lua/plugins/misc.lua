@@ -1,6 +1,18 @@
 return {
   { 'nvim-tree/nvim-web-devicons',    event = 'VeryLazy' },
   { 'christoomey/vim-tmux-navigator', event = 'VeryLazy' },
+  {
+    'stevearc/dressing.nvim',
+    event = 'VeryLazy',
+    opts = {
+      input = {
+        enabled = true,
+      },
+      select = {
+        enabled = true,
+      },
+    },
+  },
   { 'NvChad/nvim-colorizer.lua',      event = 'VeryLazy' },
   { 'b3nj5m1n/kommentary',            event = 'VeryLazy' },
   {
