@@ -22,6 +22,12 @@
     // ── Destructive / irreversible → ask ──
     "rm *": "ask",
     "rmdir *": "ask",
+
+    // ── Cross-pane / terminal control → ask ──
+    "tmux send-keys *": "ask",
+    "tmux respawn-pane *": "ask",
+    "tmux run-shell *": "ask",
+    "tmux pipe-pane *": "ask",
     
     "git push *": "ask",
     "git push": "ask",
