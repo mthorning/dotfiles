@@ -1,9 +1,9 @@
 {
   "$schema": "https://nono.dev/schemas/nono-profile.schema.json",
   "meta": {
-    "name": "pi",
+    "name": "pi-playwright",
     "version": "1.0.0",
-    "description": "Compatibility wrapper for legacy pi profile usage; aligned with the safer default profile"
+    "description": "Dedicated pi profile for local-only Playwright automation using system Chrome"
   },
   "extends": "default",
   "workdir": {
@@ -34,10 +34,13 @@
       "$HOME/.pub-cache",
       "$HOME/dotfiles",
       "$HOME/development/flutter",
-      "/Users/mthorning/Documents/Notes"
+      "/Users/mthorning/Documents/Notes",
+      "$HOME/Library/Application Support/Google/Chrome",
+      "$HOME/Library/Caches/Google/Chrome"
     ],
     "read": [
-      "$HOME/grafana"
+      "$HOME/grafana",
+      "/Applications/Google Chrome.app"
     ]
   },
   "rollback": {
@@ -45,6 +48,7 @@
     "exclude_globs": ["*.tmp.[0-9]*.[0-9]*"]
   },
   "network": {
-    "block": false
+    "block": true,
+    "open_port": [3000, 4173, 5173, 8000, 8080, 9222]
   }
 }

@@ -1,9 +1,9 @@
 {
   "$schema": "https://nono.dev/schemas/nono-profile.schema.json",
   "meta": {
-    "name": "pi",
+    "name": "pi-review",
     "version": "1.0.0",
-    "description": "Compatibility wrapper for legacy pi profile usage; aligned with the safer default profile"
+    "description": "Read-oriented pi profile for PR review and external docs lookup"
   },
   "extends": "default",
   "workdir": {

@@ -41,11 +41,12 @@ When the user asks to "add that to my tasks":
 - **Default Location**: Unless specified, append to the daily note with `obsidian daily:append`.
 - **Format**: Task item (`- [ ] `) followed by the content in Markdown.
 
-### 4. Sync Notes (Commit and Push)
-After making any updates to notes, commit and push:
+### 4. Sync Notes (Local Commit Only)
+After making any updates to notes, create a local notes commit:
 - Run: `bash ~/dotfiles/skills/notes/scripts/sync-notes.sh "<description>"`
 - The description should briefly describe what was added/changed.
-- The script handles changing to the Notes directory and running jj commands.
+- The script handles changing to the Notes directory, committing locally, and updating the local `main` bookmark.
+- The script does **not** push remotely.
 
 ## Constraints & Rules (from AGENTS.md)
 1. **Preserve Structure**: Do not create new top-level directories.

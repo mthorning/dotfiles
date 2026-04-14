@@ -1,9 +1,9 @@
 {
   "$schema": "https://nono.dev/schemas/nono-profile.schema.json",
   "meta": {
-    "name": "pi",
+    "name": "pi-pr",
     "version": "1.0.0",
-    "description": "Compatibility wrapper for legacy pi profile usage; aligned with the safer default profile"
+    "description": "Elevated pi profile for PR creation/update and approved remote VCS sync"
   },
   "extends": "default",
   "workdir": {
@@ -37,7 +37,18 @@
       "/Users/mthorning/Documents/Notes"
     ],
     "read": [
-      "$HOME/grafana"
+      "$HOME/grafana",
+      "$HOME/.ssh/config",
+      "$HOME/.ssh/known_hosts",
+      "$HOME/.orbstack/ssh/config",
+      "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+    ]
+  },
+  "policy": {
+    "override_deny": [
+      "$HOME/.ssh/config",
+      "$HOME/.ssh/known_hosts",
+      "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
     ]
   },
   "rollback": {

@@ -41,6 +41,36 @@ Pi runs inside **nono** (`nono run --profile pi -- pi`), which provides OS-level
 
 Nono enforces the outer security boundary (what the process *can* touch), while pi's own permissions in `.pi/agent/pi-permissions.jsonc` control what the agent *will* do (allow/ask/deny per tool and bash command).
 
+### Pi profiles and GitHub CLI auth
+
+Pi runs under multiple nono profiles with different privilege levels:
+
+```zsh
+alias pi="nono run --profile pi-safe --allow-cwd -- pi"                                              # safe default, no GitHub token
+alias pi-review="nono run --profile pi-review --allow-cwd --env-credential-map github_token GH_TOKEN -- pi"  # PR review / inspection
+alias pi-pr="nono run --profile pi-pr --allow-cwd --env-credential-map github_token GH_TOKEN -- pi"          # PR creation / push
+alias pi-unsafe="command pi"                                                                                # escape hatch, no nono
+```
+
+Only `pi-review` and `pi-pr` inject `GH_TOKEN`. The default `pi` has no GitHub credentials.
+
+One-time setup to copy the existing `gh` token into nono's credential store:
+
+```bash
+security add-generic-password -U -s "nono" -a "github_token" -w "$(gh auth token)"
+```
+
+Useful checks:
+
+```bash
+gh auth token              # run outside pi to read token from gh's keyring auth
+pi-pr                      # launch with GitHub credentials
+gh auth status
+gh pr status
+```
+
+If GitHub commands fail in `pi-review` or `pi-pr` with auth errors, first verify that the `github_token` nono credential exists. See `nono/PI-GUARDRAILS.md` for the full operating model.
+
 ## How Stow Works
 
 Stow creates symlinks from `stowdirs/home/{profile}/` to `$HOME`. Files in `stowdirs/home/base/.config/zed/keymap.json` → `$HOME/.config/zed/keymap.json`.

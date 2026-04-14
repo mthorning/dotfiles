@@ -44,8 +44,17 @@ alias qf="sed 's/$/:1:1:modified/' | nvim -q -"
 alias cleanup_tm_snaps="sudo tmutil listlocalsnapshots / | grep 'com.apple.TimeMachine' | awk -F. '{print \$NF}' | xargs -I {} sudo tmutil deletelocalsnapshots {}"
 
 # ── Sandboxed agent wrappers ──────────────────────────────────────────────────
+# Default pi now runs in a safer nono profile without injected GitHub credentials.
+# One-time setup for elevated GitHub profiles:
+#   security add-generic-password -U -s "nono" -a "github_token" -w "$(gh auth token)"
+# Requires a nono credential named `github_token`.
 alias claude="nono run --allow-cwd --profile claude-code-custom -- claude --dangerously-skip-permissions"
-alias pi="nono run --profile pi --allow-cwd -- pi"
+alias pi="nono run --profile pi-safe --allow-cwd -- pi"
+alias pi-review="nono run --profile pi-review --allow-cwd --env-credential-map github_token GH_TOKEN -- pi"
+alias pi-pr="nono run --profile pi-pr --allow-cwd --env-credential-map github_token GH_TOKEN -- pi"
+alias pi-grafana="nono run --profile pi-grafana --allow-cwd -- pi"
+alias pi-playwright="nono run --profile pi-playwright --allow-cwd -- pi"
+alias pi-unsafe="command pi"
 alias cursor="nono run --profile cursor --allow-cwd -- cursor"
 
 
