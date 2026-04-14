@@ -95,6 +95,7 @@ Pi skills live in `skills/` and provide task-specific instructions:
 | `jj` | Jujutsu VCS workflows |
 | `notes` | Note-taking with Obsidian |
 | `plans` | Write repo-local planning markdown files |
-| `pr-review` | Pull request review workflows |
+| `pr-review` | Review GitHub PR code changes |
+| `pr-workflow` | Create, inspect, and update GitHub PRs |
 | `skill-updating` | Creating/updating skills |
 | `tmux-pane` | Tmux pane interaction |

@@ -1,159 +1,90 @@
 ---
 name: pr-review
-description: Create, view, or update PRs associated with the current Jujutsu branch/bookmark. Use when the user asks to create a PR, see the PR, check changes, view the diff, see review feedback, or update the PR description. Can also accept a GitHub PR URL to work with any PR from any repository.
+description: Perform an independent code review of a GitHub PR using `gh`. Use when the user provides a PR number or URL and asks for a review of the code changes, risks, or missing tests.
 ---
 
-# PR Creation, Review & Update
+# GitHub PR Code Review
 
-Create new PRs, view PR details, review comments, and update PR descriptions. Works with either the current Jujutsu bookmark or any GitHub PR URL.
+Use this skill when the user wants a fresh review of the code changes in a GitHub pull request.
 
-## Important Rules
+This skill is for **reviewing the code itself**. It is not for creating PRs or editing PR descriptions.
 
-- **All PRs must be created in draft mode.** Always pass `--draft` to `gh pr create`, with no exceptions — even if the skill scripts cannot be found and you fall back to calling `gh` directly.
-- Scripts must be run using their absolute path: `~/dotfiles/skills/pr-review/scripts/<script-name>`
+## Inputs
 
-## Usage
+Prefer one of these inputs:
+- PR number in the current repository, e.g. `9467`
+- Full GitHub PR URL, e.g. `https://github.com/owner/repo/pull/9467`
 
-### Viewing a PR
+If the user only provides a PR number, assume the current repository unless they specify another repo.
 
-View PR from current bookmark:
+## Review Workflow
+
+1. Identify the PR context.
+   - If given a PR URL, extract `owner/repo` and the PR number.
+   - If given only a PR number, use the current repo.
+2. Fetch PR metadata with `gh pr view`.
+   - Title, body, author, base branch, head branch, changed files, commit count.
+3. Fetch the code changes with `gh pr diff`.
+   - If the PR is large, first inspect the changed file list and focus on the highest-risk files.
+   - For very large diffs, review file-by-file rather than dumping the entire patch at once.
+4. Read surrounding local code when needed to understand behavior and call sites.
+5. Produce a code review focused on correctness, regressions, edge cases, security, performance, and test coverage.
+6. Do **not** modify the PR, post GitHub review comments, or approve/request changes unless the user explicitly asks.
+
+## Commands
+
+Current repo by PR number:
 ```bash
-bash ~/dotfiles/skills/pr-review/scripts/get_pr_reviews.sh
+gh pr view 9467
+gh pr diff 9467
 ```
 
-View PR from GitHub URL:
+Specific repo by URL or explicit repo:
 ```bash
-bash ~/dotfiles/skills/pr-review/scripts/get_pr_reviews.sh "https://github.com/owner/repo/pull/123"
+gh pr view 9467 --repo owner/repo
+gh pr diff 9467 --repo owner/repo
 ```
 
-**Local Bookmark Mode (no arguments)**
-The script will:
-1. Find the bookmark on current revision, or traverse parent revisions if needed
-2. Search for a PR matching that bookmark/branch name
-3. Display the PR details including review comments using `gh pr view`
-
-**GitHub URL Mode (with URL argument)**
-The script will:
-1. Parse the GitHub PR URL to extract the repository and PR number
-2. Check if a local copy exists in `~/grafana/` directory
-3. Use `gh pr view` with the appropriate repository context
-
-### Updating a PR
-
-Update PR from current bookmark:
+Useful structured metadata:
 ```bash
-bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh
+gh pr view 9467 --json title,body,author,baseRefName,headRefName,files,commits
 ```
 
-Update specific PR by URL:
-```bash
-bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh "https://github.com/owner/repo/pull/123"
-```
+## Review Output
 
-Create new PR (always in draft mode):
-```bash
-echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "type(scope): short description"
-```
+Lead with findings, not a summary.
 
-Optionally provide the base branch explicitly:
-```bash
-echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "type(scope): short description" --base develop
-```
+For each finding, include:
+- severity when clear (`high`, `medium`, `low`)
+- the affected file/function/behavior
+- why it is a problem
+- a concrete suggestion or follow-up question
 
-The script automatically detects the repository default branch before calling `gh pr create`. If it cannot determine the default branch, ask the user for the base branch and pass it via `--base`, or provide it when the script prompts.
+Then include:
+- open questions / assumptions
+- testing gaps
+- brief overall assessment
 
-**Workflow for creating or updating PR descriptions:**
-1. Find the PR (from current bookmark or provided URL)
-2. Show current PR description if exists
-3. Gather context from commits using `jj log` and `jj diff`
-4. Use AskUserQuestion to gather:
-   - **Why**: The reason for the change
-   - **Issue reference**: Related issue number (optional)
-   - **Type**: Conventional commit type (feat, fix, docs, refactor, test, chore, perf, ci, build, style, revert)
-   - **Scope**: Optional scope (e.g. component or area affected)
-5. If issue number provided, fetch issue details using `gh issue view <issue-number>` for additional context
-6. Format the PR title using conventional commits: `type(scope): short description` (omit scope if not applicable)
-7. Check the current revision description: `jj log -r @ -T 'description'`.
-   - If empty: run `jj describe -m "type(scope): short description"`
-   - If not empty: compare it to the title you would set. If they are broadly consistent (same intent, minor wording differences), keep the existing description as-is. If they differ meaningfully, use AskUserQuestion to show both the existing description and the proposed one, and ask the user whether to update it.
-8. Format PR body using the template below. Always include **What?**, **Why?**, and **How to test**. Include optional sections only when they add value — omit them entirely rather than leaving them empty.
-   ```markdown
-   ## What?
-   [What is being changed, from the user's perspective — behavior, not implementation. 1-2 paragraphs or bullets.]
+If you do not find any substantive issues, say so clearly and mention what you checked.
 
-   ## Why?
-   [Reason for the change. Link issues or feature requests where applicable.]
+## Review Heuristics
 
-   Relates to #[issue-number]
+Prioritize:
+- behavior changes on hot paths
+- error handling and nil/null cases
+- backward compatibility
+- auth/authz and data exposure
+- migrations, deletions, and irreversible changes
+- concurrency / async ordering issues
+- missing validation
+- missing or weak tests for changed behavior
 
-   ## How to test
-   [Brief summary of test coverage. Bullet any manual steps to exercise the functionality.]
+Be precise and evidence-based:
+- cite specific files, functions, or diff hunks
+- avoid speculative claims unless you label them as risks or questions
+- distinguish definite bugs from design concerns
 
-   ## Key decisions
-   *Optional — omit for simple PRs.*
-   [Choices where there were meaningful alternatives: "we chose A over B because C." Only forks in the road a reviewer might question.]
+## Notes
 
-   ## Notes to reviewers
-   *Optional — omit if nothing stands out.*
-   [Things reviewers should scrutinize: deployment ordering, large-table migrations, feature flags, backward compatibility, prod-vs-dev differences.]
-
-   ## Background info
-   *Optional — omit for simple or self-contained changes.*
-   [Context about the code and system this change interacts with, for reviewers unfamiliar with the area. 1-2 paragraphs or bullets.]
-   ```
-
-   **Intellectual honesty — don't overstate what you know:**
-   - Flag operational concerns (migrations, performance, scale) — don't reassure.
-   - Don't claim a migration is safe or fast; state what it does and flag it for the reviewer.
-   - If you haven't profiled performance, don't say "this should be fast" — state what changed.
-
-   **Tone — blameless language:**
-   - Never judge prior code: no "over-engineered", "hacky", "bad", "messy", "broken".
-   - Describe what changed and why neutrally: "Simplify X to align with Y", "Consolidate X into Y".
-   - Focus on outcomes, not corrections of mistakes.
-
-9. Before **create**, determine the repository default branch with `gh repo view --json defaultBranchRef --jq .defaultBranchRef.name`.
-   - If detection fails, use AskUserQuestion to get the base branch from the user.
-10. For **create**: pipe body to script with `--title` and, when needed, `--base`:
-   ```bash
-   echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "<title>"
-   ```
-   ```bash
-   echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh --create --title "<title>" --base "<base-branch>"
-   ```
-   For **update**: pipe body to script:
-   ```bash
-   echo "<body>" | bash ~/dotfiles/skills/pr-review/scripts/update-pr.sh
-   ```
-
-## How It Works
-
-The script uses:
-- `jj log` to find bookmarks on current (@), parent (@-), or grandparent (@--) revisions
-- `gh pr list` to find the PR number for the branch
-- `gh pr view` to display full PR details with reviews and comments
-
-## Manual Alternative
-
-If needed, you can manually find the bookmark and query GitHub:
-
-```bash
-# Find bookmark on current or parent revisions
-jj log -r '@|@-|@--' -T 'bookmarks'
-
-# List recent PRs to find the one for your branch
-gh pr list --state all --limit 10
-
-# View specific PR (local repo)
-gh pr view <pr-number>
-
-# View specific PR from another repo
-gh pr view <pr-number> --repo owner/repo
-```
-
-## Troubleshooting
-
-- **No bookmark found** (local mode): The current and parent revisions don't have bookmarks. Use `jj bookmark list` and `jj bookmark create` to add one.
-- **No PR found** (local mode): No PR exists for the branch name. Check if the PR uses a different branch name or hasn't been created yet.
-- **Invalid URL format** (URL mode): Ensure the URL follows the format `https://github.com/owner/repo/pull/123`.
-- **Repository not found** (URL mode): The repository may not exist in `~/grafana/`. The script will use `--repo` flag to query GitHub directly.
+- If the PR number alone is ambiguous because you are not in the target repository, ask for the repo or PR URL.
+- If `gh pr diff` output is too large, narrow the review to the most important files first and tell the user that the review is partial if needed.
