@@ -69,10 +69,19 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-  desc = 'LSP keymaps',
-  group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP attach behavior',
+  group = vim.api.nvim_create_augroup('LspAttachBehavior', { clear = true }),
   callback = function(event)
-    vim.keymap.set("n", "grn", "<CMD>LspRename<CR>", { buffer = event.buf, desc = "LSP: Rename" })
-  end
+    vim.keymap.set('n', 'grn', '<CMD>LspRename<CR>', { buffer = event.buf, desc = 'LSP: Rename' })
+
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if not client then
+      return
+    end
+
+    if client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+      vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+    end
+  end,
 })

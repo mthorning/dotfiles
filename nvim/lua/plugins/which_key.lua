@@ -188,15 +188,31 @@ return {
       { '<leader>l',  group = 'LSP',                                                                                                          nowait = false,                  remap = false },
       { '<leader>l/', '<CMD>checkhealth vim.lsp<CR>',                                                                                         desc = 'Server Info',            nowait = false,    remap = false },
       { '<leader>l?', '<CMD>Mason<CR>',                                                                                                       desc = 'Server Info',            nowait = false,    remap = false },
-      { 'grt',        '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                                                              desc = 'Type Definition',        nowait = false,    remap = false },
-      { 'grx',        '<CMD>lua vim.lsp.codelens.run()<CR>',                                                                                   desc = 'Run Codelens',           nowait = false,    remap = false },
+      { 'K',          '<CMD>lua vim.lsp.buf.hover()<CR>',                                                                                     desc = 'Hover',                  nowait = false,    remap = false },
+      { 'gO',         '<CMD>lua vim.lsp.buf.document_symbol()<CR>',                                                                           desc = 'Document Symbols',       nowait = false,    remap = false },
+      { 'grt',        '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                                                           desc = 'Type Definition',        nowait = false,    remap = false },
+      { 'grx',        '<CMD>lua vim.lsp.codelens.run()<CR>',                                                                                  desc = 'Run Codelens',           nowait = false,    remap = false },
+      { '<C-s>',      '<CMD>lua vim.lsp.buf.signature_help()<CR>',                                                                            mode = 'i',                      desc = 'Signature Help',         nowait = false,    remap = false },
       { '<leader>lD', '<CMD>lua vim.lsp.buf.declaration()<CR>',                                                                               desc = 'Declaration',            nowait = false,    remap = false },
       { '<leader>lF', '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                                                      desc = 'Format',                 nowait = false,    remap = false },
       { '<leader>lR', '<CMD>LspRename<CR>',                                                                                                   desc = 'Rename',                 nowait = false,    remap = false },
       { '<leader>lS', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                                                     desc = 'Workspace Symbols',      nowait = false,    remap = false },
       { '<leader>la', '<CMD>lua vim.lsp.buf.code_action()<CR>',                                                                               desc = 'Code Action',            nowait = false,    remap = false },
       { '<leader>ld', '<CMD>lua vim.lsp.buf.definition()<CR>',                                                                                desc = 'Definition',             nowait = false,    remap = false },
-      { '<leader>le', '<CMD>lua vim.diagnostic.open_float()<CR>',                                                                             desc = 'Diagnostics',            nowait = false,    remap = false },
+      {
+        '<leader>le',
+        function()
+          vim.diagnostic.open_float(nil, {
+            border = 'rounded',
+            source = 'if_many',
+            focusable = false,
+            scope = 'cursor',
+          })
+        end,
+        desc = 'Diagnostics',
+        nowait = false,
+        remap = false
+      },
       { '<leader>lh', '<CMD>lua vim.lsp.buf.hover()<CR>',                                                                                     desc = 'Hover',                  nowait = false,    remap = false },
       { '<leader>li', '<CMD>lua vim.lsp.buf.implementation()<CR>',                                                                            desc = 'Implementation',         nowait = false,    remap = false },
       { '<leader>lk', '<CMD>lua vim.lsp.buf.signature_help()<CR>',                                                                            desc = 'Signature Help',         nowait = false,    remap = false },
@@ -208,7 +224,16 @@ return {
       {
         '<leader>lx',
         function()
-          for _, client in ipairs(vim.lsp.get_clients()) do
+          vim.lsp.codelens.enable(true, { bufnr = 0 })
+        end,
+        desc = 'Refresh Codelens',
+        nowait = false,
+        remap = false
+      },
+      {
+        '<leader>lX',
+        function()
+          for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
             vim.lsp.stop_client(client.id)
           end
           vim.cmd('edit')
