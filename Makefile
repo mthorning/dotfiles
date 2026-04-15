@@ -68,3 +68,9 @@ unstow-all:
 .PHONY: commit
 commit:
 	jj squash --ignore-immutable && jj git push
+
+
+.PHONY: update-pi
+update-pi:
+	npm install -g @mariozechner/pi-coding-agent
+
