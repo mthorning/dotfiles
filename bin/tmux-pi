@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -n "${TMUX_PANE:-}" ]]; then
+  tmux select-pane -t "$TMUX_PANE" -T pi >/dev/null 2>&1 || true
+fi
+
+exec pi "$@"

@@ -6,6 +6,9 @@ return {
   },
   opts = {
     preset = 'modern',
+    win = {
+      border = 'rounded',
+    },
   },
   config = function()
     local wk = require('which-key')
@@ -129,8 +132,10 @@ return {
       { '[n', desc = 'Prev TS node', nowait = false, remap = false },
 
       { '<leader>a',  '<CMD>wa<CR>',                                                                                                          desc = 'Save All',               nowait = false,    remap = false },
-      { '<leader>A', '<CMD>PiAsk<CR>',                                                                                                        mode = 'n',                      desc = 'Pi ask',                 nowait = false,    remap = false },
-      { '<leader>A', '<CMD>PiAskSelection<CR>',                                                                                               mode = 'v',                      desc = 'Pi ask selection',       nowait = false,    remap = false },
+      { '<leader>A',  group = 'Pi',                                                                                                           mode = 'v',                      nowait = false,                  remap = false },
+      { '<leader>Aa', '<CMD>PiApplySelection<CR>',                                                                                            mode = 'v',                      desc = 'Pi apply selection',     nowait = false,    remap = false },
+      { '<leader>Ac', '<CMD>PiChatSelection<CR>',                                                                                             mode = 'v',                      desc = 'Pi chat selection',      nowait = false,    remap = false },
+      { '<leader>An', '<CMD>PiNewPane<CR>',                                                                                                   mode = 'v',                      desc = 'Pi chat in new pane',    nowait = false,    remap = false },
 
       { '<leader>c',  group = 'QuickFix',                                                                                                     nowait = false,                  remap = false },
       { '<leader>cc', '<CMD>cclose<CR>',                                                                                                      desc = 'Close',                  nowait = false,    remap = false },

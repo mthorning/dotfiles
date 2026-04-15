@@ -1,12 +1,12 @@
 return {
-  'pablopunk/pi.nvim',
+  dir = vim.fn.stdpath('config'),
+  name = 'pi-tmux-local',
   cmd = {
-    'PiAsk',
-    'PiAskSelection',
-    'PiCancel',
-    'PiLog',
+    'PiChatSelection',
+    'PiApplySelection',
+    'PiNewPane',
   },
   config = function()
-    require('pi').setup()
+    require('pi_tmux').setup()
   end,
 }
