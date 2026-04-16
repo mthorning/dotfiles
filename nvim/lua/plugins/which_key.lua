@@ -28,21 +28,7 @@ return {
     end
 
     local add_conflicts_to_qflist = function()
-      local cmd = vim.fn.executable('rg') == 1
-          and "rg --vimgrep '<<<<<<<' 2>/dev/null"
-          or "git grep -n '<<<<<<<' 2>/dev/null"
-
-      local results = vim.fn.systemlist(cmd)
-      if vim.v.shell_error ~= 0 or #results == 0 then
-        vim.notify('No conflicts found', vim.log.levels.INFO)
-        return
-      end
-
-      vim.fn.setqflist({}, 'r', {
-        title = 'Merge Conflicts',
-        lines = results
-      })
-      vim.cmd('copen')
+      vim.cmd('Conflicts')
     end
 
     local add_typecheck_to_qflist = function()

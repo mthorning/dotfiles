@@ -85,3 +85,46 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
   end,
 })
+
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufFilePost' }, {
+  desc = 'Configure scratch buffers used for jj diff output',
+  group = vim.api.nvim_create_augroup('JjDiff', { clear = true }),
+  pattern = 'jj://*',
+  callback = function()
+    vim.bo.buftype = 'nofile'
+    vim.bo.bufhidden = 'wipe'
+    vim.bo.swapfile = false
+    vim.bo.filetype = 'diff'
+  end,
+})
+
+vim.api.nvim_create_user_command('Conflicts', function()
+  local cmd = vim.fn.executable('rg') == 1
+      and "rg --vimgrep '<<<<<<<' 2>/dev/null"
+      or "git grep -n '<<<<<<<' 2>/dev/null"
+
+  local results = vim.fn.systemlist(cmd)
+  if vim.v.shell_error ~= 0 or #results == 0 then
+    vim.notify('No conflicts found', vim.log.levels.INFO)
+    return
+  end
+
+  vim.fn.setqflist({}, 'r', {
+    title = 'Merge Conflicts',
+    lines = results
+  })
+  vim.cmd('cfirst')
+  vim.cmd('copen')
+end, {
+  desc = 'Find merge conflicts and open them in quickfix',
+})
+
+vim.api.nvim_create_user_command('JjDiff', function(opts)
+  vim.cmd('enew')
+  vim.cmd('file jj://diff')
+  vim.cmd('read !jj diff ' .. opts.args)
+  vim.cmd('1delete')
+end, {
+  desc = 'Open jj diff in a scratch buffer',
+  nargs = '*',
+})

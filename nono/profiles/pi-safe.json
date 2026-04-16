@@ -36,8 +36,16 @@
       "$HOME/development/flutter",
       "/Users/mthorning/Documents/Notes"
     ],
+    "allow_file": [
+      "$HOME/dotfiles/stowdirs/home/work/.zshrc"
+    ],
     "read": [
       "$HOME/grafana"
+    ]
+  },
+  "policy": {
+    "override_deny": [
+      "$HOME/dotfiles/stowdirs/home/work/.zshrc"
     ]
   },
   "rollback": {
