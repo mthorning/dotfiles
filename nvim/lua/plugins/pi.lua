@@ -5,6 +5,7 @@ return {
     'PiChatHere',
     'PiChatSelection',
     'PiApplySelection',
+    'PiNewHere',
     'PiNewPane',
     'PiChatDiff',
     'PiChatDiffNew',
