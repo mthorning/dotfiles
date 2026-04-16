@@ -47,7 +47,15 @@ function M.get_visual_selection_range()
   return { start = start_line, ['end'] = end_line }
 end
 
-function M.format_prompt_label(bufnr, selection_range)
+function M.get_cursor_position()
+  local pos = vim.api.nvim_win_get_cursor(0)
+  return {
+    line = pos[1],
+    col = pos[2] + 1,
+  }
+end
+
+function M.format_prompt_label(bufnr, selection_range, cursor_position)
   local components = {}
   local filename = vim.api.nvim_buf_get_name(bufnr)
   if filename ~= '' then
@@ -55,6 +63,8 @@ function M.format_prompt_label(bufnr, selection_range)
   end
   if selection_range and selection_range.start and selection_range['end'] then
     table.insert(components, string.format('%d:%d', selection_range.start, selection_range['end']))
+  elseif cursor_position and cursor_position.line and cursor_position.col then
+    table.insert(components, string.format('%d:%d', cursor_position.line, cursor_position.col))
   end
   if #components == 0 then
     return 'ask pi: '
@@ -142,6 +152,40 @@ function M.get_visual_context(bufnr, config, opts)
   if nearby_trimmed or selected_trimmed then
     parts[#parts + 1] = string.format(
       'NOTE: Selection context was trimmed for speed (max_bytes=%d).',
+      config.max_context_bytes
+    )
+  end
+
+  if buffer_is_empty(bufnr) then
+    parts[#parts + 1] = EMPTY_FILE_NOTE
+  end
+
+  return table.concat(parts, '\n\n')
+end
+
+function M.get_cursor_context(bufnr, config, opts)
+  local filename = vim.api.nvim_buf_get_name(bufnr)
+  local all_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  local cursor = M.get_cursor_position()
+  local before = math.max(1, cursor.line - config.selection_context_lines)
+  local after = math.min(#all_lines, cursor.line + config.selection_context_lines)
+
+  local nearby_lines = vim.api.nvim_buf_get_lines(bufnr, before - 1, after, false)
+  local current_line = all_lines[cursor.line] or ''
+  local nearby_text, nearby_trimmed = truncate_to_bytes(table.concat(nearby_lines, '\n'), config.max_context_bytes)
+  local current_line_text, current_line_trimmed = truncate_to_bytes(current_line, config.max_context_bytes)
+
+  local parts = {
+    string.format('File: %s', filename),
+    string.format('Filetype: %s', filetype_for(bufnr)),
+    string.format('Cursor: line %d, column %d', cursor.line, cursor.col),
+    content_block(string.format('Current line (%d)', cursor.line), current_line_text),
+    content_block(string.format('Nearby context (%d-%d)', before, after), nearby_text),
+  }
+
+  if nearby_trimmed or current_line_trimmed then
+    parts[#parts + 1] = string.format(
+      'NOTE: Cursor context was trimmed for speed (max_bytes=%d).',
       config.max_context_bytes
     )
   end

@@ -396,7 +396,8 @@ local function prompt_with_context(command_name, build_context, opts)
   end
 
   local range = opts and opts.selection and context.get_visual_selection_range() or nil
-  vim.ui.input({ prompt = context.format_prompt_label(bufnr, range) }, function(input)
+  local cursor = opts and opts.cursor and context.get_cursor_position() or nil
+  vim.ui.input({ prompt = context.format_prompt_label(bufnr, range, cursor) }, function(input)
     if input then
       if opts and opts.mode == 'apply' then
         dispatch_apply(input, build_context)
@@ -424,7 +425,14 @@ function M.ask_selection()
 end
 
 function M.chat()
-  notify('Use PiChatSelection from visual mode', vim.log.levels.WARN)
+  local bufnr = ensure_file_backed_buffer('PiChatHere')
+  if not bufnr then
+    return
+  end
+
+  prompt_with_context('PiChatHere', function()
+    return context.get_cursor_context(bufnr, get(), { mode = 'chat' })
+  end, { force_new = false, cursor = true, mode = 'chat' })
 end
 
 function M.chat_selection()
@@ -453,7 +461,14 @@ function M.ask_new_selection()
 end
 
 function M.chat_new()
-  notify('Use PiNewSelection from visual mode', vim.log.levels.WARN)
+  local bufnr = ensure_file_backed_buffer('PiNewPane')
+  if not bufnr then
+    return
+  end
+
+  prompt_with_context('PiNewPane', function()
+    return context.get_cursor_context(bufnr, get(), { mode = 'chat' })
+  end, { force_new = true, cursor = true, mode = 'chat' })
 end
 
 function M.chat_new_selection()

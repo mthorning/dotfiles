@@ -132,7 +132,8 @@ return {
       { '[n', desc = 'Prev TS node', nowait = false, remap = false },
 
       { '<leader>a',  '<CMD>wa<CR>',                                                                                                          desc = 'Save All',               nowait = false,    remap = false },
-      { '<leader>A',  group = 'Pi',                                                                                                           mode = 'v',                      nowait = false,                  remap = false },
+      { '<leader>A',  group = 'Pi',                                                                                                           mode = { 'n', 'v' },             nowait = false,                  remap = false },
+      { '<leader>Ac', '<CMD>PiChatHere<CR>',                                                                                                  mode = 'n',                      desc = 'Pi chat at cursor',      nowait = false,    remap = false },
       { '<leader>Aa', '<CMD>PiApplySelection<CR>',                                                                                            mode = 'v',                      desc = 'Pi apply selection',     nowait = false,    remap = false },
       { '<leader>Ac', '<CMD>PiChatSelection<CR>',                                                                                             mode = 'v',                      desc = 'Pi chat selection',      nowait = false,    remap = false },
       { '<leader>An', '<CMD>PiNewPane<CR>',                                                                                                   mode = 'v',                      desc = 'Pi chat in new pane',    nowait = false,    remap = false },

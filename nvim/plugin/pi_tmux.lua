@@ -3,6 +3,10 @@ if vim.g.loaded_pi_tmux then
 end
 vim.g.loaded_pi_tmux = true
 
+vim.api.nvim_create_user_command('PiChatHere', function()
+  require('pi_tmux').chat()
+end, { desc = 'Open pi chat with current file and cursor context' })
+
 vim.api.nvim_create_user_command('PiChatSelection', function()
   require('pi_tmux').chat_selection()
 end, { range = true, desc = 'Open pi chat with visual selection context' })
