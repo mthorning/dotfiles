@@ -6,14 +6,17 @@ help:
 	@echo "  make all              - Install homebrew, nvm, node, pnpm, and zinit"
 	@echo "  make brew             - Install homebrew packages from Brewfile"
 	@echo ""
-	@echo "  make stow-shared   - Install shared/base configuration files"
-	@echo "  make stow-personal - Install personal configuration (base + personal)"
-	@echo "  make stow-work     - Install work configuration (base + work)"
+	@echo "  make stow-shared     - Install shared/base configuration files"
+	@echo "  make stow-personal   - Install personal configuration (base + personal)"
+	@echo "  make stow-work       - Install work configuration (base + work)"
 	@echo ""
 	@echo "  make unstow-shared   - Remove shared/base symlinks"
 	@echo "  make unstow-personal - Remove personal configuration symlinks"
 	@echo "  make unstow-work     - Remove work configuration symlinks"
 	@echo "  make unstow-all      - Remove all stow-managed symlinks"
+	@echo ""
+	@echo "  make commit          - Squash and push with jj"
+	@echo "  make update-pi       - Update pi coding agent globally"
 
 .PHONY: all
 all:
