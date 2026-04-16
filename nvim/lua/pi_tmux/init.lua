@@ -210,7 +210,7 @@ local function save_source_buffer(bufnr, command_name)
     return false
   end
   if not context.buffer_is_file_backed(bufnr) then
-    return false
+    return true  -- nothing to save for non-file-backed buffers (e.g. jj://diff)
   end
   if not vim.bo[bufnr].modified then
     return true
@@ -635,7 +635,7 @@ end
 
 local function prompt_with_context(command_name, build_context, opts)
   assert_supported_version()
-  local bufnr = ensure_file_backed_buffer(command_name)
+  local bufnr = opts and opts.bufnr or ensure_file_backed_buffer(command_name)
   if not bufnr then
     return
   end
@@ -752,6 +752,50 @@ function M.apply_selection()
   prompt_with_context('PiApplySelection', function()
     return context.get_visual_context(bufnr, get(), { mode = 'apply' })
   end, { selection = true, mode = 'apply' })
+end
+
+function M.chat_diff()
+  assert_supported_version()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  if not bufname:match('^jj://') then
+    notify('PiChatDiff requires a jj:// buffer', vim.log.levels.WARN)
+    return
+  end
+
+  local range = context.get_visual_selection_range()
+
+  prompt_with_context('PiChatDiff', function()
+    return context.get_diff_context(bufnr, get(), { mode = 'chat' })
+  end, {
+    force_new = false,
+    selection = (range ~= nil),
+    cursor = (range == nil),
+    mode = 'chat',
+    bufnr = bufnr,
+  })
+end
+
+function M.chat_diff_new()
+  assert_supported_version()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  if not bufname:match('^jj://') then
+    notify('PiChatDiffNew requires a jj:// buffer', vim.log.levels.WARN)
+    return
+  end
+
+  local range = context.get_visual_selection_range()
+
+  prompt_with_context('PiChatDiffNew', function()
+    return context.get_diff_context(bufnr, get(), { mode = 'chat' })
+  end, {
+    force_new = true,
+    selection = (range ~= nil),
+    cursor = (range == nil),
+    mode = 'chat',
+    bufnr = bufnr,
+  })
 end
 
 function M.focus_last()

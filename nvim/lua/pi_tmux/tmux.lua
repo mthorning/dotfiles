@@ -75,7 +75,7 @@ local function is_pi_pane(pane)
 end
 
 local function is_running_pi(pane)
-  return is_pi_command(pane.current_command)
+  return is_pi_command(pane.current_command) or has_pi_title(pane)
 end
 
 function M.list_current_window_panes()
@@ -175,26 +175,51 @@ function M.create_pi_pane(config)
   }, nil
 end
 
+local function pane_content_has_pi_prompt(pane_id)
+  local content, err = run_tmux({ 'capture-pane', '-p', '-t', pane_id })
+  if not content then
+    return false
+  end
+  -- Pi's TUI shows INSERT at the bottom of the pane only when fully ready for input
+  return content:find('INSERT', 1, true) ~= nil
+end
+
+local function wait_for_pi_tui(pane_id, timeout_ms)
+  return vim.wait(timeout_ms, function()
+    return pane_content_has_pi_prompt(pane_id)
+  end, 100)
+end
+
+local PI_TUI_TIMEOUT_MS = 15000
+
 function M.ensure_pi_ready(pane, config)
   if pane.created then
-    local ready = vim.wait(config.startup_delay_ms * 3, function()
-      local refreshed = M.get_pane(pane.pane_id)
-      return refreshed and is_running_pi(refreshed)
-    end, 50)
-    if ready then
-      vim.wait(config.startup_delay_ms)
-      return true, nil
+    -- Pane was just created with pi starting — wait for TUI to be ready
+    local ready = wait_for_pi_tui(pane.pane_id, PI_TUI_TIMEOUT_MS)
+    if not ready then
+      return false, 'Timed out waiting for pi to start'
     end
-  elseif is_running_pi(pane) then
+    -- Small settle delay: pi renders INSERT slightly before its input handler is ready
+    vim.wait(config.startup_delay_ms)
     return true, nil
   end
 
+  -- Reused pane — check if pi is already running
+  local refreshed = M.get_pane(pane.pane_id)
+  if refreshed and is_running_pi(refreshed) then
+    return true, nil
+  end
+
+  -- Pi not running in this pane — start it
   local cmd, err = run_tmux({ 'send-keys', '-t', pane.pane_id, 'pi', 'Enter' })
   if cmd == nil and err then
     return false, err
   end
 
-  vim.wait(config.startup_delay_ms * 2)
+  local ready = wait_for_pi_tui(pane.pane_id, PI_TUI_TIMEOUT_MS)
+  if not ready then
+    return false, 'Timed out waiting for pi to start'
+  end
   return true, nil
 end
 

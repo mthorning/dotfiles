@@ -90,11 +90,24 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufFilePost' }, {
   desc = 'Configure scratch buffers used for jj diff output',
   group = vim.api.nvim_create_augroup('JjDiff', { clear = true }),
   pattern = 'jj://*',
-  callback = function()
+  callback = function(ev)
     vim.bo.buftype = 'nofile'
     vim.bo.bufhidden = 'wipe'
     vim.bo.swapfile = false
     vim.bo.filetype = 'diff'
+
+    -- buffer-local Pi keymaps (override globals, which-key picks these up)
+    local ok, wk = pcall(require, 'which-key')
+    if ok then
+      wk.add({
+        { '<leader>Ac', '<CMD>PiChatDiff<CR>',    buffer = ev.buf, mode = { 'n', 'v' }, desc = 'Pi chat diff' },
+        { '<leader>An', '<CMD>PiChatDiffNew<CR>', buffer = ev.buf, mode = { 'n', 'v' }, desc = 'Pi chat diff (new pane)' },
+        { '<leader>Aa', hidden = true,            buffer = ev.buf, mode = 'v' },
+      })
+    else
+      vim.keymap.set({ 'n', 'v' }, '<leader>Ac', '<CMD>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>An', '<CMD>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
+    end
   end,
 })
 
@@ -124,6 +137,8 @@ vim.api.nvim_create_user_command('JjDiff', function(opts)
   vim.cmd('file jj://diff')
   vim.cmd('read !jj diff ' .. opts.args)
   vim.cmd('1delete')
+  vim.b.jj_diff_args = opts.args  -- store for later use by PiChatDiff
+  vim.bo.modifiable = false
 end, {
   desc = 'Open jj diff in a scratch buffer',
   nargs = '*',

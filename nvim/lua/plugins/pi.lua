@@ -6,6 +6,8 @@ return {
     'PiChatSelection',
     'PiApplySelection',
     'PiNewPane',
+    'PiChatDiff',
+    'PiChatDiffNew',
   },
   config = function()
     require('pi_tmux').setup()

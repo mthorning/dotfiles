@@ -35,5 +35,4 @@ set("n", "Y", "y$$")
 -- Remove annoying weird keybinding
 set("i", "<", "<")
 
--- JuJutsu diff
-vim.keymap.set('n', '<leader>jd', '<CMD>JjDiff<CR>', { desc = 'Open jj diff' })
+

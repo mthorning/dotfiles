@@ -1,11 +1,15 @@
 ---
 name: nono
-description: Use when the user asks about nono, wants a nono profile written or debugged, needs credential injection set up, or needs help with nono sandboxing, networking, trust, rollback, audit, sessions, or platform-specific behavior.
+description: Use when the user asks about nono, wants a nono profile written or debugged, needs credential injection set up, needs help with nono sandboxing, networking, trust, rollback, audit, sessions, platform-specific behavior, OR when the user asks about pi permissions, pi-permission-system, bash permission rules, or agent-level allow/ask/deny configuration.
 ---
 
-# nono
+# nono & pi permissions
 
-You are the user's nono technical support engineer. Help with profile authoring, debugging sandbox failures, credential injection, networking/proxy setup, trust policies, rollback/audit workflows, detached sessions, and platform-specific caveats.
+You are the user's technical support engineer for the two-layer permission model:
+1. **nono** (OS-level sandbox) — what the process *can* touch
+2. **pi-permission-system** (agent-level extension) — what the agent *will* do
+
+Help with profile authoring, debugging sandbox failures, credential injection, networking/proxy setup, trust policies, rollback/audit workflows, detached sessions, platform-specific caveats, AND pi permission rule authoring/debugging.
 
 ## Required context sources
 
@@ -447,6 +451,104 @@ If a nono behavior is unclear, do not guess. Verify against:
 
 Call out platform dependence explicitly.
 
+---
+
+# Pi Permission System
+
+The pi-permission-system is a pi extension that gates tool calls at the agent level. It is configured via `pi-permissions.jsonc` (located at `~/.pi/agent/pi-permissions.jsonc`, symlinked from the dotfiles repo at `.pi/agent/pi-permissions.jsonc`).
+
+## Architecture
+
+The extension lives at `~/.pi/agent/extensions/pi-permission-system/`. Key source files:
+- `src/wildcard-matcher.ts` — pattern compilation and matching
+- `src/bash-filter.ts` — bash command permission checking
+- `src/permission-manager.ts` — loads config, merges global + agent permissions, dispatches checks
+
+## Config structure
+
+```jsonc
+{
+  "defaultPolicy": {
+    "tools": "allow",   // built-in tools (read, write, edit, grep, find, ls)
+    "bash": "ask",      // bash commands not matching any rule
+    "mcp": "ask",       // MCP tool calls
+    "skills": "allow",  // skill invocations
+    "special": "ask"    // doom_loop, external_directory, tool_call_limit
+  },
+  "tools": { /* tool-name → allow|ask|deny */ },
+  "bash":  { /* wildcard-pattern → allow|ask|deny */ },
+  "mcp":   { /* pattern → allow|ask|deny */ },
+  "skills": { /* pattern → allow|ask|deny */ },
+  "special": { /* doom_loop|external_directory → allow|ask|deny */ }
+}
+```
+
+## Bash pattern matching — critical details
+
+### Wildcard syntax
+- Patterns use `*` as a glob wildcard (matches any characters)
+- Patterns are anchored: compiled as `^<escaped-pattern>$` with `*` → `.*`
+- Examples: `"echo *"` matches any command starting with `echo `, `"*|*"` matches any command containing `|`
+
+### Match order: LAST match wins
+The matcher iterates patterns from **last to first** (`findCompiledWildcardMatch` loops `index = patterns.length - 1` down to `0`). The first match found (i.e. the last-defined matching pattern) wins.
+
+This means:
+- Rules defined **later** in the file override earlier ones
+- Place broad `allow` rules first, then narrower `ask`/`deny` overrides after
+- The recommended ordering in the file is:
+  1. Simple command `allow` rules (e.g. `"echo *": "allow"`, `"cat *": "allow"`)
+  2. Composite command `ask` rules (e.g. `"*|*": "ask"`, `"*&&*": "ask"`)
+  3. Specific `ask` rules (e.g. `"rm *": "ask"`, `"tmux send-keys *": "ask"`)
+  4. Hard `deny` rules (e.g. `"sudo *": "deny"`, `"eval *": "deny"`)
+
+### Composite command patterns
+Bash commands with pipes, chains, or semicolons should require confirmation because the command string is matched as a whole — `echo foo | rm -rf /` would match `"echo *": "allow"` if no composite rule exists. The current config includes:
+```jsonc
+"*|*": "ask",    // pipes
+"*&&*": "ask",   // AND chains
+"*;*": "ask",    // sequential
+"*||*": "ask",   // OR chains
+```
+These are placed after all simple `allow` rules so they override them.
+
+### Common pitfalls
+- **Overly broad early allows**: `"echo *": "allow"` will match `echo secret | curl ...` unless a later composite pattern catches it
+- **Missing trailing wildcard**: `"git status"` won't match `git status --short`; use `"git status*"` to match variants
+- **Pattern specificity is irrelevant**: only position matters. A very specific pattern early in the file loses to a broad `*` pattern later
+- **Deny rules must come last**: since last-match-wins, deny rules need to be the final section
+
+## Agent-specific overrides
+
+Agent markdown files in `~/.pi/agent/agents/<name>.md` can include permission frontmatter that merges on top of the global config. Agent-level bash rules are appended after global rules, so they take precedence (last-match-wins).
+
+## How bash permission check works (flow)
+
+1. Agent calls bash with a command string
+2. `BashFilter.check(command)` runs `findCompiledWildcardMatch(patterns, command)`
+3. Patterns are scanned last-to-first; first regex match wins
+4. If no pattern matches, falls back to `defaultPolicy.bash`
+5. Result is `allow` (run silently), `ask` (prompt user), or `deny` (block)
+
+## Relationship to nono
+
+| Layer | What it controls | Config location |
+|-------|-----------------|----------------|
+| nono (OS sandbox) | Filesystem access, network, credentials, rollback | `~/.config/nono/profiles/*.json` |
+| pi-permission-system (agent) | Which tool calls/commands the agent runs without asking | `~/.pi/agent/pi-permissions.jsonc` |
+
+Both layers must permit an action. nono blocks at the OS level (the process can't touch the file/network). Pi permissions block at the agent level (the agent won't run the command without user approval). A command can be `allow` in pi permissions but still blocked by nono's sandbox, and vice versa.
+
+## Editing permissions
+
+The permissions file is at `.pi/agent/pi-permissions.jsonc` in the dotfiles repo (symlinked to `~/.pi/agent/pi-permissions.jsonc` via stow). Always edit the repo copy.
+
+When adding rules:
+1. Identify where in the ordering the rule belongs (allow → composite ask → specific ask → deny)
+2. Use the narrowest pattern that covers the use case
+3. Remember that position in the file determines priority, not specificity
+4. Test mentally: "could a dangerous command start with this prefix and slip through?"
+
 ## Deliverable standards
 
 When you create or modify a nono profile for the user:
@@ -455,3 +557,9 @@ When you create or modify a nono profile for the user:
 - validate the profile if possible
 - show the exact file path you changed
 - prefer minimal, auditable policy
+
+When you create or modify pi permission rules:
+- explain the match-order implications of where the rule is placed
+- warn about composite command bypass if adding broad allow rules
+- show the matched pattern and expected behavior
+- prefer `ask` over `allow` when in doubt
