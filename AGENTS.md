@@ -113,6 +113,74 @@ cp stowdirs/home/base/.config/myapp/config.yml stowdirs/home/work/.config/myapp/
 # Edit work version to differ from base
 ```
 
+## Neovim–Pi Integration (pi_tmux)
+
+A custom Neovim plugin at `nvim/lua/pi_tmux/` provides tight integration between Neovim and pi running in tmux panes. The plugin is loaded via `nvim/lua/plugins/pi.lua` (uses `dir = vim.fn.stdpath('config')`) and user commands are registered in `nvim/plugin/pi_tmux.lua`.
+
+### Architecture
+
+```
+nvim/lua/pi_tmux/
+  init.lua       # Main module: setup, dispatch logic, apply-via-RPC
+  context.lua    # Builds context (cursor, selection, diff) for prompts
+  tmux.lua       # Tmux pane management (create, find, send prompt)
+nvim/plugin/pi_tmux.lua   # Registers user commands
+bin/tmux-pi               # Shell wrapper that labels the tmux pane and exec's pi
+```
+
+### User Commands
+
+| Command | Mode | Description |
+|---------|------|-------------|
+| `PiChatHere` | n | Chat with pi about the file at cursor position (reuses existing pi pane) |
+| `PiChatSelection` | v | Chat with pi about visual selection |
+| `PiApplySelection` | v | Send selection to pi via RPC for an inline edit (no tmux, uses `pi --mode rpc`) |
+| `PiNewHere` | n | Like PiChatHere but always opens a fresh tmux pane |
+| `PiNewPane` | v | Like PiChatSelection but in a fresh pane |
+| `PiChatDiff` | n/v | Chat about a `jj://diff` buffer (reuses pane) |
+| `PiChatDiffNew` | n/v | Chat about a `jj://diff` buffer (new pane) |
+
+### Which-key bindings (leader A)
+
+- `<leader>Ac` — chat (normal: cursor context, visual: selection, diff buffer: diff context)
+- `<leader>An` — chat in new pane
+- `<leader>Aa` — apply selection (visual only)
+
+### Two dispatch modes
+
+1. **Chat mode** — opens/reuses a tmux pane running pi, sends the composed prompt as text input. The helper `bin/tmux-pi` labels the pane title as "pi".
+2. **Apply mode** — spawns `pi --mode rpc --no-session` as a subprocess, streams the prompt via stdin, monitors RPC events (thinking, tool execution, done), and shows a floating status window with a spinner. Detects file changes on disk to confirm the edit landed.
+
+### Tmux integration (`tmux/.tmux.conf`)
+
+- `bind i` splits a pane running `~/dotfiles/bin/tmux-pi` (33% width, inherits `pane_current_path`)
+
+## JjDiff — Jujutsu Diff Viewer
+
+The `:JjDiff` command (defined in `nvim/lua/config/autocmd.lua`) opens `jj diff` output in a scratch buffer with live-refresh.
+
+### How it works
+
+1. Runs `jj diff [args]` and loads output into a `jj://diff` buffer with `filetype=diff`
+2. Sets up a `vim.uv.new_fs_event` watcher on CWD (recursive) — re-runs `jj diff` on any file change (200ms debounce), preserving cursor position
+3. On buffer close (`q`), restores the previous buffer or quits if no other buffers exist
+4. If launched with no changes (e.g. `nvim '+JjDiff'`), falls back to the alpha dashboard
+
+### Shell helper
+
+`stowdirs/home/base/.config/jj/scripts/jj-vd` — a script that opens `nvim '+JjDiff'` for use as a jj visual diff tool.
+
+### Keybindings
+
+- `<leader>jd` — diff current file (`JjDiff -- <file>`)
+- `<leader>jD` — diff all files (`JjDiff`)
+- `j` on alpha dashboard — `JjDiff`
+- Pi keybindings are overridden in `jj://` buffers to use `PiChatDiff`/`PiChatDiffNew` instead of the normal chat commands
+
+### Conflicts command
+
+The `:Conflicts` command (also in `nvim/lua/config/autocmd.lua`) searches for `<<<<<<<` markers via rg/git-grep and loads results into the quickfix list. Available from the alpha dashboard (`c`) and `<leader>cf`.
+
 ## Skills
 
 Pi skills live in `skills/` and provide task-specific instructions:
