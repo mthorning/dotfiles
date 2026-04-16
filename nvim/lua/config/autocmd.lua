@@ -92,13 +92,17 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufFilePost' }, {
     local ok, wk = pcall(require, 'which-key')
     if ok then
       wk.add({
-        { '<leader>Ac', '<CMD>PiChatDiff<CR>',    buffer = ev.buf, mode = { 'n', 'v' }, desc = 'Pi chat diff' },
-        { '<leader>An', '<CMD>PiChatDiffNew<CR>', buffer = ev.buf, mode = { 'n', 'v' }, desc = 'Pi chat diff (new pane)' },
+        { '<leader>Ac', '<CMD>PiChatDiff<CR>',    buffer = ev.buf, mode = 'n', desc = 'Pi chat diff' },
+        { '<leader>Ac', ':<C-u>PiChatDiff<CR>',    buffer = ev.buf, mode = 'v', desc = 'Pi chat diff' },
+        { '<leader>An', '<CMD>PiChatDiffNew<CR>', buffer = ev.buf, mode = 'n', desc = 'Pi chat diff (new pane)' },
+        { '<leader>An', ':<C-u>PiChatDiffNew<CR>', buffer = ev.buf, mode = 'v', desc = 'Pi chat diff (new pane)' },
         { '<leader>Aa', hidden = true,            buffer = ev.buf, mode = 'v' },
       })
     else
-      vim.keymap.set({ 'n', 'v' }, '<leader>Ac', '<CMD>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
-      vim.keymap.set({ 'n', 'v' }, '<leader>An', '<CMD>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
+      vim.keymap.set('n', '<leader>Ac', '<CMD>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
+      vim.keymap.set('v', '<leader>Ac', ':<C-u>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
+      vim.keymap.set('n', '<leader>An', '<CMD>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
+      vim.keymap.set('v', '<leader>An', ':<C-u>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
     end
   end,
 })
