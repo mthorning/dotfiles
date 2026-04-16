@@ -2,45 +2,28 @@ return {
   { 'nvim-tree/nvim-web-devicons',    event = 'VeryLazy' },
   { 'christoomey/vim-tmux-navigator', event = 'VeryLazy' },
   {
-    'stevearc/dressing.nvim',
-    event = 'VeryLazy',
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
     opts = {
-      input = {
-        enabled = true,
-      },
-      select = {
-        enabled = true,
-      },
+      -- Replaces dressing.nvim: prettier vim.ui.input
+      input    = { enabled = true },
+      -- Nice vim.notify popups
+      notifier = { enabled = true },
+      -- Faster startup when opening a file from CLI
+      quickfile = { enabled = true },
+      -- Cleaner statuscolumn (signs + folds + line numbers)
+      statuscolumn = { enabled = true },
+      -- Highlight other occurrences of word under cursor (like vim-illuminate)
+      words    = { enabled = true },
+      -- Subtle indent guides
+      indent   = { enabled = true },
     },
   },
   { 'NvChad/nvim-colorizer.lua',      event = 'VeryLazy' },
   { 'b3nj5m1n/kommentary',            event = 'VeryLazy' },
-  {
-    'RRethy/vim-illuminate',
-    event = 'VeryLazy',
-    config = function()
-      require('illuminate').configure({
-        providers = { 'lsp' },
-        delay = 200,
-        filetypes_denylist = { 'NvimTree' },
-      })
-      local function set_illuminate_hl()
-        local visual = vim.api.nvim_get_hl(0, { name = 'Visual' })
-        local bg = visual.bg
-        if bg then
-          vim.api.nvim_set_hl(0, 'IlluminatedWordText', { bg = string.format('#%06x', bg) })
-          vim.api.nvim_set_hl(0, 'IlluminatedWordRead', { bg = string.format('#%06x', bg) })
-          vim.api.nvim_set_hl(0, 'IlluminatedWordWrite', { bg = string.format('#%06x', bg) })
-        end
-      end
-      vim.defer_fn(set_illuminate_hl, 100)
-      vim.api.nvim_create_autocmd('ColorScheme', {
-        callback = function()
-          vim.defer_fn(set_illuminate_hl, 50)
-        end,
-      })
-    end
-  },
+
   {
     'karb94/neoscroll.nvim',
     event = 'VeryLazy',
