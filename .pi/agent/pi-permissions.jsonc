@@ -107,6 +107,14 @@
     "bash ~/dotfiles/skills/jj/scripts/commit-and-push.sh *": "ask",
     "bash ~/dotfiles/skills/notes/scripts/sync-notes.sh *": "allow",
 
+    // ── Composite commands (pipes, chains) → ask ──
+    // These override earlier "allow" rules for simple commands
+    // when they appear in compound expressions.
+    "*|*": "ask",
+    "*&&*": "ask",
+    "*;*": "ask",
+    "*||*": "ask",
+
     // ── Destructive / irreversible → ask ──
     "rm *": "ask",
     "rmdir *": "ask",
