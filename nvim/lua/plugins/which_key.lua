@@ -112,88 +112,117 @@ return {
     end
 
     wk.add({
-      { '<C-n>',      '<CMD>lua vim.diagnostic.jump({ count = 1 })<CR>',                                                                        desc = 'Next Diagnostic',        nowait = false,    remap = false },
-      { '<C-p>',      '<CMD>lua vim.diagnostic.jump({ count = -1 })<CR>',                                                                       desc = 'Prev Diagnostic',        nowait = false,    remap = false },
+      { '<C-n>',      '<CMD>lua vim.diagnostic.jump({ count = 1 })<CR>',                                         desc = 'Next Diagnostic',        nowait = false,               remap = false },
+      { '<C-p>',      '<CMD>lua vim.diagnostic.jump({ count = -1 })<CR>',                                        desc = 'Prev Diagnostic',        nowait = false,               remap = false },
 
-      { ']n', desc = 'Next TS node', nowait = false, remap = false },
-      { '[n', desc = 'Prev TS node', nowait = false, remap = false },
+      { ']n',         desc = 'Next TS node',                                                                     nowait = false,                  remap = false },
+      { '[n',         desc = 'Prev TS node',                                                                     nowait = false,                  remap = false },
 
-      { '<leader>a',  '<CMD>wa<CR>',                                                                                                          desc = 'Save All',               nowait = false,    remap = false },
-      { '<leader>A',  group = 'Pi',                                                                                                           mode = { 'n', 'v' },             nowait = false,                  remap = false },
-      { '<leader>Ac', '<CMD>PiChatHere<CR>',                                                                                                  mode = 'n',                      desc = 'Pi chat at cursor',      nowait = false,    remap = false },
-      { '<leader>Aa', '<CMD>PiApplySelection<CR>',                                                                                            mode = 'v',                      desc = 'Pi apply selection',     nowait = false,    remap = false },
-      { '<leader>Ac', '<CMD>PiChatSelection<CR>',                                                                                             mode = 'v',                      desc = 'Pi chat selection',      nowait = false,    remap = false },
-      { '<leader>An', '<CMD>PiNewPane<CR>',                                                                                                   mode = 'v',                      desc = 'Pi chat in new pane',    nowait = false,    remap = false },
+      { '<leader>a',  '<CMD>wa<CR>',                                                                             desc = 'Save All',               nowait = false,               remap = false },
+      { '<leader>A',  group = 'Pi',                                                                              mode = { 'n', 'v' },             nowait = false,               remap = false },
+      { '<leader>Ac', '<CMD>PiChatHere<CR>',                                                                     mode = 'n',                      desc = 'Pi chat at cursor',   nowait = false, remap = false },
+      { '<leader>Aa', '<CMD>PiApplySelection<CR>',                                                               mode = 'v',                      desc = 'Pi apply selection',  nowait = false, remap = false },
+      { '<leader>Ac', '<CMD>PiChatSelection<CR>',                                                                mode = 'v',                      desc = 'Pi chat selection',   nowait = false, remap = false },
+      { '<leader>An', '<CMD>PiNewPane<CR>',                                                                      mode = 'v',                      desc = 'Pi chat in new pane', nowait = false, remap = false },
 
-      { '<leader>c',  group = 'QuickFix',                                                                                                     nowait = false,                  remap = false },
-      { '<leader>cc', '<CMD>cclose<CR>',                                                                                                      desc = 'Close',                  nowait = false,    remap = false },
-      { '<leader>cd', add_diagnostics_to_qflist,                                                                                              desc = 'Diagnostics',            nowait = false,    remap = false },
-      { '<leader>cf', add_conflicts_to_qflist,                                                                                                desc = 'Find conflicts',         nowait = false,    remap = false },
-      { '<leader>cg', '<CMD>Gitsign setqflist<CR>',                                                                                           desc = 'Git changes',            nowait = false,    remap = false },
-      { '<leader>cj', add_jj_diff_to_qflist,                                                                                                  desc = 'Jujutsu changes',        nowait = false,    remap = false },
-      { '<leader>cl', add_lint_to_qflist,                                                                                                     desc = 'Lint',                   nowait = false,    remap = false },
-      { '<leader>cn', '<CMD>cnext<CR>',                                                                                                       desc = 'Next',                   nowait = false,    remap = false },
-      { '<leader>co', '<CMD>copen<CR>',                                                                                                       desc = 'Open',                   nowait = false,    remap = false },
-      { '<leader>cp', '<CMD>cprev<CR>',                                                                                                       desc = 'Previous',               nowait = false,    remap = false },
-      { '<leader>ct', add_typecheck_to_qflist,                                                                                                desc = 'TypeCheck',              nowait = false,    remap = false },
+      { '<leader>c',  group = 'QuickFix',                                                                        nowait = false,                  remap = false },
+      { '<leader>cc', '<CMD>cclose<CR>',                                                                         desc = 'Close',                  nowait = false,               remap = false },
+      { '<leader>cd', add_diagnostics_to_qflist,                                                                 desc = 'Diagnostics',            nowait = false,               remap = false },
+      { '<leader>cf', add_conflicts_to_qflist,                                                                   desc = 'Find conflicts',         nowait = false,               remap = false },
+      { '<leader>cg', '<CMD>Gitsign setqflist<CR>',                                                              desc = 'Git changes',            nowait = false,               remap = false },
+      { '<leader>cj', add_jj_diff_to_qflist,                                                                     desc = 'Jujutsu changes',        nowait = false,               remap = false },
+      { '<leader>cl', add_lint_to_qflist,                                                                        desc = 'Lint',                   nowait = false,               remap = false },
+      { '<leader>cn', '<CMD>cnext<CR>',                                                                          desc = 'Next',                   nowait = false,               remap = false },
+      { '<leader>co', '<CMD>copen<CR>',                                                                          desc = 'Open',                   nowait = false,               remap = false },
+      { '<leader>cp', '<CMD>cprev<CR>',                                                                          desc = 'Previous',               nowait = false,               remap = false },
+      { '<leader>ct', add_typecheck_to_qflist,                                                                   desc = 'TypeCheck',              nowait = false,               remap = false },
 
-      { '<leader>d',  group = 'Debug',                                                                                                        nowait = false,                  remap = false },
-      { '<leader>dB', '<CMD>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',                                     desc = 'Conditional breakpoint', nowait = false,    remap = false },
-      { '<leader>dC', '<CMD>lua require"dap".clear_breakpoints()<CR>',                                                                        desc = 'Clear breakpoints',      nowait = false,    remap = false },
-      { '<leader>dO', '<CMD>lua require"dap".step_out()<CR>',                                                                                 desc = 'Step out',               nowait = false,    remap = false },
-      { '<leader>db', '<CMD>lua require"dap".toggle_breakpoint()<CR>',                                                                        desc = 'Toggle breakpoint',      nowait = false,    remap = false },
-      { '<leader>dc', '<CMD>lua require"dap".continue()<CR>',                                                                                 desc = 'Start/continue',         nowait = false,    remap = false },
-      { '<leader>di', '<CMD>lua require"dap".step_into()<CR>',                                                                                desc = 'Step into',              nowait = false,    remap = false },
-      { '<leader>dl', '<CMD>lua require"dap".run_last()<CR>',                                                                                 desc = 'Last',                   nowait = false,    remap = false },
-      { '<leader>dm', '<CMD>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',                              desc = 'Message',                nowait = false,    remap = false },
-      { '<leader>do', '<CMD>lua require"dap".step_over()<CR>',                                                                                desc = 'Step over',              nowait = false,    remap = false },
-      { '<leader>dr', '<CMD>lua require"dap".repl.open()<CR>',                                                                                desc = 'REPL',                   nowait = false,    remap = false },
-      { '<leader>dx', dap_close_session,                                                                                                      desc = 'Close Session',          nowait = false,    remap = false },
-      { '<leader>de', '<CMD>lua require("dapui").eval()<CR>',                                                                                 mode = { 'n', 'v' },             desc = 'Evaluate', nowait = false, remap = false },
+      { '<leader>d',  group = 'Debug',                                                                           nowait = false,                  remap = false },
+      { '<leader>dB', '<CMD>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',        desc = 'Conditional breakpoint', nowait = false,               remap = false },
+      { '<leader>dC', '<CMD>lua require"dap".clear_breakpoints()<CR>',                                           desc = 'Clear breakpoints',      nowait = false,               remap = false },
+      { '<leader>dO', '<CMD>lua require"dap".step_out()<CR>',                                                    desc = 'Step out',               nowait = false,               remap = false },
+      { '<leader>db', '<CMD>lua require"dap".toggle_breakpoint()<CR>',                                           desc = 'Toggle breakpoint',      nowait = false,               remap = false },
+      { '<leader>dc', '<CMD>lua require"dap".continue()<CR>',                                                    desc = 'Start/continue',         nowait = false,               remap = false },
+      { '<leader>di', '<CMD>lua require"dap".step_into()<CR>',                                                   desc = 'Step into',              nowait = false,               remap = false },
+      { '<leader>dl', '<CMD>lua require"dap".run_last()<CR>',                                                    desc = 'Last',                   nowait = false,               remap = false },
+      { '<leader>dm', '<CMD>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>', desc = 'Message',                nowait = false,               remap = false },
+      { '<leader>do', '<CMD>lua require"dap".step_over()<CR>',                                                   desc = 'Step over',              nowait = false,               remap = false },
+      { '<leader>dr', '<CMD>lua require"dap".repl.open()<CR>',                                                   desc = 'REPL',                   nowait = false,               remap = false },
+      { '<leader>dx', dap_close_session,                                                                         desc = 'Close Session',          nowait = false,               remap = false },
+      { '<leader>de', '<CMD>lua require("dapui").eval()<CR>',                                                    mode = { 'n', 'v' },             desc = 'Evaluate',            nowait = false, remap = false },
 
-      { '<leader>e',  '<CMD>Yazi<CR>',                                                                                                        desc = 'Explorer',               nowait = false,    remap = false },
+      { '<leader>e',  '<CMD>Yazi<CR>',                                                                           desc = 'Explorer',               nowait = false,               remap = false },
 
-      { '<leader>g',  group = 'Git',                                                                                                          nowait = false,                  remap = false },
-      { '<leader>gv', '<CMD>Gitsigns preview_hunk_inline<CR>',                                                                                desc = 'View',                   nowait = false,    remap = false },
-      { '<leader>gp', '<CMD>Gitsigns prev_hunk<CR>',                                                                                          desc = 'Previous',               nowait = false,    remap = false },
-      { '<leader>gn', '<CMD>Gitsigns next_hunk<CR>',                                                                                          desc = 'Next',                   nowait = false,    remap = false },
-      { '<leader>go', open_github_browse,                                                                                                     desc = 'Open in GitHub',         nowait = false,    remap = false },
+      { '<leader>g',  group = 'Git',                                                                             nowait = false,                  remap = false },
+      { '<leader>gv', '<CMD>Gitsigns preview_hunk_inline<CR>',                                                   desc = 'View',                   nowait = false,               remap = false },
+      { '<leader>gp', '<CMD>Gitsigns prev_hunk<CR>',                                                             desc = 'Previous',               nowait = false,               remap = false },
+      { '<leader>gn', '<CMD>Gitsigns next_hunk<CR>',                                                             desc = 'Next',                   nowait = false,               remap = false },
+      { '<leader>go', open_github_browse,                                                                        desc = 'Open in GitHub',         nowait = false,               remap = false },
 
-      { '<leader>f',  group = 'Find',                                                                                                         nowait = false,                  remap = false },
-      { '<leader>fS', '<CMD>Telescope search_history<CR>',                                                                                    desc = 'Search History',         nowait = false,    remap = false },
-      { '<leader>fb', '<CMD>Telescope buffers<CR>',                                                                                           desc = 'Buffer',                 nowait = false,    remap = false },
-      { '<leader>ff', '<CMD>Telescope find_files<CR>',                                                                                        desc = 'File',                   nowait = false,    remap = false },
-      { '<leader>fl', '<CMD>Telescope resume<CR>',                                                                                            desc = 'Last Query',             nowait = false,    remap = false },
-      { '<leader>fm', '<CMD>Telescope marks<CR>',                                                                                             desc = 'Marks',                  nowait = false,    remap = false },
-      { '<leader>fh', function()
-        require('telescope.builtin').help_tags({
-          attach_mappings = function(_, map)
-            map('i', '<CR>', require('telescope.actions').select_vertical)
-            map('n', '<CR>', require('telescope.actions').select_vertical)
-            return true
+      { '<leader>j',  group = 'Jujutsu',                                                                         nowait = false,                  remap = false },
+      {
+        '<leader>jd',
+        function()
+          local file = vim.fn.expand('%:.')
+          if file == '' then
+            vim.notify('No file in current buffer', vim.log.levels.WARN)
+            return
           end
-        })
-      end,                                                                                                                                        desc = 'Help',                   nowait = false,    remap = false },
-      { '<leader>fq', '<CMD>Telescope quickfix<CR>',                                                                                          desc = 'QuickFix',               nowait = false,    remap = false },
-      { '<leader>fr', '<CMD>Telescope oldfiles<CR>',                                                                                          desc = 'Recent',                 nowait = false,    remap = false },
-      { '<leader>fs', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                                                     desc = 'Symbols',                nowait = false,    remap = false },
-      { '<leader>ft', "<CMD>lua require('telescope').extensions.live_grep_args.live_grep_args({ prompt_title = 'Text (C-a for args)' })<CR>", desc = 'Text',                   nowait = false,    remap = false },
-      { '<leader>fw', '<CMD>Telescope grep_string<CR>',                                                                                       desc = 'Word under cursor',      nowait = false,    remap = false },
+          vim.cmd('JjDiff -- ' .. file)
+        end,
+        desc = 'Diff current file',
+        nowait = false,
+        remap = false
+      },
+      {
+        '<leader>jD',
+        '<CMD>JjDiff<CR>',
+        desc = 'Diff all files',
+        nowait = false,
+        remap = false
+      },
 
-      { '<leader>l',  group = 'LSP',                                                                                                          nowait = false,                  remap = false },
-      { '<leader>l/', '<CMD>checkhealth vim.lsp<CR>',                                                                                         desc = 'Server Info',            nowait = false,    remap = false },
-      { '<leader>l?', '<CMD>Mason<CR>',                                                                                                       desc = 'Server Info',            nowait = false,    remap = false },
-      { 'K',          '<CMD>lua vim.lsp.buf.hover()<CR>',                                                                                     desc = 'Hover',                  nowait = false,    remap = false },
-      { 'gO',         '<CMD>lua vim.lsp.buf.document_symbol()<CR>',                                                                           desc = 'Document Symbols',       nowait = false,    remap = false },
-      { 'grt',        '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                                                           desc = 'Type Definition',        nowait = false,    remap = false },
-      { 'grx',        '<CMD>lua vim.lsp.codelens.run()<CR>',                                                                                  desc = 'Run Codelens',           nowait = false,    remap = false },
-      { '<C-s>',      '<CMD>lua vim.lsp.buf.signature_help()<CR>',                                                                            mode = 'i',                      desc = 'Signature Help',         nowait = false,    remap = false },
-      { '<leader>lD', '<CMD>lua vim.lsp.buf.declaration()<CR>',                                                                               desc = 'Declaration',            nowait = false,    remap = false },
-      { '<leader>lF', '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                                                      desc = 'Format',                 nowait = false,    remap = false },
-      { '<leader>lR', '<CMD>LspRename<CR>',                                                                                                   desc = 'Rename',                 nowait = false,    remap = false },
-      { '<leader>lS', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                                                     desc = 'Workspace Symbols',      nowait = false,    remap = false },
-      { '<leader>la', '<CMD>lua vim.lsp.buf.code_action()<CR>',                                                                               desc = 'Code Action',            nowait = false,    remap = false },
-      { '<leader>ld', '<CMD>lua vim.lsp.buf.definition()<CR>',                                                                                desc = 'Definition',             nowait = false,    remap = false },
+      { '<leader>f',  group = 'Find',                      nowait = false,          remap = false },
+      { '<leader>fS', '<CMD>Telescope search_history<CR>', desc = 'Search History', nowait = false, remap = false },
+      { '<leader>fb', '<CMD>Telescope buffers<CR>',        desc = 'Buffer',         nowait = false, remap = false },
+      { '<leader>ff', '<CMD>Telescope find_files<CR>',     desc = 'File',           nowait = false, remap = false },
+      { '<leader>fl', '<CMD>Telescope resume<CR>',         desc = 'Last Query',     nowait = false, remap = false },
+      { '<leader>fm', '<CMD>Telescope marks<CR>',          desc = 'Marks',          nowait = false, remap = false },
+      {
+        '<leader>fh',
+        function()
+          require('telescope.builtin').help_tags({
+            attach_mappings = function(_, map)
+              map('i', '<CR>', require('telescope.actions').select_vertical)
+              map('n', '<CR>', require('telescope.actions').select_vertical)
+              return true
+            end
+          })
+        end,
+        desc = 'Help',
+        nowait = false,
+        remap = false
+      },
+      { '<leader>fq', '<CMD>Telescope quickfix<CR>',                                                                                          desc = 'QuickFix',          nowait = false,          remap = false },
+      { '<leader>fr', '<CMD>Telescope oldfiles<CR>',                                                                                          desc = 'Recent',            nowait = false,          remap = false },
+      { '<leader>fs', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                                                     desc = 'Symbols',           nowait = false,          remap = false },
+      { '<leader>ft', "<CMD>lua require('telescope').extensions.live_grep_args.live_grep_args({ prompt_title = 'Text (C-a for args)' })<CR>", desc = 'Text',              nowait = false,          remap = false },
+      { '<leader>fw', '<CMD>Telescope grep_string<CR>',                                                                                       desc = 'Word under cursor', nowait = false,          remap = false },
+
+      { '<leader>l',  group = 'LSP',                                                                                                          nowait = false,             remap = false },
+      { '<leader>l/', '<CMD>checkhealth vim.lsp<CR>',                                                                                         desc = 'Server Info',       nowait = false,          remap = false },
+      { '<leader>l?', '<CMD>Mason<CR>',                                                                                                       desc = 'Server Info',       nowait = false,          remap = false },
+      { 'K',          '<CMD>lua vim.lsp.buf.hover()<CR>',                                                                                     desc = 'Hover',             nowait = false,          remap = false },
+      { 'gO',         '<CMD>lua vim.lsp.buf.document_symbol()<CR>',                                                                           desc = 'Document Symbols',  nowait = false,          remap = false },
+      { 'grt',        '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                                                           desc = 'Type Definition',   nowait = false,          remap = false },
+      { 'grx',        '<CMD>lua vim.lsp.codelens.run()<CR>',                                                                                  desc = 'Run Codelens',      nowait = false,          remap = false },
+      { '<C-s>',      '<CMD>lua vim.lsp.buf.signature_help()<CR>',                                                                            mode = 'i',                 desc = 'Signature Help', nowait = false, remap = false },
+      { '<leader>lD', '<CMD>lua vim.lsp.buf.declaration()<CR>',                                                                               desc = 'Declaration',       nowait = false,          remap = false },
+      { '<leader>lF', '<CMD>lua vim.lsp.buf.format{ async = true }<CR>',                                                                      desc = 'Format',            nowait = false,          remap = false },
+      { '<leader>lR', '<CMD>LspRename<CR>',                                                                                                   desc = 'Rename',            nowait = false,          remap = false },
+      { '<leader>lS', '<CMD>Telescope lsp_dynamic_workspace_symbols<CR>',                                                                     desc = 'Workspace Symbols', nowait = false,          remap = false },
+      { '<leader>la', '<CMD>lua vim.lsp.buf.code_action()<CR>',                                                                               desc = 'Code Action',       nowait = false,          remap = false },
+      { '<leader>ld', '<CMD>lua vim.lsp.buf.definition()<CR>',                                                                                desc = 'Definition',        nowait = false,          remap = false },
       {
         '<leader>le',
         function()
@@ -208,14 +237,14 @@ return {
         nowait = false,
         remap = false
       },
-      { '<leader>lh', '<CMD>lua vim.lsp.buf.hover()<CR>',                                                                                     desc = 'Hover',                  nowait = false,    remap = false },
-      { '<leader>li', '<CMD>lua vim.lsp.buf.implementation()<CR>',                                                                            desc = 'Implementation',         nowait = false,    remap = false },
-      { '<leader>lk', '<CMD>lua vim.lsp.buf.signature_help()<CR>',                                                                            desc = 'Signature Help',         nowait = false,    remap = false },
-      { '<leader>lr', '<CMD>Telescope lsp_references<CR>',                                                                                    desc = 'References',             nowait = false,    remap = false },
-      { '<leader>ls', '<CMD>Telescope lsp_document_symbols<CR>',                                                                              desc = 'Document Symbols',       nowait = false,    remap = false },
-      { '<leader>lH', '<CMD>split<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                                                  desc = 'Definition (split)',     nowait = false,    remap = false },
-      { '<leader>lt', '<CMD>lua vim.lsp.buf.type_definition()<CR>',                                                                           desc = 'Type Definition',        nowait = false,    remap = false },
-      { '<leader>lv', '<CMD>vsplit<CR><CMD>lua vim.lsp.buf.definition()<CR>',                                                                 desc = 'Definition (vsplit)',    nowait = false,    remap = false },
+      { '<leader>lh', '<CMD>lua vim.lsp.buf.hover()<CR>',                     desc = 'Hover',               nowait = false, remap = false },
+      { '<leader>li', '<CMD>lua vim.lsp.buf.implementation()<CR>',            desc = 'Implementation',      nowait = false, remap = false },
+      { '<leader>lk', '<CMD>lua vim.lsp.buf.signature_help()<CR>',            desc = 'Signature Help',      nowait = false, remap = false },
+      { '<leader>lr', '<CMD>Telescope lsp_references<CR>',                    desc = 'References',          nowait = false, remap = false },
+      { '<leader>ls', '<CMD>Telescope lsp_document_symbols<CR>',              desc = 'Document Symbols',    nowait = false, remap = false },
+      { '<leader>lH', '<CMD>split<CR><CMD>lua vim.lsp.buf.definition()<CR>',  desc = 'Definition (split)',  nowait = false, remap = false },
+      { '<leader>lt', '<CMD>lua vim.lsp.buf.type_definition()<CR>',           desc = 'Type Definition',     nowait = false, remap = false },
+      { '<leader>lv', '<CMD>vsplit<CR><CMD>lua vim.lsp.buf.definition()<CR>', desc = 'Definition (vsplit)', nowait = false, remap = false },
       {
         '<leader>lx',
         function()
@@ -238,14 +267,14 @@ return {
         remap = false
       },
 
-      { '<leader>m', '<CMD>Telescope tmux_sessionizer<CR>', desc = 'Change repo',    nowait = false, remap = false },
+      { '<leader>m', '<CMD>Telescope tmux_sessionizer<CR>',         desc = 'Change repo',   nowait = false, remap = false },
 
       { '<leader>n', '<CMD>lua Snacks.notifier.show_history()<CR>', desc = 'Notifications', nowait = false, remap = false },
 
-      { '<leader>p', '<CMD>Lazy<CR>',                       desc = 'Plugins',     nowait = false, remap = false },
-      { '<leader>q', '<CMD>q<CR>',                          desc = 'Quit',        nowait = false, remap = false },
+      { '<leader>p', '<CMD>Lazy<CR>',                               desc = 'Plugins',       nowait = false, remap = false },
+      { '<leader>q', '<CMD>q<CR>',                                  desc = 'Quit',          nowait = false, remap = false },
 
-      { '<leader>w', '<cmd>w<CR>',                          desc = 'Save',        nowait = false, remap = false },
+      { '<leader>w', '<cmd>w<CR>',                                  desc = 'Save',          nowait = false, remap = false },
       daily_notes_dir and { '<leader>t', open_daily_note, desc = 'Today\'s note', nowait = false, remap = false } or nil,
 
       { '<leader>y',  group = 'Yank',                            nowait = false,                 remap = false },

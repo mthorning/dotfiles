@@ -7,17 +7,6 @@ vim.api.nvim_create_autocmd("BufReadPre", {
   end
 })
 
---[[ vim.api.nvim_create_autocmd("BufReadPre", {
-  desc = 'Makes the help screen open in vertical split to the right',
-  group = vim.api.nvim_create_augroup('Help', { clear = true }),
-  pattern = '*.txt',
-  callback = function()
-    if vim.bo.buftype == 'help' then
-      vim.cmd('wincmd L')
-    end
-  end
-}) ]]
-
 vim.api.nvim_create_autocmd("BufReadPre", {
   desc = 'Sets spell checking and wrapping on markdown files',
   group = vim.api.nvim_create_augroup('Markdown', { clear = true }),
@@ -96,6 +85,9 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufFilePost' }, {
     vim.bo.swapfile = false
     vim.bo.filetype = 'diff'
 
+    -- q to close the diff buffer (triggers BufWipeout → restores previous buffer)
+    vim.keymap.set('n', 'q', '<CMD>bdelete<CR>', { buffer = ev.buf, desc = 'Close diff buffer' })
+
     -- buffer-local Pi keymaps (override globals, which-key picks these up)
     local ok, wk = pcall(require, 'which-key')
     if ok then
@@ -133,12 +125,49 @@ end, {
 })
 
 vim.api.nvim_create_user_command('JjDiff', function(opts)
+  local diff_output = vim.fn.systemlist('jj diff ' .. opts.args)
+  if vim.v.shell_error ~= 0 or #diff_output == 0 or (#diff_output == 1 and diff_output[1] == '') then
+    vim.notify('No changes to show', vim.log.levels.INFO)
+    -- If the current buffer is empty (e.g. launched via `nvim +JjDiff`), show alpha
+    local buf = vim.api.nvim_get_current_buf()
+    if vim.bo[buf].buftype == '' and vim.api.nvim_buf_get_name(buf) == '' and vim.api.nvim_buf_line_count(buf) <= 1 then
+      local ok, alpha = pcall(require, 'alpha')
+      if ok then
+        alpha.start(false)
+      end
+    end
+    return
+  end
+
+  local prev_buf = vim.api.nvim_get_current_buf()
   vim.cmd('enew')
   vim.cmd('file jj://diff')
-  vim.cmd('read !jj diff ' .. opts.args)
-  vim.cmd('1delete')
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, diff_output)
   vim.b.jj_diff_args = opts.args  -- store for later use by PiChatDiff
   vim.bo.modifiable = false
+
+  -- Restore previous buffer when the diff buffer is closed
+  vim.api.nvim_create_autocmd('BufWipeout', {
+    buffer = buf,
+    callback = function()
+      vim.schedule(function()
+        local has_real_buf = false
+        for _, b in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_buf_is_valid(b) and vim.bo[b].buflisted
+            and (vim.api.nvim_buf_get_name(b) ~= '' or vim.bo[b].modified) then
+            has_real_buf = true
+            break
+          end
+        end
+        if not has_real_buf then
+          vim.cmd('quit')
+        elseif vim.api.nvim_buf_is_valid(prev_buf) then
+          vim.api.nvim_set_current_buf(prev_buf)
+        end
+      end)
+    end,
+  })
 end, {
   desc = 'Open jj diff in a scratch buffer',
   nargs = '*',

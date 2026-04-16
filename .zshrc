@@ -126,7 +126,7 @@ function y() {
   rm -f -- "$tmp"
 }
 
-function jvd() {
+function jjd() {
   if [[ $# -eq 0 ]]; then
     nvim '+JjDiff'
   else

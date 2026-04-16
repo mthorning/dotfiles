@@ -1,0 +1,7 @@
+#!/bin/bash
+# Open jj diff output in Neovim
+if [[ $# -eq 0 ]]; then
+  nvim '+JjDiff'
+else
+  nvim "+JjDiff $*"
+fi
