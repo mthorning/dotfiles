@@ -147,10 +147,48 @@ vim.api.nvim_create_user_command('JjDiff', function(opts)
   vim.b.jj_diff_args = opts.args  -- store for later use by PiChatDiff
   vim.bo.modifiable = false
 
+  -- File watcher: re-run jj diff when files in cwd change
+  local fs_handle = vim.uv.new_fs_event()
+  local debounce_timer = vim.uv.new_timer()
+
+  local function refresh_diff()
+    if not vim.api.nvim_buf_is_valid(buf) then return end
+    local new_output = vim.fn.systemlist('jj diff ' .. (vim.b[buf].jj_diff_args or ''))
+    if vim.v.shell_error ~= 0 then return end
+    -- Save and restore cursor position
+    local cursor_ok, cursor = pcall(vim.api.nvim_win_get_cursor, 0)
+    vim.bo[buf].modifiable = true
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, new_output)
+    vim.bo[buf].modifiable = false
+    if cursor_ok then
+      local max_line = vim.api.nvim_buf_line_count(buf)
+      pcall(vim.api.nvim_win_set_cursor, 0, { math.min(cursor[1], max_line), cursor[2] })
+    end
+  end
+
+  if fs_handle then
+    fs_handle:start(vim.fn.getcwd(), { recursive = true }, vim.schedule_wrap(function(err)
+      if err then return end
+      -- Debounce: wait 200ms after last change before refreshing
+      debounce_timer:stop()
+      debounce_timer:start(200, 0, vim.schedule_wrap(refresh_diff))
+    end))
+  end
+
   -- Restore previous buffer when the diff buffer is closed
   vim.api.nvim_create_autocmd('BufWipeout', {
     buffer = buf,
     callback = function()
+      -- Clean up file watcher
+      if debounce_timer then
+        debounce_timer:stop()
+        debounce_timer:close()
+      end
+      if fs_handle then
+        fs_handle:stop()
+        fs_handle:close()
+      end
+
       vim.schedule(function()
         local has_real_buf = false
         for _, b in ipairs(vim.api.nvim_list_bufs()) do
