@@ -173,38 +173,6 @@ local function get_pi_rpc_cmd()
   }
 end
 
-local function reload_source_buffer(bufnr)
-  if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
-    return false
-  end
-  if vim.bo[bufnr].modified or not context.buffer_is_file_backed(bufnr) then
-    return false
-  end
-
-  local path = vim.api.nvim_buf_get_name(bufnr)
-  if vim.fn.filereadable(path) ~= 1 then
-    return false
-  end
-
-  local current = vim.api.nvim_get_current_buf()
-  local view = current == bufnr and vim.fn.winsaveview() or nil
-
-  local ok = pcall(vim.api.nvim_buf_call, bufnr, function()
-    vim.cmd('silent checktime')
-    if vim.api.nvim_buf_is_loaded(bufnr) then
-      vim.cmd('silent edit!')
-    else
-      vim.fn.bufload(bufnr)
-    end
-  end)
-
-  if current == bufnr and view then
-    pcall(vim.fn.winrestview, view)
-  end
-
-  return ok
-end
-
 local function save_source_buffer(bufnr, command_name)
   if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then
     return false
@@ -361,12 +329,10 @@ local function run_apply(message, built_context, source_bufnr)
     end
     state.finished = true
     state.status = 'done'
+    close_status_window(state)
     if file_changed then
-      reload_source_buffer(source_bufnr)
-      close_status_window(state)
       notify('Pi applied change')
     else
-      close_status_window(state)
       notify('Pi finished but made no file changes', vim.log.levels.WARN)
     end
   end

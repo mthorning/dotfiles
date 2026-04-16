@@ -15,29 +15,59 @@ local function should_reload_buffer(buf)
   return is_real_file and buftype == '' and not modified
 end
 
-local function get_visible_buffers()
-  local visible = {}
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    visible[vim.api.nvim_win_get_buf(win)] = true
-  end
-  return visible
-end
-
-local find_buffer_by_filepath = function(filepath)
-  local visible_buffers = get_visible_buffers()
-  for buf, _ in pairs(visible_buffers) do
-    if vim.api.nvim_buf_get_name(buf) == filepath then
-      return buf
-    end
-  end
-  return nil
-end
-
+-- Fallback: check on focus/enter events (catches edge cases like renames, new files)
 vim.api.nvim_create_autocmd({ 'FocusGained', 'TermLeave', 'BufEnter', 'WinEnter', 'CursorHold', 'CursorHoldI' }, {
   group = vim.api.nvim_create_augroup('hotreload', { clear = true }),
   callback = function()
     if should_check() then
       vim.cmd 'checktime'
     end
+  end,
+})
+
+-- Filesystem watchers: reload buffers immediately when files change on disk
+local watchers = {}
+
+local function watch_buffer(buf)
+  if watchers[buf] then return end
+
+  local path = vim.api.nvim_buf_get_name(buf)
+  if path == '' or path:match('^%w+://') then return end
+
+  local handle = vim.uv.new_fs_event()
+  if not handle then return end
+
+  handle:start(path, {}, vim.schedule_wrap(function(err)
+    if err then return end
+    if vim.api.nvim_buf_is_valid(buf) and should_reload_buffer(buf) then
+      vim.api.nvim_buf_call(buf, function()
+        vim.cmd('checktime')
+      end)
+    end
+  end))
+
+  watchers[buf] = handle
+end
+
+local function unwatch_buffer(buf)
+  local handle = watchers[buf]
+  if handle then
+    handle:stop()
+    handle:close()
+    watchers[buf] = nil
+  end
+end
+
+vim.api.nvim_create_autocmd({ 'BufWinEnter', 'WinEnter' }, {
+  group = vim.api.nvim_create_augroup('hotreload_watch', { clear = true }),
+  callback = function(ev)
+    watch_buffer(ev.buf)
+  end,
+})
+
+vim.api.nvim_create_autocmd('BufWipeout', {
+  group = vim.api.nvim_create_augroup('hotreload_unwatch', { clear = true }),
+  callback = function(ev)
+    unwatch_buffer(ev.buf)
   end,
 })
