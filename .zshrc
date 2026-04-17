@@ -22,7 +22,7 @@ alias ll="ls -al"
 alias weather="curl -s wttr.in/truro | grep -v @igor_chubin"
 alias cat="bat"
 alias v="nvim"
-alias conflicts="nvim '+Conflicts'"
+alias cf="nvim '+Conflicts'"
 
 alias p="pnpm"
 alias pr="pnpm run"

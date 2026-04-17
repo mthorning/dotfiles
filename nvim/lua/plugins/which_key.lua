@@ -119,12 +119,6 @@ return {
       { '[n',         desc = 'Prev TS node',                                                                     nowait = false,                  remap = false },
 
       { '<leader>a',  '<CMD>wa<CR>',                                                                             desc = 'Save All',               nowait = false,               remap = false },
-      { '<leader>A',  group = 'Pi',                                                                              mode = { 'n', 'v' },             nowait = false,               remap = false },
-      { '<leader>Ac', '<CMD>PiChatHere<CR>',                                                                     mode = 'n',                      desc = 'Pi chat at cursor',   nowait = false, remap = false },
-      { '<leader>An', '<CMD>PiNewHere<CR>',                                                                     mode = 'n',                      desc = 'Pi chat in new pane', nowait = false, remap = false },
-      { '<leader>Aa', '<CMD>PiApplySelection<CR>',                                                               mode = 'v',                      desc = 'Pi apply selection',  nowait = false, remap = false },
-      { '<leader>Ac', '<CMD>PiChatSelection<CR>',                                                                mode = 'v',                      desc = 'Pi chat selection',   nowait = false, remap = false },
-      { '<leader>An', '<CMD>PiNewPane<CR>',                                                                      mode = 'v',                      desc = 'Pi chat in new pane', nowait = false, remap = false },
 
       { '<leader>c',  group = 'QuickFix',                                                                        nowait = false,                  remap = false },
       { '<leader>cc', '<CMD>cclose<CR>',                                                                         desc = 'Close',                  nowait = false,               remap = false },
@@ -159,6 +153,13 @@ return {
       { '<leader>gp', '<CMD>Gitsigns prev_hunk<CR>',                                                             desc = 'Previous',               nowait = false,               remap = false },
       { '<leader>gn', '<CMD>Gitsigns next_hunk<CR>',                                                             desc = 'Next',                   nowait = false,               remap = false },
       { '<leader>go', open_github_browse,                                                                        desc = 'Open in GitHub',         nowait = false,               remap = false },
+
+      { '<leader>i',  group = 'Pi',                                                                              mode = { 'n', 'v' },             nowait = false,               remap = false },
+      { '<leader>ic', '<CMD>PiChatHere<CR>',                                                                     mode = 'n',                      desc = 'Pi chat at cursor',   nowait = false, remap = false },
+      { '<leader>in', '<CMD>PiNewHere<CR>',                                                                     mode = 'n',                      desc = 'Pi chat in new pane', nowait = false, remap = false },
+      { '<leader>ia', ':<C-u>PiApplySelection<CR>',                                                           mode = 'v',                      desc = 'Pi apply selection',  nowait = false, remap = false },
+      { '<leader>ic', ':<C-u>PiChatSelection<CR>',                                                               mode = 'v',                      desc = 'Pi chat selection',   nowait = false, remap = false },
+      { '<leader>in', ':<C-u>PiNewPane<CR>',                                                                     mode = 'v',                      desc = 'Pi chat in new pane', nowait = false, remap = false },
 
       { '<leader>j',  group = 'Jujutsu',                                                                         nowait = false,                  remap = false },
       {

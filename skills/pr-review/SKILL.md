@@ -27,7 +27,9 @@ If the user only provides a PR number, assume the current repository unless they
 3. Fetch the code changes with `gh pr diff`.
    - If the PR is large, first inspect the changed file list and focus on the highest-risk files.
    - For very large diffs, review file-by-file rather than dumping the entire patch at once.
-4. Read surrounding local code when needed to understand behavior and call sites.
+4. **Do not inspect local repository files to understand the PR.** Assume the local checkout may be on a different branch or otherwise not match the PR.
+   - Base the review on GitHub data for that PR, not the local working tree.
+   - If you need more context than `gh pr diff` provides, fetch it from GitHub for the PR's repo/branches rather than reading local files.
 5. Produce a code review focused on correctness, regressions, edge cases, security, performance, and test coverage.
 6. Do **not** modify the PR, post GitHub review comments, or approve/request changes unless the user explicitly asks.
 
@@ -86,5 +88,7 @@ Be precise and evidence-based:
 
 ## Notes
 
+- Treat the local checkout as untrusted for PR review context unless the user explicitly tells you it matches the PR branch.
+- Do not read local files as evidence for the review; use `gh pr view`, `gh pr diff`, and GitHub-fetched file contents/metadata instead.
 - If the PR number alone is ambiguous because you are not in the target repository, ask for the repo or PR URL.
 - If `gh pr diff` output is too large, narrow the review to the most important files first and tell the user that the review is partial if needed.

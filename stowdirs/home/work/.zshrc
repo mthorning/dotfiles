@@ -6,6 +6,9 @@ if [ -f '/Users/mthorning/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users
 
 # eval "$(direnv hook zsh)"
 
+# Source main dotfiles config (contains all the core setup)
+source ~/dotfiles/.zshrc
+
 alias irmdb="kubectl exec -it mysql-0 -n devenv -- mysql --user=user --password=pass --database=grafana_incident"
 alias irmreset="make down && make cluster/down && make clean-dist && make cluster/up && make irm-local/up"
 alias fltt="pnpm format && pnpm lint && pnpm type-check && pnpm test:ci"
@@ -16,8 +19,6 @@ alias create-pr="pi-pr \"Create a PR using the JJ skill\""
 alias ai="pi"
 review-pr() { pi-review "Review $1 using the PR review skill"; }
 
-# Source main dotfiles config (contains all the core setup)
-source ~/dotfiles/.zshrc
 
 # Work-specific aliases
 alias cloud_sso="~/grafana/deployment_tools/scripts/sso/gcloud.sh && AWS_PROFILE=workloads-ops ~/grafana/deployment_tools/scripts/sso/aws.sh && ~/grafana/deployment_tools/scripts/sso/az.sh"

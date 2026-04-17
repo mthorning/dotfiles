@@ -115,6 +115,10 @@
     "*;*": "ask",
     "*||*": "ask",
 
+    // ── Safe piped read-only commands ──
+    "gh pr diff * | head *": "allow",
+    "gh pr diff * | cat": "allow",
+
     // ── Destructive / irreversible → ask ──
     "rm *": "ask",
     "rmdir *": "ask",
