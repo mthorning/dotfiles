@@ -4,12 +4,18 @@ local CHAT_SYSTEM_PROMPT = [[You are running inside a custom Neovim + tmux workf
 
 local APPLY_SYSTEM_PROMPT = [[You are running inside a custom Neovim apply workflow. The user wants a direct edit based on the selected code. Make the requested change immediately by editing files as needed. Do not ask follow-up questions.]]
 
-local DIFF_SYSTEM_PROMPT_TEMPLATE = [[You are reviewing a jj (Jujutsu) diff inside Neovim. The user has selected a portion of a diff and wants to discuss it.
+local JJ_DIFF_SYSTEM_PROMPT_TEMPLATE = [[You are reviewing a jj (Jujutsu) diff inside Neovim. The user has selected a portion of a diff and wants to discuss it.
 
 You are seeing only the selected hunk(s), not the full diff. If you need more context:
 - Run `jj diff %s` to see the full diff (same args the user used)
 - Add a fileset to narrow: `jj diff %s <filename>`
 - Run `jj diff %s -s` for a summary of all changed files
+
+The diff is in unified diff format. Lines starting with + are additions, - are deletions.]]
+
+local GENERIC_DIFF_SYSTEM_PROMPT = [[You are reviewing a unified diff between two files inside Neovim. The user may have selected part of the diff or placed the cursor inside a hunk.
+
+You are seeing only the selected hunk(s), not necessarily the full diff. If you need more context, ask the user to open a larger selection or inspect the underlying files.
 
 The diff is in unified diff format. Lines starting with + are additions, - are deletions.]]
 
@@ -112,8 +118,11 @@ function M.system_prompt_for(opts)
     return APPLY_SYSTEM_PROMPT
   end
   if opts.mode == 'diff' then
-    local args = opts.diff_args or ''
-    return string.format(DIFF_SYSTEM_PROMPT_TEMPLATE, args, args, args)
+    if opts.diff_kind == 'jj' then
+      local args = opts.diff_args or ''
+      return string.format(JJ_DIFF_SYSTEM_PROMPT_TEMPLATE, args, args, args)
+    end
+    return GENERIC_DIFF_SYSTEM_PROMPT
   end
   return CHAT_SYSTEM_PROMPT
 end
@@ -265,6 +274,8 @@ end
 
 function M.get_diff_context(bufnr, config, opts)
   local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  local diff_kind = vim.b[bufnr].diff_source_type or (bufname:match('^jj://') and 'jj' or 'generic')
   local diff_args = vim.b[bufnr].jj_diff_args or ''
 
   local range = M.get_visual_selection_range()
@@ -314,9 +325,18 @@ function M.get_diff_context(bufnr, config, opts)
   end
 
   -- Build output
-  local parts = {
-    string.format('Source: jj diff (args: %s)', diff_args ~= '' and diff_args or '(none)'),
-  }
+  local parts = {}
+  if diff_kind == 'jj' then
+    parts[#parts + 1] = string.format('Source: jj diff (args: %s)', diff_args ~= '' and diff_args or '(none)')
+  else
+    local file1 = vim.b[bufnr].diff_file1
+    local file2 = vim.b[bufnr].diff_file2
+    if file1 and file2 then
+      parts[#parts + 1] = string.format('Source: file diff (%s ↔ %s)', file1, file2)
+    else
+      parts[#parts + 1] = 'Source: file diff'
+    end
+  end
 
   if #file_paths > 1 then
     parts[#parts + 1] = 'Files: ' .. table.concat(file_paths, ', ')
@@ -335,7 +355,7 @@ function M.get_diff_context(bufnr, config, opts)
   end
 
   -- Include diff-aware instructions so they work regardless of pane reuse
-  parts[#parts + 1] = M.system_prompt_for({ mode = 'diff', diff_args = diff_args })
+  parts[#parts + 1] = M.system_prompt_for({ mode = 'diff', diff_kind = diff_kind, diff_args = diff_args })
 
   return table.concat(parts, '\n\n')
 end

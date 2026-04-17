@@ -134,6 +134,37 @@ function jjd() {
   fi
 }
 
+function vimdiff() {
+  if [[ $# -ne 2 ]]; then
+    echo "Usage: vimdiff <file1> <file2>"
+    return 1
+  fi
+
+  local file1="$1"
+  local file2="$2"
+
+  if [[ ! -e "$file1" ]]; then
+    echo "File not found: $file1"
+    return 1
+  fi
+
+  if [[ ! -e "$file2" ]]; then
+    echo "File not found: $file2"
+    return 1
+  fi
+
+  if cmp -s -- "$file1" "$file2"; then
+    echo "No differences"
+    return 0
+  fi
+
+  git --no-pager diff --no-index --no-color -- "$file1" "$file2" | \
+    nvim -R - \
+      "+file diff://$(basename -- "$file1")..$(basename -- "$file2")" \
+      '+setlocal buftype=nofile bufhidden=wipe noswapfile filetype=diff nobuflisted' \
+      "+nnoremap <silent> <buffer> q <CMD>bdelete!<CR>"
+}
+
 source <(COMPLETE=zsh jj)
 
 # Sync pi theme with macOS appearance (on startup + watch for changes)

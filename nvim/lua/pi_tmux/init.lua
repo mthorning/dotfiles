@@ -724,8 +724,8 @@ function M.chat_diff()
   assert_supported_version()
   local bufnr = vim.api.nvim_get_current_buf()
   local bufname = vim.api.nvim_buf_get_name(bufnr)
-  if not bufname:match('^jj://') then
-    notify('PiChatDiff requires a jj:// buffer', vim.log.levels.WARN)
+  if not (bufname:match('^jj://') or bufname:match('^diff://')) then
+    notify('PiChatDiff requires a jj:// or diff:// buffer', vim.log.levels.WARN)
     return
   end
 
@@ -746,8 +746,8 @@ function M.chat_diff_new()
   assert_supported_version()
   local bufnr = vim.api.nvim_get_current_buf()
   local bufname = vim.api.nvim_buf_get_name(bufnr)
-  if not bufname:match('^jj://') then
-    notify('PiChatDiffNew requires a jj:// buffer', vim.log.levels.WARN)
+  if not (bufname:match('^jj://') or bufname:match('^diff://')) then
+    notify('PiChatDiffNew requires a jj:// or diff:// buffer', vim.log.levels.WARN)
     return
   end
 

@@ -76,9 +76,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufFilePost' }, {
-  desc = 'Configure scratch buffers used for jj diff output',
-  group = vim.api.nvim_create_augroup('JjDiff', { clear = true }),
-  pattern = 'jj://*',
+  desc = 'Configure scratch buffers used for diff output',
+  group = vim.api.nvim_create_augroup('ScratchDiff', { clear = true }),
+  pattern = { 'jj://*', 'diff://*' },
   callback = function(ev)
     vim.bo.buftype = 'nofile'
     vim.bo.bufhidden = 'wipe'
@@ -92,17 +92,26 @@ vim.api.nvim_create_autocmd({ 'BufEnter', 'BufFilePost' }, {
     local ok, wk = pcall(require, 'which-key')
     if ok then
       wk.add({
-        { '<leader>Ac', '<CMD>PiChatDiff<CR>',    buffer = ev.buf, mode = 'n', desc = 'Pi chat diff' },
+        { '<leader>Ac', '<CMD>PiChatDiff<CR>',     buffer = ev.buf, mode = 'n', desc = 'Pi chat diff' },
         { '<leader>Ac', ':<C-u>PiChatDiff<CR>',    buffer = ev.buf, mode = 'v', desc = 'Pi chat diff' },
-        { '<leader>An', '<CMD>PiChatDiffNew<CR>', buffer = ev.buf, mode = 'n', desc = 'Pi chat diff (new pane)' },
+        { '<leader>An', '<CMD>PiChatDiffNew<CR>',  buffer = ev.buf, mode = 'n', desc = 'Pi chat diff (new pane)' },
         { '<leader>An', ':<C-u>PiChatDiffNew<CR>', buffer = ev.buf, mode = 'v', desc = 'Pi chat diff (new pane)' },
-        { '<leader>Aa', hidden = true,            buffer = ev.buf, mode = 'v' },
+        { '<leader>ic', '<CMD>PiChatDiff<CR>',     buffer = ev.buf, mode = 'n', desc = 'Pi chat diff' },
+        { '<leader>ic', ':<C-u>PiChatDiff<CR>',    buffer = ev.buf, mode = 'v', desc = 'Pi chat diff' },
+        { '<leader>in', '<CMD>PiChatDiffNew<CR>',  buffer = ev.buf, mode = 'n', desc = 'Pi chat diff (new pane)' },
+        { '<leader>in', ':<C-u>PiChatDiffNew<CR>', buffer = ev.buf, mode = 'v', desc = 'Pi chat diff (new pane)' },
+        { '<leader>Aa', hidden = true,             buffer = ev.buf, mode = 'v' },
+        { '<leader>ia', hidden = true,             buffer = ev.buf, mode = { 'n', 'v' } },
       })
     else
       vim.keymap.set('n', '<leader>Ac', '<CMD>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
       vim.keymap.set('v', '<leader>Ac', ':<C-u>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
       vim.keymap.set('n', '<leader>An', '<CMD>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
       vim.keymap.set('v', '<leader>An', ':<C-u>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
+      vim.keymap.set('n', '<leader>ic', '<CMD>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
+      vim.keymap.set('v', '<leader>ic', ':<C-u>PiChatDiff<CR>', { buffer = ev.buf, desc = 'Pi chat diff' })
+      vim.keymap.set('n', '<leader>in', '<CMD>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
+      vim.keymap.set('v', '<leader>in', ':<C-u>PiChatDiffNew<CR>', { buffer = ev.buf, desc = 'Pi chat diff (new pane)' })
     end
   end,
 })
@@ -213,4 +222,70 @@ vim.api.nvim_create_user_command('JjDiff', function(opts)
 end, {
   desc = 'Open jj diff in a scratch buffer',
   nargs = '*',
+})
+
+vim.api.nvim_create_user_command('FileDiff', function(opts)
+  if #opts.fargs ~= 2 then
+    vim.notify('Usage: :FileDiff <file1> <file2>', vim.log.levels.ERROR)
+    return
+  end
+
+  local file1 = vim.fn.fnamemodify(opts.fargs[1], ':p')
+  local file2 = vim.fn.fnamemodify(opts.fargs[2], ':p')
+
+  if vim.fn.filereadable(file1) == 0 then
+    vim.notify('File not found: ' .. file1, vim.log.levels.ERROR)
+    return
+  end
+
+  if vim.fn.filereadable(file2) == 0 then
+    vim.notify('File not found: ' .. file2, vim.log.levels.ERROR)
+    return
+  end
+
+  if vim.fn.system({ 'cmp', '-s', file1, file2 }) == '' and vim.v.shell_error == 0 then
+    vim.notify('No differences to show', vim.log.levels.INFO)
+    return
+  end
+
+  local diff_output = vim.fn.systemlist({ 'git', '--no-pager', 'diff', '--no-index', '--no-color', '--', file1, file2 })
+  if vim.v.shell_error > 1 or #diff_output == 0 or (#diff_output == 1 and diff_output[1] == '') then
+    vim.notify('Failed to generate diff', vim.log.levels.ERROR)
+    return
+  end
+
+  local prev_buf = vim.api.nvim_get_current_buf()
+  vim.cmd('enew')
+  vim.cmd(string.format('file diff://%s..%s', vim.fn.fnamemodify(file1, ':t'), vim.fn.fnamemodify(file2, ':t')))
+  local buf = vim.api.nvim_get_current_buf()
+  vim.api.nvim_buf_set_lines(buf, 0, -1, false, diff_output)
+  vim.b.diff_source_type = 'generic'
+  vim.b.diff_file1 = file1
+  vim.b.diff_file2 = file2
+  vim.bo.modifiable = false
+
+  vim.api.nvim_create_autocmd('BufWipeout', {
+    buffer = buf,
+    callback = function()
+      vim.schedule(function()
+        local has_real_buf = false
+        for _, b in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_buf_is_valid(b) and vim.bo[b].buflisted
+            and (vim.api.nvim_buf_get_name(b) ~= '' or vim.bo[b].modified) then
+            has_real_buf = true
+            break
+          end
+        end
+        if not has_real_buf then
+          vim.cmd('quit')
+        elseif vim.api.nvim_buf_is_valid(prev_buf) then
+          vim.api.nvim_set_current_buf(prev_buf)
+        end
+      end)
+    end,
+  })
+end, {
+  desc = 'Open a unified diff between two files in a scratch buffer',
+  nargs = '+',
+  complete = 'file',
 })
